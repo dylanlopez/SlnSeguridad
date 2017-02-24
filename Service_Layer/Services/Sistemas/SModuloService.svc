@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Service_Layer.Services.Sistemas.SModuloService" CodeBehind="SModuloService.svc.cs" %>

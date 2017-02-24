@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Service_Layer.Services.Sistemas.SSistemaService" CodeBehind="SSistemaService.svc.cs" %>

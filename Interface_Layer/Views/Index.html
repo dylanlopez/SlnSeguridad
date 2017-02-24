@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
+</head>
+<body ng-controller="MenuCtrl">
+    <div>
+        <nav class="navbar navbar-inverse" role="navigation" >
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="Index.html">Midis Seguridad</a>
+                </div>
+                <ul class="nav navbar-nav">
+
+
+                    <!--<li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="Index.html">
+                            Sistemas
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="Sistemas.html">Administración de Sistemas</a></li>
+                            <li><a href="Modulos.html">Administración de Módulos</a></li>
+                            <li><a href="Menus.html">Administración de Menús</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Usuarios
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ProgramasSociales.html">Administración de Programas Sociales</a></li>
+                            <li><a href="Roles.html">Administración de Roles</a></li>
+                            <li><a href="Personas.html">Administración de Personas</a></li>
+                            <li><a href="Usuarios.html">Administración de Usuarios</a></li>
+                            <li><a href="MenusRoles.html">Administración de Menús por Rol</a></li>
+                        </ul>
+                    </li>-->
+
+
+                    <!--<li class="dropdown" ng-repeat="sistema in sistemas">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        {{sistema.Abreviatura}}
+                        <span class="caret"></span>
+                    </a>-->
+                    <!--<ul class="dropdown-menu">
+                        <li ng-repeat="modulo in modulos"><a href="#">{{modulo.Codigo}}</a></li>
+                    </ul>
+                </li>-->
+
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <table class="table table-bordered table-hover" id="tab_logic">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Abreviatura</th>
+                    <th>Descripcion</th>
+                    <th>Estado</th>
+                    <th>Sistema</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="sistema in sistemas">
+                    <td>{{sistema.Id}}</td>
+                    <td>{{sistema.Codigo}}</td>
+                    <td>{{sistema.Nombre}}</td>
+                    <td>{{sistema.Abreviatura}}</td>
+                    <td>{{sistema.Descripcion}}</td>
+                    <td>{{sistema.Estado}}</td>
+                    <td></td>
+                </tr>
+
+
+                <!--<tr ng-repeat="modulo in modulos">
+                    <td>{{modulo.Id}}</td>
+                    <td>{{modulo.Codigo}}</td>
+                    <td>{{modulo.Nombre}}</td>
+                    <td>{{modulo.Abreviatura}}</td>
+                    <td>{{modulo.Descripcion}}</td>
+                    <td>{{modulo.Estado}}</td>
+                    <td>{{modulo.Sistema.Abreviatura}}</td>
+                </tr>-->
+
+                <!--<tr>
+                    <td>Id</td>
+                    <td>Codigo</td>
+                    <td>Nombre</td>
+                    <td>Abreviatura</td>
+                    <td>Descripcion</td>
+                    <td>Estado</td>
+                    <td>Sistema</td>
+                </tr>-->
+
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript" src="../Scripts/jquery-3.1.1.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="../Angular/myApp.module.js"></script>
+    <script type="text/javascript" src="../Angular/menuCtrl.js"></script>
+</body>
+</html>
