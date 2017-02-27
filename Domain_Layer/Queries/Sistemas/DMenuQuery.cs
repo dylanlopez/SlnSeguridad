@@ -8,9 +8,9 @@ using System.Collections.Generic;
 
 namespace Domain_Layer.Queries
 {
-    public partial class DQuery : IDModuloQuery
+    public partial class DQuery : IDMenuQuery
     {
-        public int Actualizar(DModuloDto dto)
+        public int Actualizar(DMenuDto dto)
         {
             try
             {
@@ -18,7 +18,7 @@ namespace Domain_Layer.Queries
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        _sessionMidis.Update(DModuloConverter.ToEntity(dto));
+                        _sessionMidis.Update(DMenuConverter.ToEntity(dto));
                         _transactionMidis.Commit();
                         return dto.Id;
                     }
@@ -29,26 +29,26 @@ namespace Domain_Layer.Queries
                 throw ex;
             }
         }
-        public DModuloDto Buscar(DModuloDto dto)
+        public DMenuDto Buscar(DMenuDto dto)
         {
-            DModuloDto item = null;
+            DMenuDto item = null;
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        IQuery query = _sessionMidis.CreateQuery("FROM EModulo x " +
+                        IQuery query = _sessionMidis.CreateQuery("FROM EMenu x " +
                                                                  "WHERE x.Id = :p_Id " +
                                                                  "OR x.Codigo = :p_Codigo");
                         query.SetParameter("p_Id", dto.Id);
                         query.SetParameter("p_Codigo", dto.Codigo);
-                        var result = query.List<EModulo>();
+                        var result = query.List<EMenu>();
                         if (result != null)
                         {
                             if (result.Count > 0)
                             {
-                                item = DModuloConverter.ToDto(result[0]);
+                                item = DMenuConverter.ToDto(result[0]);
                             }
                         }
                         return item;
@@ -60,7 +60,7 @@ namespace Domain_Layer.Queries
                 throw ex;
             }
         }
-        public int Insertar(DModuloDto dto)
+        public int Eliminar(DMenuDto dto)
         {
             try
             {
@@ -68,7 +68,26 @@ namespace Domain_Layer.Queries
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        _sessionMidis.Save(DModuloConverter.ToEntity(dto));
+                        _sessionMidis.Delete(DMenuConverter.ToEntity(dto));
+                        _transactionMidis.Commit();
+                        return dto.Id;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public int Insertar(DMenuDto dto)
+        {
+            try
+            {
+                using (_sessionMidis = _sessionFactoryMidis.OpenSession())
+                {
+                    using (_transactionMidis = _sessionMidis.BeginTransaction())
+                    {
+                        _sessionMidis.Save(DMenuConverter.ToEntity(dto));
                         _sessionMidis.Flush();
                         _transactionMidis.Commit();
                         return dto.Id;
@@ -80,18 +99,18 @@ namespace Domain_Layer.Queries
                 throw ex;
             }
         }
-        public List<DModuloDto> Listar(DModuloDto dto)
+        public List<DMenuDto> Listar(DMenuDto dto)
         {
-            List<DModuloDto> list = null;
+            List<DMenuDto> list = null;
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        IQuery query = _sessionMidis.CreateQuery("FROM EModulo x " +
+                        IQuery query = _sessionMidis.CreateQuery("FROM EMenu x " +
                                                                  "WHERE x.Estado = COALESCE(:p_Estado, x.Estado) " +
-                                                                 "AND x.Sistema.Id = COALESCE(:p_IdSistema, x.Sistema.Id)");
+                                                                 "AND x.Modulo.Id = COALESCE(:p_IdModulo, x.Modulo.Id)");
                         if (dto.Estado != '\0')
                         {
                             query.SetParameter("p_Estado", dto.Estado);
@@ -100,18 +119,18 @@ namespace Domain_Layer.Queries
                         {
                             query.SetParameter("p_Estado", null, NHibernateUtil.Character);
                         }
-                        if (dto.Sistema.Id != 0)
+                        if (dto.Modulo.Id != 0)
                         {
-                            query.SetParameter("p_IdSistema", dto.Sistema.Id);
+                            query.SetParameter("p_IdModulo", dto.Modulo.Id);
                         }
                         else
                         {
-                            query.SetParameter("p_IdSistema", null, NHibernateUtil.Int32);
+                            query.SetParameter("p_IdModulo", null, NHibernateUtil.Int32);
                         }
-                        var result = query.List<EModulo>();
+                        var result = query.List<EMenu>();
                         if (result != null)
                         {
-                            list = DModuloConverter.ToDtos(result);
+                            list = DMenuConverter.ToDtos(result);
                         }
                         return list;
                     }

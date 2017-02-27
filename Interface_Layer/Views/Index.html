@@ -41,15 +41,15 @@
                     </li>-->
 
 
-                    <!--<li class="dropdown" ng-repeat="sistema in sistemas">
+                    <li class="dropdown" ng-repeat="sistema in sistemas">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         {{sistema.Abreviatura}}
                         <span class="caret"></span>
-                    </a>-->
-                    <!--<ul class="dropdown-menu">
-                        <li ng-repeat="modulo in modulos"><a href="#">{{modulo.Codigo}}</a></li>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="modulo in modulos"><a href="#">{{modulo.Abreviatura}}</a></li>
                     </ul>
-                </li>-->
+                </li>
 
 
                 </ul>
@@ -71,7 +71,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="sistema in sistemas">
+                <!--<tr ng-repeat="sistema in sistemas">
                     <td>{{sistema.Id}}</td>
                     <td>{{sistema.Codigo}}</td>
                     <td>{{sistema.Nombre}}</td>
@@ -79,7 +79,7 @@
                     <td>{{sistema.Descripcion}}</td>
                     <td>{{sistema.Estado}}</td>
                     <td></td>
-                </tr>
+                </tr>-->
 
 
                 <!--<tr ng-repeat="modulo in modulos">
@@ -89,7 +89,7 @@
                     <td>{{modulo.Abreviatura}}</td>
                     <td>{{modulo.Descripcion}}</td>
                     <td>{{modulo.Estado}}</td>
-                    <td>{{modulo.Sistema.Abreviatura}}</td>
+                    <td>{{modulo.Sistema.Nombre}}</td>
                 </tr>-->
 
                 <!--<tr>

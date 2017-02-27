@@ -6,14 +6,14 @@ using System.ServiceModel.Web;
 namespace Service_Layer.Services.Sistemas
 {
     [ServiceContract]
-    public interface ISModuloService
+    public interface ISMenuService
     {
         [OperationContract]
         [WebInvoke(Method = "GET",
         ResponseFormat = WebMessageFormat.Json,
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
-        UriTemplate = "ListarModulos/")]
-        List<DModuloDto> Listar();
+        UriTemplate = "ListarMenus/")]
+        List<DMenuDto> Listar();
     }
 }

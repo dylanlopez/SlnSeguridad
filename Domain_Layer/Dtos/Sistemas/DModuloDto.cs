@@ -1,4 +1,4 @@
-﻿namespace Domain_Layer.Dtos
+﻿namespace Domain_Layer.Dtos.Sistemas
 {
     public class DModuloDto
     {
@@ -10,7 +10,7 @@
             Abreviatura = string.Empty;
             Descripcion = string.Empty;
             Estado = '\0';
-            Sistema = null;
+            Sistema = new DSistemaDto();
         }
 
         public int Id { get; set; }

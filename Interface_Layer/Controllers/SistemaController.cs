@@ -1,4 +1,6 @@
-﻿using Interface_Layer.Models.Sistemas;
+﻿using Domain_Layer.Dtos.Sistemas;
+using Interface_Layer.Models.Sistemas;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,10 +15,12 @@ namespace Interface_Layer.Controllers
     {
         public SistemaController() { }
 
-        [HttpGet]
+        //[HttpGet]
+        [HttpPost]
         public IEnumerable<SistemaModel> ListarSistemas()
         {
-            var response = GET("http://localhost/SeguridadService/Services/Sistemas/SSistemaService.svc/ListarSistemas/");
+            //var response = GET("http://localhost/SeguridadService/Services/Sistemas/SSistemaService.svc/ListarSistemas/");
+            var response = GET("http://localhost:55291/Services/Sistemas/SSistemaService.svc/ListarSistemas/");
             List<SistemaModel> jsonResponse = (List<SistemaModel>)response;
 
             ////var resp = new SistemaResponse();
@@ -41,10 +45,19 @@ namespace Interface_Layer.Controllers
 
         object GET(string url)
         {
+            DSistemaDto dto = new DSistemaDto();
+            var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(dto));
+
             HttpWebRequest request = (HttpWebRequest) WebRequest.Create(url);
             try
             {
+                //request.ContentType = "application/json";
                 request.ContentType = "application/json";
+                request.ContentLength = dataToSend.Length;
+                request.Method = "POST";
+                request.GetRequestStream().Write(dataToSend, 0, dataToSend.Length);
+                
+
                 WebResponse response = request.GetResponse();
                 //var response = request.GetResponse();
                 DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(List<SistemaModel>));
@@ -73,6 +86,5 @@ namespace Interface_Layer.Controllers
                 throw;
             }
         }
-
     }
 }

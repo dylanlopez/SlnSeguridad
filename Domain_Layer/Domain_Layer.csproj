@@ -56,18 +56,24 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Converters\Personas\" />
+    <Folder Include="Dtos\Personas\" />
     <Folder Include="Queries\Personas\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\DConfigureHibernate.cs" />
     <Compile Include="Connections\DConexion.cs" />
-    <Compile Include="Converters\DModuloConverter.cs" />
-    <Compile Include="Converters\DSistemaConverter.cs" />
-    <Compile Include="Dtos\DModuloDto.cs" />
-    <Compile Include="Dtos\DSistemaDto.cs" />
+    <Compile Include="Converters\Sistemas\DMenuConverter.cs" />
+    <Compile Include="Converters\Sistemas\DModuloConverter.cs" />
+    <Compile Include="Converters\Sistemas\DSistemaConverter.cs" />
+    <Compile Include="Dtos\Sistemas\DMenuDto.cs" />
+    <Compile Include="Dtos\Sistemas\DModuloDto.cs" />
+    <Compile Include="Dtos\Sistemas\DSistemaDto.cs" />
     <Compile Include="Queries\DQuery.cs" />
+    <Compile Include="Queries\Sistemas\DMenuQuery.cs" />
     <Compile Include="Queries\Sistemas\DModuloQuery.cs" />
     <Compile Include="Queries\Sistemas\DSistemaQuery.cs" />
+    <Compile Include="Queries\Sistemas\IDMenuQuery.cs" />
     <Compile Include="Queries\Sistemas\IDModuloQuery.cs" />
     <Compile Include="Queries\Sistemas\IDSistemaQuery.cs" />
   </ItemGroup>

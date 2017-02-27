@@ -1,4 +1,4 @@
-﻿namespace Domain_Layer.Dtos
+﻿namespace Domain_Layer.Dtos.Sistemas
 {
     public class DSistemaDto
     {

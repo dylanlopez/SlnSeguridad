@@ -45,8 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logics\BLogic.cs" />
+    <Compile Include="Logics\Sistemas\BMenuLogic.cs" />
     <Compile Include="Logics\Sistemas\BModuloLogic.cs" />
     <Compile Include="Logics\Sistemas\BSistemaLogic.cs" />
+    <Compile Include="Logics\Sistemas\IBMenuLogic.cs" />
     <Compile Include="Logics\Sistemas\IBModuloLogic.cs" />
     <Compile Include="Logics\Sistemas\IBSistemaLogic.cs" />
   </ItemGroup>

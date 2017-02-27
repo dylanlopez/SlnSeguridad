@@ -37,12 +37,22 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Compile Include="Entities\EModulo.cs" />
-    <Compile Include="Entities\ESistema.cs" />
-    <Compile Include="Mappings\EModuloMapping.cs" />
-    <Compile Include="Mappings\ESistemaMapping.cs" />
+    <Folder Include="Mappings\Personas\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Personas\EPersona.cs" />
+    <Compile Include="Entities\Personas\EPersonaProgramaSocial.cs" />
+    <Compile Include="Entities\Personas\EProgramaSocial.cs" />
+    <Compile Include="Entities\Personas\ETipoDocumentoPersona.cs" />
+    <Compile Include="Entities\Personas\EUsuario.cs" />
+    <Compile Include="Entities\Sistemas\EMenu.cs" />
+    <Compile Include="Entities\Sistemas\EModulo.cs" />
+    <Compile Include="Entities\Sistemas\ESistema.cs" />
+    <Compile Include="Mappings\Sistemas\EMenuMapping.cs" />
+    <Compile Include="Mappings\Sistemas\EModuloMapping.cs" />
+    <Compile Include="Mappings\Sistemas\ESistemaMapping.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">

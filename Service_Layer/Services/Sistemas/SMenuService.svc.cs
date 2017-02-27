@@ -6,17 +6,17 @@ using System.Collections.Generic;
 
 namespace Service_Layer.Services.Sistemas
 {
-    public class SSistemaService : ISSistemaService
+    public class SMenuService : ISMenuService
     {
-        private IBSistemaLogic _sistemaLogic;
+        private IBMenuLogic _menuLogic;
 
-        public List<DSistemaDto> Listar(DSistemaDto dto)
+        public List<DMenuDto> Listar()
         {
-            List<DSistemaDto> list = null;
+            List<DMenuDto> list = null;
             try
             {
-                _sistemaLogic = new BLogic();
-                list = _sistemaLogic.Listar(dto);
+                _menuLogic = new BLogic();
+                list = _menuLogic.Listar(new DMenuDto());
                 return list;
             }
             catch (Exception ex)

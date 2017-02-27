@@ -42,12 +42,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceModel.Web">
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Services\Sistemas\SMenuService.svc" />
     <Content Include="Services\Sistemas\SModuloService.svc" />
     <Content Include="Services\Sistemas\SSistemaService.svc" />
     <Content Include="Web.config">
@@ -57,15 +61,18 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CORSEnablingBehavior.cs" />
+    <Compile Include="Services\Sistemas\ISMenuService.cs" />
     <Compile Include="Services\Sistemas\ISModuloService.cs" />
     <Compile Include="Services\Sistemas\ISSistemaService.cs" />
+    <Compile Include="Services\Sistemas\SMenuService.svc.cs">
+      <DependentUpon>SMenuService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Services\Sistemas\SModuloService.svc.cs">
       <DependentUpon>SModuloService.svc</DependentUpon>
     </Compile>
     <Compile Include="Services\Sistemas\SSistemaService.svc.cs">
       <DependentUpon>SSistemaService.svc</DependentUpon>
     </Compile>
-    <Compile Include="Services\SService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,5 +6,6 @@ namespace Business_Layer.Logics
     {
         private IDSistemaQuery _sistemaQuery;
         private IDModuloQuery _moduloQuery;
+        private IDMenuQuery _menuQuery;
     }
 }

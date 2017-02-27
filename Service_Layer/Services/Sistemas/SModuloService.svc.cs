@@ -1,6 +1,6 @@
 ﻿using Business_Layer.Logics;
 using Business_Layer.Logics.Sistemas;
-using Domain_Layer.Dtos;
+using Domain_Layer.Dtos.Sistemas;
 using System;
 using System.Collections.Generic;
 

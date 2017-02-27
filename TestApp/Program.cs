@@ -1,4 +1,4 @@
-﻿using Domain_Layer.Dtos;
+﻿using Domain_Layer.Dtos.Sistemas;
 using Domain_Layer.Queries;
 using Domain_Layer.Queries.Sistemas;
 using System;

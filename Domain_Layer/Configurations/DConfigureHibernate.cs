@@ -1,5 +1,4 @@
-﻿using Entity_Layer.Entities;
-using Entity_Layer.Mappings;
+﻿using Entity_Layer.Mappings.Sistemas;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
@@ -9,7 +8,6 @@ using NHibernate.Mapping.ByCode;
 using NHibernate.Tool.hbm2ddl;
 using System;
 using System.Data;
-using System.Reflection;
 
 namespace Domain_Layer.Configurations
 {
@@ -64,6 +62,7 @@ namespace Domain_Layer.Configurations
                 //mapper.AddMappings(Assembly.GetAssembly(typeof(ESistema)).GetExportedTypes());
                 mapper.AddMapping<ESistemaMapping>();
                 mapper.AddMapping<EModuloMapping>();
+                mapper.AddMapping<EMenuMapping>();
                 HbmMapping mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
                 return mapping;
             }
