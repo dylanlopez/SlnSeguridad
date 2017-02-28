@@ -1,4 +1,5 @@
-﻿using Entity_Layer.Mappings.Sistemas;
+﻿using Entity_Layer.Mappings.Personas;
+using Entity_Layer.Mappings.Sistemas;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
@@ -11,12 +12,38 @@ using System.Data;
 
 namespace Domain_Layer.Configurations
 {
+    /// <summary>
+    /// Here is the NHibernate configure class DConfigureHibernate.
+    /// </summary>
+    /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
+    /// <v1.0>
+    /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
+    /// <description>Initial version</description>
+    /// </v1.0>
     public class DConfigureHibernate
     {
+        /// <summary>
+        /// The string of connection.
+        /// </summary>
         private static string _connection;
+
+        /// <summary>
+        /// The NHibernate Configuration.
+        /// </summary>
         public static Configuration NHConfiguration;
+
+        /// <summary>
+        /// Gets or sets the MIDIS session factory.
+        /// </summary>
+        /// <value>
+        /// The MIDIS session factory.
+        /// </value>
         public static ISessionFactory SessionFactoryMidis { get; set; }
 
+        /// <summary>
+        /// Setups the NHibernate configuration with the specified connection and build a session factory with this.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
         public static void Setup(string connection)
         {
             try
@@ -30,7 +57,12 @@ namespace Domain_Layer.Configurations
                 throw ex;
             }
         }
-        public static Configuration ConfigureNHibernate()
+
+        /// <summary>
+        /// Configures the NHibernate establish a factory name, a dialect and a driver, also create the mappings.
+        /// </summary>
+        /// <returns></returns>
+        private static Configuration ConfigureNHibernate()
         {
             var conf = new Configuration();
             try
@@ -54,15 +86,27 @@ namespace Domain_Layer.Configurations
                 throw ex;
             }
         }
-        public static HbmMapping GetMappings()
+
+        /// <summary>
+        /// Gets the model mapper from all entities from mapping classes.
+        /// </summary>
+        /// <returns>The model mapper</returns>
+        private static HbmMapping GetMappings()
         {
             try
             {
                 var mapper = new ModelMapper();
-                //mapper.AddMappings(Assembly.GetAssembly(typeof(ESistema)).GetExportedTypes());
                 mapper.AddMapping<ESistemaMapping>();
                 mapper.AddMapping<EModuloMapping>();
                 mapper.AddMapping<EMenuMapping>();
+                mapper.AddMapping<EProgramaSocialMapping>();
+                mapper.AddMapping<ETipoDocumentoPersonaMapping>();
+                mapper.AddMapping<EPersonaMapping>();
+                mapper.AddMapping<EPersonaProgramaSocialMapping>();
+                mapper.AddMapping<EUsuarioMapping>();
+                mapper.AddMapping<ERolMapping>();
+                mapper.AddMapping<EUsuarioRolMapping>();
+                mapper.AddMapping<EMenuRolMapping>();
                 HbmMapping mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
                 return mapping;
             }

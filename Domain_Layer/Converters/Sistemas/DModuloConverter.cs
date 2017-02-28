@@ -4,8 +4,21 @@ using System.Collections.Generic;
 
 namespace Domain_Layer.Converters.Sistemas
 {
+    /// <summary>
+    /// Here is the Converter class DModuloConverter.
+    /// </summary>
+    /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
+    /// <v1.0>
+    /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
+    /// <description>Initial version</description>
+    /// </v1.0>
     internal static class DModuloConverter
     {
+        /// <summary>
+        /// Method for convert entity class EModulo to DTO class DModuloDto.
+        /// </summary>
+        /// <param name="entity">The entity class EModulo.</param>
+        /// <returns></returns>
         internal static DModuloDto ToDto(EModulo entity)
         {
             var dto = new DModuloDto();
@@ -18,6 +31,12 @@ namespace Domain_Layer.Converters.Sistemas
             dto.Sistema = DSistemaConverter.ToDto(entity.Sistema);
             return dto;
         }
+
+        /// <summary>
+        /// Method for convert list of entities classes EModulo to list of DTOs classes DModuloDto.
+        /// </summary>
+        /// <param name="entities">The list of entities classes EModulo.</param>
+        /// <returns></returns>
         internal static List<DModuloDto> ToDtos(IList<EModulo> entities)
         {
             var dtos = new List<DModuloDto>();
@@ -28,6 +47,12 @@ namespace Domain_Layer.Converters.Sistemas
             }
             return dtos;
         }
+
+        /// <summary>
+        /// Method for convert DTO class DModuloDto to entity class EModulo.
+        /// </summary>
+        /// <param name="dto">The DTO class DModuloDto.</param>
+        /// <returns></returns>
         internal static EModulo ToEntity(DModuloDto dto)
         {
             var entity = new EModulo();

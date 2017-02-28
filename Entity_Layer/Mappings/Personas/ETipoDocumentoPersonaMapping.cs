@@ -1,46 +1,46 @@
-﻿using Entity_Layer.Entities.Sistemas;
+﻿using Entity_Layer.Entities.Personas;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 using System;
 
-namespace Entity_Layer.Mappings.Sistemas
+namespace Entity_Layer.Mappings.Personas
 {
     /// <summary>
-    /// Here is the mapping class EMenuMapping, on which entity-class mapping is performed using the NHibernate ClassMapping. Here
-    /// MENU table is mapped over EMenu entity class.
+    /// Here is the mapping class ETipoDocumentoPersonaMapping, on which entity-class mapping is performed using the NHibernate ClassMapping. Here
+    /// TIPO_DOCUMENTO_PERSONA table is mapped over ETipoDocumentoPersona entity class.
     /// </summary>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <v1.0>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <description>Initial version</description>
     /// </v1.0>
-    /// <seealso cref="NHibernate.Mapping.ByCode.Conformist.ClassMapping{Entity_Layer.Entities.Sistemas.EMenu}" />
-    public class EMenuMapping : ClassMapping<EMenu>
+    /// <seealso cref="NHibernate.Mapping.ByCode.Conformist.ClassMapping{Entity_Layer.Entities.Sistemas.ETipoDocumentoPersona}" />
+    public class ETipoDocumentoPersonaMapping : ClassMapping<ETipoDocumentoPersona>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EMenuMapping"/> class.
+        /// Initializes a new instance of the <see cref="ETipoDocumentoPersonaMapping"/> class.
         /// </summary>
-        public EMenuMapping()
+        public ETipoDocumentoPersonaMapping()
         {
             Schema("ES_SEGURIDAD");
-            Table("MENU");
+            Table("TIPO_DOCUMENTO_PERSONA");
             Id<Int32>(
                 x => x.Id,
                 map => {
-                    map.Column("ID_MENU");
+                    map.Column("ID_TIPO_DOCUMENTO_PERSONA");
                     map.Generator(
                         Generators.Sequence,
                         seq => seq.Params(new
                         {
                             schema = "ES_SEGURIDAD",
-                            sequence = "SEQ_MENU"
+                            sequence = "SEQ_TIPO_DOCUMENTO_PERSONA"
                         }));
                 });
             Property<String>(
                 x => x.Codigo,
                 map => {
                     map.Column("CODIGO");
-                    map.Length(7);
+                    map.Length(4);
                     map.NotNullable(true);
                 });
             Property<String>(
@@ -51,10 +51,10 @@ namespace Entity_Layer.Mappings.Sistemas
                     map.NotNullable(true);
                 });
             Property<String>(
-                x => x.Ruta, 
+                x => x.Abreviatura, 
                 map => {
-                    map.Column("RUTA");
-                    map.Length(200);
+                    map.Column("ABREVIATURA");
+                    map.Length(20);
                     map.NotNullable(true);
                 });
             Property<String>(
@@ -63,21 +63,6 @@ namespace Entity_Layer.Mappings.Sistemas
                     map.Column("DESCRIPCION");
                     map.Length(200);
                     map.NotNullable(false);
-                });
-            Property<Char>(
-                x => x.Estado, 
-                map => {
-                    map.Column("ESTADO");
-                    map.Length(1);
-                    map.NotNullable(true);
-                });
-            ManyToOne<EModulo>(
-                x => x.Modulo, 
-                map => {
-                    map.Column("ID_MODULO");
-                    map.NotNullable(true);
-                    map.Update(false);
-                    map.Insert(false);
                 });
         }
     }

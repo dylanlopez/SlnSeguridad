@@ -39,10 +39,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="NHibernate, Version=4.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\NHibernate.4.1.1.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
@@ -56,16 +52,30 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\Personas\" />
-    <Folder Include="Dtos\Personas\" />
     <Folder Include="Queries\Personas\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\DConfigureHibernate.cs" />
     <Compile Include="Connections\DConexion.cs" />
+    <Compile Include="Converters\Personas\DMenuRolConverter.cs" />
+    <Compile Include="Converters\Personas\DPersonaConverter.cs" />
+    <Compile Include="Converters\Personas\DPersonaProgramaSocialConverter.cs" />
+    <Compile Include="Converters\Personas\DProgramaSocialConverter.cs" />
+    <Compile Include="Converters\Personas\DRolConverter.cs" />
+    <Compile Include="Converters\Personas\DTipoDocumentoPersonaConverter.cs" />
+    <Compile Include="Converters\Personas\DUsuarioConverter.cs" />
+    <Compile Include="Converters\Personas\DUsuarioRolConverter.cs" />
     <Compile Include="Converters\Sistemas\DMenuConverter.cs" />
     <Compile Include="Converters\Sistemas\DModuloConverter.cs" />
     <Compile Include="Converters\Sistemas\DSistemaConverter.cs" />
+    <Compile Include="Dtos\Personas\DMenuRolDto.cs" />
+    <Compile Include="Dtos\Personas\DPersonaDto.cs" />
+    <Compile Include="Dtos\Personas\DPersonaProgramaSocialDto.cs" />
+    <Compile Include="Dtos\Personas\DProgramaSocialDto.cs" />
+    <Compile Include="Dtos\Personas\DRolDto.cs" />
+    <Compile Include="Dtos\Personas\DTipoDocumentoPersonaDto.cs" />
+    <Compile Include="Dtos\Personas\DUsuarioDto.cs" />
+    <Compile Include="Dtos\Personas\DUsuarioRolDto.cs" />
     <Compile Include="Dtos\Sistemas\DMenuDto.cs" />
     <Compile Include="Dtos\Sistemas\DModuloDto.cs" />
     <Compile Include="Dtos\Sistemas\DSistemaDto.cs" />

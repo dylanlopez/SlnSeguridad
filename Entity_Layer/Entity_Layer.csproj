@@ -37,18 +37,27 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Mappings\Personas\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="Entities\Personas\EMenuRol.cs" />
     <Compile Include="Entities\Personas\EPersona.cs" />
     <Compile Include="Entities\Personas\EPersonaProgramaSocial.cs" />
     <Compile Include="Entities\Personas\EProgramaSocial.cs" />
+    <Compile Include="Entities\Personas\ERol.cs" />
     <Compile Include="Entities\Personas\ETipoDocumentoPersona.cs" />
     <Compile Include="Entities\Personas\EUsuario.cs" />
+    <Compile Include="Entities\Personas\EUsuarioRol.cs" />
     <Compile Include="Entities\Sistemas\EMenu.cs" />
     <Compile Include="Entities\Sistemas\EModulo.cs" />
     <Compile Include="Entities\Sistemas\ESistema.cs" />
+    <Compile Include="Mappings\Personas\EMenuRolMapping.cs" />
+    <Compile Include="Mappings\Personas\EPersonaMapping.cs" />
+    <Compile Include="Mappings\Personas\EPersonaProgramaSocialMapping.cs" />
+    <Compile Include="Mappings\Personas\EProgramaSocialMapping.cs" />
+    <Compile Include="Mappings\Personas\ERolMapping.cs" />
+    <Compile Include="Mappings\Personas\ETipoDocumentoPersonaMapping.cs" />
+    <Compile Include="Mappings\Personas\EUsuarioMapping.cs" />
+    <Compile Include="Mappings\Personas\EUsuarioRolMapping.cs" />
     <Compile Include="Mappings\Sistemas\EMenuMapping.cs" />
     <Compile Include="Mappings\Sistemas\EModuloMapping.cs" />
     <Compile Include="Mappings\Sistemas\ESistemaMapping.cs" />

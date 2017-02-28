@@ -1,32 +1,24 @@
 ﻿using System;
 
-namespace Entity_Layer.Entities.Sistemas
+namespace Entity_Layer.Entities.Personas
 {
     /// <summary>
-    /// Here is the entity class EMenu, for store all the data and do the mapping after
+    /// Here is the entity class ERol, for store all the data and do the mapping after.
     /// </summary>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <v1.0>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <description>Initial version</description>
     /// </v1.0>
-    public class EMenu
+    public class ERol
     {
         /// <summary>
-        /// Gets or sets the Id, correspond to table field ID_MENU.
+        /// Gets or sets the Id, correspond to table field ID_ROL.
         /// </summary>
         /// <value>
         /// set a value to the Id.
         /// </value>
         public virtual Int32 Id { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Codigo, correspond to table field CODIGO.
-        /// </summary>
-        /// <value>
-        /// set a value to the Codigo.
-        /// </value>
-        public virtual String Codigo { get; set; }
 
         /// <summary>
         /// Gets or sets the Nombre, correspond to table field NOMBRE.
@@ -35,14 +27,6 @@ namespace Entity_Layer.Entities.Sistemas
         /// set a value to the Nombre.
         /// </value>
         public virtual String Nombre { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Ruta, correspond to table field RUTA.
-        /// </summary>
-        /// <value>
-        /// set a value to the Ruta.
-        /// </value>
-        public virtual String Ruta { get; set; }
 
         /// <summary>
         /// Gets or sets the Descripcion, correspond to table field DESCRIPCION.
@@ -59,13 +43,5 @@ namespace Entity_Layer.Entities.Sistemas
         /// set a value to the Estado.
         /// </value>
         public virtual Char Estado { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Modulo, correspond to table field ID_MODULO.
-        /// </summary>
-        /// <value>
-        /// set a value to the Modulo.
-        /// </value>
-        public virtual EModulo Modulo { get; set; }
     }
 }

@@ -1,27 +1,26 @@
-﻿namespace Domain_Layer.Dtos.Sistemas
+﻿namespace Domain_Layer.Dtos.Personas
 {
     /// <summary>
-    /// Here is the DTO class DMenuDto.
+    /// Here is the DTO class DProgramaSocialDto.
     /// </summary>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <v1.0>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <description>Initial version</description>
     /// </v1.0>
-    public class DMenuDto
+    public class DProgramaSocialDto
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DMenuDto"/> class.
+        /// Initializes a new instance of the <see cref="DProgramaSocialDto"/> class.
         /// </summary>
-        public DMenuDto()
+        public DProgramaSocialDto()
         {
             Id = 0;
             Codigo = string.Empty;
             Nombre = string.Empty;
-            Ruta = string.Empty;
             Descripcion = string.Empty;
+            Alcance = string.Empty;
             Estado = '\0';
-            Modulo = new DModuloDto();
         }
 
         /// <summary>
@@ -49,14 +48,6 @@
         public string Nombre { get; set; }
 
         /// <summary>
-        /// Gets or sets the Ruta, correspond to entity field Ruta.
-        /// </summary>
-        /// <value>
-        /// value to the Ruta.
-        /// </value>
-        public string Ruta { get; set; }
-
-        /// <summary>
         /// Gets or sets the Descripcion, correspond to entity field Descripcion.
         /// </summary>
         /// <value>
@@ -65,19 +56,19 @@
         public string Descripcion { get; set; }
 
         /// <summary>
+        /// Gets or sets the Alcance, correspond to entity field Alcance.
+        /// </summary>
+        /// <value>
+        /// value to the Alcance.
+        /// </value>
+        public string Alcance { get; set; }
+
+        /// <summary>
         /// Gets or sets the Estado, correspond to entity field Estado.
         /// </summary>
         /// <value>
         /// value to the Estado.
         /// </value>
         public char Estado { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Modulo, correspond to entity EModulo.
-        /// </summary>
-        /// <value>
-        /// set a value to the Modulo.
-        /// </value>
-        public DModuloDto Modulo { get; set; }
     }
 }

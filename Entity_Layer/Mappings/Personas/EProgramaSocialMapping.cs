@@ -1,46 +1,46 @@
-﻿using Entity_Layer.Entities.Sistemas;
+﻿using Entity_Layer.Entities.Personas;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 using System;
 
-namespace Entity_Layer.Mappings.Sistemas
+namespace Entity_Layer.Mappings.Personas
 {
     /// <summary>
-    /// Here is the mapping class EMenuMapping, on which entity-class mapping is performed using the NHibernate ClassMapping. Here
-    /// MENU table is mapped over EMenu entity class.
+    /// Here is the mapping class EProgramaSocialMapping, on which entity-class mapping is performed using the NHibernate ClassMapping. Here
+    /// PROGRAMA_SOCIAL table is mapped over EProgramaSocial entity class.
     /// </summary>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <v1.0>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <description>Initial version</description>
     /// </v1.0>
-    /// <seealso cref="NHibernate.Mapping.ByCode.Conformist.ClassMapping{Entity_Layer.Entities.Sistemas.EMenu}" />
-    public class EMenuMapping : ClassMapping<EMenu>
+    /// <seealso cref="NHibernate.Mapping.ByCode.Conformist.ClassMapping{Entity_Layer.Entities.Sistemas.EProgramaSocial}" />
+    public class EProgramaSocialMapping : ClassMapping<EProgramaSocial>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EMenuMapping"/> class.
+        /// Initializes a new instance of the <see cref="EProgramaSocialMapping"/> class.
         /// </summary>
-        public EMenuMapping()
+        public EProgramaSocialMapping()
         {
             Schema("ES_SEGURIDAD");
-            Table("MENU");
+            Table("PROGRAMA_SOCIAL");
             Id<Int32>(
                 x => x.Id,
                 map => {
-                    map.Column("ID_MENU");
+                    map.Column("ID_MODULO");
                     map.Generator(
                         Generators.Sequence,
                         seq => seq.Params(new
                         {
                             schema = "ES_SEGURIDAD",
-                            sequence = "SEQ_MENU"
+                            sequence = "SEQ_PROGRAMA_SOCIAL"
                         }));
                 });
             Property<String>(
                 x => x.Codigo,
                 map => {
                     map.Column("CODIGO");
-                    map.Length(7);
+                    map.Length(4);
                     map.NotNullable(true);
                 });
             Property<String>(
@@ -51,18 +51,18 @@ namespace Entity_Layer.Mappings.Sistemas
                     map.NotNullable(true);
                 });
             Property<String>(
-                x => x.Ruta, 
-                map => {
-                    map.Column("RUTA");
-                    map.Length(200);
-                    map.NotNullable(true);
-                });
-            Property<String>(
                 x => x.Descripcion, 
                 map => {
                     map.Column("DESCRIPCION");
                     map.Length(200);
                     map.NotNullable(false);
+                });
+            Property<String>(
+                x => x.Alcance, 
+                map => {
+                    map.Column("ALCANCE");
+                    map.Length(2);
+                    map.NotNullable(true);
                 });
             Property<Char>(
                 x => x.Estado, 
@@ -70,14 +70,6 @@ namespace Entity_Layer.Mappings.Sistemas
                     map.Column("ESTADO");
                     map.Length(1);
                     map.NotNullable(true);
-                });
-            ManyToOne<EModulo>(
-                x => x.Modulo, 
-                map => {
-                    map.Column("ID_MODULO");
-                    map.NotNullable(true);
-                    map.Update(false);
-                    map.Insert(false);
                 });
         }
     }
