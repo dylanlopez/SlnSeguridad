@@ -51,9 +51,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Queries\Personas\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="Configurations\DConfigureHibernate.cs" />
     <Compile Include="Connections\DConexion.cs" />
@@ -80,6 +78,22 @@
     <Compile Include="Dtos\Sistemas\DModuloDto.cs" />
     <Compile Include="Dtos\Sistemas\DSistemaDto.cs" />
     <Compile Include="Queries\DQuery.cs" />
+    <Compile Include="Queries\Personas\DMenuRolQuery.cs" />
+    <Compile Include="Queries\Personas\DPersonaProgramaSocialQuery.cs" />
+    <Compile Include="Queries\Personas\DPersonaQuery.cs" />
+    <Compile Include="Queries\Personas\DProgramaSocialQuery.cs" />
+    <Compile Include="Queries\Personas\DRolQuery.cs" />
+    <Compile Include="Queries\Personas\DTipoDocumentoPersonaQuery.cs" />
+    <Compile Include="Queries\Personas\DUsuarioQuery.cs" />
+    <Compile Include="Queries\Personas\DUsuarioRolQuery.cs" />
+    <Compile Include="Queries\Personas\IDMenuRolQuery.cs" />
+    <Compile Include="Queries\Personas\IDPersonaProgramaSocialQuery.cs" />
+    <Compile Include="Queries\Personas\IDPersonaQuery.cs" />
+    <Compile Include="Queries\Personas\IDProgramaSocialQuery.cs" />
+    <Compile Include="Queries\Personas\IDRolQuery.cs" />
+    <Compile Include="Queries\Personas\IDTipoDocumentoPersonaQuery.cs" />
+    <Compile Include="Queries\Personas\IDUsuarioQuery.cs" />
+    <Compile Include="Queries\Personas\IDUsuarioRolQuery.cs" />
     <Compile Include="Queries\Sistemas\DMenuQuery.cs" />
     <Compile Include="Queries\Sistemas\DModuloQuery.cs" />
     <Compile Include="Queries\Sistemas\DSistemaQuery.cs" />

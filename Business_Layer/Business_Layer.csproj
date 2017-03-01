@@ -45,6 +45,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logics\BLogic.cs" />
+    <Compile Include="Logics\Personas\BMenuRolLogic.cs" />
+    <Compile Include="Logics\Personas\BPersonaLogic.cs" />
+    <Compile Include="Logics\Personas\BPersonaProgramaSocialLogic.cs" />
+    <Compile Include="Logics\Personas\BProgramaSocialLogic.cs" />
+    <Compile Include="Logics\Personas\BRolLogic.cs" />
+    <Compile Include="Logics\Personas\BTipoDocumentoPersonaLogic.cs" />
+    <Compile Include="Logics\Personas\BUsuarioLogic.cs" />
+    <Compile Include="Logics\Personas\BUsuarioRolLogic.cs" />
+    <Compile Include="Logics\Personas\IBMenuRolLogic.cs" />
+    <Compile Include="Logics\Personas\IBPersonaLogic.cs" />
+    <Compile Include="Logics\Personas\IBPersonaProgramaSocialLogic.cs" />
+    <Compile Include="Logics\Personas\IBProgramaSocialLogic.cs" />
+    <Compile Include="Logics\Personas\IBRolLogic.cs" />
+    <Compile Include="Logics\Personas\IBTipoDocumentoPersonaLogic.cs" />
+    <Compile Include="Logics\Personas\IBUsuarioLogic.cs" />
+    <Compile Include="Logics\Personas\IBUsuarioRolLogic.cs" />
     <Compile Include="Logics\Sistemas\BMenuLogic.cs" />
     <Compile Include="Logics\Sistemas\BModuloLogic.cs" />
     <Compile Include="Logics\Sistemas\BSistemaLogic.cs" />
@@ -56,7 +72,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Logics\Personas\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
