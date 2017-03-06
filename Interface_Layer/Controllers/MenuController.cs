@@ -11,11 +11,11 @@ namespace Interface_Layer.Controllers
 {
     public class MenuController : ApiController
     {
-        [HttpGet]
+        [HttpPost]
         public IEnumerable<MenuModel> ListarModulos()
         {
             //var response = GET("http://localhost/SeguridadService/Services/Sistemas/SModuloService.svc/ListarModulos/");
-            var response = GET("http://localhost:55291/Services/Sistemas/SMenuService.svc/ListarMenus/");
+            var response = GET("http://localhost:55291/Services/SSistemasServices.svc/ListarMenus/");
             List<MenuModel> jsonResponse = (List<MenuModel>)response;
             return jsonResponse;
         }
