@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Interface_Layer.Models.Sistemas
 {
@@ -25,5 +26,8 @@ namespace Interface_Layer.Models.Sistemas
 
         [DataMember(Name = "Sistema")]
         public SistemaModel Sistema { get; set; }
+
+        [DataMember(Name = "Menus")]
+        public List<MenuModel> Menus { get; set; }
     }
 }
