@@ -5,17 +5,18 @@ using System.Text;
 
 namespace Interface_Layer.Controllers
 {
-    public static class RestOperation
+    public class RestOperation : IDisposable
     {
-        private static HttpWebRequest _request;
-        private static WebResponse _response;
+        private HttpWebRequest _request;
+        private WebResponse _response;
+        private Stream _requestStream;
 
-        public static object Get(string url)
+        public object Get(string url)
         {
             return "";
         }
 
-        public static Stream Post(string url, byte[] dataToSend)
+        public Stream Post(string url, byte[] dataToSend)
         {
             _request = (HttpWebRequest)WebRequest.Create(url);
             try
@@ -23,7 +24,13 @@ namespace Interface_Layer.Controllers
                 _request.ContentType = "application/json";
                 _request.ContentLength = dataToSend.Length;
                 _request.Method = "POST";
-                _request.GetRequestStream().Write(dataToSend, 0, dataToSend.Length);
+                _request.Timeout = 60000;
+                _requestStream = _request.GetRequestStream();
+                _requestStream.Write(dataToSend, 0, dataToSend.Length);
+                _requestStream.Close();
+
+                //_request.GetRequestStream().Write(dataToSend, 0, dataToSend.Length);
+
                 _response = _request.GetResponse();
                 return _response.GetResponseStream();
             }
@@ -37,6 +44,11 @@ namespace Interface_Layer.Controllers
                 }
                 throw ex;
             }
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
         }
     }
 }

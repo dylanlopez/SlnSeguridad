@@ -13,7 +13,8 @@
         $scope.sistemas = result.data;
         $scope.estaCargando = false;
     }, function errorCallback(result) {
-        console.error(result);
+        //console.error(result);
+        $scope.error = "Ha ocuirrido un error al listar: " + result;
         $scope.estaCargando = false;
     });
 
@@ -27,6 +28,8 @@
             $scope.mysistema.Abreviatura = "";
             $scope.mysistema.Descripcion = "";
             $scope.mysistema.Estado = "";
+            $scope.mysistema.EstaActivo = false;
+            //$scope.mysistema.EstaInactivo = false;
         }
     };
 
@@ -45,6 +48,18 @@
             $scope.mysistema.Abreviatura = sistema.Abreviatura;
             $scope.mysistema.Descripcion = sistema.Descripcion;
             $scope.mysistema.Estado = sistema.Estado;
+            //alert($scope.mysistema.Estado);
+            if (sistema.Estado == 'A')
+            {
+                $scope.mysistema.EstaActivo = true;
+                //$scope.mysistema.EstaInactivo = false;
+            }
+            else if(sistema.Estado == 'I')
+            {
+                $scope.mysistema.EstaActivo = false;
+                //$scope.mysistema.EstaInactivo = true;
+            }
+            //alert($scope.mysistema.EstaActivo);
             //alert($scope.mysistema.Id);
         }
     };
@@ -52,6 +67,15 @@
     $scope.guardar = function () {
         $scope.estaCargando = true;
         //var system = sistema;
+        if ($scope.mysistema.EstaActivo)
+        {
+            $scope.mysistema.Estado = "A";
+        }
+        else
+        {
+            $scope.mysistema.Estado = "I";
+        }
+        //alert($scope.mysistema.Estado);
         var system =
             {
                 "Id": $scope.mysistema.Id,
@@ -63,40 +87,30 @@
             };
 
 
-        if (system.Id == "")
+        if (system.Id == "") //nuevo (insert)
         {
-            //alert("nuevo");
-
             $http({
                 method: 'POST',
                 url: '../api/Sistema/InsertarSistema',
                 data: system,
             }).then(function successCallback(result) {
                 $scope.nuevo();
-
                 $http({
                     method: 'POST',
                     url: '../api/Sistema/ListarSistemas',
                 }).then(function successCallback(result) {
                     $scope.sistemas = result.data;
-                }, function errorCallback(result) {
-                    console.error(result);
                 });
 
                 $scope.estaCargando = false;
             }, function errorCallback(result) {
-                console.error(result);
+                //console.error(result);
+                $scope.error = "Ha ocuirrido un error al insertar: " + result;
                 $scope.estaCargando = false;
             });
         }
-        else
+        else //actualizar (update)
         {
-            //alert("modificar");
-            //alert(system);
-            //alert(system.Id);
-            //alert(system.Nombre);
-            //alert(system.Abreviatura);
-
             $http({
                 method: 'PUT', 
                 url: '../api/Sistema/ActualizarSistema/' + system.Id, 
@@ -109,13 +123,11 @@
                     url: '../api/Sistema/ListarSistemas',
                 }).then(function successCallback(result) {
                     $scope.sistemas = result.data;
-                }, function errorCallback(result) {
-                    console.error(result);
                 });
-
                 $scope.estaCargando = false;
             }, function errorCallback(result) {
-                console.error(result);
+                //console.error(result);
+                $scope.error = "Ha ocuirrido un error al actualizar: " + result;
                 $scope.estaCargando = false;
             });
         }

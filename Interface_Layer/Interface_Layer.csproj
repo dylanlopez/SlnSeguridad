@@ -106,6 +106,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Angular\moduloCtrl.js" />
     <Content Include="Angular\sistemaCtrl.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />

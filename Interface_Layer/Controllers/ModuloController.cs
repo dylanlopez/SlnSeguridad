@@ -1,11 +1,10 @@
 ﻿using Domain_Layer.Dtos.Sistemas;
-using Interface_Layer.Models;
 using Interface_Layer.Models.Sistemas;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Web.Http;
@@ -14,47 +13,76 @@ namespace Interface_Layer.Controllers
 {
     public class ModuloController : ApiController
     {
-        [HttpPost]
-        public IEnumerable<ModuloModel> ListarModulos(PassParameter idSistema)
-        {
-            //var response = GET("http://localhost/SeguridadService/Services/Sistemas/SModuloService.svc/ListarModulos/");
-            var response = GET("http://localhost:55291/Services/SSistemasServices.svc/ListarModulos/", idSistema.Id);
-            List<ModuloModel> jsonResponse = (List<ModuloModel>)response;
-            return jsonResponse;
-        }
+        private DModuloDto _dto;
+        private DataContractJsonSerializer _jsonSerializer;
+        private RestOperation _restOperation;
 
-        object GET(string url, int idSistema)
+        [HttpPut]
+        public HttpResponseMessage ActualizarModulo(DModuloDto dto)
         {
-            DModuloDto dto = new DModuloDto();
-            dto.Sistema.Id = idSistema;
-            var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(dto));
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            _dto = dto;
             try
             {
-                //request.ContentType = "application/json";
-
-                request.ContentType = "application/json";
-                request.ContentLength = dataToSend.Length;
-                request.Method = "POST";
-                request.GetRequestStream().Write(dataToSend, 0, dataToSend.Length);
-
-                WebResponse response = request.GetResponse();
-
-                DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(List<ModuloModel>));
-                Stream responseStream = response.GetResponseStream();
-                object objResponse = jsonSerializer.ReadObject(responseStream);
-                return objResponse;
-            }
-            catch (WebException ex)
-            {
-                WebResponse errorResponse = ex.Response;
-                using (Stream responseStream = errorResponse.GetResponseStream())
+                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_dto));
+                using (_restOperation = new RestOperation())
                 {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.GetEncoding("utf-8"));
-                    String errorText = reader.ReadToEnd();
+                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ActualizarModulo/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ActualizarModulo/", dataToSend);
+                    _jsonSerializer = new DataContractJsonSerializer(typeof(int));
+                    var response = (int)_jsonSerializer.ReadObject(stream);
+                    return Request.CreateResponse(HttpStatusCode.OK);
                 }
-                throw;
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage InsertarModulo(DModuloDto dto)
+        {
+            try
+            {
+                _dto = dto;
+                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_dto));
+                using (_restOperation = new RestOperation())
+                {
+                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/InsertarModulo/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/InsertarModulo/", dataToSend);
+                    _jsonSerializer = new DataContractJsonSerializer(typeof(int));
+                    var response = (int)_jsonSerializer.ReadObject(stream);
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+        }
+
+        [HttpPost]
+        public IEnumerable<ModuloModel> ListarModulos(DSistemaDto dtoSistema)
+        {
+            List<ModuloModel> response;
+            _dto = new DModuloDto();
+            //_dto = dto;
+            _dto.Sistema = dtoSistema;
+            try
+            {
+                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_dto));
+                using (_restOperation = new RestOperation())
+                {
+                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarModulos/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarSistemas/", dataToSend);
+                    _jsonSerializer = new DataContractJsonSerializer(typeof(List<ModuloModel>));
+                    response = (List<ModuloModel>)_jsonSerializer.ReadObject(stream);
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound, ex));
             }
         }
     }
