@@ -106,6 +106,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Angular\menuCtrl.js" />
     <Content Include="Angular\moduloCtrl.js" />
     <Content Include="Angular\sistemaCtrl.js" />
     <Content Include="Content\Site.css" />
@@ -133,7 +134,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Angular\menuCtrl.js" />
+    <Content Include="Angular\menusCtrl.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

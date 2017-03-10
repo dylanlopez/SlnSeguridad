@@ -56,10 +56,10 @@ namespace Domain_Layer.Converters.Sistemas
         {
             var entity = new ESistema();
             entity.Id = dto.Id;
-            entity.Codigo = dto.Codigo;
-            entity.Nombre = dto.Nombre;
-            entity.Abreviatura = dto.Abreviatura;
-            entity.Descripcion = dto.Descripcion;
+            entity.Codigo = dto.Codigo.ToUpper();
+            entity.Nombre = dto.Nombre.ToUpper();
+            entity.Abreviatura = dto.Abreviatura.ToUpper();
+            entity.Descripcion = dto.Descripcion.ToUpper();
             entity.Estado = dto.Estado;
             return entity;
         }

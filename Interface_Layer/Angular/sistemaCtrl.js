@@ -1,8 +1,8 @@
 ﻿myApp.controller("SistemaCtrl", function ($scope, $http) {
     $scope.sistemas = [];
-    //$scope.operation = '';
     $scope.estaCargando = true;
     $scope.estaEditable = false;
+    $scope.tieneError = false;
     $scope.mysistema = [];
 
     $http({
@@ -11,9 +11,12 @@
     }).then(function successCallback(result) {
         //console.log(result.data);
         $scope.sistemas = result.data;
+        $scope.tieneError = false;
+        $scope.error = "";
         $scope.estaCargando = false;
     }, function errorCallback(result) {
         //console.error(result);
+        $scope.tieneError = true;
         $scope.error = "Ha ocuirrido un error al listar: " + result;
         $scope.estaCargando = false;
     });
@@ -31,6 +34,8 @@
             $scope.mysistema.EstaActivo = false;
             //$scope.mysistema.EstaInactivo = false;
         }
+        $scope.tieneError = false;
+        $scope.error = "";
     };
 
     $scope.modificar = function (sistema) {
@@ -101,10 +106,12 @@
                 }).then(function successCallback(result) {
                     $scope.sistemas = result.data;
                 });
-
+                $scope.tieneError = false;
+                $scope.error = "";
                 $scope.estaCargando = false;
             }, function errorCallback(result) {
                 //console.error(result);
+                $scope.tieneError = true;
                 $scope.error = "Ha ocuirrido un error al insertar: " + result;
                 $scope.estaCargando = false;
             });
@@ -124,9 +131,12 @@
                 }).then(function successCallback(result) {
                     $scope.sistemas = result.data;
                 });
+                $scope.tieneError = false;
+                $scope.error = "";
                 $scope.estaCargando = false;
             }, function errorCallback(result) {
                 //console.error(result);
+                $scope.tieneError = true;
                 $scope.error = "Ha ocuirrido un error al actualizar: " + result;
                 $scope.estaCargando = false;
             });

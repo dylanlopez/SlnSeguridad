@@ -268,6 +268,10 @@ namespace Service_Layer.Services
         }
         public int InsertarMenu(DMenuDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 _logger.WriteInfoLog("iniciando InsertarMenu");

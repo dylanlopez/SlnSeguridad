@@ -93,10 +93,6 @@ namespace Domain_Layer.Queries
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        //var dtoSistema = DSistemaConverter.ToEntity(dto.Sistema);
-                        //dtoSistema.AddModulo(DModuloConverter.ToEntity(dto));
-                        //_sessionMidis.Save(dtoSistema);
-
                         _sessionMidis.Save(DModuloConverter.ToEntity(dto));
                         _sessionMidis.Flush();
                         _transactionMidis.Commit();

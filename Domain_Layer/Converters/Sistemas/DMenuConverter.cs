@@ -57,10 +57,10 @@ namespace Domain_Layer.Converters.Sistemas
         {
             var entity = new EMenu();
             entity.Id = dto.Id;
-            entity.Codigo = dto.Codigo;
-            entity.Nombre = dto.Nombre;
+            entity.Codigo = dto.Codigo.ToUpper();
+            entity.Nombre = dto.Nombre.ToUpper();
             entity.Ruta = dto.Ruta;
-            entity.Descripcion = dto.Descripcion;
+            entity.Descripcion = dto.Descripcion.ToUpper();
             entity.Estado = dto.Estado;
             entity.Modulo = DModuloConverter.ToEntity(dto.Modulo);
             return entity;

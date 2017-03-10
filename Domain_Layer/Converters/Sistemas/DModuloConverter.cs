@@ -57,10 +57,13 @@ namespace Domain_Layer.Converters.Sistemas
         {
             var entity = new EModulo();
             entity.Id = dto.Id;
-            entity.Codigo = dto.Codigo;
-            entity.Nombre = dto.Nombre;
-            entity.Abreviatura = dto.Abreviatura;
-            entity.Descripcion = dto.Descripcion;
+            entity.Codigo = dto.Codigo.ToUpper();
+            entity.Nombre = dto.Nombre.ToUpper();
+            entity.Abreviatura = dto.Abreviatura.ToUpper();
+            //if(dto.Descripcion == null){
+            //    dto.Descripcion = string.Empty;
+            //}
+            entity.Descripcion = dto.Descripcion.ToUpper();
             entity.Estado = dto.Estado;
             entity.Sistema = DSistemaConverter.ToEntity(dto.Sistema);
             return entity;

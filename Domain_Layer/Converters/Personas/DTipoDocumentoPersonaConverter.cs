@@ -54,9 +54,9 @@ namespace Domain_Layer.Converters.Personas
         {
             var entity = new ETipoDocumentoPersona();
             entity.Id = dto.Id;
-            entity.Codigo = dto.Codigo;
-            entity.Nombre = dto.Nombre;
-            entity.Descripcion = dto.Descripcion;
+            entity.Codigo = dto.Codigo.ToUpper();
+            entity.Nombre = dto.Nombre.ToUpper();
+            entity.Descripcion = dto.Descripcion.ToUpper();
             return entity;
         }
     }

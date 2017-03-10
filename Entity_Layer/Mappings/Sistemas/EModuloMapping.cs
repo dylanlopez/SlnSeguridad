@@ -76,8 +76,8 @@ namespace Entity_Layer.Mappings.Sistemas
                 map => {
                     map.Column("ID_SISTEMA");
                     map.NotNullable(true);
-                    map.Update(false);
-                    map.Insert(false);
+                    map.Update(true);
+                    map.Insert(true);
                     map.ForeignKey("FK_MODULO_01");
                 });
         }

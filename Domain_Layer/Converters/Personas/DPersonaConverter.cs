@@ -55,8 +55,8 @@ namespace Domain_Layer.Converters.Personas
         {
             var entity = new EPersona();
             entity.Id = dto.Id;
-            entity.Nombre = dto.Nombre;
-            entity.NumeroDocumento = dto.NumeroDocumento;
+            entity.Nombre = dto.Nombre.ToUpper();
+            entity.NumeroDocumento = dto.NumeroDocumento.ToUpper();
             entity.Tipo = dto.Tipo;
             entity.TipoDocumentoPersona = DTipoDocumentoPersonaConverter.ToEntity(dto.TipoDocumentoPersona);
             return entity;

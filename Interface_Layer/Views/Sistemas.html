@@ -1,14 +1,14 @@
 ﻿<!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-    <title></title>
+    <title>Modulo de Seguridad | Sistemas</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="../Content/style.css">
 </head>
 <body>
     <!--MENU-->
-    <div ng-controller="MenuCtrl">
+    <div ng-controller="MenusCtrl">
         <nav class="navbar navbar-inverse" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -37,7 +37,10 @@
         <div class="col-md-4"></div>
     </div>
     <div class="container" ng-controller="SistemaCtrl">
-        <strong class="error">{{ error }}</strong>
+        <div class="alert alert-danger" data-ng-show="tieneError">
+            <strong>ERROR: </strong> {{ error }}
+        </div>
+        <!--<strong class="error">{{ error }}</strong>-->
         <!--MANTENIMIENTO-->
         <div class="row" data-ng-show="estaEditable">
             <form name="frmSistema" style="width:800px;margin:0px auto;">
@@ -99,12 +102,12 @@
                 <thead>
                     <tr>
                         <!--<th>Id</th>-->
-                        <th>Codigo</th>
-                        <th>Nombre</th>
-                        <th>Abreviatura</th>
-                        <th>Descripcion</th>
-                        <th>Estado</th>
-                        <th></th>
+                        <th class="col-md-2">Codigo</th>
+                        <th class="col-md-5">Nombre</th>
+                        <th class="col-md-3">Abreviatura</th>
+                        <!--<th>Descripcion</th>-->
+                        <th class="col-md-1">Estado</th>
+                        <th class="col-md-1"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -113,7 +116,7 @@
                         <td>{{sistema.Codigo}}</td>
                         <td>{{sistema.Nombre}}</td>
                         <td>{{sistema.Abreviatura}}</td>
-                        <td>{{sistema.Descripcion}}</td>
+                        <!--<td>{{sistema.Descripcion}}</td>-->
                         <td>{{sistema.Estado}}</td>
                         <td>
                             <p><a data-ng-click="modificar(sistema)" href="javascript:;">Modificar</a></p>
@@ -131,7 +134,7 @@
     <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="../Scripts/angular.min.js"></script>
     <script type="text/javascript" src="../Angular/myApp.module.js"></script>
-    <script type="text/javascript" src="../Angular/menuCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/menusCtrl.js"></script>
     <script type="text/javascript" src="../Angular/sistemaCtrl.js"></script>
 </body>
 </html>
