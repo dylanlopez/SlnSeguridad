@@ -1,5 +1,6 @@
 ﻿using Domain_Layer.Queries.Personas;
 using Domain_Layer.Queries.Sistemas;
+using Logging_Layer;
 
 namespace Business_Layer.Logics
 {
@@ -16,5 +17,6 @@ namespace Business_Layer.Logics
         private IDRolQuery _rolQuery;
         private IDUsuarioRolQuery _usuarioRolQuery;
         private IDMenuRolQuery _menuRolQuery;
+        private Loggin _logger;
     }
 }

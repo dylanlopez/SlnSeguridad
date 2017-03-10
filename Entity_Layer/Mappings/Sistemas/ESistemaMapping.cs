@@ -70,6 +70,16 @@ namespace Entity_Layer.Mappings.Sistemas
                     map.Length(1);
                     map.NotNullable(true);
                 });
+            //Bag(p => p.Modulos, map => map.Key(k => k.Column("ID_SISTEMA")), ce => ce.OneToMany());
+
+            //Bag(x => x.Modulos,
+            //    map =>
+            //    {
+            //        map.Inverse(true);
+            //        map.Cascade(Cascade.All);
+            //        map.Key(k => k.Column("ID_SISTEMA"));
+            //    });
+            //Bag(p => p.Districts, map => map.Key(k => k.Column("ProvinceId")), ce => ce.OneToMany());
         }
     }
 }

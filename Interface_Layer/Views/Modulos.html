@@ -36,7 +36,10 @@
         <div class="col-md-4"></div>
     </div>
     <div class="container" ng-controller="ModuloCtrl">
-        <strong class="error">{{ error }}</strong>
+        <div class="alert alert-danger" data-ng-show="tieneError">
+            <strong>ERROR: </strong> {{ error }}
+        </div>
+        <!--<strong class="error">{{ error }}</strong>-->
         <!--MANTENIMIENTO-->
         <div class="row" data-ng-show="estaEditable">
             <form name="frmModulo" style="width:800px;margin:0px auto;">
@@ -44,7 +47,7 @@
                 <div class="container-fluid form-group">
                     <label for="txtCodigo" class="col-md-2 control-label">Codigo: </label>
                     <div class="col-md-2">
-                        <input type="text" class="form-control" id="txtCodigo" placeholder="Ingrese el codigo del sistema (obligatorio)" data-ng-model="mymodulo.Codigo" maxlength="02" required />
+                        <input type="text" class="form-control" id="txtCodigo" placeholder="Ingrese el codigo del sistema (obligatorio)" data-ng-model="mymodulo.Codigo" maxlength="4" required />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
@@ -66,6 +69,14 @@
                     </div>
                 </div>
                 <div class="container-fluid form-group">
+                    <label for="cmbSistema" class="col-md-2 control-label">Sistema: </label>
+                    <div class="col-md-8">
+                        <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mymodulo.Sistema">
+                            <!--<option ng-value="mymodulo.Sistema">{{mymodulo.}}</option>-->
+                        </select>
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
                     <label for="txtEstado" class="col-md-2 control-label">Estado: </label>
                     <div class="col-md-6">
                         <!--<input type="text" class="form-control" id="txtEstado" placeholder="Ingrese el estado del sistema (obligatorio)" data-ng-model="mysistema.Estado" required />-->
@@ -73,16 +84,11 @@
                         <input type="radio" id="optInactivo" name="Estado" ng-model="mymodulo.EstaActivo" ng-value="false"> Inactivo<br>
                     </div>
                 </div>
-                <div class="container-fluid form-group">
-                    <label for="txtDescripcion" class="col-md-2 control-label">Sistema: </label>
-                    <div class="col-md-10">
-                        
-                    </div>
-                </div>
+                <!--<input type="hidden" id="hdnId" data-ng-model="mymodulo.Sistema" />-->
                 <br />
                 <div class="container-fluid form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Guardar" data-ng-click="guardar()" data-ng-disabled="!frmSistema.$valid" class="btn btn-primary" />
+                        <input type="submit" value="Guardar" data-ng-click="guardar()" data-ng-disabled="!frmModulo.$valid" class="btn btn-primary" />
                         <input type="button" value="Cancelar" data-ng-click="nuevo()" class="btn btn-danger" />
                     </div>
                 </div>
@@ -94,7 +100,7 @@
         <div class="row" data-ng-hide="estaEditable">
             <form name="frmBusquedaModulo" style="width:800px;margin:0px auto;">
                 <div class="container-fluid form-group">
-                    <label for="cmbBuscarSistema" class="col-md-2 control-label">Estado: </label>
+                    <label for="cmbBuscarSistema" class="col-md-2 control-label">Sistema: </label>
                     <div class="col-md-8">
                         <select id="cmbBuscarSistema" class="form-control" data-ng-options="sistema.Nombre for sistema in sistemas" data-ng-model="sistema"></select>
                     </div>

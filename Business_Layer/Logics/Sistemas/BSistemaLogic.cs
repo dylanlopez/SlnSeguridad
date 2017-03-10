@@ -1,8 +1,11 @@
 ﻿using Business_Layer.Logics.Sistemas;
 using Domain_Layer.Dtos.Sistemas;
 using Domain_Layer.Queries;
+using Logging_Layer;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Business_Layer.Logics
 {
@@ -10,6 +13,10 @@ namespace Business_Layer.Logics
     {
         public int Actualizar(DSistemaDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 _sistemaQuery = new DQuery();
@@ -17,11 +24,20 @@ namespace Business_Layer.Logics
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
             }
         }
         public DSistemaDto Buscar(DSistemaDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 _sistemaQuery = new DQuery();
@@ -29,11 +45,20 @@ namespace Business_Layer.Logics
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
             }
         }
         public int Insertar(DSistemaDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 _sistemaQuery = new DQuery();
@@ -41,11 +66,20 @@ namespace Business_Layer.Logics
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
             }
         }
         public List<DSistemaDto> Listar(DSistemaDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 _sistemaQuery = new DQuery();
@@ -53,7 +87,12 @@ namespace Business_Layer.Logics
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
             }
         }
     }

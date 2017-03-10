@@ -2,9 +2,12 @@
 using Domain_Layer.Dtos.Sistemas;
 using Domain_Layer.Queries.Sistemas;
 using Entity_Layer.Entities.Sistemas;
+using Logging_Layer;
 using NHibernate;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Domain_Layer.Queries
 {
@@ -12,6 +15,10 @@ namespace Domain_Layer.Queries
     {
         public int Actualizar(DMenuDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -26,11 +33,20 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
             }
         }
         public DMenuDto Buscar(DMenuDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             DMenuDto item = null;
             try
             {
@@ -57,11 +73,20 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
             }
         }
         public int Eliminar(DMenuDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -76,11 +101,20 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
             }
         }
         public int Insertar(DMenuDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -96,11 +130,20 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
             }
         }
         public List<DMenuDto> Listar(DMenuDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             List<DMenuDto> list = null;
             try
             {
@@ -138,7 +181,12 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
             }
         }
     }

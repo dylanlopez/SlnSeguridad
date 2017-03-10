@@ -99,6 +99,10 @@
       <Project>{98dbea5b-4174-4ddb-9a3d-460a58b2a9d4}</Project>
       <Name>Domain_Layer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logging_Layer\Logging_Layer.csproj">
+      <Project>{3aaae934-617b-41c6-97de-f5ec022e4493}</Project>
+      <Name>Logging_Layer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

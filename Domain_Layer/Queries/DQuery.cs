@@ -1,6 +1,10 @@
 ﻿using Domain_Layer.Configurations;
 using Domain_Layer.Connections;
+using Logging_Layer;
 using NHibernate;
+using System;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Domain_Layer.Queries
 {
@@ -29,12 +33,28 @@ namespace Domain_Layer.Queries
         private static ISessionFactory _sessionFactoryMidis;
         private static ISession _sessionMidis;
         private static ITransaction _transactionMidis;
+        private Loggin _logger;
 
         public DQuery()
         {
-            _connection = DConexion.ConexionMidis.ConnectionString;
-            DConfigureHibernate.Setup(_connection);
-            _sessionFactoryMidis = DConfigureHibernate.SessionFactoryMidis;
+            if(_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
+            try
+            {
+                _connection = DConexion.ConexionMidis.ConnectionString;
+                DConfigureHibernate.Setup(_connection);
+                _sessionFactoryMidis = DConfigureHibernate.SessionFactoryMidis;
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteErrorLog(ex);
+            }
+            finally
+            {
+                _logger = null;
+            }
         }
     }
 }

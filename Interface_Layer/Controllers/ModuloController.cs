@@ -48,8 +48,8 @@ namespace Interface_Layer.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_dto));
                 using (_restOperation = new RestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/InsertarModulo/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/InsertarModulo/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/InsertarModulo/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/InsertarModulo/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);

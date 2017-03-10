@@ -78,6 +78,7 @@ namespace Entity_Layer.Mappings.Sistemas
                     map.NotNullable(true);
                     map.Update(false);
                     map.Insert(false);
+                    map.ForeignKey("FK_MODULO_01");
                 });
         }
     }

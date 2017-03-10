@@ -106,6 +106,10 @@
       <Project>{223fc177-7bba-40c8-af33-e8d4bf372405}</Project>
       <Name>Entity_Layer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logging_Layer\Logging_Layer.csproj">
+      <Project>{3aaae934-617b-41c6-97de-f5ec022e4493}</Project>
+      <Name>Logging_Layer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

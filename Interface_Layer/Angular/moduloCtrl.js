@@ -3,25 +3,37 @@
     $scope.modulos = [];
     $scope.estaCargando = true;
     $scope.estaEditable = false;
+    $scope.tieneError = false;
     $scope.mymodulo = [];
 
     $http({
         method: 'POST',
         url: '../api/Sistema/ListarSistemas',
     }).then(function successCallback(result) {
-        console.log(result.data);
+        //console.log(result.data);
         $scope.sistemas = result.data;
         //$scope.selectedSistema = $scope.sistemas[1];
+        $scope.tieneError = false;
+        $scope.error = "";
         $scope.estaCargando = false;
     }, function errorCallback(result) {
         //console.error(result);
+        $scope.tieneError = true;
         $scope.error = "Ha ocuirrido un error al listar: " + result;
         $scope.estaCargando = false;
     });
 
     $scope.buscar = function () {
-        console.log($scope.sistema);
-        var system =
+        //console.log($scope.sistema);
+        if (angular.isUndefined($scope.sistema)) {
+            $scope.tieneError = true;
+            $scope.error = "Debe ingresar un sistema para poder ver sus módulos";
+        }
+        else {
+            $scope.tieneError = false;
+            $scope.error = "";
+
+            var system =
             {
                 "Id": $scope.sistema.Id,
                 "Codigo": $scope.sistema.Codigo,
@@ -31,18 +43,20 @@
                 "Estado": $scope.sistema.Estado,
             };
 
-        $http({
-            method: 'POST',
-            url: '../api/Modulo/ListarModulos',
-            data: system,
-        }).then(function successCallback(result) {
-            //console.log(result.data);
-            $scope.modulos = result.data;
-            $scope.estaCargando = false;
-        }, function errorCallback(result) {
-            $scope.error = "Ha ocuirrido un error al listar: " + result;
-            $scope.estaCargando = false;
-        });
+            $http({
+                method: 'POST',
+                url: '../api/Modulo/ListarModulos',
+                data: system,
+            }).then(function successCallback(result) {
+                //console.log(result.data);
+                $scope.modulos = result.data;
+                $scope.estaCargando = false;
+            }, function errorCallback(result) {
+                $scope.tieneError = true;
+                $scope.error = "Ha ocuirrido un error al listar: " + result;
+                $scope.estaCargando = false;
+            });
+        }
     };
 
     $scope.nuevo = function () {
@@ -55,7 +69,10 @@
             $scope.mymodulo.Descripcion = "";
             $scope.mymodulo.Estado = "";
             $scope.mymodulo.EstaActivo = false;
+            $scope.mymodulo.Sistema = null;
         }
+        $scope.tieneError = false;
+        $scope.error = "";
     };
 
     $scope.modificar = function (modulo) {
@@ -67,16 +84,16 @@
             $scope.mymodulo.Abreviatura = modulo.Abreviatura;
             $scope.mymodulo.Descripcion = modulo.Descripcion;
             $scope.mymodulo.Estado = modulo.Estado;
-            if (sistema.Estado == 'A') {
+            if (modulo.Estado == 'A') {
                 $scope.mymodulo.EstaActivo = true;
             }
-            else if (sistema.Estado == 'I') {
+            else if (modulo.Estado == 'I') {
                 $scope.mymodulo.EstaActivo = false;
             }
-
-
-            //alert($scope.mymodulo.EstaActivo);
-            //alert($scope.mysistema.Id);
+            //console.log(modulo.Sistema);
+            //console.log($scope.sistema);
+            $scope.mymodulo.Sistema = modulo.Sistema;
+            //console.log($scope.mymodulo.Sistema);
         }
     };
 
@@ -89,8 +106,8 @@
         else {
             $scope.mymodulo.Estado = "I";
         }
-        alert($scope.mymodulo.Estado);
-        var system =
+        //alert($scope.mymodulo.Estado);
+        var module =
             {
                 "Id": $scope.mymodulo.Id,
                 "Codigo": $scope.mymodulo.Codigo,
@@ -98,27 +115,29 @@
                 "Abreviatura": $scope.mymodulo.Abreviatura,
                 "Descripcion": $scope.mymodulo.Descripcion,
                 "Estado": $scope.mymodulo.Estado,
+                "Sistema": $scope.mymodulo.Sistema
             };
 
-
-        if (system.Id == "") //nuevo (insert)
+        if (module.Id == "") //nuevo (insert)
         {
             $http({
                 method: 'POST',
-                url: '../api/Sistema/InsertarSistema',
-                data: system,
+                url: '../api/Modulo/InsertarModulo',
+                data: module,
             }).then(function successCallback(result) {
                 $scope.nuevo();
-                $http({
-                    method: 'POST',
-                    url: '../api/Sistema/ListarSistemas',
-                }).then(function successCallback(result) {
-                    $scope.modulos = result.data;
-                });
-
+                //$http({
+                //    method: 'POST',
+                //    url: '../api/Sistema/ListarSistemas',
+                //}).then(function successCallback(result) {
+                //    $scope.modulos = result.data;
+                //});
+                $scope.tieneError = false;
+                $scope.error = "";
                 $scope.estaCargando = false;
             }, function errorCallback(result) {
                 //console.error(result);
+                $scope.tieneError = true;
                 $scope.error = "Ha ocuirrido un error al insertar: " + result;
                 $scope.estaCargando = false;
             });
@@ -127,20 +146,22 @@
         {
             $http({
                 method: 'PUT',
-                url: '../api/Sistema/ActualizarSistema/' + system.Id,
-                data: system,
+                url: '../api/Modulo/ActualizarModulo/' + module.Id,
+                data: module,
             }).then(function successCallback(result) {
                 $scope.nuevo();
-
-                $http({
-                    method: 'POST',
-                    url: '../api/Sistema/ListarSistemas',
-                }).then(function successCallback(result) {
-                    $scope.modulos = result.data;
-                });
+                //$http({
+                //    method: 'POST',
+                //    url: '../api/Sistema/ListarSistemas',
+                //}).then(function successCallback(result) {
+                //    $scope.modulos = result.data;
+                //});
+                $scope.tieneError = false;
+                $scope.error = "";
                 $scope.estaCargando = false;
             }, function errorCallback(result) {
                 //console.error(result);
+                $scope.tieneError = true;
                 $scope.error = "Ha ocuirrido un error al actualizar: " + result;
                 $scope.estaCargando = false;
             });

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 //using System.Collections;
 //using System.Collections.Generic;
 
@@ -14,10 +15,15 @@ namespace Entity_Layer.Entities.Sistemas
     /// </v1.0>
     public class ESistema
     {
-        //public ESistema()
-        //{
-        //    //Modulos = new List();
-        //}
+        public ESistema()
+        {
+            //Modulos = new List<EModulo>();
+        }
+
+        public virtual void AddModulo(EModulo entity)
+        {
+            //Modulos.Add(entity);
+        }
 
         /// <summary>
         /// Gets or sets the Id, correspond to table field ID_SISTEMA.
@@ -66,6 +72,7 @@ namespace Entity_Layer.Entities.Sistemas
         /// set a value to the Estado.
         /// </value>
         public virtual Char Estado { get; set; }
-        //public virtual ICollection<EModulo> Modulos { get; set; }
+        
+        //public virtual IList<EModulo> Modulos { get; set; }
     }
 }

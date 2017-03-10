@@ -2,9 +2,12 @@
 using Domain_Layer.Dtos.Sistemas;
 using Domain_Layer.Queries.Sistemas;
 using Entity_Layer.Entities.Sistemas;
+using Logging_Layer;
 using NHibernate;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Domain_Layer.Queries
 {
@@ -12,6 +15,10 @@ namespace Domain_Layer.Queries
     {
         public int Actualizar(DModuloDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -26,12 +33,21 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
             }
         }
         public DModuloDto Buscar(DModuloDto dto)
         {
             DModuloDto item = null;
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -57,17 +73,30 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
             }
         }
         public int Insertar(DModuloDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
+                        //var dtoSistema = DSistemaConverter.ToEntity(dto.Sistema);
+                        //dtoSistema.AddModulo(DModuloConverter.ToEntity(dto));
+                        //_sessionMidis.Save(dtoSistema);
+
                         _sessionMidis.Save(DModuloConverter.ToEntity(dto));
                         _sessionMidis.Flush();
                         _transactionMidis.Commit();
@@ -77,12 +106,21 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
             }
         }
         public List<DModuloDto> Listar(DModuloDto dto)
         {
             List<DModuloDto> list = null;
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -119,7 +157,12 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
             }
         }
     }

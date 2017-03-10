@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service_Layer", "Service_La
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface_Layer", "Interface_Layer\Interface_Layer.csproj", "{CFD918D5-0738-48C9-B2BE-5E332F836D65}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commons", "Commons", "{B001D995-40D2-42DE-9F0B-1308530F6A43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging_Layer", "Logging_Layer\Logging_Layer.csproj", "{3AAAE934-617B-41C6-97DE-F5EC022E4493}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,10 @@ Global
 		{CFD918D5-0738-48C9-B2BE-5E332F836D65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFD918D5-0738-48C9-B2BE-5E332F836D65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFD918D5-0738-48C9-B2BE-5E332F836D65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AAAE934-617B-41C6-97DE-F5EC022E4493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AAAE934-617B-41C6-97DE-F5EC022E4493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AAAE934-617B-41C6-97DE-F5EC022E4493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AAAE934-617B-41C6-97DE-F5EC022E4493}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +68,6 @@ Global
 		{9BCE9E00-B732-462C-B428-3B6FF00C2327} = {88C1C01D-9733-48B1-9245-B9B8C97D54A1}
 		{869809D6-523D-4722-9766-139A2F8B4179} = {93B17D9B-7DFC-41A5-85CA-B3DA66AE85F9}
 		{CFD918D5-0738-48C9-B2BE-5E332F836D65} = {88C1C01D-9733-48B1-9245-B9B8C97D54A1}
+		{3AAAE934-617B-41C6-97DE-F5EC022E4493} = {B001D995-40D2-42DE-9F0B-1308530F6A43}
 	EndGlobalSection
 EndGlobal
