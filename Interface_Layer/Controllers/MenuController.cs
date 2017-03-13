@@ -101,7 +101,7 @@ namespace Interface_Layer.Controllers
 
         [HttpPost]
         //[Authorize]
-        public IEnumerable<MenuModel> ListarMenus(DModuloDto dtoModulo)
+        public List<MenuModel> ListarMenus(DModuloDto dtoModulo)
         {
             List<MenuModel> response;
             _dto = new DMenuDto();

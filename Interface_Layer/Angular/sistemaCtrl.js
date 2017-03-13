@@ -97,6 +97,9 @@
             $http({
                 method: 'POST',
                 url: '../api/Sistema/InsertarSistema',
+                //headers: {
+                //    'Content-Type': 'application/json'
+                //},
                 data: system,
             }).then(function successCallback(result) {
                 $scope.nuevo();
@@ -120,7 +123,11 @@
         {
             $http({
                 method: 'PUT', 
-                url: '../api/Sistema/ActualizarSistema/' + system.Id, 
+                url: '../api/Sistema/ActualizarSistema/' + system.Id,
+                //url: '../api/Sistema/ActualizarSistema',
+                //headers: {
+                //    'Content-Type': 'application/json'
+                //},
                 data: system,
             }).then(function successCallback(result) {
                 $scope.nuevo();

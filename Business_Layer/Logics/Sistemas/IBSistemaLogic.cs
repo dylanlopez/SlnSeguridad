@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Business_Layer.Logics.Sistemas
 {
-    public interface IBSistemaLogic
+    public interface IBTipoDocumentoPersona
     {
         int Actualizar(DSistemaDto dto);
         DSistemaDto Buscar(DSistemaDto dto);

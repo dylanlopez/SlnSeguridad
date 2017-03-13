@@ -9,7 +9,7 @@ using System.Reflection;
 
 namespace Business_Layer.Logics
 {
-    public partial class BLogic : IBSistemaLogic
+    public partial class BLogic : IBTipoDocumentoPersona
     {
         public int Actualizar(DSistemaDto dto)
         {

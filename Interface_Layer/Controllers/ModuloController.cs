@@ -62,7 +62,7 @@ namespace Interface_Layer.Controllers
         }
 
         [HttpPost]
-        public IEnumerable<ModuloModel> ListarModulos(DSistemaDto dtoSistema)
+        public List<ModuloModel> ListarModulos(DSistemaDto dtoSistema)
         {
             List<ModuloModel> response;
             _dto = new DModuloDto();

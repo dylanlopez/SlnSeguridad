@@ -55,7 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Services\SMenuService.svc" />
+    <Content Include="Services\SPersonasService.svc" />
     <Content Include="Services\SSistemasServices.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -64,10 +64,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CORSEnablingBehavior.cs" />
-    <Compile Include="Services\ISMenuService.cs" />
+    <Compile Include="Services\ISPersonasService.cs" />
     <Compile Include="Services\ISSistemasServices.cs" />
-    <Compile Include="Services\SMenuService.svc.cs">
-      <DependentUpon>SMenuService.svc</DependentUpon>
+    <Compile Include="Services\SPersonasService.svc.cs">
+      <DependentUpon>SPersonasService.svc</DependentUpon>
     </Compile>
     <Compile Include="Services\SSistemasServices.svc.cs">
       <DependentUpon>SSistemasServices.svc</DependentUpon>

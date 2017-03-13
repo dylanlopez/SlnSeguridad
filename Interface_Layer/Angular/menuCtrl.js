@@ -21,7 +21,7 @@
         $scope.estaCargando = false;
     }, function errorCallback(result) {
         $scope.tieneError = true;
-        $scope.error = "Ha ocuirrido un error al listar: " + result;
+        $scope.error = "Ha ocurrido un error al listar: " + result;
         $scope.estaCargando = false;
     });
 
@@ -53,13 +53,16 @@
         $http({
             method: 'POST',
             url: '../api/Modulo/ListarModulos',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             data: system,
         }).then(function successCallback(result) {
             $scope.modulos = result.data;
             $scope.estaCargando = false;
         }, function errorCallback(result) {
             $scope.tieneError = true;
-            $scope.error = "Ha ocuirrido un error al listar: " + result;
+            $scope.error = "Ha ocurrido un error al listar: " + result;
             $scope.estaCargando = false;
         });
     };
@@ -67,6 +70,7 @@
     $scope.buscarModulo = function () {
         $scope.tieneError = false;
         $scope.error = "";
+        //alert("holas");
         console.debug($scope.mymenu.Sistema);
         //console.debug($scope.mymenu.sistema2);
         //console.debug(mymenu.Modulo.Sistema);
@@ -83,13 +87,16 @@
         $http({
             method: 'POST',
             url: '../api/Modulo/ListarModulos',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             data: system,
         }).then(function successCallback(result) {
             $scope.modulos2 = result.data;
             $scope.estaCargando = false;
         }, function errorCallback(result) {
             $scope.tieneError = true;
-            $scope.error = "Ha ocuirrido un error al listar: " + result;
+            $scope.error = "Ha ocurrido un error al listar: " + result;
             $scope.estaCargando = false;
         });
     };
@@ -116,13 +123,16 @@
             $http({
                 method: 'POST',
                 url: '../api/Menu/ListarMenus',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 data: module,
             }).then(function successCallback(result) {
                 $scope.menus = result.data;
                 $scope.estaCargando = false;
             }, function errorCallback(result) {
                 $scope.tieneError = true;
-                $scope.error = "Ha ocuirrido un error al listar: " + result;
+                $scope.error = "Ha ocurrido un error al listar: " + result;
                 $scope.estaCargando = false;
             });
         }
@@ -147,7 +157,7 @@
 
     $scope.modificar = function (menu) {
         $scope.estaEditable = !$scope.estaEditable;
-        console.log(menu);
+        //console.debug(menu);
         if ($scope.estaEditable == true) {
             $scope.mymenu.Id = menu.Id;
             $scope.mymenu.Codigo = menu.Codigo;
@@ -161,8 +171,13 @@
             else if (menu.Estado == 'I') {
                 $scope.mymenu.EstaActivo = false;
             }
+            console.debug(menu.Modulo.Sistema);
+            console.debug(menu.Modulo);
             $scope.mymenu.Sistema = menu.Modulo.Sistema;
+            $scope.buscarModulo();
+            //$scope.mymenu.Sistema
             $scope.mymenu.Modulo = menu.Modulo;
+            //$scope.mymenu.Modulo
         }
     };
 
@@ -190,6 +205,9 @@
             $http({
                 method: 'POST',
                 url: '../api/Menu/InsertarMenu',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 data: men,
             }).then(function successCallback(result) {
                 $scope.nuevo();
@@ -199,7 +217,7 @@
                 $scope.estaCargando = false;
             }, function errorCallback(result) {
                 $scope.tieneError = true;
-                $scope.error = "Ha ocuirrido un error al insertar: " + result;
+                $scope.error = "Ha ocurrido un error al insertar: " + result;
                 $scope.estaCargando = false;
             });
         }
@@ -208,6 +226,9 @@
             $http({
                 method: 'PUT',
                 url: '../api/Menu/ActualizarMenu/' + men.Id,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 data: men,
             }).then(function successCallback(result) {
                 $scope.nuevo();
@@ -217,9 +238,48 @@
                 $scope.estaCargando = false;
             }, function errorCallback(result) {
                 $scope.tieneError = true;
-                $scope.error = "Ha ocuirrido un error al actualizar: " + result;
+                $scope.error = "Ha ocurrido un error al actualizar: " + result;
                 $scope.estaCargando = false;
             });
+        }
+    };
+
+    $scope.eliminar = function (menu) {
+        if (menu.Estado == 'I') {
+            //console.debug(menu);
+            var men =
+            {
+                "Id": menu.Id,
+                "Codigo": menu.Codigo,
+                "Nombre": menu.Nombre,
+                "Ruta": menu.Ruta,
+                "Descripcion": menu.Descripcion,
+                "Estado": menu.Estado,
+                "Modulo": menu.Modulo
+            };
+            //console.debug(men);
+            $http({
+                method: 'DELETE',
+                url: '../api/Menu/EliminarMenu/' + men.Id,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: men,
+            }).then(function successCallback(result) {
+                $scope.nuevo();
+                $scope.menus = [];
+                $scope.tieneError = false;
+                $scope.error = "";
+                $scope.estaCargando = false;
+            }, function errorCallback(result) {
+                $scope.tieneError = true;
+                $scope.error = "Ha ocurrido un error al listar: " + result;
+                $scope.estaCargando = false;
+            });
+        }
+        else {
+            $scope.tieneError = true;
+            $scope.error = "No se puede eliminar un menú que se encuentra activo";
         }
     };
 });

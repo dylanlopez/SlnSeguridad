@@ -4,7 +4,10 @@
 
     $http({
         method: 'POST', 
-        url: '../api/Sistema/BuscarSistema', 
+        url: '../api/Sistema/BuscarSistema',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         data: passParam, 
     }).then(function successCallback(result) {
         //console.log(result.data);

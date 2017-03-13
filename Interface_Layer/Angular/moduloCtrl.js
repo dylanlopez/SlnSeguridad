@@ -42,6 +42,9 @@
             $http({
                 method: 'POST',
                 url: '../api/Modulo/ListarModulos',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 data: system,
             }).then(function successCallback(result) {
                 $scope.modulos = result.data;
@@ -113,6 +116,9 @@
             $http({
                 method: 'POST',
                 url: '../api/Modulo/InsertarModulo',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 data: module,
             }).then(function successCallback(result) {
                 $scope.nuevo();
@@ -131,6 +137,9 @@
             $http({
                 method: 'PUT',
                 url: '../api/Modulo/ActualizarModulo/' + module.Id,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 data: module,
             }).then(function successCallback(result) {
                 $scope.nuevo();

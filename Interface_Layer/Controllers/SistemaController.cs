@@ -113,7 +113,7 @@ namespace Interface_Layer.Controllers
         }
 
         [HttpPost]
-        public IEnumerable<SistemaModel> ListarSistemas()
+        public List<SistemaModel> ListarSistemas()
         {
             List<SistemaModel> response;
             _dto = new DSistemaDto();

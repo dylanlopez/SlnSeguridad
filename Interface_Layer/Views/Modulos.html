@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-    <title>Modulos</title>
+    <title>Midis Seguridad | Modulos</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="../Content/style.css">
@@ -47,25 +47,25 @@
                 <div class="container-fluid form-group">
                     <label for="txtCodigo" class="col-md-2 control-label">Codigo: </label>
                     <div class="col-md-2">
-                        <input type="text" class="form-control" id="txtCodigo" placeholder="Ingrese el codigo del sistema (obligatorio)" data-ng-model="mymodulo.Codigo" maxlength="4" required />
+                        <input type="text" class="form-control" id="txtCodigo" placeholder="Ingrese el codigo del módulo (obligatorio)" data-ng-model="mymodulo.Codigo" maxlength="4" required />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="txtNombre" class="col-md-2 control-label">Nombre: </label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="txtNombre" placeholder="Ingrese el nombre del sistema (obligatorio)" data-ng-model="mymodulo.Nombre" maxlength="50" required />
+                        <input type="text" class="form-control" id="txtNombre" placeholder="Ingrese el nombre del módulo (obligatorio)" data-ng-model="mymodulo.Nombre" maxlength="50" required />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="txtAbreviatura" class="col-md-2 control-label">Abreviatura: </label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="txtAbreviatura" placeholder="Ingrese la abreviatura del sistema (obligatorio)" data-ng-model="mymodulo.Abreviatura" maxlength="20" required />
+                        <input type="text" class="form-control" id="txtAbreviatura" placeholder="Ingrese la abreviatura del módulo (obligatorio)" data-ng-model="mymodulo.Abreviatura" maxlength="20" required />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="txtDescripcion" class="col-md-2 control-label">Descripcion: </label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" id="txtDescripcion" placeholder="Ingrese la abreviatura del sistema" data-ng-model="mymodulo.Descripcion" maxlength="200" />
+                        <input type="text" class="form-control" id="txtDescripcion" placeholder="Ingrese la abreviatura del módulo" data-ng-model="mymodulo.Descripcion" maxlength="200" />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
@@ -131,7 +131,10 @@
                         <td>{{modulo.Estado}}</td>
                         <td>{{modulo.Sistema.Nombre}}</td>
                         <td>
-                            <p><a data-ng-click="modificar(modulo)" href="javascript:;">Modificar</a></p>
+                            <p>
+                                <!--<a data-ng-click="modificar(modulo)" href="javascript:;">Modificar</a>-->
+                                <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(modulo)" />
+                            </p>
                         </td>
                     </tr>
                 </tbody>

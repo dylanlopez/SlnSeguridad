@@ -1,7 +1,6 @@
 ﻿using Business_Layer.Logics;
 using Business_Layer.Logics.Sistemas;
 using Domain_Layer.Dtos.Sistemas;
-using log4net;
 using Logging_Layer;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,7 @@ namespace Service_Layer.Services
 {
     public class SSistemasServices : ISSistemasServices
     {
-        private IBSistemaLogic _sistemaLogic;
+        private IBTipoDocumentoPersona _sistemaLogic;
         private IBModuloLogic _moduloLogic;
         private IBMenuLogic _menuLogic;
         private Loggin _logger;

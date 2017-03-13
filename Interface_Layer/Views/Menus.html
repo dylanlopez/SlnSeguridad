@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-    <title>Menus</title>
+    <title>Midis Seguridad | Menus</title>
 	<meta charset="utf-8" />
     <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="../Content/style.css">
@@ -47,25 +47,25 @@
                 <div class="container-fluid form-group">
                     <label for="txtCodigo" class="col-md-2 control-label">Codigo: </label>
                     <div class="col-md-2">
-                        <input type="text" class="form-control" id="txtCodigo" placeholder="Ingrese el codigo del sistema (obligatorio)" data-ng-model="mymenu.Codigo" maxlength="7" required />
+                        <input type="text" class="form-control" id="txtCodigo" placeholder="Ingrese el codigo del menú (obligatorio)" data-ng-model="mymenu.Codigo" maxlength="7" required />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="txtNombre" class="col-md-2 control-label">Nombre: </label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="txtNombre" placeholder="Ingrese el nombre del sistema (obligatorio)" data-ng-model="mymenu.Nombre" maxlength="50" required />
+                        <input type="text" class="form-control" id="txtNombre" placeholder="Ingrese el nombre del menú (obligatorio)" data-ng-model="mymenu.Nombre" maxlength="50" required />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="txtRuta" class="col-md-2 control-label">Ruta: </label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" id="txtRuta" placeholder="Ingrese la abreviatura del sistema (obligatorio)" data-ng-model="mymenu.Ruta" maxlength="200" required />
+                        <input type="text" class="form-control" id="txtRuta" placeholder="Ingrese la ruta del menú (obligatorio)" data-ng-model="mymenu.Ruta" maxlength="200" required />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="txtDescripcion" class="col-md-2 control-label">Descripcion: </label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" id="txtDescripcion" placeholder="Ingrese la abreviatura del sistema" data-ng-model="mymenu.Descripcion" maxlength="200" />
+                        <input type="text" class="form-control" id="txtDescripcion" placeholder="Ingrese la descripción del menú" data-ng-model="mymenu.Descripcion" maxlength="200" />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
@@ -142,7 +142,26 @@
                         <td>{{menu.Estado}}</td>
                         <td>{{menu.Modulo.Nombre}}</td>
                         <td>
-                            <p><a data-ng-click="modificar(menu)" href="javascript:;">Modificar</a></p>
+                            <p>
+                                <!--<a data-ng-click="modificar(menu)" href="javascript:;">Modificar</a>-->
+                                <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(menu)" />
+                                <!--<input type="button" class="btn btn-danger" value="Eliminar" data-ng-click="eliminar()" data-toggle="modal" data-target="#confirm-delete" />-->
+                                <input type="button" class="btn btn-danger" value="Eliminar" data-toggle="modal" data-target="#confirm-delete" />
+                            </p>
+                            <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">Confirmación</div>
+                                        <div class="modal-body">¿Desea realmente eliminar el menú seleccionado?</div>
+                                        <div class="modal-footer">
+                                            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>-->
+                                            <input type="button" class="btn btn-default" value="Cancelar" data-dismiss="modal" />
+                                            <input type="button" class="btn btn-danger btn-ok" value="Eliminar" data-dismiss="modal" data-ng-click="eliminar(menu)" />
+                                            <!--<a class="btn btn-danger btn-ok">Eliminar</a>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -159,5 +178,12 @@
     <script type="text/javascript" src="../Angular/myApp.module.js"></script>
     <script type="text/javascript" src="../Angular/menusCtrl.js"></script>
     <script type="text/javascript" src="../Angular/menuCtrl.js"></script>
+    <script type="text/javascript">
+        $('#modal').on('show', function () {
+            var id = $(this).data('id'),
+                removeBtn = $(this).find('.danger');
+            removeBtn.attr('href', removeBtn.attr('href').replace(/(&|\?)ref=\d*/, '$1ref=' + id));
+        });
+    </script>
 </body>
 </html>
