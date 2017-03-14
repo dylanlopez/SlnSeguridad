@@ -1,16 +1,16 @@
-﻿myApp.controller("ModuloCtrl", function ($scope, $http) {
-    $scope.sistemas = [];
-    $scope.modulos = [];
+﻿myApp.controller("PersonaCtrl", function ($scope, $http) {
+    $scope.tiposDocumentosPersonas = [];
+    $scope.personas = [];
     $scope.estaCargando = true;
     $scope.estaEditable = false;
     $scope.tieneError = false;
-    $scope.mymodulo = [];
+    $scope.myperson = [];
 
     $http({
         method: 'POST',
-        url: '../api/Sistema/ListarSistemas',
+        url: '../api/TipoDocumentoPersona/ListarTipoDocumentoPersona',
     }).then(function successCallback(result) {
-        $scope.sistemas = result.data;
+        $scope.tiposDocumentosPersonas = result.data;
         $scope.tieneError = false;
         $scope.error = "";
         $scope.estaCargando = false;
@@ -20,54 +20,44 @@
         $scope.estaCargando = false;
     });
 
+
+
+    
     $scope.buscar = function () {
-        if (angular.isUndefined($scope.sistema)) {
+        $scope.tieneError = false;
+        $scope.error = "";
+
+        var person =
+        {
+            "Id": '',
+            "Nombre": $scope.nombre,
+            "NumeroDocumento": '',
+            "Direccion": '',
+            "Telefono": '',
+            "Celular": '',
+            "Email": '',
+            "Tipo": '',
+            "Ambito": '',
+            "TipoDocumentoPersona": $scope.tipoDocumentoPersona,
+        };
+        console.debug(person);
+        $http({
+            method: 'POST',
+            url: '../api/Persona/ListarPersonas',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: person,
+        }).then(function successCallback(result) {
+            $scope.personas = result.data;
+            $scope.estaCargando = false;
+        }, function errorCallback(result) {
             $scope.tieneError = true;
-            $scope.error = "Debe ingresar un sistema para poder ver sus módulos";
-        }
-        else {
-            $scope.tieneError = false;
-            $scope.error = "";
-
-            //var system =
-            //{
-            //    "Id": $scope.sistema.Id,
-            //    "Codigo": $scope.sistema.Codigo,
-            //    "Nombre": $scope.sistema.Nombre,
-            //    "Abreviatura": $scope.sistema.Abreviatura,
-            //    "Descripcion": $scope.sistema.Descripcion,
-            //    "Estado": $scope.sistema.Estado,
-            //};
-
-            var module =
-            {
-                "Id": '',
-                "Codigo": '',
-                "Nombre": '',
-                "Abreviatura": '',
-                "Descripcion": '',
-                "Estado": '',
-                "Sistema": $scope.sistema,
-            };
-            console.debug(module);
-            $http({
-                method: 'POST',
-                url: '../api/Modulo/ListarModulos',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: module,
-            }).then(function successCallback(result) {
-                $scope.modulos = result.data;
-                $scope.estaCargando = false;
-            }, function errorCallback(result) {
-                $scope.tieneError = true;
-                $scope.error = "Ha ocuirrido un error al listar: " + result;
-                $scope.estaCargando = false;
-            });
-        }
+            $scope.error = "Ha ocuirrido un error al listar: " + result;
+            $scope.estaCargando = false;
+        });
     };
-
+    /*
     $scope.nuevo = function () {
         $scope.estaEditable = !$scope.estaEditable;
         $scope.mymodulo.Id = "";
@@ -165,4 +155,6 @@
             });
         }
     };
+    */
+
 });

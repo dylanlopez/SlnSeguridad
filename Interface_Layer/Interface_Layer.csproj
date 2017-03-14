@@ -47,10 +47,6 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -108,6 +104,7 @@
   <ItemGroup>
     <Content Include="Angular\menuCtrl.js" />
     <Content Include="Angular\moduloCtrl.js" />
+    <Content Include="Angular\personaCtrl.js" />
     <Content Include="Angular\sistemaCtrl.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
@@ -172,14 +169,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ModuloController.cs" />
+    <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\SistemaController.cs" />
+    <Compile Include="Controllers\TipoDocumentoPersonaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\PassParameter.cs" />
-    <Compile Include="Models\Sistemas\MenuModel.cs" />
-    <Compile Include="Models\Sistemas\ModuloModel.cs" />
-    <Compile Include="Models\Sistemas\SistemaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -187,15 +182,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Sistemas\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business_Layer\Business_Layer.csproj">
       <Project>{d4123c2e-9022-4522-acab-404ce11142f4}</Project>
       <Name>Business_Layer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Domain_Layer\Domain_Layer.csproj">
-      <Project>{98dbea5b-4174-4ddb-9a3d-460a58b2a9d4}</Project>
-      <Name>Domain_Layer</Name>
+    <ProjectReference Include="..\Service_Layer\Service_Layer.csproj">
+      <Project>{869809d6-523d-4722-9766-139a2f8b4179}</Project>
+      <Name>Service_Layer</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

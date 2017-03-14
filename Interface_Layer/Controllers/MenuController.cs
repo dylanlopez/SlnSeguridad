@@ -1,4 +1,4 @@
-﻿using Domain_Layer.Dtos.Sistemas;
+﻿//using Domain_Layer.Dtos.Sistemas;
 using Interface_Layer.Models.Sistemas;
 using Newtonsoft.Json;
 using System;
@@ -13,25 +13,26 @@ namespace Interface_Layer.Controllers
 {
     public class MenuController : ApiController
     {
-        private DMenuDto _dto;
+        //private DMenuDto _dto;
+        private MenuModel _model;
         private DataContractJsonSerializer _jsonSerializer;
         private RestOperation _restOperation;
 
         [HttpPut]
-        public HttpResponseMessage ActualizarMenu(DMenuDto dto)
+        public HttpResponseMessage ActualizarMenu(MenuModel model)
         {
             try
             {
-                _dto = dto;
-                if (_dto.Modulo.Descripcion == null)
+                _model = model;
+                if (_model.Modulo.Descripcion == null)
                 {
-                    _dto.Modulo.Descripcion = String.Empty;
+                    _model.Modulo.Descripcion = String.Empty;
                 }
-                if (_dto.Modulo.Sistema.Descripcion == null)
+                if (_model.Modulo.Sistema.Descripcion == null)
                 {
-                    _dto.Modulo.Sistema.Descripcion = String.Empty;
+                    _model.Modulo.Sistema.Descripcion = String.Empty;
                 }
-                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_dto));
+                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new RestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ActualizarMenu/", dataToSend);
@@ -48,12 +49,12 @@ namespace Interface_Layer.Controllers
         }
 
         [HttpDelete]
-        public HttpResponseMessage EliminarMenu(DMenuDto dto)
+        public HttpResponseMessage EliminarMenu(MenuModel model)
         {
-            _dto = dto;
+            _model = model;
             try
             {
-                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_dto));
+                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new RestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/EliminarMenu/", dataToSend);
@@ -70,20 +71,20 @@ namespace Interface_Layer.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertarMenu(DMenuDto dto)
+        public HttpResponseMessage InsertarMenu(MenuModel model)
         {
             try
             {
-                _dto = dto;
-                if(_dto.Modulo.Descripcion == null)
+                _model = model;
+                if(_model.Modulo.Descripcion == null)
                 {
-                    _dto.Modulo.Descripcion = String.Empty;
+                    _model.Modulo.Descripcion = String.Empty;
                 }
-                if (_dto.Modulo.Sistema.Descripcion == null)
+                if (_model.Modulo.Sistema.Descripcion == null)
                 {
-                    _dto.Modulo.Sistema.Descripcion = String.Empty;
+                    _model.Modulo.Sistema.Descripcion = String.Empty;
                 }
-                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_dto));
+                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new RestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/InsertarMenu/", dataToSend);
@@ -101,14 +102,14 @@ namespace Interface_Layer.Controllers
 
         [HttpPost]
         //[Authorize]
-        public List<MenuModel> ListarMenus(DModuloDto dtoModulo)
+        public List<MenuModel> ListarMenus(MenuModel model)
         {
             List<MenuModel> response;
-            _dto = new DMenuDto();
-            _dto.Modulo = dtoModulo;
+            _model = new MenuModel();
+            _model.Modulo = model.Modulo;
             try
             {
-                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_dto));
+                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new RestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarMenus/", dataToSend);

@@ -1,9 +1,9 @@
-﻿using Domain_Layer.Dtos.Personas;
+﻿using Service_Layer.Models.Personas;
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 
-namespace Service_Layer.Services.Sistemas
+namespace Service_Layer.Services
 {
     [ServiceContract]
     public interface ISPersonasService
@@ -15,7 +15,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "BuscarTipoDocumentoPersona/")]
-        DTipoDocumentoPersonaDto BuscarTipoDocumentoPersona(DTipoDocumentoPersonaDto dto);
+        TipoDocumentoPersonaModel BuscarTipoDocumentoPersona(TipoDocumentoPersonaModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -23,7 +23,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ListarTipoDocumentoPersona/")]
-        List<DTipoDocumentoPersonaDto> ListarTipoDocumentoPersona(DTipoDocumentoPersonaDto dto);
+        List<TipoDocumentoPersonaModel> ListarTipoDocumentoPersona(TipoDocumentoPersonaModel dto);
         #endregion
 
         #region Persona
@@ -33,7 +33,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ActualizarPersona/")]
-        int ActualizarPersona(DPersonaDto dto);
+        int ActualizarPersona(PersonaModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -41,7 +41,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "BuscarPersona/")]
-        DPersonaDto BuscarPersona(DPersonaDto dto);
+        PersonaModel BuscarPersona(PersonaModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -49,7 +49,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "EliminarPersona/")]
-        int EliminarPersona(DPersonaDto dto);
+        int EliminarPersona(PersonaModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -57,7 +57,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "InsertarPersona/")]
-        int InsertarPersona(DPersonaDto dto);
+        int InsertarPersona(PersonaModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -65,7 +65,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ListarPersonas/")]
-        List<DPersonaDto> ListarPersonas(DPersonaDto dto);
+        List<PersonaModel> ListarPersonas(PersonaModel dto);
         #endregion
 
         #region Usuario
@@ -75,7 +75,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ActualizarUsuario/")]
-        int ActualizarUsuario(DUsuarioDto dto);
+        int ActualizarUsuario(UsuarioModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -83,7 +83,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "BuscarUsuario/")]
-        DUsuarioDto BuscarUsuario(DUsuarioDto dto);
+        UsuarioModel BuscarUsuario(UsuarioModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -91,7 +91,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "EliminarUsuario/")]
-        int EliminarUsuario(DUsuarioDto dto);
+        int EliminarUsuario(UsuarioModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -99,7 +99,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "InsertarUsuario/")]
-        int InsertarUsuario(DUsuarioDto dto);
+        int InsertarUsuario(UsuarioModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -107,7 +107,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ListarUsuarios/")]
-        List<DUsuarioDto> ListarUsuarios(DUsuarioDto dto);
+        List<UsuarioModel> ListarUsuarios(UsuarioModel dto);
         #endregion
 
         #region Rol
@@ -117,7 +117,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ActualizarRol/")]
-        int ActualizarRol(DRolDto dto);
+        int ActualizarRol(RolModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -125,7 +125,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "BuscarRol/")]
-        DRolDto BuscarRol(DRolDto dto);
+        RolModel BuscarRol(RolModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -133,7 +133,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "EliminarRol/")]
-        int EliminarRol(DRolDto dto);
+        int EliminarRol(RolModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -141,7 +141,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "InsertarRol/")]
-        int InsertarRol(DRolDto dto);
+        int InsertarRol(RolModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -149,7 +149,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ListarRoles/")]
-        List<DRolDto> ListarRoles(DRolDto dto);
+        List<RolModel> ListarRoles(RolModel dto);
         #endregion
 
         #region UsuarioRol
@@ -159,7 +159,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "EliminarUsuarioRol/")]
-        int EliminarUsuarioRol(DUsuarioRolDto dto);
+        int EliminarUsuarioRol(UsuarioRolModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -167,7 +167,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "InsertarUsuarioRol/")]
-        int InsertarUsuarioRol(DUsuarioRolDto dto);
+        int InsertarUsuarioRol(UsuarioRolModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -175,7 +175,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ListarUsuariosRoles/")]
-        List<DUsuarioRolDto> ListarUsuariosRoles(DUsuarioRolDto dto);
+        List<UsuarioRolModel> ListarUsuariosRoles(UsuarioRolModel dto);
         #endregion
 
         #region MenuRol
@@ -185,7 +185,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "EliminarMenuRol/")]
-        int EliminarMenuRol(DMenuRolDto dto);
+        int EliminarMenuRol(MenuRolModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -193,7 +193,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "InsertarMenuRol/")]
-        int InsertarMenuRol(DMenuRolDto dto);
+        int InsertarMenuRol(MenuRolModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -201,7 +201,7 @@ namespace Service_Layer.Services.Sistemas
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ListarMenusRoles/")]
-        List<DMenuRolDto> ListarMenusRoles(DMenuRolDto dto);
+        List<MenuRolModel> ListarMenusRoles(MenuRolModel dto);
         #endregion
     }
 }

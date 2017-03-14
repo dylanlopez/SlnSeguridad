@@ -28,6 +28,8 @@ namespace Domain_Layer.Converters.Personas
             dto.Caduca = entity.Caduca;
             dto.PeriodoCaducidad = entity.PeriodoCaducidad;
             dto.FechaUltimoCambio = entity.FechaUltimoCambio;
+            dto.UnicoIngreso = entity.UnicoIngreso;
+            dto.HaIngresado = entity.HaIngresado;
             dto.Tipo = entity.Tipo;
             dto.Estado = entity.Estado;
             dto.Persona = DPersonaConverter.ToDto(entity.Persona);
@@ -64,6 +66,8 @@ namespace Domain_Layer.Converters.Personas
             entity.Caduca = dto.Caduca;
             entity.PeriodoCaducidad = dto.PeriodoCaducidad;
             entity.FechaUltimoCambio = dto.FechaUltimoCambio;
+            entity.UnicoIngreso = dto.UnicoIngreso;
+            entity.HaIngresado = dto.HaIngresado;
             entity.Tipo = dto.Tipo;
             entity.Estado = dto.Estado;
             entity.Persona = DPersonaConverter.ToEntity(dto.Persona);

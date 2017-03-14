@@ -47,12 +47,52 @@
         public string NumeroDocumento { get; set; }
 
         /// <summary>
+        /// Gets or sets the Direccion, correspond to entity field Direccion.
+        /// </summary>
+        /// <value>
+        /// value to the Direccion.
+        /// </value>
+        public string Direccion { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Telefono, correspond to entity field Telefono.
+        /// </summary>
+        /// <value>
+        /// value to the Telefono.
+        /// </value>
+        public string Telefono { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Celular, correspond to entity field Celular.
+        /// </summary>
+        /// <value>
+        /// value to the Celular.
+        /// </value>
+        public string Celular { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Email, correspond to entity field Email.
+        /// </summary>
+        /// <value>
+        /// value to the Email.
+        /// </value>
+        public string Email { get; set; }
+
+        /// <summary>
         /// Gets or sets the Tipo, correspond to entity field Tipo.
         /// </summary>
         /// <value>
         /// value to the Tipo.
         /// </value>
         public char Tipo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Ambito, correspond to entity field Ambito.
+        /// </summary>
+        /// <value>
+        /// value to the Ambito.
+        /// </value>
+        public char Ambito { get; set; }
 
         /// <summary>
         /// Gets or sets the TipoDocumentoPersona, correspond to entity TipoDocumentoPersona.

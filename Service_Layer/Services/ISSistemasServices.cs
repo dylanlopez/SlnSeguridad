@@ -1,4 +1,4 @@
-﻿using Domain_Layer.Dtos.Sistemas;
+﻿using Interface_Layer.Models.Sistemas;
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
@@ -15,7 +15,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ActualizarSistema/")]
-        int ActualizarSistema(DSistemaDto dto);
+        int ActualizarSistema(SistemaModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -23,7 +23,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "BuscarSistema/")]
-        DSistemaDto BuscarSistema(DSistemaDto dto);
+        SistemaModel BuscarSistema(SistemaModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -31,7 +31,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "InsertarSistema/")]
-        int InsertarSistema(DSistemaDto dto);
+        int InsertarSistema(SistemaModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -39,7 +39,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ListarSistemas/")]
-        List<DSistemaDto> ListarSistemas(DSistemaDto dto);
+        List<SistemaModel> ListarSistemas(SistemaModel dto);
         #endregion
 
         #region Modulo
@@ -49,7 +49,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ActualizarModulo/")]
-        int ActualizarModulo(DModuloDto dto);
+        int ActualizarModulo(ModuloModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -57,7 +57,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "BuscarModulo/")]
-        DModuloDto BuscarModulo(DModuloDto dto);
+        ModuloModel BuscarModulo(ModuloModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -65,7 +65,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "InsertarModulo/")]
-        int InsertarModulo(DModuloDto dto);
+        int InsertarModulo(ModuloModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -73,7 +73,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ListarModulos/")]
-        List<DModuloDto> ListarModulos(DModuloDto dto);
+        List<ModuloModel> ListarModulos(ModuloModel dto);
         #endregion
 
         #region Menu
@@ -83,7 +83,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ActualizarMenu/")]
-        int ActualizarMenu(DMenuDto dto);
+        int ActualizarMenu(MenuModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -91,7 +91,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "BuscarMenu/")]
-        DMenuDto BuscarMenu(DMenuDto dto);
+        MenuModel BuscarMenu(MenuModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -99,7 +99,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "EliminarMenu/")]
-        int EliminarMenu(DMenuDto dto);
+        int EliminarMenu(MenuModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -107,7 +107,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "InsertarMenu/")]
-        int InsertarMenu(DMenuDto dto);
+        int InsertarMenu(MenuModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -115,7 +115,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ListarMenus/")]
-        List<DMenuDto> ListarMenus(DMenuDto dto);
+        List<MenuModel> ListarMenus(MenuModel dto);
         #endregion
     }
 }

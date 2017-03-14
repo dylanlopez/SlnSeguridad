@@ -25,7 +25,12 @@ namespace Domain_Layer.Converters.Personas
             dto.Id = entity.Id;
             dto.Nombre = entity.Nombre;
             dto.NumeroDocumento = entity.NumeroDocumento;
+            dto.Direccion = entity.Direccion;
+            dto.Telefono = entity.Telefono;
+            dto.Celular = entity.Celular;
+            dto.Email = entity.Email;
             dto.Tipo = entity.Tipo;
+            dto.Ambito = entity.Ambito;
             dto.TipoDocumentoPersona = DTipoDocumentoPersonaConverter.ToDto(entity.TipoDocumentoPersona);
             return dto;
         }
@@ -57,7 +62,12 @@ namespace Domain_Layer.Converters.Personas
             entity.Id = dto.Id;
             entity.Nombre = dto.Nombre.ToUpper();
             entity.NumeroDocumento = dto.NumeroDocumento.ToUpper();
+            entity.Direccion = dto.Direccion.ToUpper();
+            entity.Telefono = dto.Telefono;
+            entity.Celular = dto.Celular;
+            entity.Email = dto.Email;
             entity.Tipo = dto.Tipo;
+            entity.Ambito = dto.Ambito;
             entity.TipoDocumentoPersona = DTipoDocumentoPersonaConverter.ToEntity(dto.TipoDocumentoPersona);
             return entity;
         }

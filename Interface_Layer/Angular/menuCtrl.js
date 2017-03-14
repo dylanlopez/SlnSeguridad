@@ -30,15 +30,26 @@
         $scope.tieneError = false;
         $scope.error = "";
 
-        var system =
-        {
-            "Id": $scope.sistema.Id,
-            "Codigo": $scope.sistema.Codigo,
-            "Nombre": $scope.sistema.Nombre,
-            "Abreviatura": $scope.sistema.Abreviatura,
-            "Descripcion": $scope.sistema.Descripcion,
-            "Estado": $scope.sistema.Estado,
-        };
+        var module =
+            {
+                "Id": '',
+                "Codigo": '',
+                "Nombre": '',
+                "Abreviatura": '',
+                "Descripcion": '',
+                "Estado": '',
+                "Sistema": $scope.sistema,
+            };
+
+        //var system =
+        //{
+        //    "Id": $scope.sistema.Id,
+        //    "Codigo": $scope.sistema.Codigo,
+        //    "Nombre": $scope.sistema.Nombre,
+        //    "Abreviatura": $scope.sistema.Abreviatura,
+        //    "Descripcion": $scope.sistema.Descripcion,
+        //    "Estado": $scope.sistema.Estado,
+        //};
 
         //var system =
         //{
@@ -56,7 +67,8 @@
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: system,
+            //data: system,
+            data: module,
         }).then(function successCallback(result) {
             $scope.modulos = result.data;
             $scope.estaCargando = false;
@@ -74,15 +86,27 @@
         console.debug($scope.mymenu.Sistema);
         //console.debug($scope.mymenu.sistema2);
         //console.debug(mymenu.Modulo.Sistema);
-        var system =
-        {
-            "Id": $scope.mymenu.Sistema.Id,
-            "Codigo": $scope.mymenu.Sistema.Codigo,
-            "Nombre": $scope.mymenu.Sistema.Nombre,
-            "Abreviatura": $scope.mymenu.Sistema.Abreviatura,
-            "Descripcion": $scope.mymenu.Sistema.Descripcion,
-            "Estado": $scope.mymenu.Sistema.Estado,
-        };
+
+        var module =
+            {
+                "Id": '',
+                "Codigo": '',
+                "Nombre": '',
+                "Abreviatura": '',
+                "Descripcion": '',
+                "Estado": '',
+                "Sistema": $scope.sistema,
+            };
+
+        //var system =
+        //{
+        //    "Id": $scope.mymenu.Sistema.Id,
+        //    "Codigo": $scope.mymenu.Sistema.Codigo,
+        //    "Nombre": $scope.mymenu.Sistema.Nombre,
+        //    "Abreviatura": $scope.mymenu.Sistema.Abreviatura,
+        //    "Descripcion": $scope.mymenu.Sistema.Descripcion,
+        //    "Estado": $scope.mymenu.Sistema.Estado,
+        //};
 
         $http({
             method: 'POST',
@@ -90,7 +114,8 @@
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: system,
+            data: module,
+            //data: system,
         }).then(function successCallback(result) {
             $scope.modulos2 = result.data;
             $scope.estaCargando = false;
@@ -110,23 +135,34 @@
             $scope.tieneError = false;
             $scope.error = "";
 
-            var module =
+            var men =
             {
-                "Id": $scope.modulo.Id,
-                "Codigo": $scope.modulo.Codigo,
-                "Nombre": $scope.modulo.Nombre,
-                "Abreviatura": $scope.modulo.Abreviatura,
-                "Descripcion": $scope.modulo.Descripcion,
-                "Estado": $scope.modulo.Estado,
-                "Sistema": $scope.modulo.Sistema,
+                "Id": '',
+                "Codigo": '',
+                "Nombre": '',
+                "Ruta": '',
+                "Descripcion": '',
+                "Estado": '',
+                "Modulo": $scope.modulo
             };
+
+            //var module =
+            //{
+            //    "Id": $scope.modulo.Id,
+            //    "Codigo": $scope.modulo.Codigo,
+            //    "Nombre": $scope.modulo.Nombre,
+            //    "Abreviatura": $scope.modulo.Abreviatura,
+            //    "Descripcion": $scope.modulo.Descripcion,
+            //    "Estado": $scope.modulo.Estado,
+            //    "Sistema": $scope.modulo.Sistema,
+            //};
             $http({
                 method: 'POST',
                 url: '../api/Menu/ListarMenus',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data: module,
+                data: men,
             }).then(function successCallback(result) {
                 $scope.menus = result.data;
                 $scope.estaCargando = false;

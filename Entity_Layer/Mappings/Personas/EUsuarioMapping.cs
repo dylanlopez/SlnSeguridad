@@ -70,6 +70,20 @@ namespace Entity_Layer.Mappings.Personas
                     map.NotNullable(true);
                 });
             Property<Char>(
+                x => x.UnicoIngreso,
+                map => {
+                    map.Column("UNICO_INGRESO");
+                    map.Length(1);
+                    map.NotNullable(true);
+                });
+            Property<Char>(
+                x => x.HaIngresado,
+                map => {
+                    map.Column("HA_INGRESADO");
+                    map.Length(1);
+                    map.NotNullable(true);
+                });
+            Property<Char>(
                 x => x.Tipo, 
                 map => {
                     map.Column("TIPO");
@@ -86,6 +100,7 @@ namespace Entity_Layer.Mappings.Personas
             OneToOne<EPersona>(
                 x => x.Persona, 
                 map => {
+                    map.ForeignKey("FK_USUARIO_01");
                     map.PropertyReference(typeof(EPersona).GetPropertyOrFieldMatchingName("ID_PERSONA"));
                 });
         }

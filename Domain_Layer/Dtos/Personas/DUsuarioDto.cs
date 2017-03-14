@@ -77,6 +77,22 @@ namespace Domain_Layer.Dtos.Personas
         public DateTime FechaUltimoCambio { get; set; }
 
         /// <summary>
+        /// Gets or sets the UnicoIngreso, correspond to entity field UnicoIngreso.
+        /// </summary>
+        /// <value>
+        /// set a value to the UnicoIngreso.
+        /// </value>
+        public char UnicoIngreso { get; set; }
+
+        /// <summary>
+        /// Gets or sets the HaIngresado, correspond to entity field HaIngresado.
+        /// </summary>
+        /// <value>
+        /// set a value to the HaIngresado.
+        /// </value>
+        public char HaIngresado { get; set; }
+
+        /// <summary>
         /// Gets or sets the Tipo, correspond to entity field Tipo.
         /// </summary>
         /// <value>

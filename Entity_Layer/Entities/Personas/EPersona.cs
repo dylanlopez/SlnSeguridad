@@ -37,12 +37,52 @@ namespace Entity_Layer.Entities.Personas
         public virtual String NumeroDocumento { get; set; }
 
         /// <summary>
+        /// Gets or sets the Direccion, correspond to table field DIRECCION.
+        /// </summary>
+        /// <value>
+        /// set a value to the Direccion.
+        /// </value>
+        public virtual String Direccion { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Telefono, correspond to table field TELEFONO.
+        /// </summary>
+        /// <value>
+        /// set a value to the Telefono.
+        /// </value>
+        public virtual String Telefono { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Celular, correspond to table field CELULAR.
+        /// </summary>
+        /// <value>
+        /// set a value to the Celular.
+        /// </value>
+        public virtual String Celular { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Email, correspond to table field EMAIL.
+        /// </summary>
+        /// <value>
+        /// set a value to the Email.
+        /// </value>
+        public virtual String Email { get; set; }
+
+        /// <summary>
         /// Gets or sets the Tipo, correspond to table field TIPO.
         /// </summary>
         /// <value>
         /// set a value to the Tipo.
         /// </value>
         public virtual Char Tipo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Ambito, correspond to table field AMBITO.
+        /// </summary>
+        /// <value>
+        /// set a value to the Ambito.
+        /// </value>
+        public virtual Char Ambito { get; set; }
 
         /// <summary>
         /// Gets or sets the TipoDocumentoPersona, correspond to table field ID_TIPO_DOCUMENTO_PERSONA.

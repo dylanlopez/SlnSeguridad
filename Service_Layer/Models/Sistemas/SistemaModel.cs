@@ -24,12 +24,6 @@ namespace Interface_Layer.Models.Sistemas
         [DataMember(Name = "Estado")]
         public char Estado { get; set; }
 
-        //[DataMember(Name = "EstaActivo")]
-        //public bool EstaActivo { get; set; }
-
-        //[DataMember(Name = "EstaInactivo")]
-        //public bool EstaInactivo { get; set; }
-
         [DataMember(Name = "Modulos")]
         public List<ModuloModel> Modulos { get; set; }
     }

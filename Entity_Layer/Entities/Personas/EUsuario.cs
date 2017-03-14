@@ -61,6 +61,22 @@ namespace Entity_Layer.Entities.Personas
         public virtual DateTime FechaUltimoCambio { get; set; }
 
         /// <summary>
+        /// Gets or sets the UnicoIngreso, correspond to table field UNICO_INGRESO.
+        /// </summary>
+        /// <value>
+        /// set a value to the UnicoIngreso.
+        /// </value>
+        public virtual Char UnicoIngreso { get; set; }
+
+        /// <summary>
+        /// Gets or sets the HaIngresado, correspond to table field HA_INGRESADO.
+        /// </summary>
+        /// <value>
+        /// set a value to the HaIngresado.
+        /// </value>
+        public virtual Char HaIngresado { get; set; }
+
+        /// <summary>
         /// Gets or sets the Tipo, correspond to table field TIPO.
         /// </summary>
         /// <value>

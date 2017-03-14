@@ -1,6 +1,8 @@
-﻿using Business_Layer.Logics;
+﻿using AutoMapper;
+using Business_Layer.Logics;
 using Business_Layer.Logics.Sistemas;
 using Domain_Layer.Dtos.Sistemas;
+using Interface_Layer.Models.Sistemas;
 using Logging_Layer;
 using System;
 using System.Collections.Generic;
@@ -16,8 +18,21 @@ namespace Service_Layer.Services
         private IBMenuLogic _menuLogic;
         private Loggin _logger;
 
+        public SSistemasServices()
+        {
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<SistemaModel, DSistemaDto>();
+                config.CreateMap<DSistemaDto, SistemaModel>();
+                config.CreateMap<ModuloModel, DModuloDto>();
+                config.CreateMap<DModuloDto, ModuloModel>();
+                config.CreateMap<MenuModel, DMenuDto>();
+                config.CreateMap<DMenuDto, MenuModel>();
+            });
+        }
+
         #region Sistema
-        public int ActualizarSistema(DSistemaDto dto)
+        public int ActualizarSistema(SistemaModel model)
         {
             if (_logger == null)
             {
@@ -27,6 +42,7 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando ActualizarSistema");
                 _sistemaLogic = new BLogic();
+                var dto = Mapper.Map<DSistemaDto>(model);
                 return _sistemaLogic.Actualizar(dto);
             }
             catch(Exception ex)
@@ -39,7 +55,7 @@ namespace Service_Layer.Services
                 _logger = null;
             }
         }
-        public DSistemaDto BuscarSistema(DSistemaDto dto)
+        public SistemaModel BuscarSistema(SistemaModel model)
         {
             if (_logger == null)
             {
@@ -49,7 +65,17 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando BuscarSistema");
                 _sistemaLogic = new BLogic();
-                return _sistemaLogic.Buscar(dto);
+                var dto = Mapper.Map<DSistemaDto>(model);
+                var resp = Mapper.Map<SistemaModel>(_sistemaLogic.Buscar(dto));
+                //dto = _sistemaLogic.Buscar(dto);
+                //model = Mapper.Map<SistemaModel>(dto);
+                ModuloModel moduloModel = new ModuloModel();
+                moduloModel.Sistema = resp;
+                resp.Modulos = ListarModulos(moduloModel);
+                //model.Modulos
+                //model = _sistemaLogic.Buscar(dtoSistema);
+                //return _sistemaLogic.Buscar(model);
+                return resp;
             }
             catch (Exception ex)
             {
@@ -61,7 +87,7 @@ namespace Service_Layer.Services
                 _logger = null;
             }
         }
-        public int InsertarSistema(DSistemaDto dto)
+        public int InsertarSistema(SistemaModel model)
         {
             if (_logger == null)
             {
@@ -71,6 +97,7 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando InsertarSistema");
                 _sistemaLogic = new BLogic();
+                var dto = Mapper.Map<DSistemaDto>(model);
                 return _sistemaLogic.Insertar(dto);
             }
             catch (Exception ex)
@@ -83,7 +110,7 @@ namespace Service_Layer.Services
                 _logger = null;
             }
         }
-        public List<DSistemaDto> ListarSistemas(DSistemaDto dto)
+        public List<SistemaModel> ListarSistemas(SistemaModel model)
         {
             if (_logger == null)
             {
@@ -93,7 +120,16 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando ListarSistemas");
                 _sistemaLogic = new BLogic();
-                return _sistemaLogic.Listar(dto);
+                var dto = Mapper.Map<DSistemaDto>(model);
+                var resp = Mapper.Map<List<SistemaModel>>(_sistemaLogic.Listar(dto));
+                ModuloModel moduloModel;
+                foreach (var item in resp)
+                {
+                    moduloModel = new ModuloModel();
+                    moduloModel.Sistema = item;
+                    item.Modulos = ListarModulos(moduloModel);
+                }
+                return resp;
             }
             catch (Exception ex)
             {
@@ -108,7 +144,7 @@ namespace Service_Layer.Services
         #endregion
 
         #region Modulo
-        public int ActualizarModulo(DModuloDto dto)
+        public int ActualizarModulo(ModuloModel model)
         {
             if (_logger == null)
             {
@@ -118,6 +154,7 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando ActualizarModulo");
                 _moduloLogic = new BLogic();
+                var dto = Mapper.Map<DModuloDto>(model);
                 return _moduloLogic.Actualizar(dto);
             }
             catch (Exception ex)
@@ -130,7 +167,7 @@ namespace Service_Layer.Services
                 _logger = null;
             }
         }
-        public DModuloDto BuscarModulo(DModuloDto dto)
+        public ModuloModel BuscarModulo(ModuloModel model)
         {
             if (_logger == null)
             {
@@ -140,7 +177,16 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando BuscarModulo");
                 _moduloLogic = new BLogic();
-                return _moduloLogic.Buscar(dto);
+                //var dto = Mapper.Map<DModuloDto>(model);
+                var dto = Mapper.Map<DModuloDto>(model);
+                var resp = Mapper.Map<ModuloModel>(_moduloLogic.Buscar(dto));
+                //dto = _moduloLogic.Buscar(dto);
+                //model = Mapper.Map<ModuloModel>(dto);
+                MenuModel menuModel = new MenuModel();
+                menuModel.Modulo = resp;
+                resp.Menus = ListarMenus(menuModel);
+                //return _moduloLogic.Buscar(dto);
+                return resp;
             }
             catch (Exception ex)
             {
@@ -152,7 +198,7 @@ namespace Service_Layer.Services
                 _logger = null;
             }
         }
-        public int InsertarModulo(DModuloDto dto)
+        public int InsertarModulo(ModuloModel model)
         {
             if (_logger == null)
             {
@@ -162,6 +208,7 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando InsertarModulo");
                 _moduloLogic = new BLogic();
+                var dto = Mapper.Map<DModuloDto>(model);
                 return _moduloLogic.Insertar(dto);
             }
             catch (Exception ex)
@@ -174,7 +221,7 @@ namespace Service_Layer.Services
                 _logger = null;
             }
         }
-        public List<DModuloDto> ListarModulos(DModuloDto dto)
+        public List<ModuloModel> ListarModulos(ModuloModel model)
         {
             if (_logger == null)
             {
@@ -184,7 +231,18 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando ListarModulos");
                 _moduloLogic = new BLogic();
-                return _moduloLogic.Listar(dto);
+                //var dto = Mapper.Map<DModuloDto>(model);
+                //return _moduloLogic.Listar(dto);
+                var dto = Mapper.Map<DModuloDto>(model);
+                var resp = Mapper.Map<List<ModuloModel>>(_moduloLogic.Listar(dto));
+                MenuModel menuModel;
+                foreach (var item in resp)
+                {
+                    menuModel = new MenuModel();
+                    menuModel.Modulo = item;
+                    item.Menus = ListarMenus(menuModel);
+                }
+                return resp;
             }
             catch (Exception ex)
             {
@@ -199,7 +257,7 @@ namespace Service_Layer.Services
         #endregion
 
         #region Menu
-        public int ActualizarMenu(DMenuDto dto)
+        public int ActualizarMenu(MenuModel model)
         {
             if (_logger == null)
             {
@@ -209,6 +267,7 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando ActualizarMenu");
                 _menuLogic = new BLogic();
+                var dto = Mapper.Map<DMenuDto>(model);
                 return _menuLogic.Actualizar(dto);
             }
             catch (Exception ex)
@@ -221,7 +280,7 @@ namespace Service_Layer.Services
                 _logger = null;
             }
         }
-        public DMenuDto BuscarMenu(DMenuDto dto)
+        public MenuModel BuscarMenu(MenuModel model)
         {
             if (_logger == null)
             {
@@ -231,7 +290,10 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando BuscarMenu");
                 _menuLogic = new BLogic();
-                return _menuLogic.Buscar(dto);
+                var dto = Mapper.Map<DMenuDto>(model);
+                var resp = Mapper.Map<MenuModel>(_menuLogic.Buscar(dto));
+                //return _menuLogic.Buscar(dto);
+                return resp;
             }
             catch (Exception ex)
             {
@@ -243,7 +305,7 @@ namespace Service_Layer.Services
                 _logger = null;
             }
         }
-        public int EliminarMenu(DMenuDto dto)
+        public int EliminarMenu(MenuModel model)
         {
             if (_logger == null)
             {
@@ -253,6 +315,7 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando EliminarMenu");
                 _menuLogic = new BLogic();
+                var dto = Mapper.Map<DMenuDto>(model);
                 return _menuLogic.Insertar(dto);
             }
             catch (Exception ex)
@@ -265,7 +328,7 @@ namespace Service_Layer.Services
                 _logger = null;
             }
         }
-        public int InsertarMenu(DMenuDto dto)
+        public int InsertarMenu(MenuModel model)
         {
             if (_logger == null)
             {
@@ -275,6 +338,7 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando InsertarMenu");
                 _menuLogic = new BLogic();
+                var dto = Mapper.Map<DMenuDto>(model);
                 return _menuLogic.Insertar(dto);
             }
             catch (Exception ex)
@@ -287,7 +351,7 @@ namespace Service_Layer.Services
                 _logger = null;
             }
         }
-        public List<DMenuDto> ListarMenus(DMenuDto dto)
+        public List<MenuModel> ListarMenus(MenuModel model)
         {
             if (_logger == null)
             {
@@ -297,7 +361,10 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando ListarMenus");
                 _menuLogic = new BLogic();
-                return _menuLogic.Listar(dto);
+                var dto = Mapper.Map<DMenuDto>(model);
+                var resp = Mapper.Map<List<MenuModel>>(_menuLogic.Listar(dto));
+                //return _menuLogic.Listar(dto);
+                return resp;
             }
             catch (Exception ex)
             {

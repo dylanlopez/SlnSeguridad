@@ -50,10 +50,45 @@ namespace Entity_Layer.Mappings.Personas
                     map.Length(15);
                     map.NotNullable(true);
                 });
+            Property<String>(
+                x => x.Direccion,
+                map => {
+                    map.Column("DIRECCION");
+                    map.Length(255);
+                    map.NotNullable(false);
+                });
+            Property<String>(
+                x => x.Telefono,
+                map => {
+                    map.Column("TELEFONO");
+                    map.Length(15);
+                    map.NotNullable(false);
+                });
+            Property<String>(
+                x => x.Celular,
+                map => {
+                    map.Column("CELULAR");
+                    map.Length(15);
+                    map.NotNullable(false);
+                });
+            Property<String>(
+                x => x.Email,
+                map => {
+                    map.Column("EMAIL");
+                    map.Length(50);
+                    map.NotNullable(false);
+                });
             Property<Char>(
                 x => x.Tipo, 
                 map => {
                     map.Column("TIPO");
+                    map.Length(1);
+                    map.NotNullable(true);
+                });
+            Property<Char>(
+                x => x.Ambito,
+                map => {
+                    map.Column("AMBITO");
                     map.Length(1);
                     map.NotNullable(true);
                 });
@@ -62,8 +97,9 @@ namespace Entity_Layer.Mappings.Personas
                 map => {
                     map.Column("ID_TIPO_DOCUMENTO_PERSONA");
                     map.NotNullable(true);
-                    map.Update(false);
-                    map.Insert(false);
+                    map.Update(true);
+                    map.Insert(true);
+                    map.ForeignKey("FK_PERSONA_01");
                 });
         }
     }
