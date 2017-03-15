@@ -24,7 +24,7 @@ namespace Entity_Layer.Mappings.Personas
         public EMenuRolMapping()
         {
             Schema("ES_SEGURIDAD");
-            Table("MENU_ROL");
+            Table("SEGTV_MENU_ROL");
             Id<Int32>(
                 x => x.Id,
                 map => {
@@ -34,7 +34,7 @@ namespace Entity_Layer.Mappings.Personas
                         seq => seq.Params(new
                         {
                             schema = "ES_SEGURIDAD",
-                            sequence = "SEQ_USUARIO_ROL"
+                            sequence = "SEQ_MENU_ROL"
                         }));
                 });
             ManyToOne<EMenu>(
@@ -44,6 +44,7 @@ namespace Entity_Layer.Mappings.Personas
                     map.NotNullable(true);
                     map.Update(false);
                     map.Insert(false);
+                    map.UniqueKey("FK_MENU_ROL_01");
                 });
             ManyToOne<ERol>(
                 x => x.Rol, 
@@ -52,6 +53,7 @@ namespace Entity_Layer.Mappings.Personas
                     map.NotNullable(true);
                     map.Update(false);
                     map.Insert(false);
+                    map.UniqueKey("FK_MENU_ROL_02");
                 });
         }
     }

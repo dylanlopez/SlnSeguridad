@@ -99,10 +99,8 @@ namespace Domain_Layer.Configurations
                 mapper.AddMapping<ESistemaMapping>();
                 mapper.AddMapping<EModuloMapping>();
                 mapper.AddMapping<EMenuMapping>();
-                mapper.AddMapping<EProgramaSocialMapping>();
                 mapper.AddMapping<ETipoDocumentoPersonaMapping>();
                 mapper.AddMapping<EPersonaMapping>();
-                mapper.AddMapping<EPersonaProgramaSocialMapping>();
                 mapper.AddMapping<EUsuarioMapping>();
                 mapper.AddMapping<ERolMapping>();
                 mapper.AddMapping<EUsuarioRolMapping>();

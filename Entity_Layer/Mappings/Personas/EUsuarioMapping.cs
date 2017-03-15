@@ -23,7 +23,7 @@ namespace Entity_Layer.Mappings.Personas
         public EUsuarioMapping()
         {
             Schema("ES_SEGURIDAD");
-            Table("USUARIO");
+            Table("SEGTV_USUARIO");
             Id<Int32>(
                 x => x.Id,
                 map => {
@@ -39,61 +39,69 @@ namespace Entity_Layer.Mappings.Personas
             Property<String>(
                 x => x.Usuario, 
                 map => {
-                    map.Column("USUARIO");
+                    map.Column("US_USUARIO");
                     map.Length(100);
                     map.NotNullable(true);
+                    map.UniqueKey("UK_USUARIO_01");
                 });
             Property<String>(
                 x => x.Contrasena, 
                 map => {
-                    map.Column("CONTRASENA");
+                    map.Column("US_CONTRASENA");
                     map.Length(256);
                     map.NotNullable(true);
                 });
             Property<Char>(
                 x => x.Caduca, 
                 map => {
-                    map.Column("CADUCA");
+                    map.Column("IN_CADUCA");
                     map.Length(1);
                     map.NotNullable(true);
                 });
             Property<Int32>(
                 x => x.PeriodoCaducidad, 
                 map => {
-                    map.Column("PERIODO_CADUCIDAD");
+                    map.Column("NU_PERIODO_CADUCIDAD");
                     map.NotNullable(true);
                 });
             Property<DateTime>(
                 x => x.FechaUltimoCambio, 
                 map => {
-                    map.Column("FECHA_ULTIMOCAMBIO");
+                    map.Column("FE_ULTIMOCAMBIO");
                     map.NotNullable(true);
                 });
             Property<Char>(
                 x => x.UnicoIngreso,
                 map => {
-                    map.Column("UNICO_INGRESO");
+                    map.Column("IN_UNICO_INGRESO");
                     map.Length(1);
                     map.NotNullable(true);
                 });
             Property<Char>(
                 x => x.HaIngresado,
                 map => {
-                    map.Column("HA_INGRESADO");
+                    map.Column("IN_HA_INGRESADO");
+                    map.Length(1);
+                    map.NotNullable(true);
+                });
+            Property<Char>(
+                x => x.OtrosLogeos,
+                map => {
+                    map.Column("IN_OTROS_LOGEOS");
                     map.Length(1);
                     map.NotNullable(true);
                 });
             Property<Char>(
                 x => x.Tipo, 
                 map => {
-                    map.Column("TIPO");
+                    map.Column("IN_TIPO");
                     map.Length(1);
                     map.NotNullable(true);
                 });
             Property<Char>(
                 x => x.Estado, 
                 map => {
-                    map.Column("ESTADO");
+                    map.Column("IN_ACTIVO");
                     map.Length(1);
                     map.NotNullable(true);
                 });

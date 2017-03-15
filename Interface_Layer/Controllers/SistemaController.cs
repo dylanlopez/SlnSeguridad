@@ -66,8 +66,8 @@ namespace Interface_Layer.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using(_restOperation = new RestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/BuscarSistema/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/BuscarSistema/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/BuscarSistema/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/BuscarSistema/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(SistemaModel));
                     _model = (SistemaModel)_jsonSerializer.ReadObject(stream);
                     //if (response.Estado == 'A')

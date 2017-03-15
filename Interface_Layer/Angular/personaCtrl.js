@@ -38,9 +38,13 @@
             "Email": '',
             "Tipo": '',
             "Ambito": '',
-            "TipoDocumentoPersona": $scope.tipoDocumentoPersona,
+            "TipoDocumentoPersona": {},
         };
         console.debug(person);
+
+        if (!angular.isUndefined($scope.tipoDocumentoPersona)) {
+            person.TipoDocumentoPersona = $scope.tipoDocumentoPersona;
+        }
         $http({
             method: 'POST',
             url: '../api/Persona/ListarPersonas',

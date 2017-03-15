@@ -23,7 +23,7 @@ namespace Entity_Layer.Mappings.Personas
         public EPersonaMapping()
         {
             Schema("ES_SEGURIDAD");
-            Table("PERSONA");
+            Table("SEGTV_PERSONA");
             Id<Int32>(
                 x => x.Id,
                 map => {
@@ -39,56 +39,57 @@ namespace Entity_Layer.Mappings.Personas
             Property<String>(
                 x => x.Nombre, 
                 map => {
-                    map.Column("NOMBRE");
+                    map.Column("NO_PERSONA");
                     map.Length(100);
                     map.NotNullable(true);
                 });
             Property<String>(
                 x => x.NumeroDocumento, 
                 map => {
-                    map.Column("NUMERO_DOCUMENTO");
+                    map.Column("NU_DOCUMENTO");
                     map.Length(15);
                     map.NotNullable(true);
+                    map.UniqueKey("UK_PERSONA_01");
                 });
             Property<String>(
                 x => x.Direccion,
                 map => {
-                    map.Column("DIRECCION");
+                    map.Column("DE_DIRECCION");
                     map.Length(255);
                     map.NotNullable(false);
                 });
             Property<String>(
                 x => x.Telefono,
                 map => {
-                    map.Column("TELEFONO");
+                    map.Column("DE_TELEFONO");
                     map.Length(15);
                     map.NotNullable(false);
                 });
             Property<String>(
                 x => x.Celular,
                 map => {
-                    map.Column("CELULAR");
+                    map.Column("DE_CELULAR");
                     map.Length(15);
                     map.NotNullable(false);
                 });
             Property<String>(
                 x => x.Email,
                 map => {
-                    map.Column("EMAIL");
+                    map.Column("DE_EMAIL");
                     map.Length(50);
                     map.NotNullable(false);
                 });
             Property<Char>(
                 x => x.Tipo, 
                 map => {
-                    map.Column("TIPO");
+                    map.Column("IN_TIPO");
                     map.Length(1);
                     map.NotNullable(true);
                 });
             Property<Char>(
                 x => x.Ambito,
                 map => {
-                    map.Column("AMBITO");
+                    map.Column("IN_AMBITO");
                     map.Length(1);
                     map.NotNullable(true);
                 });
@@ -100,6 +101,7 @@ namespace Entity_Layer.Mappings.Personas
                     map.Update(true);
                     map.Insert(true);
                     map.ForeignKey("FK_PERSONA_01");
+                    map.UniqueKey("UK_PERSONA_01");
                 });
         }
     }

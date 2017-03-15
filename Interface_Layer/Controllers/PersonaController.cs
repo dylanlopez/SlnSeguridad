@@ -119,6 +119,7 @@ namespace Interface_Layer.Controllers
             List<PersonaModel> response;
             _model = new PersonaModel();
             //_model.Modulo = model.Modulo;
+            _model.Nombre = model.Nombre;
             _model.TipoDocumentoPersona = model.TipoDocumentoPersona;
             try
             {

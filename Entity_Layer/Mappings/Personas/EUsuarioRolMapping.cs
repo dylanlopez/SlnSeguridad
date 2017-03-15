@@ -23,7 +23,7 @@ namespace Entity_Layer.Mappings.Personas
         public EUsuarioRolMapping()
         {
             Schema("ES_SEGURIDAD");
-            Table("USUARIO_ROL");
+            Table("SEGTV_USUARIO_ROL");
             Id<Int32>(
                 x => x.Id,
                 map => {
@@ -43,6 +43,7 @@ namespace Entity_Layer.Mappings.Personas
                     map.NotNullable(true);
                     map.Update(false);
                     map.Insert(false);
+                    map.UniqueKey("FK_USUARIO_ROL_01");
                 });
             ManyToOne<ERol>(
                 x => x.Rol, 
@@ -51,6 +52,7 @@ namespace Entity_Layer.Mappings.Personas
                     map.NotNullable(true);
                     map.Update(false);
                     map.Insert(false);
+                    map.UniqueKey("FK_USUARIO_ROL_02");
                 });
         }
     }

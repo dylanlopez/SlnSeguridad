@@ -57,8 +57,6 @@
     <Compile Include="Connections\DConexion.cs" />
     <Compile Include="Converters\Personas\DMenuRolConverter.cs" />
     <Compile Include="Converters\Personas\DPersonaConverter.cs" />
-    <Compile Include="Converters\Personas\DPersonaProgramaSocialConverter.cs" />
-    <Compile Include="Converters\Personas\DProgramaSocialConverter.cs" />
     <Compile Include="Converters\Personas\DRolConverter.cs" />
     <Compile Include="Converters\Personas\DTipoDocumentoPersonaConverter.cs" />
     <Compile Include="Converters\Personas\DUsuarioConverter.cs" />
@@ -68,8 +66,6 @@
     <Compile Include="Converters\Sistemas\DSistemaConverter.cs" />
     <Compile Include="Dtos\Personas\DMenuRolDto.cs" />
     <Compile Include="Dtos\Personas\DPersonaDto.cs" />
-    <Compile Include="Dtos\Personas\DPersonaProgramaSocialDto.cs" />
-    <Compile Include="Dtos\Personas\DProgramaSocialDto.cs" />
     <Compile Include="Dtos\Personas\DRolDto.cs" />
     <Compile Include="Dtos\Personas\DTipoDocumentoPersonaDto.cs" />
     <Compile Include="Dtos\Personas\DUsuarioDto.cs" />
@@ -79,17 +75,13 @@
     <Compile Include="Dtos\Sistemas\DSistemaDto.cs" />
     <Compile Include="Queries\DQuery.cs" />
     <Compile Include="Queries\Personas\DMenuRolQuery.cs" />
-    <Compile Include="Queries\Personas\DPersonaProgramaSocialQuery.cs" />
     <Compile Include="Queries\Personas\DPersonaQuery.cs" />
-    <Compile Include="Queries\Personas\DProgramaSocialQuery.cs" />
     <Compile Include="Queries\Personas\DRolQuery.cs" />
     <Compile Include="Queries\Personas\DTipoDocumentoPersonaQuery.cs" />
     <Compile Include="Queries\Personas\DUsuarioQuery.cs" />
     <Compile Include="Queries\Personas\DUsuarioRolQuery.cs" />
     <Compile Include="Queries\Personas\IDMenuRolQuery.cs" />
-    <Compile Include="Queries\Personas\IDPersonaProgramaSocialQuery.cs" />
     <Compile Include="Queries\Personas\IDPersonaQuery.cs" />
-    <Compile Include="Queries\Personas\IDProgramaSocialQuery.cs" />
     <Compile Include="Queries\Personas\IDRolQuery.cs" />
     <Compile Include="Queries\Personas\IDTipoDocumentoPersonaQuery.cs" />
     <Compile Include="Queries\Personas\IDUsuarioQuery.cs" />

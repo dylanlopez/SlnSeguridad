@@ -110,7 +110,7 @@ namespace Domain_Layer.Queries
                     {
                         IQuery query = _sessionMidis.CreateQuery("FROM EPersona x " +
                                                                  "WHERE x.Tipo = COALESCE(:p_Tipo, x.Tipo) " +
-                                                                 "AND x.Nombre LIKE COALESCE(:p_Nombre, x.Nombre) " +
+                                                                 "AND x.Nombre LIKE % + COALESCE(:p_Nombre, x.Nombre) + % " +
                                                                  "AND x.TipoDocumentoPersona.Id = COALESCE(:p_IdTipoDocumentoPersona, x.TipoDocumentoPersona.Id)");
                         if (dto.Tipo != '\0')
                         {
@@ -120,7 +120,7 @@ namespace Domain_Layer.Queries
                         {
                             query.SetParameter("p_Tipo", null, NHibernateUtil.Character);
                         }
-                        if (!String.IsNullOrEmpty(dto.Nombre))
+                        if (!dto.Nombre.Equals(String.Empty))
                         {
                             query.SetParameter("p_Nombre", dto.Nombre);
                         }

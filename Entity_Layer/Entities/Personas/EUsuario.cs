@@ -77,6 +77,14 @@ namespace Entity_Layer.Entities.Personas
         public virtual Char HaIngresado { get; set; }
 
         /// <summary>
+        /// Gets or sets the OtrosLogeos, correspond to table field IN_OTROS_LOGEOS.
+        /// </summary>
+        /// <value>
+        /// set a value to the OtrosLogeos.
+        /// </value>
+        public virtual Char OtrosLogeos { get; set; }
+
+        /// <summary>
         /// Gets or sets the Tipo, correspond to table field TIPO.
         /// </summary>
         /// <value>

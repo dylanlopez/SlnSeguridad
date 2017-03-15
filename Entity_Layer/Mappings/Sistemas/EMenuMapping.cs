@@ -23,7 +23,7 @@ namespace Entity_Layer.Mappings.Sistemas
         public EMenuMapping()
         {
             Schema("ES_SEGURIDAD");
-            Table("MENU");
+            Table("SEGTM_MENU");
             Id<Int32>(
                 x => x.Id,
                 map => {
@@ -39,35 +39,36 @@ namespace Entity_Layer.Mappings.Sistemas
             Property<String>(
                 x => x.Codigo,
                 map => {
-                    map.Column("CODIGO");
+                    map.Column("CO_MENU");
                     map.Length(7);
                     map.NotNullable(true);
+                    map.UniqueKey("UK_MENU_01");
                 });
             Property<String>(
                 x => x.Nombre, 
                 map => {
-                    map.Column("NOMBRE");
+                    map.Column("NO_MENU");
                     map.Length(50);
                     map.NotNullable(true);
                 });
             Property<String>(
                 x => x.Ruta, 
                 map => {
-                    map.Column("RUTA");
+                    map.Column("DE_RUTA");
                     map.Length(200);
                     map.NotNullable(true);
                 });
             Property<String>(
                 x => x.Descripcion, 
                 map => {
-                    map.Column("DESCRIPCION");
+                    map.Column("DE_DESCRIPCION");
                     map.Length(200);
                     map.NotNullable(false);
                 });
             Property<Char>(
                 x => x.Estado, 
                 map => {
-                    map.Column("ESTADO");
+                    map.Column("IN_ACTIVO");
                     map.Length(1);
                     map.NotNullable(true);
                 });

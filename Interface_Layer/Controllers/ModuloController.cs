@@ -75,7 +75,7 @@ namespace Interface_Layer.Controllers
                 using (_restOperation = new RestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarModulos/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarSistemas/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarModulos/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(List<ModuloModel>));
                     response = (List<ModuloModel>)_jsonSerializer.ReadObject(stream);
                     return response;

@@ -23,7 +23,7 @@ namespace Entity_Layer.Mappings.Personas
         public ETipoDocumentoPersonaMapping()
         {
             Schema("ES_SEGURIDAD");
-            Table("TIPO_DOCUMENTO_PERSONA");
+            Table("SEGTM_TIPO_DOCUMENTO_PERSONA");
             Id<Int32>(
                 x => x.Id,
                 map => {
@@ -39,28 +39,29 @@ namespace Entity_Layer.Mappings.Personas
             Property<String>(
                 x => x.Codigo,
                 map => {
-                    map.Column("CODIGO");
+                    map.Column("CO_TIPO_DOCUMENTO_PERSONA");
                     map.Length(4);
                     map.NotNullable(true);
+                    map.UniqueKey("UK_MENU_01");
                 });
             Property<String>(
                 x => x.Nombre, 
                 map => {
-                    map.Column("NOMBRE");
+                    map.Column("NO_TIPO_DOCUMENTO_PERSONA");
                     map.Length(50);
                     map.NotNullable(true);
                 });
             Property<String>(
                 x => x.Abreviatura, 
                 map => {
-                    map.Column("ABREVIATURA");
+                    map.Column("NO_ABREVIATURA");
                     map.Length(20);
                     map.NotNullable(true);
                 });
             Property<String>(
                 x => x.Descripcion, 
                 map => {
-                    map.Column("DESCRIPCION");
+                    map.Column("DE_DESCRIPCION");
                     map.Length(200);
                     map.NotNullable(false);
                 });

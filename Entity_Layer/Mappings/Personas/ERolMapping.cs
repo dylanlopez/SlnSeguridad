@@ -23,7 +23,7 @@ namespace Entity_Layer.Mappings.Personas
         public ERolMapping()
         {
             Schema("ES_SEGURIDAD");
-            Table("ROL");
+            Table("SEGTM_ROL");
             Id<Int32>(
                 x => x.Id,
                 map => {
@@ -39,21 +39,21 @@ namespace Entity_Layer.Mappings.Personas
             Property<String>(
                 x => x.Nombre, 
                 map => {
-                    map.Column("NOMBRE");
+                    map.Column("NO_ROL");
                     map.Length(50);
                     map.NotNullable(true);
                 });
             Property<String>(
                 x => x.Descripcion, 
                 map => {
-                    map.Column("DESCRIPCION");
+                    map.Column("DE_DESCRIPCION");
                     map.Length(200);
                     map.NotNullable(false);
                 });
             Property<Char>(
                 x => x.Estado, 
                 map => {
-                    map.Column("ESTADO");
+                    map.Column("IN_ACTIVO");
                     map.Length(1);
                     map.NotNullable(true);
                 });

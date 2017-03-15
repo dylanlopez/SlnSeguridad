@@ -23,7 +23,7 @@ namespace Entity_Layer.Mappings.Sistemas
         public EModuloMapping()
         {
             Schema("ES_SEGURIDAD");
-            Table("MODULO");
+            Table("SEGTM_MODULO");
             Id<Int32>(
                 x => x.Id,
                 map => {
@@ -39,35 +39,36 @@ namespace Entity_Layer.Mappings.Sistemas
             Property<String>(
                 x => x.Codigo,
                 map => {
-                    map.Column("CODIGO");
+                    map.Column("CO_MODULO");
                     map.Length(4);
                     map.NotNullable(true);
+                    map.UniqueKey("UK_MODULO_01");
                 });
             Property<String>(
                 x => x.Nombre, 
                 map => {
-                    map.Column("NOMBRE");
+                    map.Column("NO_MODULO");
                     map.Length(50);
                     map.NotNullable(true);
                 });
             Property<String>(
                 x => x.Abreviatura, 
                 map => {
-                    map.Column("ABREVIATURA");
+                    map.Column("NO_ABREVIATURA");
                     map.Length(20);
                     map.NotNullable(true);
                 });
             Property<String>(
                 x => x.Descripcion, 
                 map => {
-                    map.Column("DESCRIPCION");
+                    map.Column("DE_DESCRIPCION");
                     map.Length(200);
                     map.NotNullable(false);
                 });
             Property<Char>(
                 x => x.Estado, 
                 map => {
-                    map.Column("ESTADO");
+                    map.Column("IN_ACTIVO");
                     map.Length(1);
                     map.NotNullable(true);
                 });
