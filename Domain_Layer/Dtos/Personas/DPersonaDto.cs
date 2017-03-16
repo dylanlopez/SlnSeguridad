@@ -18,7 +18,12 @@
             Id = 0;
             Nombre = string.Empty;
             NumeroDocumento = string.Empty;
+            Direccion = string.Empty;
+            Telefono = string.Empty;
+            Celular = string.Empty;
+            Email = string.Empty;
             Tipo = '\0';
+            Ambito = '\0';
             TipoDocumentoPersona = new DTipoDocumentoPersonaDto();
         }
 

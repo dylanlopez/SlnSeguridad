@@ -63,7 +63,14 @@ namespace Domain_Layer.Converters.Sistemas
             //if(dto.Descripcion == null){
             //    dto.Descripcion = string.Empty;
             //}
-            entity.Descripcion = dto.Descripcion.ToUpper();
+            if (!string.IsNullOrEmpty(dto.Descripcion))
+            {
+                entity.Descripcion = dto.Descripcion.ToUpper();
+            }
+            else
+            {
+                entity.Descripcion = string.Empty;
+            }
             entity.Estado = dto.Estado;
             entity.Sistema = DSistemaConverter.ToEntity(dto.Sistema);
             return entity;

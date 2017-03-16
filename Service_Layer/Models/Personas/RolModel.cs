@@ -5,6 +5,14 @@ namespace Service_Layer.Models.Personas
     [DataContract]
     public class RolModel
     {
+        public RolModel()
+        {
+            Id = 0;
+            Nombre = string.Empty;
+            Descripcion = string.Empty;
+            Estado = '\0';
+        }
+
         [DataMember(Name = "Id")]
         public int Id { get; set; }
 

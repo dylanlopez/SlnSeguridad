@@ -56,7 +56,14 @@ namespace Domain_Layer.Converters.Personas
             entity.Id = dto.Id;
             entity.Codigo = dto.Codigo.ToUpper();
             entity.Nombre = dto.Nombre.ToUpper();
-            entity.Descripcion = dto.Descripcion.ToUpper();
+            if (!string.IsNullOrEmpty(dto.Descripcion))
+            {
+                entity.Descripcion = dto.Descripcion.ToUpper();
+            }
+            else
+            {
+                entity.Descripcion = string.Empty;
+            }
             return entity;
         }
     }

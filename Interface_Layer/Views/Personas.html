@@ -90,15 +90,19 @@
                 <div class="container-fluid form-group">
                     <label class="col-md-2 control-label">Tipo: </label>
                     <div class="col-md-6">
-                        <input type="radio" id="optNatural" name="Tipo" ng-model="myperson.Tipo" ng-value="true"> Natural<br>
-                        <input type="radio" id="optJuridico" name="Tipo" ng-model="myperson.Tipo" ng-value="false"> Jurídico<br>
+                        <fieldset class="EsNatural">
+                            <input type="radio" id="optNatural" name="Tipo" ng-model="myperson.EsNatural" ng-value="true"> Natural<br>
+                            <input type="radio" id="optJuridico" name="Tipo" ng-model="myperson.EsNatural" ng-value="false"> Jurídico<br>
+                        </fieldset> 
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label class="col-md-2 control-label">Ambito: </label>
                     <div class="col-md-6">
-                        <input type="radio" id="optInterno" name="Tipo" ng-model="myperson.Ambito" ng-value="true"> Interno<br>
-                        <input type="radio" id="optExterno" name="Tipo" ng-model="myperson.Ambito" ng-value="false"> Externo<br>
+                        <fieldset class="EsInterno">
+                            <input type="radio" id="optInterno" name="Ambito" ng-model="myperson.EsInterno" ng-value="true"> Interno<br>
+                            <input type="radio" id="optExterno" name="Ambito" ng-model="myperson.EsInterno" ng-value="false"> Externo<br>
+                        </fieldset> 
                     </div>
                 </div>
                 <!--<input type="hidden" id="hdnId" data-ng-model="mymodulo.Sistema" />-->

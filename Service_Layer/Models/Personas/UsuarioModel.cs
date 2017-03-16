@@ -6,6 +6,22 @@ namespace Service_Layer.Models.Personas
     [DataContract]
     public class UsuarioModel
     {
+        public UsuarioModel()
+        {
+            Id = 0;
+            Usuario = string.Empty;
+            Contrasena = string.Empty;
+            Caduca = '\0';
+            PeriodoCaducidad = 0;
+            FechaUltimoCambio = new DateTime();
+            UnicoIngreso = '\0';
+            HaIngresado = '\0';
+            OtrosLogeos = '\0';
+            Tipo = '\0';
+            Estado = '\0';
+            Persona = new PersonaModel();
+        }
+
         [DataMember(Name = "Id")]
         public int Id { get; set; }
 
@@ -29,6 +45,9 @@ namespace Service_Layer.Models.Personas
 
         [DataMember(Name = "HaIngresado")]
         public char HaIngresado { get; set; }
+
+        [DataMember(Name = "OtrosLogeos")]
+        public char OtrosLogeos { get; set; }
 
         [DataMember(Name = "Tipo")]
         public char Tipo { get; set; }

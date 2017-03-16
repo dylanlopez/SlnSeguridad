@@ -19,9 +19,6 @@
         $scope.error = "Ha ocuirrido un error al listar: " + result;
         $scope.estaCargando = false;
     });
-
-
-
     
     $scope.buscar = function () {
         $scope.tieneError = false;
@@ -61,66 +58,85 @@
             $scope.estaCargando = false;
         });
     };
-    /*
+    
     $scope.nuevo = function () {
         $scope.estaEditable = !$scope.estaEditable;
-        $scope.mymodulo.Id = "";
+        $scope.myperson.Id = "";
         if ($scope.estaEditable == false) {
-            $scope.mymodulo.Codigo = "";
-            $scope.mymodulo.Nombre = "";
-            $scope.mymodulo.Abreviatura = "";
-            $scope.mymodulo.Descripcion = "";
-            $scope.mymodulo.Estado = "";
-            $scope.mymodulo.EstaActivo = false;
-            $scope.mymodulo.Sistema = null;
+            $scope.myperson.Nombre = "";
+            $scope.myperson.NumeroDocumento = "";
+            $scope.myperson.Direccion = "";
+            $scope.myperson.Telefono = "";
+            $scope.myperson.Celular = "";
+            $scope.myperson.EsNatural = false;
+            $scope.myperson.EsInterno = null;
+            $scope.myperson.TipoDocumentoPersona = null;
         }
         $scope.tieneError = false;
         $scope.error = "";
     };
-
-    $scope.modificar = function (modulo) {
+    
+    $scope.modificar = function (person) {
         $scope.estaEditable = !$scope.estaEditable;
         if ($scope.estaEditable == true) {
-            $scope.mymodulo.Id = modulo.Id;
-            $scope.mymodulo.Codigo = modulo.Codigo;
-            $scope.mymodulo.Nombre = modulo.Nombre;
-            $scope.mymodulo.Abreviatura = modulo.Abreviatura;
-            $scope.mymodulo.Descripcion = modulo.Descripcion;
-            $scope.mymodulo.Estado = modulo.Estado;
-            if (modulo.Estado == 'A') {
-                $scope.mymodulo.EstaActivo = true;
+            $scope.myperson.Id = person.Id;
+            $scope.myperson.Nombre = person.Nombre;
+            $scope.myperson.NumeroDocumento = person.NumeroDocumento;
+            $scope.myperson.Direccion = person.Direccion;
+            $scope.myperson.Telefono = person.Telefono;
+            $scope.myperson.Celular = person.Celular;
+            $scope.myperson.Email = person.Email;
+            $scope.myperson.Tipo = person.Tipo;
+            if (person.Tipo == 'N') {
+                $scope.myperson.EsNatural = true;
             }
-            else if (modulo.Estado == 'I') {
-                $scope.mymodulo.EstaActivo = false;
+            else if (person.Tipo == 'J') {
+                $scope.myperson.EsNatural = false;
             }
-            $scope.mymodulo.Sistema = modulo.Sistema;
+            $scope.myperson.Ambito = person.Ambito;
+            if (person.Ambito == 'I') {
+                $scope.myperson.EsInterno = true;
+            }
+            else if (person.Ambito == 'E') {
+                $scope.myperson.EsInterno = false;
+            }
+            $scope.myperson.TipoDocumentoPersona = person.TipoDocumentoPersona;
         }
     };
-
+    
     $scope.guardar = function () {
         $scope.estaCargando = true;
-        if ($scope.mymodulo.EstaActivo) {
-            $scope.mymodulo.Estado = "A";
+        if ($scope.myperson.EsNatural) {
+            $scope.myperson.Tipo = "N";
         }
         else {
-            $scope.mymodulo.Estado = "I";
+            $scope.myperson.Tipo = "J";
+        }
+        if ($scope.myperson.EsInterno) {
+            $scope.myperson.Ambito = "I";
+        }
+        else {
+            $scope.myperson.Ambito = "E";
         }
         var module =
             {
-                "Id": $scope.mymodulo.Id,
-                "Codigo": $scope.mymodulo.Codigo,
-                "Nombre": $scope.mymodulo.Nombre,
-                "Abreviatura": $scope.mymodulo.Abreviatura,
-                "Descripcion": $scope.mymodulo.Descripcion,
-                "Estado": $scope.mymodulo.Estado,
-                "Sistema": $scope.mymodulo.Sistema
+                "Id": $scope.myperson.Id,
+                "Nombre": $scope.myperson.Nombre,
+                "NumeroDocumento": $scope.myperson.NumeroDocumento,
+                "Direccion": $scope.myperson.Direccion,
+                "Telefono": $scope.myperson.Telefono,
+                "Celular": $scope.myperson.Celular,
+                "Email": $scope.myperson.Email,
+                "Tipo": $scope.myperson.Tipo,
+                "Ambito": $scope.myperson.Ambito,
+                "TipoDocumentoPersona": $scope.myperson.TipoDocumentoPersona
             };
 
         if (module.Id == "") //nuevo (insert)
         {
             $http({
                 method: 'POST',
-                url: '../api/Modulo/InsertarModulo',
+                url: '../api/Persona/InsertarPersona',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -141,7 +157,7 @@
         {
             $http({
                 method: 'PUT',
-                url: '../api/Modulo/ActualizarModulo/' + module.Id,
+                url: '../api/Persona/ActualizarPersona/' + module.Id,
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -159,6 +175,4 @@
             });
         }
     };
-    */
-
 });

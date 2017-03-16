@@ -105,6 +105,7 @@
     <Content Include="Angular\menuCtrl.js" />
     <Content Include="Angular\moduloCtrl.js" />
     <Content Include="Angular\personaCtrl.js" />
+    <Content Include="Angular\rolCtrl.js" />
     <Content Include="Angular\sistemaCtrl.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
@@ -156,7 +157,6 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Views\MenusRoles.html" />
     <Content Include="Views\Personas.html" />
-    <Content Include="Views\ProgramasSociales.html" />
     <Content Include="Views\Roles.html" />
     <Content Include="Views\Usuarios.html" />
     <Content Include="Views\Menus.html" />
@@ -170,6 +170,7 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ModuloController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
+    <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\SistemaController.cs" />
     <Compile Include="Controllers\TipoDocumentoPersonaController.cs" />
     <Compile Include="Global.asax.cs">

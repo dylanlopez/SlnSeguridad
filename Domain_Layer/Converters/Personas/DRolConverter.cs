@@ -55,7 +55,14 @@ namespace Domain_Layer.Converters.Personas
             var entity = new ERol();
             entity.Id = dto.Id;
             entity.Nombre = dto.Nombre.ToUpper();
-            entity.Descripcion = dto.Descripcion.ToUpper();
+            if (!string.IsNullOrEmpty(dto.Descripcion))
+            {
+                entity.Descripcion = dto.Descripcion.ToUpper();
+            }
+            else
+            {
+                entity.Descripcion = string.Empty;
+            }
             entity.Estado = dto.Estado;
             return entity;
         }

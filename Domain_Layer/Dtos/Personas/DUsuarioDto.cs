@@ -23,6 +23,9 @@ namespace Domain_Layer.Dtos.Personas
             Caduca = '\0';
             PeriodoCaducidad = 0;
             FechaUltimoCambio = new DateTime();
+            UnicoIngreso = '\0';
+            HaIngresado = '\0';
+            OtrosLogeos = '\0';
             Tipo = '\0';
             Estado = '\0';
             Persona = new DPersonaDto();
@@ -91,6 +94,14 @@ namespace Domain_Layer.Dtos.Personas
         /// set a value to the HaIngresado.
         /// </value>
         public char HaIngresado { get; set; }
+
+        /// <summary>
+        /// Gets or sets the OtrosLogeos, correspond to entity field OtrosLogeos.
+        /// </summary>
+        /// <value>
+        /// set a value to the OtrosLogeos.
+        /// </value>
+        public char OtrosLogeos { get; set; }
 
         /// <summary>
         /// Gets or sets the Tipo, correspond to entity field Tipo.

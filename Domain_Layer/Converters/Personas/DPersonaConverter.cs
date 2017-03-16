@@ -62,10 +62,38 @@ namespace Domain_Layer.Converters.Personas
             entity.Id = dto.Id;
             entity.Nombre = dto.Nombre.ToUpper();
             entity.NumeroDocumento = dto.NumeroDocumento.ToUpper();
-            entity.Direccion = dto.Direccion.ToUpper();
-            entity.Telefono = dto.Telefono;
-            entity.Celular = dto.Celular;
-            entity.Email = dto.Email;
+            if (!string.IsNullOrEmpty(dto.Direccion))
+            {
+                entity.Direccion = dto.Direccion.ToUpper();
+            }
+            else
+            {
+                entity.Direccion = string.Empty;
+            }
+            if (!string.IsNullOrEmpty(dto.Telefono))
+            {
+                entity.Telefono = dto.Telefono;
+            }
+            else
+            {
+                entity.Telefono = string.Empty;
+            }
+            if (!string.IsNullOrEmpty(dto.Celular))
+            {
+                entity.Celular = dto.Celular;
+            }
+            else
+            {
+                entity.Celular = string.Empty;
+            }
+            if (!string.IsNullOrEmpty(dto.Email))
+            {
+                entity.Email = dto.Email;
+            }
+            else
+            {
+                entity.Email = string.Empty;
+            }
             entity.Tipo = dto.Tipo;
             entity.Ambito = dto.Ambito;
             entity.TipoDocumentoPersona = DTipoDocumentoPersonaConverter.ToEntity(dto.TipoDocumentoPersona);
