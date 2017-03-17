@@ -187,6 +187,7 @@
             $scope.mymenu.Sistema = null;
             $scope.mymenu.Modulo = null;
         }
+        $scope.menus = [];
         $scope.tieneError = false;
         $scope.error = "";
     };

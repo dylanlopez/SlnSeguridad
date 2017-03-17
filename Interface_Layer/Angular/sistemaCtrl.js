@@ -3,7 +3,7 @@
     $scope.estaCargando = true;
     $scope.estaEditable = false;
     $scope.tieneError = false;
-    $scope.mysistema = [];
+    $scope.mysystem = [];
 
     $http({
         method: 'POST',
@@ -23,17 +23,18 @@
 
     $scope.nuevo = function () {
         $scope.estaEditable = !$scope.estaEditable;
-        $scope.mysistema.Id = "";
+        $scope.mysystem.Id = "";
         if ($scope.estaEditable == false)
         {
-            $scope.mysistema.Codigo = "";
-            $scope.mysistema.Nombre = "";
-            $scope.mysistema.Abreviatura = "";
-            $scope.mysistema.Descripcion = "";
-            $scope.mysistema.Estado = "";
-            $scope.mysistema.EstaActivo = false;
-            //$scope.mysistema.EstaInactivo = false;
+            $scope.mysystem.Codigo = "";
+            $scope.mysystem.Nombre = "";
+            $scope.mysystem.Abreviatura = "";
+            $scope.mysystem.Descripcion = "";
+            $scope.mysystem.Estado = "";
+            $scope.mysystem.EstaActivo = false;
+            //$scope.mysystem.EstaInactivo = false;
         }
+        $scope.sistemas = [];
         $scope.tieneError = false;
         $scope.error = "";
     };
@@ -45,50 +46,50 @@
         //alert($scope.addMode);
         if ($scope.estaEditable == true) {
             //alert(sistema.Codigo);
-            //alert($scope.mysistema);
-            $scope.mysistema.Id = sistema.Id;
-            $scope.mysistema.Codigo = sistema.Codigo;
-            //$scope.mysistema = sistema;
-            $scope.mysistema.Nombre = sistema.Nombre;
-            $scope.mysistema.Abreviatura = sistema.Abreviatura;
-            $scope.mysistema.Descripcion = sistema.Descripcion;
-            $scope.mysistema.Estado = sistema.Estado;
-            //alert($scope.mysistema.Estado);
+            //alert($scope.mysystem);
+            $scope.mysystem.Id = sistema.Id;
+            $scope.mysystem.Codigo = sistema.Codigo;
+            //$scope.mysystem = sistema;
+            $scope.mysystem.Nombre = sistema.Nombre;
+            $scope.mysystem.Abreviatura = sistema.Abreviatura;
+            $scope.mysystem.Descripcion = sistema.Descripcion;
+            $scope.mysystem.Estado = sistema.Estado;
+            //alert($scope.mysystem.Estado);
             if (sistema.Estado == 'A')
             {
-                $scope.mysistema.EstaActivo = true;
-                //$scope.mysistema.EstaInactivo = false;
+                $scope.mysystem.EstaActivo = true;
+                //$scope.mysystem.EstaInactivo = false;
             }
             else if(sistema.Estado == 'I')
             {
-                $scope.mysistema.EstaActivo = false;
-                //$scope.mysistema.EstaInactivo = true;
+                $scope.mysystem.EstaActivo = false;
+                //$scope.mysystem.EstaInactivo = true;
             }
-            //alert($scope.mysistema.EstaActivo);
-            //alert($scope.mysistema.Id);
+            //alert($scope.mysystem.EstaActivo);
+            //alert($scope.mysystem.Id);
         }
     };
 
     $scope.guardar = function () {
         $scope.estaCargando = true;
         //var system = sistema;
-        if ($scope.mysistema.EstaActivo)
+        if ($scope.mysystem.EstaActivo)
         {
-            $scope.mysistema.Estado = "A";
+            $scope.mysystem.Estado = "A";
         }
         else
         {
-            $scope.mysistema.Estado = "I";
+            $scope.mysystem.Estado = "I";
         }
-        //alert($scope.mysistema.Estado);
+        //alert($scope.mysystem.Estado);
         var system =
             {
-                "Id": $scope.mysistema.Id,
-                "Codigo": $scope.mysistema.Codigo,
-                "Nombre": $scope.mysistema.Nombre,
-                "Abreviatura": $scope.mysistema.Abreviatura,
-                "Descripcion": $scope.mysistema.Descripcion,
-                "Estado": $scope.mysistema.Estado,
+                "Id": $scope.mysystem.Id,
+                "Codigo": $scope.mysystem.Codigo,
+                "Nombre": $scope.mysystem.Nombre,
+                "Abreviatura": $scope.mysystem.Abreviatura,
+                "Descripcion": $scope.mysystem.Descripcion,
+                "Estado": $scope.mysystem.Estado,
             };
 
 

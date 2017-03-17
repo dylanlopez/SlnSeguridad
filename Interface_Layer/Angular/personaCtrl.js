@@ -37,7 +37,7 @@
             "Ambito": '',
             "TipoDocumentoPersona": {},
         };
-        console.debug(person);
+        //console.debug(person);
 
         if (!angular.isUndefined($scope.tipoDocumentoPersona)) {
             person.TipoDocumentoPersona = $scope.tipoDocumentoPersona;
@@ -72,6 +72,7 @@
             $scope.myperson.EsInterno = null;
             $scope.myperson.TipoDocumentoPersona = null;
         }
+        $scope.personas = [];
         $scope.tieneError = false;
         $scope.error = "";
     };
@@ -143,7 +144,7 @@
                 data: module,
             }).then(function successCallback(result) {
                 $scope.nuevo();
-                $scope.modulos = [];
+                $scope.personas = [];
                 $scope.tieneError = false;
                 $scope.error = "";
                 $scope.estaCargando = false;
@@ -164,7 +165,7 @@
                 data: module,
             }).then(function successCallback(result) {
                 $scope.nuevo();
-                $scope.modulos = [];
+                $scope.personas = [];
                 $scope.tieneError = false;
                 $scope.error = "";
                 $scope.estaCargando = false;
