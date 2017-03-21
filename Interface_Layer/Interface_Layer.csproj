@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Angular\menuCtrl.js" />
+    <Content Include="Angular\menurolCtrl.js" />
     <Content Include="Angular\moduloCtrl.js" />
     <Content Include="Angular\personaCtrl.js" />
     <Content Include="Angular\rolCtrl.js" />

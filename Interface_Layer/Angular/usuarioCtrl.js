@@ -4,7 +4,7 @@
     $scope.estaCargando = true;
     $scope.estaEditable = false;
     $scope.tieneError = false;
-    $scope.mymodule = [];
+    $scope.myuser = [];
 
     var person =
         {
@@ -43,7 +43,7 @@
         var user =
         {
             "Id": '',
-            "Usuario": '',
+            "Usuario": $scope.usuario,
             "Contrasena": '',
             "Caduca": '',
             "PeriodoCaducidad": '',
@@ -53,20 +53,32 @@
             "OtrosLogeos": '',
             "Tipo": '',
             "Estado": '',
-            "Persona": '',
+            "Persona": {
+                //"Id": '',
+                //"Nombre": '',
+                //"NumeroDocumento": '',
+                //"Direccion": '',
+                //"Telefono": '',
+                //"Celular": '',
+                //"Email": '',
+                //"Tipo": '',
+                //"Ambito": '',
+                //"TipoDocumentoPersona": {}
+                }
         };
-        if (!angular.isUndefined($scope.Persona)) {
-            user.Persona = $scope.Persona;
+        if (!angular.isUndefined($scope.nombrePersona)) {
+            user.Persona.Nombre = $scope.nombrePersona;
         }
-        //console.debug(module);
+        //console.debug(user);
         $http({
             method: 'POST',
-            url: '../api/Modulo/ListarModulos',
+            url: '../api/Usuario/ListarUsuarios',
             headers: {
                 'Content-Type': 'application/json'
             },
             data: user,
         }).then(function successCallback(result) {
+            //console.debug(result.data);
             $scope.usuarios = result.data;
             $scope.estaCargando = false;
         }, function errorCallback(result) {
@@ -78,71 +90,138 @@
 
     $scope.nuevo = function () {
         $scope.estaEditable = !$scope.estaEditable;
-        $scope.mymodule.Id = "";
+        $scope.myuser.Id = "";
         if ($scope.estaEditable == false) {
-            $scope.mymodule.Codigo = "";
-            $scope.mymodule.Nombre = "";
-            $scope.mymodule.Abreviatura = "";
-            $scope.mymodule.Descripcion = "";
-            $scope.mymodule.Estado = "";
-            $scope.mymodule.EstaActivo = false;
-            $scope.mymodule.Sistema = null;
+            $scope.myuser.Usuario = "";
+            $scope.myuser.Contrasena = "";
+            $scope.myuser.Caduca = "";
+            $scope.myuser.EstaCaduca = false;
+            $scope.myuser.PeriodoCaducidad = "";
+            $scope.myuser.UnicoIngreso = "";
+            $scope.myuser.EsUnicoIngreso = false;
+            $scope.myuser.OtrosLogeos = "";
+            $scope.myuser.TieneOtrosLogeos = false;
+            $scope.myuser.Tipo = "E";
+            $scope.myuser.Estado = "";
+            $scope.myuser.EstaActivo = false;
+            $scope.myuser.Persona = null;
         }
-        $scope.modulos = [];
+        $scope.usuarios = [];
         $scope.tieneError = false;
         $scope.error = "";
     };
 
-    $scope.modificar = function (modulo) {
+    $scope.modificar = function (user) {
         $scope.estaEditable = !$scope.estaEditable;
+        //console.debug($scope.myuser);
+        //console.debug(user);
+        //console.debug($scope.myuser.Id);
         if ($scope.estaEditable == true) {
-            $scope.mymodule.Id = modulo.Id;
-            $scope.mymodule.Codigo = modulo.Codigo;
-            $scope.mymodule.Nombre = modulo.Nombre;
-            $scope.mymodule.Abreviatura = modulo.Abreviatura;
-            $scope.mymodule.Descripcion = modulo.Descripcion;
-            $scope.mymodule.Estado = modulo.Estado;
-            if (modulo.Estado == 'A') {
-                $scope.mymodule.EstaActivo = true;
+            $scope.myuser.Id = user.Id;
+            $scope.myuser.Usuario = user.Usuario;
+            $scope.myuser.Contrasena = user.Contrasena;
+            //$scope.myuser.Caduca = user.Caduca;
+            //console.debug(user.Caduca);
+            if (user.Caduca == "S") {
+                $scope.myuser.EstaCaduca = true;
+            } else if (user.Caduca == "N") {
+                $scope.myuser.EstaCaduca = false;
             }
-            else if (modulo.Estado == 'I') {
-                $scope.mymodule.EstaActivo = false;
+            //console.debug($scope.myuser.EstaCaduca);
+            $scope.myuser.PeriodoCaducidad = user.PeriodoCaducidad;
+            //$scope.myuser.UnicoIngreso = user.UnicoIngreso;
+            if (user.UnicoIngreso == "S") {
+                $scope.myuser.EsUnicoIngreso = true;
+            } else if (user.UnicoIngreso == "N") {
+                $scope.myuser.EsUnicoIngreso = false;
             }
-            $scope.mymodule.Sistema = modulo.Sistema;
+            //console.debug(user.OtrosLogeos);
+            if (user.OtrosLogeos == "S") {
+                $scope.myuser.TieneOtrosLogeos = true;
+            } else if (user.OtrosLogeos == "N") {
+                $scope.myuser.TieneOtrosLogeos = false;
+            }
+            //console.debug($scope.myuser.TieneOtrosLogeos);
+            $scope.myuser.Tipo = user.Tipo;
+            $scope.myuser.EstaActivo = user.EstaActivo;
+            if (user.Estado == "A") {
+                $scope.myuser.EstaActivo = true;
+            } else if (user.Estado = "I") {
+                $scope.myuser.EstaActivo = false;
+            }
+            $scope.myuser.Persona = user.Persona;
         }
     };
 
     $scope.guardar = function () {
         $scope.estaCargando = true;
-        if ($scope.mymodule.EstaActivo) {
-            $scope.mymodule.Estado = "A";
+        if ($scope.myuser.EstaCaduca) {
+            $scope.myuser.Caduca = "S";
         }
         else {
-            $scope.mymodule.Estado = "I";
+            $scope.myuser.Caduca = "N";
         }
-        var module =
-            {
-                "Id": $scope.mymodule.Id,
-                "Codigo": $scope.mymodule.Codigo,
-                "Nombre": $scope.mymodule.Nombre,
-                "Abreviatura": $scope.mymodule.Abreviatura,
-                "Descripcion": $scope.mymodule.Descripcion,
-                "Estado": $scope.mymodule.Estado,
-                "Sistema": $scope.mymodule.Sistema
-            };
-
-        if (module.Id == "") //nuevo (insert)
+        if ($scope.myuser.EsUnicoIngreso) {
+            $scope.myuser.UnicoIngreso = "S";
+        }
+        else {
+            $scope.myuser.UnicoIngreso = "N";
+        }
+        if ($scope.myuser.TieneOtrosLogeos) {
+            $scope.myuser.OtrosLogeos = "S";
+        }
+        else {
+            $scope.myuser.OtrosLogeos = "N";
+        }
+        if ($scope.myuser.EstaActivo) {
+            $scope.myuser.Estado = "A";
+        }
+        else {
+            $scope.myuser.Estado = "I";
+        }
+        var fecha = new Date();
+        var dia = fecha.getDate().toString();
+        if (dia.toString().length < 2) {
+            dia = "0" + dia;
+        }
+        var mes = fecha.getMonth().toString();
+        //console.debug(mes.length);
+        //alert(mes);
+        if (mes.toString().length < 2) {
+            mes = "0" + mes;
+            //alert(mes);
+        }
+        var anho = fecha.getFullYear().toString();
+        var fechaUltimoCambio = dia + "/" + mes + "/" + anho;
+        //console.debug(mes);
+        var user =
+        {
+            "Id": $scope.myuser.Id,
+            "Usuario": $scope.myuser.Usuario,
+            "Contrasena": $scope.myuser.Contrasena,
+            "Caduca": $scope.myuser.Caduca,
+            "PeriodoCaducidad": $scope.myuser.PeriodoCaducidad,
+            "FechaUltimoCambio": fechaUltimoCambio,
+            "UnicoIngreso": $scope.myuser.UnicoIngreso,
+            "HaIngresado": 'N',
+            "OtrosLogeos": $scope.myuser.OtrosLogeos,
+            "Tipo": $scope.myuser.Tipo,
+            "Estado": $scope.myuser.Estado,
+            "Persona": $scope.myuser.Persona
+        };
+        console.debug(user);
+        if (user.Id == "") //nuevo (insert)
         {
             $http({
                 method: 'POST',
-                url: '../api/Modulo/InsertarModulo',
+                url: '../api/Usuario/InsertarUsuario',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data: module,
+                data: user,
             }).then(function successCallback(result) {
                 $scope.nuevo();
-                $scope.modulos = [];
+                $scope.usuarios = [];
                 $scope.tieneError = false;
                 $scope.error = "";
                 $scope.estaCargando = false;
@@ -156,14 +235,14 @@
         {
             $http({
                 method: 'PUT',
-                url: '../api/Modulo/ActualizarModulo/' + module.Id,
+                url: '../api/Usuario/ActualizarUsuario/' + user.Id,
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data: module,
+                data: user,
             }).then(function successCallback(result) {
                 $scope.nuevo();
-                $scope.modulos = [];
+                $scope.usuarios = [];
                 $scope.tieneError = false;
                 $scope.error = "";
                 $scope.estaCargando = false;

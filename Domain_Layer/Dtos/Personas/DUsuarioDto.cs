@@ -22,7 +22,8 @@ namespace Domain_Layer.Dtos.Personas
             Contrasena = string.Empty;
             Caduca = '\0';
             PeriodoCaducidad = 0;
-            FechaUltimoCambio = new DateTime();
+            //FechaUltimoCambio = new DateTime();
+            FechaUltimoCambio = string.Empty;
             UnicoIngreso = '\0';
             HaIngresado = '\0';
             OtrosLogeos = '\0';
@@ -77,7 +78,7 @@ namespace Domain_Layer.Dtos.Personas
         /// <value>
         /// set a value to the FechaUltimoCambio.
         /// </value>
-        public DateTime FechaUltimoCambio { get; set; }
+        public string FechaUltimoCambio { get; set; }
 
         /// <summary>
         /// Gets or sets the UnicoIngreso, correspond to entity field UnicoIngreso.

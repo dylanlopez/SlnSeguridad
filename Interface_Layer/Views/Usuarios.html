@@ -42,31 +42,31 @@
         <!--MANTENIMIENTO-->
         <div class="row" data-ng-show="estaEditable">
             <form name="frmUsuario" style="width:800px;margin:0px auto;">
-                <input type="hidden" id="hdnId" data-ng-model="myUser.Id" />
+                <input type="hidden" id="hdnId" data-ng-model="myuser.Id" />
                 <div class="container-fluid form-group">
                     <label for="txtUsuario" class="col-md-2 control-label">Usuario: </label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="txtUsuario" placeholder="Ingrese el usuario (obligatorio)" data-ng-model="myUser.Usuario" maxlength="100" required />
+                        <input type="text" class="form-control" id="txtUsuario" placeholder="Ingrese el usuario (obligatorio)" data-ng-model="myuser.Usuario" maxlength="100" required />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="txtContrasena" class="col-md-2 control-label">Contraseña: </label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="txtContrasena" placeholder="Ingrese la contraseña del usuario (obligatorio)" data-ng-model="myUser.Contrasena" maxlength="100" required />
+                        <input type="text" class="form-control" id="txtContrasena" placeholder="Ingrese la contraseña del usuario (obligatorio)" data-ng-model="myuser.Contrasena" maxlength="100" required />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label class="col-md-2 control-label">¿Caduca?: </label>
                     <div class="col-md-6">
                         <fieldset class="EsNatural">
-                            <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myUser.Caduca"><br>
+                            <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myuser.EstaCaduca"><br>
                         </fieldset>
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="txtPeriodoCaducidad" class="col-md-2 control-label">Periodo Caducidad: </label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="txtPeriodoCaducidad" placeholder="Ingrese el periodo en dias en que el usuario caduca (obligatorio)" data-ng-model="myUser.PeriodoCaducidad" maxlength="9" required />
+                        <input type="text" class="form-control" id="txtPeriodoCaducidad" placeholder="Ingrese el periodo en dias en que el usuario caduca (obligatorio)" data-ng-model="myuser.PeriodoCaducidad" maxlength="10" required />
                     </div>
                 </div>
                 <!--<div class="container-fluid form-group">
@@ -78,38 +78,38 @@
                 <div class="container-fluid form-group">
                     <label class="col-md-2 control-label">¿Unico Ingreso?: </label>
                     <div class="col-md-6">
-                        <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myUser.UnicoIngreso"><br>
+                        <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myuser.EsUnicoIngreso"><br>
                     </div>
                 </div>
-                <div class="container-fluid form-group">
+                <!--<div class="container-fluid form-group">
                     <label class="col-md-2 control-label">¿Ha Ingresado?: </label>
                     <div class="col-md-6">
-                        <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myUser.HaIngresado"><br>
+                        <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myuser.HaIngresado"><br>
                     </div>
-                </div>
+                </div>-->
                 <div class="container-fluid form-group">
                     <label class="col-md-2 control-label">¿Otros Logeos?: </label>
                     <div class="col-md-6">
-                        <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myUser.OtrosLogeos"><br>
+                        <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myuser.TieneOtrosLogeos"><br>
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="txtEstado" class="col-md-2 control-label">Tipo: </label>
                     <div class="col-md-6">
-                        <input type="radio" id="optActivo" name="Tipo" ng-model="myUser.Tipo" ng-value="I"> Activo<br>
-                        <input type="radio" id="optInactivo" name="Tipo" ng-model="myUser.Tipo" ng-value="E"> Inactivo<br>
+                        <input type="radio" id="optActivo" name="Tipo" ng-model="myuser.Tipo" value="I"> Interno<br>
+                        <input type="radio" id="optInactivo" name="Tipo" ng-model="myuser.Tipo" value="E"> Externo<br>
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label class="col-md-2 control-label">¿Está activo?: </label>
                     <div class="col-md-6">
-                        <input type="checkbox" id="chkEstado" name="Estado" ng-model="myUser.EstaActivo"><br>
+                        <input type="checkbox" id="chkEstado" name="Estado" ng-model="myuser.EstaActivo"><br>
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="cmbPersona" class="col-md-2 control-label">Persona: </label>
                     <div class="col-md-8">
-                        <select id="cmbPersona" class="form-control" ng-options="persona.Nombre for persona in personas track by persona.Id" data-ng-model="myUser.Persona"></select>
+                        <select id="cmbPersona" class="form-control" ng-options="persona.Nombre for persona in personas track by persona.Id" data-ng-model="myuser.Persona"></select>
                     </div>
                 </div>
                 <br />
@@ -127,15 +127,15 @@
         <div class="row" data-ng-hide="estaEditable">
             <form name="frmBusquedaUsuario" style="width:800px;margin:0px auto;">
                 <div class="container-fluid form-group">
-                    <label for="txtBuscarNombre" class="col-md-2 control-label">Nombre: </label>
+                    <label for="txtBuscarUsuario" class="col-md-2 control-label">Usuario: </label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="txtBuscarNombre" placeholder="Ingrese el nombre del usuario para buscar" data-ng-model="nombre" maxlength="100" />
+                        <input type="text" class="form-control" id="txtBuscarUsuario" placeholder="Ingrese el nombre del usuario para buscar" data-ng-model="usuario" maxlength="100" />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="txtBuscarNombrePersona" class="col-md-2 control-label">Nombre Persona: </label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="txtBuscarNombrePersona" placeholder="Ingrese el nombre de la persona para buscar" data-ng-model="nombre" maxlength="100" />
+                        <input type="text" class="form-control" id="txtBuscarNombrePersona" placeholder="Ingrese el nombre de la persona para buscar" data-ng-model="nombrePersona" maxlength="100" />
                     </div>
                 </div>
                 
@@ -147,13 +147,13 @@
             <table class="table table-bordered table-hover" id="tab_logic">
                 <thead>
                     <tr>
-                        <th class="col-md-3">Usuario</th>
+                        <th class="col-md-2">Usuario</th>
                         <th class="col-md-1">Caduca</th>
                         <th class="col-md-1">Unico Ingreso</th>
                         <th class="col-md-1">Otros Logeos</th>
                         <th class="col-md-1">Tipo</th>
                         <th class="col-md-1">Estado</th>
-                        <th class="col-md-3">Persona</th>
+                        <th class="col-md-4">Persona</th>
                         <th class="col-md-1"></th>
                     </tr>
                 </thead>
@@ -185,6 +185,6 @@
     <script type="text/javascript" src="../Scripts/angular.min.js"></script>
     <script type="text/javascript" src="../Angular/myApp.module.js"></script>
     <script type="text/javascript" src="../Angular/menusCtrl.js"></script>
-    <script type="text/javascript" src="../Angular/personaCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/usuarioCtrl.js"></script>
 </body>
 </html>

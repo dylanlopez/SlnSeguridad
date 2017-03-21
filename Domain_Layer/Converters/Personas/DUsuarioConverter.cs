@@ -1,6 +1,8 @@
 ﻿using Domain_Layer.Dtos.Personas;
 using Entity_Layer.Entities.Personas;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Domain_Layer.Converters.Personas
 {
@@ -27,9 +29,12 @@ namespace Domain_Layer.Converters.Personas
             dto.Contrasena = entity.Contrasena;
             dto.Caduca = entity.Caduca;
             dto.PeriodoCaducidad = entity.PeriodoCaducidad;
-            dto.FechaUltimoCambio = entity.FechaUltimoCambio;
+            //dto.FechaUltimoCambio = entity.FechaUltimoCambio.ToShortDateString();
+            dto.FechaUltimoCambio = entity.FechaUltimoCambio.ToString();
+            //dto.FechaUltimoCambio = entity.FechaUltimoCambio;
             dto.UnicoIngreso = entity.UnicoIngreso;
             dto.HaIngresado = entity.HaIngresado;
+            dto.OtrosLogeos = entity.OtrosLogeos;
             dto.Tipo = entity.Tipo;
             dto.Estado = entity.Estado;
             dto.Persona = DPersonaConverter.ToDto(entity.Persona);
@@ -65,9 +70,17 @@ namespace Domain_Layer.Converters.Personas
             entity.Contrasena = dto.Contrasena;
             entity.Caduca = dto.Caduca;
             entity.PeriodoCaducidad = dto.PeriodoCaducidad;
-            entity.FechaUltimoCambio = dto.FechaUltimoCambio;
+            if (!string.IsNullOrEmpty(dto.FechaUltimoCambio))
+            {
+                //entity.FechaUltimoCambio = Convert.ToDateTime(dto.FechaUltimoCambio);
+                //var dia = 
+                //dto.FechaUltimoCambio = dto.FechaUltimoCambio.Substring(0, 3);
+                entity.FechaUltimoCambio = DateTime.ParseExact(dto.FechaUltimoCambio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            }
+            //entity.FechaUltimoCambio = dto.FechaUltimoCambio;
             entity.UnicoIngreso = dto.UnicoIngreso;
             entity.HaIngresado = dto.HaIngresado;
+            entity.OtrosLogeos = dto.OtrosLogeos;
             entity.Tipo = dto.Tipo;
             entity.Estado = dto.Estado;
             entity.Persona = DPersonaConverter.ToEntity(dto.Persona);

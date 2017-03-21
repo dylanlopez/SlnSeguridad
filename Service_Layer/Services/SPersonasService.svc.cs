@@ -318,6 +318,7 @@ namespace Service_Layer.Services
             }
             try
             {
+                //UsuarioModel model = new UsuarioModel();
                 _logger.WriteInfoLog("iniciando ListarUsuarios");
                 _usuarioLogic = new BLogic();
                 var dto = Mapper.Map<DUsuarioDto>(model);

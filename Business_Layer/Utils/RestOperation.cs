@@ -21,7 +21,7 @@ namespace Interface_Layer.Controllers
             _request = (HttpWebRequest)WebRequest.Create(url);
             try
             {
-                _request.ContentType = "application/json";
+                _request.ContentType = "application/json;charset=UTF-8";
                 _request.ContentLength = dataToSend.Length;
                 _request.Method = "POST";
                 _request.Timeout = 60000;
@@ -31,6 +31,30 @@ namespace Interface_Layer.Controllers
 
                 //_request.GetRequestStream().Write(dataToSend, 0, dataToSend.Length);
 
+                _response = _request.GetResponse();
+                return _response.GetResponseStream();
+            }
+            catch (WebException ex)
+            {
+                WebResponse errorResponse = ex.Response;
+                using (Stream responseStream = errorResponse.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(responseStream, Encoding.GetEncoding("utf-8"));
+                    String errorText = reader.ReadToEnd();
+                }
+                throw ex;
+            }
+        }
+        public Stream Post(string url)
+        {
+            _request = (HttpWebRequest)WebRequest.Create(url);
+            try
+            {
+                _request.ContentType = "application/json";
+                _request.Method = "POST";
+                _request.Timeout = 60000;
+                _requestStream = _request.GetRequestStream();
+                _requestStream.Close();
                 _response = _request.GetResponse();
                 return _response.GetResponseStream();
             }

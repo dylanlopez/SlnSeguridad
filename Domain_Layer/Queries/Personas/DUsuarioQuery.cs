@@ -111,23 +111,23 @@ namespace Domain_Layer.Queries
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
                         IQuery query = _sessionMidis.CreateQuery("FROM EUsuario x " +
-                                                                 "WHERE x.Tipo = COALESCE(:p_Tipo, x.Tipo) " +
-                                                                 "AND x.Estado = COALESCE(:p_Estado, x.Estado) ");
-                        if (dto.Tipo != '\0')
+                                                                 "WHERE x.Usuario LIKE CONCAT('%', COALESCE(:p_Usuario, x.Usuario), '%') " +
+                                                                 "AND x.Persona.Nombre LIKE CONCAT('%', COALESCE(:p_PersonaNombre, x.Persona.Nombre), '%') ");
+                        if (!dto.Usuario.Equals(string.Empty))
                         {
-                            query.SetParameter("p_Tipo", dto.Tipo);
+                            query.SetParameter("p_Usuario", dto.Usuario);
                         }
                         else
                         {
-                            query.SetParameter("p_Tipo", null, NHibernateUtil.Character);
+                            query.SetParameter("p_Usuario", null, NHibernateUtil.String);
                         }
-                        if (dto.Estado != '\0')
+                        if (!dto.Persona.Nombre.Equals(string.Empty))
                         {
-                            query.SetParameter("p_Estado", dto.Estado);
+                            query.SetParameter("p_PersonaNombre", dto.Persona.Nombre);
                         }
                         else
                         {
-                            query.SetParameter("p_Estado", null, NHibernateUtil.Character);
+                            query.SetParameter("p_PersonaNombre", null, NHibernateUtil.String);
                         }
                         var result = query.List<EUsuario>();
                         if (result != null)

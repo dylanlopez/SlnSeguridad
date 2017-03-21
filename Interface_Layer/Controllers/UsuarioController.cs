@@ -121,11 +121,16 @@ namespace Interface_Layer.Controllers
             _model.Persona = model.Persona;
             try
             {
-                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
+                //UsuarioModel modelito = new UsuarioModel();
+                //modelito.Usuario = "ADMIN";
+                //modelito.Persona.Nombre = "ADMIN";
+                //var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(modelito));
+                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(model));
                 using (_restOperation = new RestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ListarUsuarios/", dataToSend);
                     var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarUsuarios/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarUsuarios/");
                     _jsonSerializer = new DataContractJsonSerializer(typeof(List<UsuarioModel>));
                     response = (List<UsuarioModel>)_jsonSerializer.ReadObject(stream);
                     return response;

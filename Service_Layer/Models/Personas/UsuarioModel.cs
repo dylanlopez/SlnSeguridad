@@ -13,7 +13,9 @@ namespace Service_Layer.Models.Personas
             Contrasena = string.Empty;
             Caduca = '\0';
             PeriodoCaducidad = 0;
-            FechaUltimoCambio = new DateTime();
+            //FechaUltimoCambio = new DateTime();
+            //FechaUltimoCambio = DateTime.Now;
+            FechaUltimoCambio = string.Empty;
             UnicoIngreso = '\0';
             HaIngresado = '\0';
             OtrosLogeos = '\0';
@@ -38,7 +40,7 @@ namespace Service_Layer.Models.Personas
         public int PeriodoCaducidad { get; set; }
 
         [DataMember(Name = "FechaUltimoCambio")]
-        public DateTime FechaUltimoCambio { get; set; }
+        public string FechaUltimoCambio { get; set; }
 
         [DataMember(Name = "UnicoIngreso")]
         public char UnicoIngreso { get; set; }

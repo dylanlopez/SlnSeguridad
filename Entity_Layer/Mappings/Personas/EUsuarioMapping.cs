@@ -1,4 +1,5 @@
 ﻿using Entity_Layer.Entities.Personas;
+using NHibernate;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 using System;
@@ -68,6 +69,7 @@ namespace Entity_Layer.Mappings.Personas
                 x => x.FechaUltimoCambio, 
                 map => {
                     map.Column("FE_ULTIMOCAMBIO");
+                    //map.Type(NHibernateUtil.Date);
                     map.NotNullable(true);
                 });
             Property<Char>(
@@ -105,11 +107,20 @@ namespace Entity_Layer.Mappings.Personas
                     map.Length(1);
                     map.NotNullable(true);
                 });
-            OneToOne<EPersona>(
-                x => x.Persona, 
+            //OneToOne<EPersona>(
+            //    x => x.Persona, 
+            //    map => {
+            //        //map.ForeignKey("FK_USUARIO_01");
+            //        map.PropertyReference(typeof(EPersona).GetPropertyOrFieldMatchingName("ID_PERSONA"));
+            //    });
+            ManyToOne<EPersona>(
+                x => x.Persona,
                 map => {
+                    map.Column("ID_PERSONA");
+                    map.NotNullable(true);
+                    map.Update(true);
+                    map.Insert(true);
                     map.ForeignKey("FK_USUARIO_01");
-                    map.PropertyReference(typeof(EPersona).GetPropertyOrFieldMatchingName("ID_PERSONA"));
                 });
         }
     }
