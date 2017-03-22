@@ -66,6 +66,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\Personas\SMenuRolConverter.cs" />
+    <Compile Include="Converters\Personas\SRolConverter.cs" />
+    <Compile Include="Converters\Sistemas\SMenuConverter.cs" />
+    <Compile Include="Converters\Sistemas\SModuloConverter.cs" />
+    <Compile Include="Converters\Sistemas\SSistemaConverter.cs" />
     <Compile Include="Models\Personas\MenuRolModel.cs" />
     <Compile Include="Models\Personas\PersonaModel.cs" />
     <Compile Include="Models\Personas\RolModel.cs" />

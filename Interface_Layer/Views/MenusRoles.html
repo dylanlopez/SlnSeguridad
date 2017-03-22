@@ -33,45 +33,69 @@
     <div class="container" ng-controller="MenuRolCtrl">
         <div class="row">
             <div class="col-md-6">
-                <h3>Menus</h3>
-                <div class="list-group">
-                    <a href="#" class="list-group-item" ng-repeat="persona in personas" data-ng-click="seleccionaPersona(persona)">
-                        <p class="list-group-item-text">{{persona.Nombre}}</p>
-                        <!--<input type="button" class="btn btn-primary" value="Seleccionar" data-ng-click="seleccionaPersona(persona)" />-->
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6">
                 <div class="container">
                     <h3>Roles</h3>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item" ng-repeat="rol in roles" data-ng-click="seleccionaRol(rol)">
+                    <div class="list-group col-md-6">
+                        <a href="#" class="list-group-item" ng-repeat="rol in roles" data-ng-click="buscar(rol, $index)" ng-class="{active: $index == selectedRol}">
                             <p class="list-group-item-text">{{rol.Nombre}}</p>
                             <!--<input type="button" class="btn btn-primary" value="Seleccionar" />-->
                         </a>
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-6">
+                <h3>Menus</h3>
+                <form name="frmBusquedaMenu" style="width:800px;margin:0px auto;">
+                    <div class="container-fluid form-group">
+                        <label for="cmbBuscarSistema" class="col-md-2 control-label">Sistema: </label>
+                        <div class="col-md-4">
+                            <select id="cmbBuscarSistema" class="form-control" data-ng-options="sistema.Nombre for sistema in sistemas" data-ng-model="sistema" ng-change="buscarModulo()"></select>
+                        </div>
+                    </div>
+                    <div class="container-fluid form-group">
+                        <label for="cmbBuscarModulo" class="col-md-2 control-label">Modulo: </label>
+                        <div class="col-md-4">
+                            <select id="cmbBuscarModulo" class="form-control" data-ng-options="modulo.Nombre for modulo in modulos" data-ng-model="modulo"></select>
+                        </div>
+                    </div>
+                    <p>
+                        <input type="button" value="Buscar" data-ng-click="buscarMenu()" class="btn btn-primary" />
+                    </p>
+                </form>
+                <div class="list-group">
+                    <a href="#" class="list-group-item" ng-repeat="menu in menus" data-ng-click="seleccionaMenu(menu, $index)" ng-class="{active: $index == selectedMenu}">
+                        <p class="list-group-item-text">{{menu.Nombre}}</p>
+                        <!--<input type="button" class="btn btn-primary" value="Seleccionar" data-ng-click="seleccionaPersona(persona)" />-->
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <input type="text" class="form-control" id="txtPersona" data-ng-model="personaSeleccionada.Nombre" />
+            <div class="col-md-10">
+                <input type="hidden" id="hdnRol" data-ng-model="rolSeleccionado" />
+                <input type="hidden" id="hdnMenu" data-ng-model="menuSeleccionada" />
+                <!--<input type="text" class="form-control" id="txtPersona" data-ng-model="personaSeleccionada.Nombre" />-->
             </div>
-            <div class="col-md-4">
-                <input type="text" class="form-control" id="txtRol" data-ng-model="rolSeleccionado.Nombre" />
-            </div>
-            <div class="col-md-4">
-                <input type="button" class="btn btn-primary" value="Seleccionar" data-ng-click="selecciona(personaSeleccionada, rolSeleccionado)" />
+            <div class="col-md-2">
+                <input type="button" class="btn btn-primary" value="Agregar" data-ng-click="agregaMenu(rol, menu)" />
             </div>
         </div>
 
         <div class="row">
-            <h3>Menus</h3>
+            <h3>Menus del Rol</h3>
             <div class="list-group">
                 <a href="#" class="list-group-item" ng-repeat="menurol in menusroles">
-                    <p class="list-group-item-text">{{menurol.Persona}}</p>
-                    <p class="list-group-item-text">{{menurol.Rol}}</p>
+                    <p class="list-group-item-text">{{menurol.Menu.Modulo.Sistema.Nombre}} / {{menurol.Menu.Modulo.Nombre}} / {{menurol.Menu.Nombre}}</p>
+                    <!--<p class="list-group-item-text">{{menurol.Rol}}</p>-->
                 </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
+                <input type="button" class="btn btn-primary" value="Guardar" data-ng-click="guardar()" />
             </div>
         </div>
     </div>

@@ -5,9 +5,20 @@
     $scope.tieneError = false;
     $scope.myrol = [];
 
+    var role =
+            {
+                "Id": '',
+                "Nombre": '',
+                "Descripcion": '',
+                "Estado": '',
+            };
     $http({
         method: 'POST',
         url: '../api/Rol/ListarRoles',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: role,
     }).then(function successCallback(result) {
         //console.log(result.data);
         $scope.roles = result.data;

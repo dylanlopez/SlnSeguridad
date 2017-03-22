@@ -170,6 +170,7 @@
     <Compile Include="App_Start\GlobalVariables.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\MenuRolController.cs" />
     <Compile Include="Controllers\ModuloController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\RolController.cs" />

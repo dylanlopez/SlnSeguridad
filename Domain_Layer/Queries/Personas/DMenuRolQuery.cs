@@ -19,7 +19,14 @@ namespace Domain_Layer.Queries
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        _sessionMidis.Delete(DMenuRolConverter.ToEntity(dto));
+                        IQuery query = _sessionMidis.CreateQuery("DELETE EMenuRol x " +
+                                                                 "WHERE x.Id IN (SELECT y.Id " +
+                                                                 "FROM EMenuRol y " +
+                                                                 "WHERE y.Menu.Modulo.Sistema.Id = :p_IdSistema " +
+                                                                 "AND y.Rol.Id = :p_IdRol) ");
+                        query.SetParameter("p_IdSistema", dto.Menu.Modulo.Sistema.Id);
+                        query.SetParameter("p_IdRol", dto.Rol.Id);
+                        query.ExecuteUpdate();
                         _transactionMidis.Commit();
                         return dto.Id;
                     }

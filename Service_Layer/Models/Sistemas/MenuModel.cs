@@ -5,6 +5,17 @@ namespace Interface_Layer.Models.Sistemas
     [DataContract]
     public class MenuModel
     {
+        public MenuModel()
+        {
+            Id = 0;
+            Codigo = string.Empty;
+            Nombre = string.Empty;
+            Ruta = string.Empty;
+            Descripcion = string.Empty;
+            Estado = '\0';
+            Modulo = new ModuloModel();
+        }
+
         [DataMember(Name = "Id")]
         public int Id { get; set; }
 

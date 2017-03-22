@@ -6,6 +6,13 @@ namespace Service_Layer.Models.Personas
     [DataContract]
     public class MenuRolModel
     {
+        public MenuRolModel()
+        {
+            Id = 0;
+            Menu = new MenuModel();
+            Rol = new RolModel();
+        }
+
         [DataMember(Name = "Id")]
         public int Id { get; set; }
 

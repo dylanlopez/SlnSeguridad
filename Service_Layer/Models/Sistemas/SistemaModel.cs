@@ -6,6 +6,17 @@ namespace Interface_Layer.Models.Sistemas
     [DataContract]
     public class SistemaModel
     {
+        public SistemaModel()
+        {
+            Id = 0;
+            Codigo = string.Empty;
+            Nombre = string.Empty;
+            Abreviatura = string.Empty;
+            Descripcion = string.Empty;
+            Estado = '\0';
+            Modulos = new List<ModuloModel>();
+        }
+
         [DataMember(Name = "Id")]
         public int Id { get; set; }
 

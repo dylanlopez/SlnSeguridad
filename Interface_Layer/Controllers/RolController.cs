@@ -106,7 +106,7 @@ namespace Interface_Layer.Controllers
 
         [HttpPost]
         //[Authorize]
-        public List<RolModel> ListarRoles()
+        public List<RolModel> ListarRoles(RolModel model)
         {
             List<RolModel> response;
             _model = new RolModel();

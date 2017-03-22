@@ -3,6 +3,7 @@ using Business_Layer.Logics;
 using Business_Layer.Logics.Personas;
 using Domain_Layer.Dtos.Personas;
 using Logging_Layer;
+using Service_Layer.Converters.Personas;
 using Service_Layer.Models.Personas;
 using System;
 using System.Collections.Generic;
@@ -545,8 +546,9 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando EliminarMenuRol");
                 _menuRolLogic = new BLogic();
-                var dto = Mapper.Map<DMenuRolDto>(model);
-                return _menuRolLogic.Insertar(dto);
+                //var dto = Mapper.Map<DMenuRolDto>(model);
+                var dto = SMenuRolConverter.ToDto(model);
+                return _menuRolLogic.Eliminar(dto);
             }
             catch (Exception ex)
             {
@@ -568,7 +570,8 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando InsertarMenuRol");
                 _menuRolLogic = new BLogic();
-                var dto = Mapper.Map<DMenuRolDto>(model);
+                //var dto = Mapper.Map<DMenuRolDto>(model);
+                var dto = SMenuRolConverter.ToDto(model);
                 return _menuRolLogic.Insertar(dto);
             }
             catch (Exception ex)
@@ -591,8 +594,10 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando ListarMenusRoles");
                 _menuRolLogic = new BLogic();
-                var dto = Mapper.Map<DMenuRolDto>(model);
-                var resp = Mapper.Map<List<MenuRolModel>>(_menuRolLogic.Listar(dto));
+                //var dto = Mapper.Map<DMenuRolDto>(model);
+                var dto = SMenuRolConverter.ToDto(model);
+                //var resp = Mapper.Map<List<MenuRolModel>>(_menuRolLogic.Listar(dto));
+                var resp = SMenuRolConverter.ToModels(_menuRolLogic.Listar(dto));
                 //return _menuRolLogic.Listar(dto);
                 return resp;
             }
