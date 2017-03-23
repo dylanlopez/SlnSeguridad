@@ -163,16 +163,42 @@
     };
 
     $scope.agregaMenu = function () {
+        $scope.tieneError = false;
+        $scope.error = "";
         var menurol =
             {
                 "Id": '0',
                 "Menu": $scope.menuSeleccionada,
                 "Rol": $scope.rolSeleccionado
             };
-        console.debug(menurol);
-        $scope.menusroles.push(menurol);
-
-        //$scope.menusroles = [{ "Persona": personaSeleccionada.Nombre, "Rol": rolSeleccionado.Nombre }];
+        var repetido = false;
+        angular.forEach($scope.menusroles, function (value) {
+            //console.debug("MENU");
+            //console.debug(value.Menu);
+            //console.debug(menurol.Menu);
+            //console.debug("ROL");
+            //console.debug(value.Rol);
+            //console.debug(menurol.Rol);
+            if (value.Menu.Id == menurol.Menu.Id && value.Rol.Id == menurol.Rol.Id) {
+                repetido = true;
+            }
+            //if (value.Menu.Id != menurol.Menu.Id && value.Rol.Id != menurol.Rol.Id) {
+            //    $scope.menusroles.push(menurol);
+            //    $scope.tieneError = false;
+            //    $scope.error = "";
+            //} else {
+            //    $scope.tieneError = true;
+            //    $scope.error = "Ha ocurrido un error, al agregar el menu al rol. Ya se encuentra ingresado";
+            //}
+        });
+        if (!repetido) {
+            $scope.menusroles.push(menurol);
+            $scope.tieneError = false;
+            $scope.error = "";
+        } else {
+            $scope.tieneError = true;
+            $scope.error = "Ha ocurrido un error, al agregar el menu al rol. Ya se encuentra ingresado";
+        }
     };
 
     $scope.guardar = function () {
@@ -195,6 +221,11 @@
                 },
                 data: $scope.menusroles,
             }).then(function successCallback(result) {
+                $scope.menusroles = [];
+                $scope.rolSeleccionado = {};
+                $scope.selectedRol = 0;
+                $scope.menuSeleccionada = {};
+                $scope.selectedMenu = 0;
                 $scope.tieneError = false;
                 $scope.error = "";
                 $scope.estaCargando = false;
@@ -203,9 +234,6 @@
                 $scope.error = "Ha ocurrido un error al insertar: " + result;
                 $scope.estaCargando = false;
             });
-            $scope.tieneError = false;
-            $scope.error = "";
-            $scope.estaCargando = false;
         }, function errorCallback(result) {
             $scope.tieneError = true;
             $scope.error = "Ha ocurrido un error al insertar: " + result;
