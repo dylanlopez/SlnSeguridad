@@ -75,6 +75,7 @@ namespace Domain_Layer.Converters.Personas
                 //entity.FechaUltimoCambio = Convert.ToDateTime(dto.FechaUltimoCambio);
                 //var dia = 
                 //dto.FechaUltimoCambio = dto.FechaUltimoCambio.Substring(0, 3);
+                dto.FechaUltimoCambio = dto.FechaUltimoCambio.Substring(0, 10);
                 entity.FechaUltimoCambio = DateTime.ParseExact(dto.FechaUltimoCambio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             }
             //entity.FechaUltimoCambio = dto.FechaUltimoCambio;

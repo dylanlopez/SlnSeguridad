@@ -86,7 +86,7 @@
                     <!--<input type="text" class="form-control" id="txtPersona" data-ng-model="personaSeleccionada.Nombre" />-->
                 </div>
                 <div class="col-md-2">
-                    <input type="button" class="btn btn-primary" value="Agregar" data-ng-click="agregaMenu(rol, menu)" />
+                    <input type="button" class="btn btn-primary" value="Agregar" data-ng-click="agregaMenu()" />
                 </div>
             </div>
         </div>
@@ -96,8 +96,16 @@
                 <h4>Menus del Rol</h4>
                 <div class="list-group">
                     <a href="#" class="list-group-item" ng-repeat="menurol in menusroles">
-                        <p class="list-group-item-text">{{menurol.Menu.Modulo.Sistema.Nombre}} / {{menurol.Menu.Modulo.Nombre}} / {{menurol.Menu.Nombre}}</p>
-                        <!--<p class="list-group-item-text">{{menurol.Rol}}</p>-->
+                        <!--<p class="list-group-item-text">{{menurol.Menu.Modulo.Sistema.Nombre}} / {{menurol.Menu.Modulo.Nombre}} / {{menurol.Menu.Nombre}}</p>-->
+                        <div class="row">
+                            <div class="col-md-7">
+                                <label class="list-group-item-text">{{menurol.Menu.Modulo.Sistema.Nombre}} / {{menurol.Menu.Modulo.Nombre}} / {{menurol.Menu.Nombre}}</label>
+                            </div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-2">
+                                <input type="button" class="btn btn-danger" value="Eliminar" data-ng-click="eliminarMenu(menurol)" />
+                            </div>
+                        </div>
                     </a>
                 </div>
             </div>

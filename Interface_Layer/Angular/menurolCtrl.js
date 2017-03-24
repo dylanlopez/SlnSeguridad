@@ -201,6 +201,16 @@
         }
     };
 
+    $scope.eliminarMenu = function (menurol) {
+        console.debug(menurol);
+        for (var i = 0; i < $scope.menusroles.length; i++) {
+            var obj = $scope.menusroles[i];
+            if (obj.Id == menurol.Id) {
+                $scope.menusroles.splice(i, 1);
+            }
+        }
+    };
+
     $scope.guardar = function () {
         $scope.estaCargando = true;
         //console.debug($scope.menusroles);

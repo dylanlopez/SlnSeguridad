@@ -10,14 +10,14 @@ using System.Web.Http;
 
 namespace Interface_Layer.Controllers
 {
-    public class MenuRolController : ApiController
+    public class UsuarioRolController : ApiController
     {
-        private MenuRolModel _model;
+        private UsuarioRolModel _model;
         private DataContractJsonSerializer _jsonSerializer;
         private RestOperation _restOperation;
 
         [HttpDelete]
-        public HttpResponseMessage EliminarMenuRol(MenuRolModel model)
+        public HttpResponseMessage EliminarUsuarioRol(UsuarioRolModel model)
         {
             _model = model;
             try
@@ -25,8 +25,8 @@ namespace Interface_Layer.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new RestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/EliminarMenuRol/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/EliminarMenuRol/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/EliminarUsuarioRol/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/EliminarUsuarioRol/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -39,18 +39,18 @@ namespace Interface_Layer.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertarMenuRol(List<MenuRolModel> models)
+        public HttpResponseMessage InsertarUsuarioRol(List<UsuarioRolModel> models)
         {
             try
             {
-                foreach(var model in models)
+                foreach (var model in models)
                 {
                     _model = model;
                     var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                     using (_restOperation = new RestOperation())
                     {
-                        var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarMenuRol/", dataToSend);
-                        //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarMenuRol/", dataToSend);
+                        //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarUsuarioRol/", dataToSend);
+                        var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarUsuarioRol/", dataToSend);
                         _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                         var response = (int)_jsonSerializer.ReadObject(stream);
                     }
@@ -64,19 +64,19 @@ namespace Interface_Layer.Controllers
         }
 
         [HttpPost]
-        public List<MenuRolModel> ListarMenusRoles(MenuRolModel model)
+        public List<UsuarioRolModel> ListarUsuariosRoles(UsuarioRolModel model)
         {
-            List<MenuRolModel> response;
+            List<UsuarioRolModel> response;
             _model = model;
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new RestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ListarMenusRoles/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarMenusRoles/", dataToSend);
-                    _jsonSerializer = new DataContractJsonSerializer(typeof(List<MenuRolModel>));
-                    response = (List<MenuRolModel>)_jsonSerializer.ReadObject(stream);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ListarUsuariosRoles/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarUsuariosRoles/", dataToSend);
+                    _jsonSerializer = new DataContractJsonSerializer(typeof(List<UsuarioRolModel>));
+                    response = (List<UsuarioRolModel>)_jsonSerializer.ReadObject(stream);
                     return response;
                 }
             }

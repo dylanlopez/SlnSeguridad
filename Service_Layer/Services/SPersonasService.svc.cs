@@ -444,8 +444,10 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando ListarRoles");
                 _rolLogic = new BLogic();
-                var dto = Mapper.Map<DRolDto>(model);
-                var resp = Mapper.Map<List<RolModel>>(_rolLogic.Listar(dto));
+                //var dto = Mapper.Map<DRolDto>(model);
+                var dto = SRolConverter.ToDto(model);
+                //var resp = Mapper.Map<List<RolModel>>(_rolLogic.Listar(dto));
+                var resp = SRolConverter.ToModels(_rolLogic.Listar(dto));
                 //return _rolLogic.Listar(dto);
                 return resp;
             }
@@ -472,8 +474,9 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando EliminarUsuarioRol");
                 _usuarioRolLogic = new BLogic();
-                var dto = Mapper.Map<DUsuarioRolDto>(model);
-                return _usuarioRolLogic.Insertar(dto);
+                //var dto = Mapper.Map<DUsuarioRolDto>(model);
+                var dto = SUsuarioRolConverter.ToDto(model);
+                return _usuarioRolLogic.Eliminar(dto);
             }
             catch (Exception ex)
             {
@@ -495,7 +498,8 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando InsertarUsuarioRol");
                 _usuarioRolLogic = new BLogic();
-                var dto = Mapper.Map<DUsuarioRolDto>(model);
+                //var dto = Mapper.Map<DUsuarioRolDto>(model);
+                var dto = SUsuarioRolConverter.ToDto(model);
                 return _usuarioRolLogic.Insertar(dto);
             }
             catch (Exception ex)
@@ -518,7 +522,8 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando ListarUsuariosRoles");
                 _usuarioRolLogic = new BLogic();
-                var dto = Mapper.Map<DUsuarioRolDto>(model);
+                //var dto = Mapper.Map<DUsuarioRolDto>(model);
+                var dto = SUsuarioRolConverter.ToDto(model);
                 var resp = Mapper.Map<List<UsuarioRolModel>>(_usuarioRolLogic.Listar(dto));
                 //return _usuarioRolLogic.Listar(dto);
                 return resp;

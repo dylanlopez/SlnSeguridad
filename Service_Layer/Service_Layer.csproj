@@ -67,7 +67,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\Personas\SMenuRolConverter.cs" />
+    <Compile Include="Converters\Personas\SPersonaConverter.cs" />
     <Compile Include="Converters\Personas\SRolConverter.cs" />
+    <Compile Include="Converters\Personas\STipoDocumentoPersonaConverter.cs" />
+    <Compile Include="Converters\Personas\SUsuarioConverter.cs" />
+    <Compile Include="Converters\Personas\SUsuarioRolConverter.cs" />
     <Compile Include="Converters\Sistemas\SMenuConverter.cs" />
     <Compile Include="Converters\Sistemas\SModuloConverter.cs" />
     <Compile Include="Converters\Sistemas\SSistemaConverter.cs" />

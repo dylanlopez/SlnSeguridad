@@ -44,7 +44,6 @@ namespace Entity_Layer.Mappings.Personas
                     map.NotNullable(true);
                     map.Update(false);
                     map.Insert(true);
-                    map.Cascade(Cascade.None);
                     map.ForeignKey("FK_MENU_ROL_01");
                     //map.UniqueKey("FK_MENU_ROL_01");
                 });
@@ -55,7 +54,6 @@ namespace Entity_Layer.Mappings.Personas
                     map.NotNullable(true);
                     map.Update(false);
                     map.Insert(true);
-                    map.Cascade(Cascade.None);
                     map.ForeignKey("FK_MENU_ROL_02");
                     //map.UniqueKey("FK_MENU_ROL_02");
                 });

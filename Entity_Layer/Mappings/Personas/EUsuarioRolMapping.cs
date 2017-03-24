@@ -42,8 +42,8 @@ namespace Entity_Layer.Mappings.Personas
                     map.Column("ID_USUARIO");
                     map.NotNullable(true);
                     map.Update(false);
-                    map.Insert(false);
-                    map.UniqueKey("FK_USUARIO_ROL_01");
+                    map.Insert(true);
+                    map.ForeignKey("FK_USUARIO_ROL_01");
                 });
             ManyToOne<ERol>(
                 x => x.Rol, 
@@ -51,8 +51,8 @@ namespace Entity_Layer.Mappings.Personas
                     map.Column("ID_ROL");
                     map.NotNullable(true);
                     map.Update(false);
-                    map.Insert(false);
-                    map.UniqueKey("FK_USUARIO_ROL_02");
+                    map.Insert(true);
+                    map.ForeignKey("FK_USUARIO_ROL_02");
                 });
         }
     }

@@ -209,7 +209,7 @@
             "Estado": $scope.myuser.Estado,
             "Persona": $scope.myuser.Persona
         };
-        console.debug(user);
+        //console.debug(user);
         if (user.Id == "") //nuevo (insert)
         {
             $http({

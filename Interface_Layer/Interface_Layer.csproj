@@ -107,6 +107,7 @@
     <Content Include="Angular\moduloCtrl.js" />
     <Content Include="Angular\personaCtrl.js" />
     <Content Include="Angular\rolCtrl.js" />
+    <Content Include="Angular\rolusuarioCtrl.js" />
     <Content Include="Angular\sistemaCtrl.js" />
     <Content Include="Angular\usuarioCtrl.js" />
     <Content Include="Content\Site.css" />
@@ -178,6 +179,7 @@
     <Compile Include="Controllers\SistemaController.cs" />
     <Compile Include="Controllers\TipoDocumentoPersonaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\UsuarioRolController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

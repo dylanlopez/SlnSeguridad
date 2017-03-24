@@ -4,6 +4,7 @@ using Business_Layer.Logics.Sistemas;
 using Domain_Layer.Dtos.Sistemas;
 using Interface_Layer.Models.Sistemas;
 using Logging_Layer;
+using Service_Layer.Converters.Sistemas;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -120,8 +121,10 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando ListarSistemas");
                 _sistemaLogic = new BLogic();
-                var dto = Mapper.Map<DSistemaDto>(model);
-                var resp = Mapper.Map<List<SistemaModel>>(_sistemaLogic.Listar(dto));
+                //var dto = Mapper.Map<DSistemaDto>(model);
+                var dto = SSistemaConverter.ToDto(model);
+                //var resp = Mapper.Map<List<SistemaModel>>(_sistemaLogic.Listar(dto));
+                var resp = SSistemaConverter.ToModels(_sistemaLogic.Listar(dto));
                 ModuloModel moduloModel;
                 foreach (var item in resp)
                 {
@@ -233,8 +236,10 @@ namespace Service_Layer.Services
                 _moduloLogic = new BLogic();
                 //var dto = Mapper.Map<DModuloDto>(model);
                 //return _moduloLogic.Listar(dto);
-                var dto = Mapper.Map<DModuloDto>(model);
-                var resp = Mapper.Map<List<ModuloModel>>(_moduloLogic.Listar(dto));
+                //var dto = Mapper.Map<DModuloDto>(model);
+                var dto = SModuloConverter.ToDto(model);
+                //var resp = Mapper.Map<List<ModuloModel>>(_moduloLogic.Listar(dto));
+                var resp = SModuloConverter.ToModels(_moduloLogic.Listar(dto));
                 MenuModel menuModel;
                 foreach (var item in resp)
                 {
@@ -361,8 +366,10 @@ namespace Service_Layer.Services
             {
                 _logger.WriteInfoLog("iniciando ListarMenus");
                 _menuLogic = new BLogic();
-                var dto = Mapper.Map<DMenuDto>(model);
-                var resp = Mapper.Map<List<MenuModel>>(_menuLogic.Listar(dto));
+                //var dto = Mapper.Map<DMenuDto>(model);
+                var dto = SMenuConverter.ToDto(model);
+                //var resp = Mapper.Map<List<MenuModel>>(_menuLogic.Listar(dto));
+                var resp = SMenuConverter.ToModels(_menuLogic.Listar(dto));
                 //return _menuLogic.Listar(dto);
                 return resp;
             }
