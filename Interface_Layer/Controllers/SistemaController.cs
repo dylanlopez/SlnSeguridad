@@ -17,7 +17,7 @@ namespace Interface_Layer.Controllers
     {
         private SistemaModel _model;
         private DataContractJsonSerializer _jsonSerializer;
-        private RestOperation _restOperation;
+        private BRestOperation _restOperation;
 
         public SistemaController()
         {
@@ -35,7 +35,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ActualizarSistema/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ActualizarSistema/", dataToSend);
@@ -64,7 +64,7 @@ namespace Interface_Layer.Controllers
                 //_model = new SistemaModel();
                 //_model.Id = postParam.Id;
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using(_restOperation = new RestOperation())
+                using(_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/BuscarSistema/", dataToSend);
                     var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/BuscarSistema/", dataToSend);
@@ -97,7 +97,7 @@ namespace Interface_Layer.Controllers
             {
                 _model = dto;
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/InsertarSistema/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/InsertarSistema/", dataToSend);
@@ -120,7 +120,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarSistemas/", dataToSend);
                     var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarSistemas/", dataToSend);

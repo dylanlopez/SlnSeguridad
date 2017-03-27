@@ -58,9 +58,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain_Layer\Domain_Layer.csproj">
-      <Project>{98dbea5b-4174-4ddb-9a3d-460a58b2a9d4}</Project>
-      <Name>Domain_Layer</Name>
+    <ProjectReference Include="..\Business_Layer\Business_Layer.csproj">
+      <Project>{d4123c2e-9022-4522-acab-404ce11142f4}</Project>
+      <Name>Business_Layer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

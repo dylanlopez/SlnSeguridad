@@ -14,7 +14,7 @@ namespace Interface_Layer.Controllers
     {
         private UsuarioRolModel _model;
         private DataContractJsonSerializer _jsonSerializer;
-        private RestOperation _restOperation;
+        private BRestOperation _restOperation;
 
         [HttpDelete]
         public HttpResponseMessage EliminarUsuarioRol(UsuarioRolModel model)
@@ -23,7 +23,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/EliminarUsuarioRol/", dataToSend);
                     var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/EliminarUsuarioRol/", dataToSend);
@@ -47,7 +47,7 @@ namespace Interface_Layer.Controllers
                 {
                     _model = model;
                     var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                    using (_restOperation = new RestOperation())
+                    using (_restOperation = new BRestOperation())
                     {
                         //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarUsuarioRol/", dataToSend);
                         var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarUsuarioRol/", dataToSend);
@@ -71,7 +71,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ListarUsuariosRoles/", dataToSend);
                     var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarUsuariosRoles/", dataToSend);

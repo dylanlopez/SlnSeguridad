@@ -16,7 +16,7 @@ namespace Interface_Layer.Controllers
         //private DModuloDto _dto;
         private ModuloModel _model;
         private DataContractJsonSerializer _jsonSerializer;
-        private RestOperation _restOperation;
+        private BRestOperation _restOperation;
 
         [HttpPut]
         public HttpResponseMessage ActualizarModulo(ModuloModel model)
@@ -25,7 +25,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ActualizarModulo/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ActualizarModulo/", dataToSend);
@@ -47,7 +47,7 @@ namespace Interface_Layer.Controllers
             {
                 _model = model;
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/InsertarModulo/", dataToSend);
                     var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/InsertarModulo/", dataToSend);
@@ -72,7 +72,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarModulos/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarModulos/", dataToSend);

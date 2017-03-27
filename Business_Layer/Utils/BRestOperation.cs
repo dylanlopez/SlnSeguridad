@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Interface_Layer.Controllers
 {
-    public class RestOperation : IDisposable
+    public class BRestOperation : IDisposable
     {
         private HttpWebRequest _request;
         private WebResponse _response;

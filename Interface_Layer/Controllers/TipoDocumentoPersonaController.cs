@@ -15,7 +15,7 @@ namespace Interface_Layer.Controllers
     {
         private TipoDocumentoPersonaModel _model;
         private DataContractJsonSerializer _jsonSerializer;
-        private RestOperation _restOperation;
+        private BRestOperation _restOperation;
 
         [HttpPost]
         public TipoDocumentoPersonaModel BuscarTipoDocumentoPersona(TipoDocumentoPersonaModel model)
@@ -24,7 +24,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/BuscarTipoDocumentoPersona/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/BuscarTipoDocumentoPersona/", dataToSend);
@@ -47,7 +47,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ListarTipoDocumentoPersona/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarTipoDocumentoPersona/", dataToSend);

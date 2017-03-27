@@ -16,7 +16,7 @@ namespace Interface_Layer.Controllers
         //private DMenuDto _dto;
         private MenuModel _model;
         private DataContractJsonSerializer _jsonSerializer;
-        private RestOperation _restOperation;
+        private BRestOperation _restOperation;
 
         [HttpPut]
         public HttpResponseMessage ActualizarMenu(MenuModel model)
@@ -33,7 +33,7 @@ namespace Interface_Layer.Controllers
                     _model.Modulo.Sistema.Descripcion = String.Empty;
                 }
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ActualizarMenu/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ActualizarMenu/", dataToSend);
@@ -55,7 +55,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/EliminarMenu/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/EliminarMenu/", dataToSend);
@@ -85,7 +85,7 @@ namespace Interface_Layer.Controllers
                     _model.Modulo.Sistema.Descripcion = String.Empty;
                 }
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/InsertarMenu/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/InsertarMenu/", dataToSend);
@@ -110,7 +110,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarMenus/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarMenus/", dataToSend);

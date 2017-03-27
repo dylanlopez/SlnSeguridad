@@ -14,7 +14,7 @@ namespace Interface_Layer.Controllers
     {
         private UsuarioModel _model;
         private DataContractJsonSerializer _jsonSerializer;
-        private RestOperation _restOperation;
+        private BRestOperation _restOperation;
 
         [HttpPut]
         public HttpResponseMessage ActualizarUsuario(UsuarioModel model)
@@ -27,7 +27,7 @@ namespace Interface_Layer.Controllers
                 //    _model.TipoDocumentoPersona.Nombre = String.Empty;
                 //}
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ActualizarUsuario/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ActualizarUsuario/", dataToSend);
@@ -49,7 +49,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/BuscarUsuario/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/BuscarUsuario/", dataToSend);
@@ -71,7 +71,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/EliminarUsuario/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/EliminarUsuario/", dataToSend);
@@ -97,7 +97,7 @@ namespace Interface_Layer.Controllers
                 //    _model.TipoDocumentoPersona.Nombre = String.Empty;
                 //}
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarUsuario/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarUsuario/", dataToSend);
@@ -126,7 +126,7 @@ namespace Interface_Layer.Controllers
                 //modelito.Persona.Nombre = "ADMIN";
                 //var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(modelito));
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ListarUsuarios/", dataToSend);
                     var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarUsuarios/", dataToSend);

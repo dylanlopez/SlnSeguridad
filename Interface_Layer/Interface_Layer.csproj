@@ -102,6 +102,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Angular\authData.js" />
+    <Content Include="Angular\authService.js" />
+    <Content Include="Angular\loginCtrl.js" />
     <Content Include="Angular\menuCtrl.js" />
     <Content Include="Angular\menurolCtrl.js" />
     <Content Include="Angular\moduloCtrl.js" />
@@ -110,10 +113,12 @@
     <Content Include="Angular\rolusuarioCtrl.js" />
     <Content Include="Angular\sistemaCtrl.js" />
     <Content Include="Angular\usuarioCtrl.js" />
+    <Content Include="Content\login_register.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\ajax-loader.gif" />
+    <Content Include="Images\street.jpg" />
     <Content Include="packages.config" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
@@ -158,6 +163,7 @@
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Views\Login.html" />
     <Content Include="Views\MenusRoles.html" />
     <Content Include="Views\Personas.html" />
     <Content Include="Views\Roles.html" />

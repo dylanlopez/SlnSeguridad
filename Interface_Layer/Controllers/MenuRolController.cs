@@ -14,7 +14,7 @@ namespace Interface_Layer.Controllers
     {
         private MenuRolModel _model;
         private DataContractJsonSerializer _jsonSerializer;
-        private RestOperation _restOperation;
+        private BRestOperation _restOperation;
 
         [HttpDelete]
         public HttpResponseMessage EliminarMenuRol(MenuRolModel model)
@@ -23,7 +23,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/EliminarMenuRol/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/EliminarMenuRol/", dataToSend);
@@ -47,7 +47,7 @@ namespace Interface_Layer.Controllers
                 {
                     _model = model;
                     var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                    using (_restOperation = new RestOperation())
+                    using (_restOperation = new BRestOperation())
                     {
                         var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarMenuRol/", dataToSend);
                         //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarMenuRol/", dataToSend);
@@ -71,7 +71,7 @@ namespace Interface_Layer.Controllers
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new RestOperation())
+                using (_restOperation = new BRestOperation())
                 {
                     var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ListarMenusRoles/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarMenusRoles/", dataToSend);

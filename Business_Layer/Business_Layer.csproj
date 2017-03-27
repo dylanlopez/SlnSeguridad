@@ -67,7 +67,9 @@
     <Compile Include="Logics\Sistemas\IBMenuLogic.cs" />
     <Compile Include="Logics\Sistemas\IBModuloLogic.cs" />
     <Compile Include="Logics\Sistemas\IBSistemaLogic.cs" />
-    <Compile Include="Utils\RestOperation.cs" />
+    <Compile Include="Utils\BDecrypt.cs" />
+    <Compile Include="Utils\BEncrypt.cs" />
+    <Compile Include="Utils\BRestOperation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
