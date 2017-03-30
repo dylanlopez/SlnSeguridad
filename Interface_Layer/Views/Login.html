@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
     <title>Midis Seguridad | Login</title>
     <meta charset="utf-8" />
@@ -24,17 +24,17 @@
                         </div>
                     </div>
                     <div class="row">
-                        <form action="index.html" id="authentication" method="post" class="sign_validator">
+                        <form action="index.html" id="authentication" method="post" class="sign_validator" ng-submit="login()">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="txtUsuario"> Usuario</label>
-                                    <input type="text" class="form-control  form-control-lg" id="txtUsuario" name="txtUsuario" placeholder="Usuario">
+                                    <input type="text" class="form-control  form-control-lg" id="txtUsuario" name="txtUsuario" placeholder="Usuario" ng_model="account.username">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="txtPasword">Password</label>
-                                    <input type="password" class="form-control form-control-lg" id="txtPasword" name="txtPasword" placeholder="Password">
+                                    <input type="password" class="form-control form-control-lg" id="txtPasword" name="txtPasword" placeholder="Password" ng_model="account.password">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -52,5 +52,8 @@
     <script type="text/javascript" src="../Scripts/jquery-3.1.1.min.js" charset="UTF-8"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="../Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="../Scripts/angular-route.js"></script>
+    <script type="text/javascript" src="../Angular/myApp.module.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/loginCtrl.js"></script>
 </body>
 </html>

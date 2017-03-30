@@ -1,6 +1,4 @@
-﻿//using AutoMapper;
-using Interface_Layer.App_Start;
-//using Interface_Layer.Models;
+﻿using Interface_Layer.App_Start;
 using Interface_Layer.Models.Sistemas;
 using Newtonsoft.Json;
 using System;
@@ -51,7 +49,7 @@ namespace Interface_Layer.Controllers
         }
 
         [HttpPost]
-        public SistemaModel BuscarSistema(SistemaModel model)
+        public SistemaModel BuscarSistema(SistemaModel model, SistemaModel global)
         {
             _model = model;
             //SistemaModel response;
