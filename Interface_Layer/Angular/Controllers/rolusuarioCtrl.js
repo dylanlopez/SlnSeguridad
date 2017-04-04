@@ -1,4 +1,4 @@
-﻿myApp.controller("RolUsuarioCtrl", function ($scope, $http) {
+﻿myApp.controller("RolUsuarioCtrl", function ($scope, $http, webAPIControllers) {
     $scope.usuariosroles = [];
     $scope.usuarios = [];
     $scope.roles = [];
@@ -15,7 +15,7 @@
             };
     $http({
         method: 'POST',
-        url: '../api/Rol/ListarRoles',
+        url: webAPIControllers + '/api/Rol/ListarRoles',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -56,7 +56,7 @@
         }
         $http({
             method: 'POST',
-            url: '../api/Usuario/ListarUsuarios',
+            url: webAPIControllers + '/api/Usuario/ListarUsuarios',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -88,7 +88,7 @@
         //console.debug(usuariorol);
         $http({
             method: 'POST',
-            url: '../api/UsuarioRol/ListarUsuariosRoles',
+            url: webAPIControllers + '/api/UsuarioRol/ListarUsuariosRoles',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -159,7 +159,7 @@
         //console.debug($scope.menusroles[0]);
         $http({
             method: 'DELETE',
-            url: '../api/UsuarioRol/EliminarUsuarioRol/' + $scope.usuariosroles[0].Id,
+            url: webAPIControllers + '/api/UsuarioRol/EliminarUsuarioRol/' + $scope.usuariosroles[0].Id,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -167,7 +167,7 @@
         }).then(function successCallback(result) {
             $http({
                 method: 'POST',
-                url: '../api/UsuarioRol/InsertarUsuarioRol',
+                url: webAPIControllers + '/api/UsuarioRol/InsertarUsuarioRol',
                 headers: {
                     'Content-Type': 'application/json'
                 },

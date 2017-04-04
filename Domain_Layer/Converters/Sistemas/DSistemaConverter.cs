@@ -26,8 +26,12 @@ namespace Domain_Layer.Converters.Sistemas
             dto.Codigo = entity.Codigo;
             dto.Nombre = entity.Nombre;
             dto.Abreviatura = entity.Abreviatura;
-            dto.Descripcion = entity.Descripcion;
             dto.Estado = entity.Estado;
+            dto.Descripcion = entity.Descripcion;
+            dto.NombreServidor = entity.NombreServidor;
+            dto.IPServidor = entity.IPServidor;
+            dto.RutaFisica = entity.RutaFisica;
+            dto.RutaLogica = entity.RutaLogica;
             return dto;
         }
 
@@ -59,6 +63,7 @@ namespace Domain_Layer.Converters.Sistemas
             entity.Codigo = dto.Codigo.ToUpper();
             entity.Nombre = dto.Nombre.ToUpper();
             entity.Abreviatura = dto.Abreviatura.ToUpper();
+            entity.Estado = dto.Estado;
             if (!string.IsNullOrEmpty(dto.Descripcion))
             {
                 entity.Descripcion = dto.Descripcion.ToUpper();
@@ -67,7 +72,38 @@ namespace Domain_Layer.Converters.Sistemas
             {
                 entity.Descripcion = string.Empty;
             }
-            entity.Estado = dto.Estado;
+            if (!string.IsNullOrEmpty(dto.NombreServidor))
+            {
+                entity.NombreServidor = dto.NombreServidor;
+            }
+            else
+            {
+                entity.NombreServidor = string.Empty;
+            }
+            if (!string.IsNullOrEmpty(dto.IPServidor))
+            {
+                entity.IPServidor = dto.IPServidor;
+            }
+            else
+            {
+                entity.IPServidor = string.Empty;
+            }
+            if (!string.IsNullOrEmpty(dto.RutaFisica))
+            {
+                entity.RutaFisica = dto.RutaFisica;
+            }
+            else
+            {
+                entity.RutaFisica = string.Empty;
+            }
+            if (!string.IsNullOrEmpty(dto.RutaLogica))
+            {
+                entity.RutaLogica = dto.RutaLogica;
+            }
+            else
+            {
+                entity.RutaLogica = string.Empty;
+            }
             return entity;
         }
     }

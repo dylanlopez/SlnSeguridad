@@ -99,12 +99,14 @@ namespace Domain_Layer.Configurations
                 mapper.AddMapping<ESistemaMapping>();
                 mapper.AddMapping<EModuloMapping>();
                 mapper.AddMapping<EMenuMapping>();
-                mapper.AddMapping<ETipoDocumentoPersonaMapping>();
-                mapper.AddMapping<EPersonaMapping>();
-                mapper.AddMapping<EUsuarioMapping>();
-                mapper.AddMapping<ERolMapping>();
-                mapper.AddMapping<EUsuarioRolMapping>();
-                mapper.AddMapping<EMenuRolMapping>();
+                mapper.AddMapping<EOpcionMapping>();
+                mapper.AddMapping<EMenuOpcionMapping>();
+                //mapper.AddMapping<ETipoDocumentoPersonaMapping>();
+                //mapper.AddMapping<EPersonaMapping>();
+                //mapper.AddMapping<EUsuarioMapping>();
+                //mapper.AddMapping<ERolMapping>();
+                //mapper.AddMapping<EUsuarioRolMapping>();
+                //mapper.AddMapping<EMenuRolMapping>();
                 HbmMapping mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
                 return mapping;
             }

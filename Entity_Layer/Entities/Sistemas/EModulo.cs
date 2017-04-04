@@ -10,6 +10,10 @@ namespace Entity_Layer.Entities.Sistemas
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <description>Initial version</description>
     /// </v1.0>
+    /// <v2.0>
+    /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
+    /// <description>Include fields of database changes</description>
+    /// </v2.0>
     public class EModulo
     {
         /// <summary>
@@ -21,7 +25,7 @@ namespace Entity_Layer.Entities.Sistemas
         public virtual Int32 Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the Codigo, correspond to table field CODIGO.
+        /// Gets or sets the Codigo, correspond to table field CO_MODULO.
         /// </summary>
         /// <value>
         /// set a value to the Codigo.
@@ -29,7 +33,7 @@ namespace Entity_Layer.Entities.Sistemas
         public virtual String Codigo { get; set; }
 
         /// <summary>
-        /// Gets or sets the Nombre, correspond to table field NOMBRE.
+        /// Gets or sets the Nombre, correspond to table field NO_MODULO.
         /// </summary>
         /// <value>
         /// set a value to the Nombre.
@@ -37,7 +41,7 @@ namespace Entity_Layer.Entities.Sistemas
         public virtual String Nombre { get; set; }
 
         /// <summary>
-        /// Gets or sets the Abreviatura, correspond to table field ABREVIATURA.
+        /// Gets or sets the Abreviatura, correspond to table field NO_ABREVIATURA.
         /// </summary>
         /// <value>
         /// set a value to the Abreviatura.
@@ -45,20 +49,20 @@ namespace Entity_Layer.Entities.Sistemas
         public virtual String Abreviatura { get; set; }
 
         /// <summary>
-        /// Gets or sets the Descripcion, correspond to table field DESCRIPCION.
-        /// </summary>
-        /// <value>
-        /// set a value to the Descripcion.
-        /// </value>
-        public virtual String Descripcion { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Estado, correspond to table field ESTADO.
+        /// Gets or sets the Estado, correspond to table field IN_ACTIVO.
         /// </summary>
         /// <value>
         /// set a value to the Estado.
         /// </value>
         public virtual Char Estado { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Descripcion, correspond to table field DE_DESCRIPCION.
+        /// </summary>
+        /// <value>
+        /// set a value to the Descripcion.
+        /// </value>
+        public virtual String Descripcion { get; set; }
 
         /// <summary>
         /// Gets or sets the Sistema, correspond to table field ID_SISTEMA.

@@ -1,4 +1,4 @@
-﻿using Interface_Layer.Models.Sistemas;
+﻿using Service_Layer.Models.Sistemas;
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;

@@ -1,4 +1,4 @@
-﻿myApp.controller("RolCtrl", function ($scope, $http) {
+﻿myApp.controller("RolCtrl", function ($scope, $http, webAPIControllers) {
     $scope.roles = [];
     $scope.estaCargando = true;
     $scope.estaEditable = false;
@@ -14,7 +14,7 @@
             };
     $http({
         method: 'POST',
-        url: '../api/Rol/ListarRoles',
+        url: webAPIControllers + '/api/Rol/ListarRoles',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -79,7 +79,7 @@
         {
             $http({
                 method: 'POST',
-                url: '../api/Rol/InsertarRol',
+                url: webAPIControllers + '/api/Rol/InsertarRol',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -88,7 +88,7 @@
                 $scope.nuevo();
                 $http({
                     method: 'POST',
-                    url: '../api/Rol/ListarRoles',
+                    url: webAPIControllers + '/api/Rol/ListarRoles',
                 }).then(function successCallback(result) {
                     $scope.roles = result.data;
                 });
@@ -106,7 +106,7 @@
         {
             $http({
                 method: 'PUT',
-                url: '../api/Rol/ActualizarRol/' + role.Id,
+                url: webAPIControllers + '/api/Rol/ActualizarRol/' + role.Id,
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -115,7 +115,7 @@
                 $scope.nuevo();
                 $http({
                     method: 'POST',
-                    url: '../api/Rol/ListarRoles',
+                    url: webAPIControllers + '/api/Rol/ListarRoles',
                 }).then(function successCallback(result) {
                     $scope.roles = result.data;
                 });

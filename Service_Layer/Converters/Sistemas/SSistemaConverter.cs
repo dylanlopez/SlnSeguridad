@@ -1,5 +1,5 @@
 ﻿using Domain_Layer.Dtos.Sistemas;
-using Interface_Layer.Models.Sistemas;
+using Service_Layer.Models.Sistemas;
 using System.Collections.Generic;
 
 namespace Service_Layer.Converters.Sistemas
@@ -13,8 +13,12 @@ namespace Service_Layer.Converters.Sistemas
             model.Codigo = dto.Codigo;
             model.Nombre = dto.Nombre;
             model.Abreviatura = dto.Abreviatura;
-            model.Descripcion = dto.Descripcion;
             model.Estado = dto.Estado;
+            model.Descripcion = dto.Descripcion;
+            model.NombreServidor = dto.NombreServidor;
+            model.IPServidor = dto.IPServidor;
+            model.RutaFisica = dto.RutaFisica;
+            model.RutaLogica = dto.RutaLogica;
             return model;
         }
 
@@ -36,11 +40,27 @@ namespace Service_Layer.Converters.Sistemas
             dto.Codigo = model.Codigo;
             dto.Nombre = model.Nombre;
             dto.Abreviatura = model.Abreviatura;
+            dto.Estado = model.Estado;
             if (!string.IsNullOrEmpty(model.Descripcion))
             {
                 dto.Descripcion = model.Descripcion;
             }
-            dto.Estado = model.Estado;
+            if (!string.IsNullOrEmpty(model.NombreServidor))
+            {
+                dto.NombreServidor = model.NombreServidor;
+            }
+            if (!string.IsNullOrEmpty(model.IPServidor))
+            {
+                dto.IPServidor = model.IPServidor;
+            }
+            if (!string.IsNullOrEmpty(model.RutaFisica))
+            {
+                dto.RutaFisica = model.RutaFisica;
+            }
+            if (!string.IsNullOrEmpty(model.RutaLogica))
+            {
+                dto.RutaLogica = model.RutaLogica;
+            }
             return dto;
         }
     }

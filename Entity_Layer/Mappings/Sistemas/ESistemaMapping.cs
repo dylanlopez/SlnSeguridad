@@ -6,14 +6,18 @@ using System;
 namespace Entity_Layer.Mappings.Sistemas
 {
     /// <summary>
-    /// Here is the mapping class ESistemaMapping, on which entity-class mapping is performed using the NHibernate ClassMapping. Here
-    /// SISTEMA table is mapped over ESistema entity class.
+    /// Here is the mapping class <see cref="ESistemaMapping"/>, on which entity-class mapping is performed using the NHibernate ClassMapping. Here
+    /// SEGTM_SISTEMA table is mapped over <see cref="ESistema"/> entity class.
     /// </summary>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <v1.0>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <description>Initial version</description>
     /// </v1.0>
+    /// <v2.0>
+    /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
+    /// <description>Include fields of database changes</description>
+    /// </v2.0>
     /// <seealso cref="NHibernate.Mapping.ByCode.Conformist.ClassMapping{Entity_Layer.Entities.Sistemas.ESistema}" />
     public class ESistemaMapping : ClassMapping<ESistema>
     {
@@ -57,6 +61,13 @@ namespace Entity_Layer.Mappings.Sistemas
                     map.Length(20);
                     map.NotNullable(true);
                 });
+            Property<Char>(
+                x => x.Estado,
+                map => {
+                    map.Column("IN_ACTIVO");
+                    map.Length(1);
+                    map.NotNullable(true);
+                });
             Property<String>(
                 x => x.Descripcion, 
                 map => {
@@ -64,23 +75,34 @@ namespace Entity_Layer.Mappings.Sistemas
                     map.Length(200);
                     map.NotNullable(false);
                 });
-            Property<Char>(
-                x => x.Estado, 
+            Property<String>(
+                x => x.NombreServidor,
                 map => {
-                    map.Column("IN_ACTIVO");
-                    map.Length(1);
-                    map.NotNullable(true);
+                    map.Column("NO_SERVIDOR");
+                    map.Length(50);
+                    map.NotNullable(false);
                 });
-            //Bag(p => p.Modulos, map => map.Key(k => k.Column("ID_SISTEMA")), ce => ce.OneToMany());
-
-            //Bag(x => x.Modulos,
-            //    map =>
-            //    {
-            //        map.Inverse(true);
-            //        map.Cascade(Cascade.All);
-            //        map.Key(k => k.Column("ID_SISTEMA"));
-            //    });
-            //Bag(p => p.Districts, map => map.Key(k => k.Column("ProvinceId")), ce => ce.OneToMany());
+            Property<String>(
+                x => x.IPServidor,
+                map => {
+                    map.Column("IP_SERVIDOR");
+                    map.Length(15);
+                    map.NotNullable(false);
+                });
+            Property<String>(
+                x => x.RutaFisica,
+                map => {
+                    map.Column("DE_RUTA_FISICA");
+                    map.Length(200);
+                    map.NotNullable(false);
+                });
+            Property<String>(
+                x => x.RutaLogica,
+                map => {
+                    map.Column("DE_RUTA_LOGICA");
+                    map.Length(200);
+                    map.NotNullable(false);
+                });
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Interface_Layer.Models.Sistemas;
+﻿using Service_Layer.Models.Sistemas;
 using System.Runtime.Serialization;
 
 namespace Service_Layer.Models.Personas

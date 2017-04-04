@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-//using System.Collections;
-//using System.Collections.Generic;
 
 namespace Entity_Layer.Entities.Sistemas
 {
@@ -13,18 +10,12 @@ namespace Entity_Layer.Entities.Sistemas
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <description>Initial version</description>
     /// </v1.0>
+    /// <v2.0>
+    /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
+    /// <description>Include fields of database changes</description>
+    /// </v2.0>
     public class ESistema
     {
-        public ESistema()
-        {
-            //Modulos = new List<EModulo>();
-        }
-
-        public virtual void AddModulo(EModulo entity)
-        {
-            //Modulos.Add(entity);
-        }
-
         /// <summary>
         /// Gets or sets the Id, correspond to table field ID_SISTEMA.
         /// </summary>
@@ -32,47 +23,77 @@ namespace Entity_Layer.Entities.Sistemas
         /// set a value to the Id.
         /// </value>
         public virtual Int32 Id { get; set; }
-        
+
         /// <summary>
-        /// Gets or sets the Codigo, correspond to table field CODIGO.
+        /// Gets or sets the Codigo, correspond to table field CO_SISTEMA.
         /// </summary>
         /// <value>
         /// set a value to the Codigo.
         /// </value>
         public virtual String Codigo { get; set; }
-        
+
         /// <summary>
-        /// Gets or sets the Nombre, correspond to table field NOMBRE.
+        /// Gets or sets the Nombre, correspond to table field NO_SISTEMA.
         /// </summary>
         /// <value>
         /// set a value to the Nombre.
         /// </value>
         public virtual String Nombre { get; set; }
-        
+
         /// <summary>
-        /// Gets or sets the Abreviatura, correspond to table field ABREVIATURA.
+        /// Gets or sets the Abreviatura, correspond to table field NO_ABREVIATURA.
         /// </summary>
         /// <value>
         /// set a value to the Abreviatura.
         /// </value>
         public virtual String Abreviatura { get; set; }
-        
+
         /// <summary>
-        /// Gets or sets the Descripcion, correspond to table field DESCRIPCION.
-        /// </summary>
-        /// <value>
-        /// set a value to the Descripcion.
-        /// </value>
-        public virtual String Descripcion { get; set; }
-        
-        /// <summary>
-        /// Gets or sets the Estado, correspond to table field ESTADO.
+        /// Gets or sets the Estado, correspond to table field IN_ACTIVO.
         /// </summary>
         /// <value>
         /// set a value to the Estado.
         /// </value>
         public virtual Char Estado { get; set; }
-        
-        //public virtual IList<EModulo> Modulos { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Descripcion, correspond to table field DE_DESCRIPCION.
+        /// </summary>
+        /// <value>
+        /// set a value to the Descripcion.
+        /// </value>
+        public virtual String Descripcion { get; set; }
+
+        /// <summary>
+        /// Gets or sets the NombreServidor, correspond to table field NO_SERVIDOR.
+        /// </summary>
+        /// <value>
+        /// set a value to the NombreServidor.
+        /// </value>
+        public virtual String NombreServidor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the IPServidor, correspond to table field IP_SERVIDOR.
+        /// </summary>
+        /// <value>
+        /// set a value to the IPServidor.
+        /// </value>
+        public virtual String IPServidor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the RutaFisica, correspond to table field DE_RUTA_FISICA.
+        /// </summary>
+        /// <value>
+        /// set a value to the RutaFisica.
+        /// </value>
+        public virtual String RutaFisica { get; set; }
+
+        /// <summary>
+        /// Gets or sets the RutaLogica, correspond to table field DE_RUTA_LOGICA.
+        /// </summary>
+        /// <value>
+        /// set a value to the RutaLogica.
+        /// </value>
+        public virtual String RutaLogica { get; set; }
     }
 }

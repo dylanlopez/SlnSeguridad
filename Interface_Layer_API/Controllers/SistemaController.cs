@@ -1,6 +1,6 @@
 ﻿using Interface_Layer.App_Start;
-using Interface_Layer.Models.Sistemas;
 using Newtonsoft.Json;
+using Service_Layer.Models.Sistemas;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -49,7 +49,7 @@ namespace Interface_Layer.Controllers
         }
 
         [HttpPost]
-        public SistemaModel BuscarSistema(SistemaModel model, SistemaModel global)
+        public SistemaModel BuscarSistema(SistemaModel model)
         {
             _model = model;
             //SistemaModel response;

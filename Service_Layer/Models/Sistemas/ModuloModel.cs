@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Interface_Layer.Models.Sistemas
+namespace Service_Layer.Models.Sistemas
 {
     [DataContract]
     public class ModuloModel
@@ -12,34 +12,34 @@ namespace Interface_Layer.Models.Sistemas
             Codigo = string.Empty;
             Nombre = string.Empty;
             Abreviatura = string.Empty;
-            Descripcion = string.Empty;
             Estado = '\0';
+            Descripcion = string.Empty;
             Sistema = new SistemaModel();
             Menus = new List<MenuModel>();
         }
 
-        [DataMember(Name = "Id")]
+        [DataMember(Name = "Id", Order = 0)]
         public int Id { get; set; }
 
-        [DataMember(Name = "Codigo")]
+        [DataMember(Name = "Codigo", Order = 1)]
         public string Codigo { get; set; }
 
-        [DataMember(Name = "Nombre")]
+        [DataMember(Name = "Nombre", Order = 2)]
         public string Nombre { get; set; }
 
-        [DataMember(Name = "Abreviatura")]
+        [DataMember(Name = "Abreviatura", Order = 3)]
         public string Abreviatura { get; set; }
 
-        [DataMember(Name = "Descripcion")]
-        public string Descripcion { get; set; }
-
-        [DataMember(Name = "Estado")]
+        [DataMember(Name = "Estado", Order = 4)]
         public char Estado { get; set; }
 
-        [DataMember(Name = "Sistema")]
+        [DataMember(Name = "Descripcion", Order = 5)]
+        public string Descripcion { get; set; }
+
+        [DataMember(Name = "Sistema", Order = 6)]
         public SistemaModel Sistema { get; set; }
 
-        [DataMember(Name = "Menus")]
+        [DataMember(Name = "Menus", Order = 7)]
         public List<MenuModel> Menus { get; set; }
     }
 }

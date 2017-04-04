@@ -26,8 +26,8 @@ namespace Domain_Layer.Converters.Sistemas
             dto.Codigo = entity.Codigo;
             dto.Nombre = entity.Nombre;
             dto.Abreviatura = entity.Abreviatura;
-            dto.Descripcion = entity.Descripcion;
             dto.Estado = entity.Estado;
+            dto.Descripcion = entity.Descripcion;
             dto.Sistema = DSistemaConverter.ToDto(entity.Sistema);
             return dto;
         }
@@ -60,9 +60,7 @@ namespace Domain_Layer.Converters.Sistemas
             entity.Codigo = dto.Codigo.ToUpper();
             entity.Nombre = dto.Nombre.ToUpper();
             entity.Abreviatura = dto.Abreviatura.ToUpper();
-            //if(dto.Descripcion == null){
-            //    dto.Descripcion = string.Empty;
-            //}
+            entity.Estado = dto.Estado;
             if (!string.IsNullOrEmpty(dto.Descripcion))
             {
                 entity.Descripcion = dto.Descripcion.ToUpper();
@@ -71,7 +69,6 @@ namespace Domain_Layer.Converters.Sistemas
             {
                 entity.Descripcion = string.Empty;
             }
-            entity.Estado = dto.Estado;
             entity.Sistema = DSistemaConverter.ToEntity(dto.Sistema);
             return entity;
         }

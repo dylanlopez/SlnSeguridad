@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Midis Seguridad | Roles por Usuario</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="../Content/style.css">
+</head>
+<body>
+    <!--MENU-->
+    <div ng-controller="MenusCtrl">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="Index.html">Midis Seguridad</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown" ng-repeat="modulo in modulos">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            {{modulo.Abreviatura}}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="menu in modulo.Menus">
+                                <a href="{{menu.Ruta}}">{{menu.Nombre}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid" ng-controller="RolUsuarioCtrl">
+        <div class="alert alert-danger" data-ng-show="tieneError">
+            <strong>ERROR: </strong> {{ error }}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="container">
+                    <h4>Usuarios</h4>
+                    <form name="frmBusquedaUsuario">
+                        <div class="container-fluid form-group">
+                            <label for="txtBuscarUsuario" class="col-md-2 control-label">Usuario: </label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="txtBuscarUsuario" placeholder="Ingrese el nombre del usuario para buscar" data-ng-model="usuario" maxlength="100" />
+                            </div>
+                        </div>
+                        <div class="container-fluid form-group">
+                            <label for="txtBuscarNombrePersona" class="col-md-2 control-label">Nombre Persona: </label>
+                            <div class="col-md-4"> 
+                                <input type="text" class="form-control" id="txtBuscarNombrePersona" placeholder="Ingrese el nombre de la persona para buscar" data-ng-model="nombrePersona" maxlength="100" />
+                            </div>
+                        </div>
+                        <p>
+                            <input type="button" value="Buscar" data-ng-click="buscarUsuarios()" class="btn btn-primary" />
+                        </p>
+                    </form>
+                    <div class="list-group col-md-6">
+                        <a href="#" class="list-group-item" ng-repeat="usuario in usuarios" data-ng-click="buscar(usuario, $index)" ng-class="{active: $index == selectedUsuario}">
+                            <p class="list-group-item-text">{{usuario.Usuario}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h4>Roles</h4>
+                <div class="list-group">
+                    <a href="#" class="list-group-item" ng-repeat="rol in roles" data-ng-click="seleccionaRol(rol, $index)" ng-class="{active: $index == selectedRol}">
+                        <p class="list-group-item-text">{{rol.Nombre}}</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10">
+                <input type="hidden" id="hdnUsuario" data-ng-model="usuarioSeleccionado" />
+                <input type="hidden" id="hdnRol" data-ng-model="rolSeleccionado" />
+            </div>
+            <div class="col-md-2">
+                <input type="button" class="btn btn-primary" value="Agregar" data-ng-click="agregaRol()" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <h4>Roles por Usuarios</h4>
+                <div class="list-group">
+                    <a href="#" class="list-group-item" ng-repeat="usuariorol in usuariosroles">
+                        <!--<p class="list-group-item-text">{{usuariorol.Rol.Nombre}}</p>-->
+                        <div class="row">
+                            <div class="col-md-7">
+                                <label class="list-group-item-text">{{usuariorol.Rol.Nombre}}</label>
+                            </div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-2">
+                                <input type="button" class="btn btn-danger" value="Eliminar" data-ng-click="eliminarRol(usuariorol)" />
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
+                <input type="button" class="btn btn-primary" value="Guardar" data-ng-click="guardar()" />
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../Scripts/jquery-3.1.1.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="../Angular/myApp.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/rolusuarioCtrl.js"></script>
+</body>
+</html>

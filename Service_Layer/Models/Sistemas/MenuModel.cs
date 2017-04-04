@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Interface_Layer.Models.Sistemas
+namespace Service_Layer.Models.Sistemas
 {
     [DataContract]
     public class MenuModel
@@ -11,30 +11,30 @@ namespace Interface_Layer.Models.Sistemas
             Codigo = string.Empty;
             Nombre = string.Empty;
             Ruta = string.Empty;
-            Descripcion = string.Empty;
             Estado = '\0';
+            Descripcion = string.Empty;
             Modulo = new ModuloModel();
         }
 
-        [DataMember(Name = "Id")]
+        [DataMember(Name = "Id", Order = 0)]
         public int Id { get; set; }
 
-        [DataMember(Name = "Codigo")]
+        [DataMember(Name = "Codigo", Order = 1)]
         public string Codigo { get; set; }
 
-        [DataMember(Name = "Nombre")]
+        [DataMember(Name = "Nombre", Order = 2)]
         public string Nombre { get; set; }
 
-        [DataMember(Name = "Ruta")]
+        [DataMember(Name = "Ruta", Order = 3)]
         public string Ruta { get; set; }
 
-        [DataMember(Name = "Descripcion")]
-        public string Descripcion { get; set; }
-
-        [DataMember(Name = "Estado")]
+        [DataMember(Name = "Estado", Order = 4)]
         public char Estado { get; set; }
 
-        [DataMember(Name = "Modulo")]
+        [DataMember(Name = "Descripcion", Order = 5)]
+        public string Descripcion { get; set; }
+
+        [DataMember(Name = "Modulo", Order = 6)]
         public ModuloModel Modulo { get; set; }
     }
 }

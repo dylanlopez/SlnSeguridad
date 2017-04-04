@@ -1,4 +1,4 @@
-﻿myApp.controller("MenuCtrl", function ($scope, $http) {
+﻿myApp.controller("MenuCtrl", function ($scope, $http, webAPIControllers) {
     $scope.sistemas = [];
     $scope.sistemas2 = [];
     $scope.busquedaModulos = [];
@@ -12,7 +12,7 @@
 
     $http({
         method: 'POST',
-        url: '../api/Sistema/ListarSistemas',
+        url: webAPIControllers + '/api/Sistema/ListarSistemas',
     }).then(function successCallback(result) {
         $scope.sistemas = result.data;
         $scope.sistemas2 = result.data;
@@ -63,7 +63,7 @@
 
         $http({
             method: 'POST',
-            url: '../api/Modulo/ListarModulos',
+            url: webAPIControllers + '/api/Modulo/ListarModulos',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -110,7 +110,7 @@
 
         $http({
             method: 'POST',
-            url: '../api/Modulo/ListarModulos',
+            url: webAPIControllers + '/api/Modulo/ListarModulos',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -158,7 +158,7 @@
             //};
             $http({
                 method: 'POST',
-                url: '../api/Menu/ListarMenus',
+                url: webAPIControllers + '/api/Menu/ListarMenus',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -241,7 +241,7 @@
         {
             $http({
                 method: 'POST',
-                url: '../api/Menu/InsertarMenu',
+                url: webAPIControllers + '/api/Menu/InsertarMenu',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -262,7 +262,7 @@
         {
             $http({
                 method: 'PUT',
-                url: '../api/Menu/ActualizarMenu/' + men.Id,
+                url: webAPIControllers + '/api/Menu/ActualizarMenu/' + men.Id,
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -297,7 +297,7 @@
             //console.debug(men);
             $http({
                 method: 'DELETE',
-                url: '../api/Menu/EliminarMenu/' + men.Id,
+                url: webAPIControllers + '/api/Menu/EliminarMenu/' + men.Id,
                 headers: {
                     'Content-Type': 'application/json'
                 },

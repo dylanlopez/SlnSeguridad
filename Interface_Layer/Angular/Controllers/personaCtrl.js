@@ -1,4 +1,4 @@
-﻿myApp.controller("PersonaCtrl", function ($scope, $http) {
+﻿myApp.controller("PersonaCtrl", function ($scope, $http, webAPIControllers) {
     $scope.tiposDocumentosPersonas = [];
     $scope.personas = [];
     $scope.estaCargando = true;
@@ -8,7 +8,7 @@
 
     $http({
         method: 'POST',
-        url: '../api/TipoDocumentoPersona/ListarTipoDocumentoPersona',
+        url: webAPIControllers + '/api/TipoDocumentoPersona/ListarTipoDocumentoPersona',
     }).then(function successCallback(result) {
         $scope.tiposDocumentosPersonas = result.data;
         $scope.tieneError = false;
@@ -44,7 +44,7 @@
         }
         $http({
             method: 'POST',
-            url: '../api/Persona/ListarPersonas',
+            url: webAPIControllers + '/api/Persona/ListarPersonas',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -137,7 +137,7 @@
         {
             $http({
                 method: 'POST',
-                url: '../api/Persona/InsertarPersona',
+                url: webAPIControllers + '/api/Persona/InsertarPersona',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -158,7 +158,7 @@
         {
             $http({
                 method: 'PUT',
-                url: '../api/Persona/ActualizarPersona/' + module.Id,
+                url: webAPIControllers + '/api/Persona/ActualizarPersona/' + module.Id,
                 headers: {
                     'Content-Type': 'application/json'
                 },

@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Midis Seguridad | Modulos</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="../Content/style.css">
+</head>
+<body>
+    <!--MENU-->
+    <div ng-controller="MenusCtrl">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="Index.html">Midis Seguridad</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown" ng-repeat="modulo in modulos">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            {{modulo.Abreviatura}}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="menu in modulo.Menus">
+                                <a href="{{menu.Ruta}}">{{menu.Nombre}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="col-md-4"></div>
+        <h3 class="col-md-4">Modulos</h3>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="container" ng-controller="ModuloCtrl">
+        <div class="alert alert-danger" data-ng-show="tieneError">
+            <strong>ERROR: </strong> {{ error }}
+        </div>
+        <!--<strong class="error">{{ error }}</strong>-->
+        <!--MANTENIMIENTO-->
+        <div class="row" data-ng-show="estaEditable">
+            <form name="frmModulo" style="width:800px;margin:0px auto;">
+                <input type="hidden" id="hdnId" data-ng-model="mymodulo.Id" />
+                <div class="container-fluid form-group">
+                    <label for="txtCodigo" class="col-md-2 control-label">Codigo: </label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" id="txtCodigo" placeholder="Ingrese el codigo del módulo (obligatorio)" data-ng-model="mymodulo.Codigo" maxlength="4" required />
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="txtNombre" class="col-md-2 control-label">Nombre: </label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="txtNombre" placeholder="Ingrese el nombre del módulo (obligatorio)" data-ng-model="mymodulo.Nombre" maxlength="50" required />
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="txtAbreviatura" class="col-md-2 control-label">Abreviatura: </label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="txtAbreviatura" placeholder="Ingrese la abreviatura del módulo (obligatorio)" data-ng-model="mymodulo.Abreviatura" maxlength="20" required />
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="txtDescripcion" class="col-md-2 control-label">Descripcion: </label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="txtDescripcion" placeholder="Ingrese la abreviatura del módulo" data-ng-model="mymodulo.Descripcion" maxlength="200" />
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="cmbSistema" class="col-md-2 control-label">Sistema: </label>
+                    <div class="col-md-8">
+                        <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mymodulo.Sistema">
+                            <!--<option ng-value="mymodulo.Sistema">{{mymodulo.}}</option>-->
+                        </select>
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="txtEstado" class="col-md-2 control-label">Estado: </label>
+                    <div class="col-md-6">
+                        <!--<input type="text" class="form-control" id="txtEstado" placeholder="Ingrese el estado del sistema (obligatorio)" data-ng-model="mysistema.Estado" required />-->
+                        <input type="radio" id="optActivo" name="Estado" ng-model="mymodulo.EstaActivo" ng-value="true"> Activo<br>
+                        <input type="radio" id="optInactivo" name="Estado" ng-model="mymodulo.EstaActivo" ng-value="false"> Inactivo<br>
+                    </div>
+                </div>
+                <!--<input type="hidden" id="hdnId" data-ng-model="mymodulo.Sistema" />-->
+                <br />
+                <div class="container-fluid form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Guardar" data-ng-click="guardar()" data-ng-disabled="!frmModulo.$valid" class="btn btn-primary" />
+                        <input type="button" value="Cancelar" data-ng-click="nuevo()" class="btn btn-danger" />
+                    </div>
+                </div>
+                <br />
+            </form>
+        </div>
+
+        <!--LISTA-->
+        <div class="row" data-ng-hide="estaEditable">
+            <form name="frmBusquedaModulo" style="width:800px;margin:0px auto;">
+                <div class="container-fluid form-group">
+                    <label for="cmbBuscarSistema" class="col-md-2 control-label">Sistema: </label>
+                    <div class="col-md-8">
+                        <select id="cmbBuscarSistema" class="form-control" data-ng-options="sistema.Nombre for sistema in sistemas" data-ng-model="sistema"></select>
+                    </div>
+                </div>
+                <p>
+                    <input type="button" value="Buscar" data-ng-click="buscar()" class="btn btn-primary" />
+                    <input type="button" value="Nuevo" data-ng-click="nuevo()" class="btn btn-primary" />
+                </p>
+            </form>
+            <table class="table table-bordered table-hover" id="tab_logic">
+                <thead>
+                    <tr>
+                        <th class="col-md-1">Codigo</th>
+                        <th class="col-md-4">Nombre</th>
+                        <th class="col-md-2">Abreviatura</th>
+                        <!--<th>Descripcion</th>-->
+                        <th class="col-md-1">Estado</th>
+                        <th class="col-md-3">Sistema</th>
+                        <th class="col-md-1"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="modulo in modulos">
+                        <td>{{modulo.Codigo}}</td>
+                        <td>{{modulo.Nombre}}</td>
+                        <td>{{modulo.Abreviatura}}</td>
+                        <!--<td>{{modulo.Descripcion}}</td>-->
+                        <td>{{modulo.Estado}}</td>
+                        <td>{{modulo.Sistema.Nombre}}</td>
+                        <td>
+                            <p>
+                                <!--<a data-ng-click="modificar(modulo)" href="javascript:;">Modificar</a>-->
+                                <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(modulo)" />
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="divLoader" data-ng-show="loading">
+            <img id="imgLoader" src="../Images/ajax-loader.gif" class="ajax-loader" />
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../Scripts/jquery-3.1.1.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="../Angular/myApp.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/moduloCtrl.js"></script>
+</body>
+</html>

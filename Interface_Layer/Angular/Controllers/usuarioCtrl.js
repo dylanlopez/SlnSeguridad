@@ -1,4 +1,4 @@
-﻿myApp.controller("UsuarioCtrl", function ($scope, $http) {
+﻿myApp.controller("UsuarioCtrl", function ($scope, $http, webAPIControllers) {
     $scope.usuarios = [];
     $scope.personas = [];
     $scope.estaCargando = true;
@@ -21,7 +21,7 @@
         };
     $http({
         method: 'POST',
-        url: '../api/Persona/ListarPersonas',
+        url: webAPIControllers + '/api/Persona/ListarPersonas',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -72,7 +72,7 @@
         //console.debug(user);
         $http({
             method: 'POST',
-            url: '../api/Usuario/ListarUsuarios',
+            url: webAPIControllers + '/api/Usuario/ListarUsuarios',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -214,7 +214,7 @@
         {
             $http({
                 method: 'POST',
-                url: '../api/Usuario/InsertarUsuario',
+                url: webAPIControllers + '/api/Usuario/InsertarUsuario',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -235,7 +235,7 @@
         {
             $http({
                 method: 'PUT',
-                url: '../api/Usuario/ActualizarUsuario/' + user.Id,
+                url: webAPIControllers + '/api/Usuario/ActualizarUsuario/' + user.Id,
                 headers: {
                     'Content-Type': 'application/json'
                 },

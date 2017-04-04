@@ -82,7 +82,9 @@
     <Compile Include="Models\Personas\UsuarioModel.cs" />
     <Compile Include="Models\Personas\UsuarioRolModel.cs" />
     <Compile Include="Models\Sistemas\MenuModel.cs" />
+    <Compile Include="Models\Sistemas\MenuOpcionModel.cs" />
     <Compile Include="Models\Sistemas\ModuloModel.cs" />
+    <Compile Include="Models\Sistemas\OpcionModel.cs" />
     <Compile Include="Models\Sistemas\SistemaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CORSEnablingBehavior.cs" />

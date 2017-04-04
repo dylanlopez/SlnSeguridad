@@ -26,8 +26,8 @@ namespace Domain_Layer.Converters.Sistemas
             dto.Codigo = entity.Codigo;
             dto.Nombre = entity.Nombre;
             dto.Ruta = entity.Ruta;
-            dto.Descripcion = entity.Descripcion;
             dto.Estado = entity.Estado;
+            dto.Descripcion = entity.Descripcion;
             dto.Modulo = DModuloConverter.ToDto(entity.Modulo);
             return dto;
         }
@@ -60,6 +60,7 @@ namespace Domain_Layer.Converters.Sistemas
             entity.Codigo = dto.Codigo.ToUpper();
             entity.Nombre = dto.Nombre.ToUpper();
             entity.Ruta = dto.Ruta;
+            entity.Estado = dto.Estado;
             if (!string.IsNullOrEmpty(dto.Descripcion))
             {
                 entity.Descripcion = dto.Descripcion.ToUpper();
@@ -68,7 +69,6 @@ namespace Domain_Layer.Converters.Sistemas
             {
                 entity.Descripcion = string.Empty;
             }
-            entity.Estado = dto.Estado;
             entity.Modulo = DModuloConverter.ToEntity(dto.Modulo);
             return entity;
         }

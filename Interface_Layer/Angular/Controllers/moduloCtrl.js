@@ -1,4 +1,4 @@
-﻿myApp.controller("ModuloCtrl", function ($scope, $http) {
+﻿myApp.controller("ModuloCtrl", function ($scope, $http, webAPIControllers) {
     $scope.sistemas = [];
     $scope.modulos = [];
     $scope.estaCargando = true;
@@ -8,7 +8,7 @@
 
     $http({
         method: 'POST',
-        url: '../api/Sistema/ListarSistemas',
+        url: webAPIControllers + '/api/Sistema/ListarSistemas',
     }).then(function successCallback(result) {
         $scope.sistemas = result.data;
         $scope.tieneError = false;
@@ -52,7 +52,7 @@
             console.debug(module);
             $http({
                 method: 'POST',
-                url: '../api/Modulo/ListarModulos',
+                url: webAPIControllers + '/api/Modulo/ListarModulos',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -127,7 +127,7 @@
         {
             $http({
                 method: 'POST',
-                url: '../api/Modulo/InsertarModulo',
+                url: webAPIControllers + '/api/Modulo/InsertarModulo',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -148,7 +148,7 @@
         {
             $http({
                 method: 'PUT',
-                url: '../api/Modulo/ActualizarModulo/' + module.Id,
+                url: webAPIControllers + '/api/Modulo/ActualizarModulo/' + module.Id,
                 headers: {
                     'Content-Type': 'application/json'
                 },

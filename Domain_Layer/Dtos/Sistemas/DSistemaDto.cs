@@ -19,8 +19,12 @@
             Codigo = string.Empty;
             Nombre = string.Empty;
             Abreviatura = string.Empty;
-            Descripcion = string.Empty;
             Estado = '\0';
+            Descripcion = string.Empty;
+            NombreServidor = string.Empty;
+            IPServidor = string.Empty;
+            RutaFisica = string.Empty;
+            RutaLogica = string.Empty;
         }
 
         /// <summary>
@@ -56,6 +60,14 @@
         public string Abreviatura { get; set; }
 
         /// <summary>
+        /// Gets or sets the Estado, correspond to entity field Estado.
+        /// </summary>
+        /// <value>
+        /// value to the Estado.
+        /// </value>
+        public char Estado { get; set; }
+
+        /// <summary>
         /// Gets or sets the Descripcion, correspond to entity field Descripcion.
         /// </summary>
         /// <value>
@@ -64,11 +76,35 @@
         public string Descripcion { get; set; }
 
         /// <summary>
-        /// Gets or sets the Estado, correspond to entity field Estado.
+        /// Gets or sets the NombreServidor, correspond to entity field NombreServidor.
         /// </summary>
         /// <value>
-        /// value to the Estado.
+        /// set a value to the NombreServidor.
         /// </value>
-        public char Estado { get; set; }
+        public string NombreServidor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the IPServidor, correspond to entity field IPServidor.
+        /// </summary>
+        /// <value>
+        /// set a value to the IPServidor.
+        /// </value>
+        public string IPServidor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the RutaFisica, correspond to entity field RutaFisica.
+        /// </summary>
+        /// <value>
+        /// set a value to the RutaFisica.
+        /// </value>
+        public string RutaFisica { get; set; }
+
+        /// <summary>
+        /// Gets or sets the RutaLogica, correspond to entity field RutaLogica.
+        /// </summary>
+        /// <value>
+        /// set a value to the RutaLogica.
+        /// </value>
+        public string RutaLogica { get; set; }
     }
 }

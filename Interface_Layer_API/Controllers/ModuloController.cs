@@ -1,6 +1,5 @@
-﻿//using Domain_Layer.Dtos.Sistemas;
-using Interface_Layer.Models.Sistemas;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Service_Layer.Models.Sistemas;
 using System;
 using System.Collections.Generic;
 using System.Net;

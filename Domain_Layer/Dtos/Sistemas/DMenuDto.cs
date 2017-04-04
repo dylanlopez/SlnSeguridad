@@ -57,20 +57,20 @@
         public string Ruta { get; set; }
 
         /// <summary>
-        /// Gets or sets the Descripcion, correspond to entity field Descripcion.
-        /// </summary>
-        /// <value>
-        /// value to the Descripcion.
-        /// </value>
-        public string Descripcion { get; set; }
-
-        /// <summary>
         /// Gets or sets the Estado, correspond to entity field Estado.
         /// </summary>
         /// <value>
         /// value to the Estado.
         /// </value>
         public char Estado { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Descripcion, correspond to entity field Descripcion.
+        /// </summary>
+        /// <value>
+        /// value to the Descripcion.
+        /// </value>
+        public string Descripcion { get; set; }
 
         /// <summary>
         /// Gets or sets the Modulo, correspond to entity EModulo.

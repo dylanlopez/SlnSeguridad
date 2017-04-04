@@ -6,14 +6,18 @@ using System;
 namespace Entity_Layer.Mappings.Sistemas
 {
     /// <summary>
-    /// Here is the mapping class EMenuMapping, on which entity-class mapping is performed using the NHibernate ClassMapping. Here
-    /// MENU table is mapped over EMenu entity class.
+    /// Here is the mapping class <see cref="EMenuMapping"/>, on which entity-class mapping is performed using the NHibernate ClassMapping. Here
+    /// SEGTM_MENU table is mapped over <see cref="EMenu"/> entity class.
     /// </summary>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <v1.0>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <description>Initial version</description>
     /// </v1.0>
+    /// <v2.0>
+    /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
+    /// <description>Include fields of database changes</description>
+    /// </v2.0>
     /// <seealso cref="NHibernate.Mapping.ByCode.Conformist.ClassMapping{Entity_Layer.Entities.Sistemas.EMenu}" />
     public class EMenuMapping : ClassMapping<EMenu>
     {
@@ -58,19 +62,19 @@ namespace Entity_Layer.Mappings.Sistemas
                     map.Length(200);
                     map.NotNullable(true);
                 });
+            Property<Char>(
+                x => x.Estado,
+                map => {
+                    map.Column("IN_ACTIVO");
+                    map.Length(1);
+                    map.NotNullable(true);
+                });
             Property<String>(
                 x => x.Descripcion, 
                 map => {
                     map.Column("DE_DESCRIPCION");
                     map.Length(200);
                     map.NotNullable(false);
-                });
-            Property<Char>(
-                x => x.Estado, 
-                map => {
-                    map.Column("IN_ACTIVO");
-                    map.Length(1);
-                    map.NotNullable(true);
                 });
             ManyToOne<EModulo>(
                 x => x.Modulo, 

@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Midis Seguridad | Usuarios</title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="../Content/style.css">
+</head>
+<body>
+    <!--MENU-->
+    <div ng-controller="MenusCtrl">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="Index.html">Midis Seguridad</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown" ng-repeat="modulo in modulos">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            {{modulo.Abreviatura}}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="menu in modulo.Menus">
+                                <a href="{{menu.Ruta}}">{{menu.Nombre}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="col-md-4"></div>
+        <h3 class="col-md-4">Usuarios</h3>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="container" ng-controller="UsuarioCtrl">
+        <div class="alert alert-danger" data-ng-show="tieneError">
+            <strong>ERROR: </strong> {{ error }}
+        </div>
+        <!--MANTENIMIENTO-->
+        <div class="row" data-ng-show="estaEditable">
+            <form name="frmUsuario" style="width:800px;margin:0px auto;">
+                <input type="hidden" id="hdnId" data-ng-model="myuser.Id" />
+                <div class="container-fluid form-group">
+                    <label for="txtUsuario" class="col-md-2 control-label">Usuario: </label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="txtUsuario" placeholder="Ingrese el usuario (obligatorio)" data-ng-model="myuser.Usuario" maxlength="100" required />
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="txtContrasena" class="col-md-2 control-label">Contraseña: </label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="txtContrasena" placeholder="Ingrese la contraseña del usuario (obligatorio)" data-ng-model="myuser.Contrasena" maxlength="100" required />
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label class="col-md-2 control-label">¿Caduca?: </label>
+                    <div class="col-md-6">
+                        <fieldset class="EsNatural">
+                            <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myuser.EstaCaduca"><br>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="txtPeriodoCaducidad" class="col-md-2 control-label">Periodo Caducidad: </label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="txtPeriodoCaducidad" placeholder="Ingrese el periodo en dias en que el usuario caduca (obligatorio)" data-ng-model="myuser.PeriodoCaducidad" maxlength="10" required />
+                    </div>
+                </div>
+                <!--<div class="container-fluid form-group">
+                    <label for="txtFechaUltimoCambio" class="col-md-2 control-label">Fec. Ultimo Cambio: </label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="txtFechaUltimoCambio" placeholder="Ingrese el numero de documento de la persona (obligatorio)" data-ng-model="myUser.FechaUltimoCambio" maxlength="15" required />
+                    </div>
+                </div>-->
+                <div class="container-fluid form-group">
+                    <label class="col-md-2 control-label">¿Unico Ingreso?: </label>
+                    <div class="col-md-6">
+                        <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myuser.EsUnicoIngreso"><br>
+                    </div>
+                </div>
+                <!--<div class="container-fluid form-group">
+                    <label class="col-md-2 control-label">¿Ha Ingresado?: </label>
+                    <div class="col-md-6">
+                        <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myuser.HaIngresado"><br>
+                    </div>
+                </div>-->
+                <div class="container-fluid form-group">
+                    <label class="col-md-2 control-label">¿Otros Logeos?: </label>
+                    <div class="col-md-6">
+                        <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myuser.TieneOtrosLogeos"><br>
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="txtEstado" class="col-md-2 control-label">Tipo: </label>
+                    <div class="col-md-6">
+                        <input type="radio" id="optActivo" name="Tipo" ng-model="myuser.Tipo" value="I"> Interno<br>
+                        <input type="radio" id="optInactivo" name="Tipo" ng-model="myuser.Tipo" value="E"> Externo<br>
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label class="col-md-2 control-label">¿Está activo?: </label>
+                    <div class="col-md-6">
+                        <input type="checkbox" id="chkEstado" name="Estado" ng-model="myuser.EstaActivo"><br>
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="cmbPersona" class="col-md-2 control-label">Persona: </label>
+                    <div class="col-md-8">
+                        <select id="cmbPersona" class="form-control" ng-options="persona.Nombre for persona in personas track by persona.Id" data-ng-model="myuser.Persona"></select>
+                    </div>
+                </div>
+                <br />
+                <div class="container-fluid form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Guardar" data-ng-click="guardar()" data-ng-disabled="!frmUsuario.$valid" class="btn btn-primary" />
+                        <input type="button" value="Cancelar" data-ng-click="nuevo()" class="btn btn-danger" />
+                    </div>
+                </div>
+                <br />
+            </form>
+        </div>
+
+        <!--LISTA-->
+        <div class="row" data-ng-hide="estaEditable">
+            <form name="frmBusquedaUsuario" style="width:800px;margin:0px auto;">
+                <div class="container-fluid form-group">
+                    <label for="txtBuscarUsuario" class="col-md-2 control-label">Usuario: </label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="txtBuscarUsuario" placeholder="Ingrese el nombre del usuario para buscar" data-ng-model="usuario" maxlength="100" />
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="txtBuscarNombrePersona" class="col-md-2 control-label">Nombre Persona: </label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="txtBuscarNombrePersona" placeholder="Ingrese el nombre de la persona para buscar" data-ng-model="nombrePersona" maxlength="100" />
+                    </div>
+                </div>
+                
+                <p>
+                    <input type="button" value="Buscar" data-ng-click="buscar()" class="btn btn-primary" />
+                    <input type="button" value="Nuevo" data-ng-click="nuevo()" class="btn btn-primary" />
+                </p>
+            </form>
+            <table class="table table-bordered table-hover" id="tab_logic">
+                <thead>
+                    <tr>
+                        <th class="col-md-2">Usuario</th>
+                        <th class="col-md-1">Caduca</th>
+                        <th class="col-md-1">Unico Ingreso</th>
+                        <th class="col-md-1">Otros Logeos</th>
+                        <th class="col-md-1">Tipo</th>
+                        <th class="col-md-1">Estado</th>
+                        <th class="col-md-4">Persona</th>
+                        <th class="col-md-1"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="usuario in usuarios">
+                        <td>{{usuario.Usuario}}</td>
+                        <td>{{usuario.Caduca}}</td>
+                        <td>{{usuario.UnicoIngreso}}</td>
+                        <td>{{usuario.OtrosLogeos}}</td>
+                        <td>{{usuario.Tipo}}</td>
+                        <td>{{usuario.Estado}}</td>
+                        <td>{{usuario.Persona.Nombre}}</td>
+                        <td>
+                            <p>
+                                <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(usuario)" />
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="divLoader" data-ng-show="loading">
+            <img id="imgLoader" src="../Images/ajax-loader.gif" class="ajax-loader" />
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../Scripts/jquery-3.1.1.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="../Angular/myApp.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/usuarioCtrl.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-﻿myApp.controller("MenuRolCtrl", function ($scope, $http) {
+﻿myApp.controller("MenuRolCtrl", function ($scope, $http, webAPIControllers) {
     $scope.menusroles = [];
     $scope.sistemas = [];
     $scope.modulos = [];
@@ -19,7 +19,7 @@
             };
     $http({
         method: 'POST',
-        url: '../api/Rol/ListarRoles',
+        url: webAPIControllers + '/api/Rol/ListarRoles',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -37,7 +37,7 @@
     });
     $http({
         method: 'POST',
-        url: '../api/Sistema/ListarSistemas',
+        url: webAPIControllers + '/api/Sistema/ListarSistemas',
     }).then(function successCallback(result) {
         $scope.sistemas = result.data;
         $scope.tieneError = false;
@@ -68,7 +68,7 @@
 
         $http({
             method: 'POST',
-            url: '../api/Modulo/ListarModulos',
+            url: webAPIControllers + '/api/Modulo/ListarModulos',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -105,7 +105,7 @@
 
             $http({
                 method: 'POST',
-                url: '../api/Menu/ListarMenus',
+                url: webAPIControllers + '/api/Menu/ListarMenus',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -134,7 +134,7 @@
         //console.debug(rol);
         $http({
             method: 'POST',
-            url: '../api/MenuRol/ListarMenusRoles',
+            url: webAPIControllers + '/api/MenuRol/ListarMenusRoles',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -217,7 +217,7 @@
         //console.debug($scope.menusroles[0]);
         $http({
             method: 'DELETE',
-            url: '../api/MenuRol/EliminarMenuRol/' + $scope.menusroles[0].Id,
+            url: webAPIControllers + '/api/MenuRol/EliminarMenuRol/' + $scope.menusroles[0].Id,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -225,7 +225,7 @@
         }).then(function successCallback(result) {
             $http({
                 method: 'POST',
-                url: '../api/MenuRol/InsertarMenuRol',
+                url: webAPIControllers + '/api/MenuRol/InsertarMenuRol',
                 headers: {
                     'Content-Type': 'application/json'
                 },
