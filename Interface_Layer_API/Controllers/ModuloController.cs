@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Business_Layer.Utils;
+using Newtonsoft.Json;
 using Service_Layer.Models.Sistemas;
 using System;
 using System.Collections.Generic;
@@ -8,11 +9,10 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Web.Http;
 
-namespace Interface_Layer.Controllers
+namespace Interface_Layer_API.Controllers
 {
     public class ModuloController : ApiController
     {
-        //private DModuloDto _dto;
         private ModuloModel _model;
         private DataContractJsonSerializer _jsonSerializer;
         private BRestOperation _restOperation;
@@ -26,8 +26,8 @@ namespace Interface_Layer.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ActualizarModulo/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ActualizarModulo/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ActualizarModulo/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ActualizarModulo/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -48,8 +48,8 @@ namespace Interface_Layer.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/InsertarModulo/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/InsertarModulo/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/InsertarModulo/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/InsertarModulo/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -66,15 +66,14 @@ namespace Interface_Layer.Controllers
         {
             List<ModuloModel> response;
             _model = new ModuloModel();
-            //_dto = dto;
             _model.Sistema = model.Sistema;
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarModulos/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarModulos/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarModulos/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarModulos/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(List<ModuloModel>));
                     response = (List<ModuloModel>)_jsonSerializer.ReadObject(stream);
                     return response;

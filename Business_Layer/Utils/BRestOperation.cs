@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace Interface_Layer.Controllers
+namespace Business_Layer.Utils
 {
     public class BRestOperation : IDisposable
     {

@@ -1,9 +1,6 @@
 ﻿myApp.controller("MenuCtrl", function ($scope, $http, webAPIControllers) {
     $scope.sistemas = [];
-    $scope.sistemas2 = [];
-    $scope.busquedaModulos = [];
     $scope.modulos = [];
-    $scope.modulos2 = [];
     $scope.menus = [];
     $scope.estaCargando = true;
     $scope.estaEditable = false;
@@ -15,7 +12,6 @@
         url: webAPIControllers + '/api/Sistema/ListarSistemas',
     }).then(function successCallback(result) {
         $scope.sistemas = result.data;
-        $scope.sistemas2 = result.data;
         $scope.tieneError = false;
         $scope.error = "";
         $scope.estaCargando = false;
@@ -24,11 +20,11 @@
         $scope.error = "Ha ocurrido un error al listar: " + result;
         $scope.estaCargando = false;
     });
-
-    //$scope.buscarModulo = function (sistema) {
-    $scope.buscarBusquedaModulo = function () {
+    
+    $scope.buscarModulo = function () {
         $scope.tieneError = false;
         $scope.error = "";
+        //console.debug($scope.mymenu.Sistema);
 
         var module =
             {
@@ -38,28 +34,8 @@
                 "Abreviatura": '',
                 "Descripcion": '',
                 "Estado": '',
-                "Sistema": $scope.sistema,
+                "Sistema": $scope.mymenu.Sistema
             };
-
-        //var system =
-        //{
-        //    "Id": $scope.sistema.Id,
-        //    "Codigo": $scope.sistema.Codigo,
-        //    "Nombre": $scope.sistema.Nombre,
-        //    "Abreviatura": $scope.sistema.Abreviatura,
-        //    "Descripcion": $scope.sistema.Descripcion,
-        //    "Estado": $scope.sistema.Estado,
-        //};
-
-        //var system =
-        //{
-        //    "Id": sistema.Id,
-        //    "Codigo": sistema.Codigo,
-        //    "Nombre": sistema.Nombre,
-        //    "Abreviatura": sistema.Abreviatura,
-        //    "Descripcion": sistema.Descripcion,
-        //    "Estado": sistema.Estado,
-        //};
 
         $http({
             method: 'POST',
@@ -67,7 +43,6 @@
             headers: {
                 'Content-Type': 'application/json'
             },
-            //data: system,
             data: module,
         }).then(function successCallback(result) {
             $scope.modulos = result.data;
@@ -79,55 +54,8 @@
         });
     };
     
-    $scope.buscarModulo = function () {
-        $scope.tieneError = false;
-        $scope.error = "";
-        //alert("holas");
-        console.debug($scope.mymenu.Sistema);
-        //console.debug($scope.mymenu.sistema2);
-        //console.debug(mymenu.Modulo.Sistema);
-
-        var module =
-            {
-                "Id": '',
-                "Codigo": '',
-                "Nombre": '',
-                "Abreviatura": '',
-                "Descripcion": '',
-                "Estado": '',
-                "Sistema": $scope.sistema,
-            };
-
-        //var system =
-        //{
-        //    "Id": $scope.mymenu.Sistema.Id,
-        //    "Codigo": $scope.mymenu.Sistema.Codigo,
-        //    "Nombre": $scope.mymenu.Sistema.Nombre,
-        //    "Abreviatura": $scope.mymenu.Sistema.Abreviatura,
-        //    "Descripcion": $scope.mymenu.Sistema.Descripcion,
-        //    "Estado": $scope.mymenu.Sistema.Estado,
-        //};
-
-        $http({
-            method: 'POST',
-            url: webAPIControllers + '/api/Modulo/ListarModulos',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: module,
-            //data: system,
-        }).then(function successCallback(result) {
-            $scope.modulos2 = result.data;
-            $scope.estaCargando = false;
-        }, function errorCallback(result) {
-            $scope.tieneError = true;
-            $scope.error = "Ha ocurrido un error al listar: " + result;
-            $scope.estaCargando = false;
-        });
-    };
-    
     $scope.buscar = function () {
-        if (angular.isUndefined($scope.sistema) && angular.isUndefined($scope.modulo)) {
+        if (angular.isUndefined($scope.mymenu.Sistema) && angular.isUndefined($scope.mymenu.Modulo)) {
             $scope.tieneError = true;
             $scope.error = "Debe ingresar un sistema y módulo para poder ver sus menús";
         }
@@ -135,7 +63,7 @@
             $scope.tieneError = false;
             $scope.error = "";
 
-            var men =
+            var menu =
             {
                 "Id": '',
                 "Codigo": '',
@@ -143,26 +71,16 @@
                 "Ruta": '',
                 "Descripcion": '',
                 "Estado": '',
-                "Modulo": $scope.modulo
+                "Modulo": $scope.mymenu.Modulo
             };
 
-            //var module =
-            //{
-            //    "Id": $scope.modulo.Id,
-            //    "Codigo": $scope.modulo.Codigo,
-            //    "Nombre": $scope.modulo.Nombre,
-            //    "Abreviatura": $scope.modulo.Abreviatura,
-            //    "Descripcion": $scope.modulo.Descripcion,
-            //    "Estado": $scope.modulo.Estado,
-            //    "Sistema": $scope.modulo.Sistema,
-            //};
             $http({
                 method: 'POST',
                 url: webAPIControllers + '/api/Menu/ListarMenus',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data: men,
+                data: menu,
             }).then(function successCallback(result) {
                 $scope.menus = result.data;
                 $scope.estaCargando = false;
@@ -194,7 +112,6 @@
 
     $scope.modificar = function (menu) {
         $scope.estaEditable = !$scope.estaEditable;
-        //console.debug(menu);
         if ($scope.estaEditable == true) {
             $scope.mymenu.Id = menu.Id;
             $scope.mymenu.Codigo = menu.Codigo;
@@ -202,31 +119,29 @@
             $scope.mymenu.Ruta = menu.Ruta;
             $scope.mymenu.Descripcion = menu.Descripcion;
             $scope.mymenu.Estado = menu.Estado;
-            if (menu.Estado == 'A') {
+            if (menu.Estado == 'S') {
                 $scope.mymenu.EstaActivo = true;
             }
-            else if (menu.Estado == 'I') {
+            else if (menu.Estado == 'N') {
                 $scope.mymenu.EstaActivo = false;
             }
             console.debug(menu.Modulo.Sistema);
             console.debug(menu.Modulo);
             $scope.mymenu.Sistema = menu.Modulo.Sistema;
             $scope.buscarModulo();
-            //$scope.mymenu.Sistema
             $scope.mymenu.Modulo = menu.Modulo;
-            //$scope.mymenu.Modulo
         }
     };
 
     $scope.guardar = function () {
         $scope.estaCargando = true;
         if ($scope.mymenu.EstaActivo) {
-            $scope.mymenu.Estado = "A";
+            $scope.mymenu.Estado = "S";
         }
         else {
-            $scope.mymenu.Estado = "I";
+            $scope.mymenu.Estado = "N";
         }
-        var men =
+        var menu =
             {
                 "Id": $scope.mymenu.Id,
                 "Codigo": $scope.mymenu.Codigo,
@@ -237,7 +152,7 @@
                 "Modulo": $scope.mymenu.Modulo
             };
 
-        if (men.Id == "") //nuevo (insert)
+        if (menu.Id == "") //nuevo (insert)
         {
             $http({
                 method: 'POST',
@@ -245,7 +160,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data: men,
+                data: menu,
             }).then(function successCallback(result) {
                 $scope.nuevo();
                 $scope.menus = [];
@@ -262,11 +177,11 @@
         {
             $http({
                 method: 'PUT',
-                url: webAPIControllers + '/api/Menu/ActualizarMenu/' + men.Id,
+                url: webAPIControllers + '/api/Menu/ActualizarMenu/' + menu.Id,
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data: men,
+                data: menu,
             }).then(function successCallback(result) {
                 $scope.nuevo();
                 $scope.menus = [];

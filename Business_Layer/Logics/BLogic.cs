@@ -9,6 +9,9 @@ namespace Business_Layer.Logics
         private IDSistemaQuery _sistemaQuery;
         private IDModuloQuery _moduloQuery;
         private IDMenuQuery _menuQuery;
+        private IDOpcionQuery _opcionQuery;
+        private IDMenuOpcionQuery _menuOpcionQuery;
+
         private IDTipoDocumentoPersonaQuery _tipoDocumentoPersonaQuery;
         private IDPersonaQuery _personaQuery;
         private IDUsuarioQuery _usuarioQuery;

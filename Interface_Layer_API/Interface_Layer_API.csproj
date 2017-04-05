@@ -141,8 +141,10 @@
     <Compile Include="AuthorizeAttribute.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\MenuOpcionController.cs" />
     <Compile Include="Controllers\MenuRolController.cs" />
     <Compile Include="Controllers\ModuloController.cs" />
+    <Compile Include="Controllers\OpcionController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\SistemaController.cs" />

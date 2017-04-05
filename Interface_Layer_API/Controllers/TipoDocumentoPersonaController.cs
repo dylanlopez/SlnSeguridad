@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Business_Layer.Utils;
+using Newtonsoft.Json;
 using Service_Layer.Models.Personas;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Web.Http;
 
-namespace Interface_Layer.Controllers
+namespace Interface_Layer_API.Controllers
 {
     public class TipoDocumentoPersonaController : ApiController
     {

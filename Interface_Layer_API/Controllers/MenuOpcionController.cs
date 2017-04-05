@@ -1,6 +1,6 @@
 ﻿using Business_Layer.Utils;
 using Newtonsoft.Json;
-using Service_Layer.Models.Personas;
+using Service_Layer.Models.Sistemas;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -11,14 +11,14 @@ using System.Web.Http;
 
 namespace Interface_Layer_API.Controllers
 {
-    public class RolController : ApiController
+    public class MenuOpcionController : ApiController
     {
-        private RolModel _model;
+        private MenuOpcionModel _model;
         private DataContractJsonSerializer _jsonSerializer;
         private BRestOperation _restOperation;
 
         [HttpPut]
-        public HttpResponseMessage ActualizarRol(RolModel model)
+        public HttpResponseMessage ActualizarMenuOpcion(MenuOpcionModel model)
         {
             try
             {
@@ -26,8 +26,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ActualizarRol/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ActualizarRol/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ActualizarMenuOpcion/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ActualizarMenuOpcion/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -36,33 +36,11 @@ namespace Interface_Layer_API.Controllers
             catch (Exception ex)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
-        }
-
-        [HttpPost]
-        public RolModel BuscarRol(RolModel model)
-        {
-            _model = model;
-            try
-            {
-                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new BRestOperation())
-                {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/BuscarRol/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/BuscarRol/", dataToSend);
-                    _jsonSerializer = new DataContractJsonSerializer(typeof(PersonaModel));
-                    _model = (RolModel)_jsonSerializer.ReadObject(stream);
-                    return _model;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound, ex));
             }
         }
 
         [HttpDelete]
-        public HttpResponseMessage EliminarRol(RolModel model)
+        public HttpResponseMessage EliminarMenuOpcion(MenuOpcionModel model)
         {
             _model = model;
             try
@@ -70,8 +48,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/EliminarRol/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/EliminarRol/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/EliminarMenuOpcion/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/EliminarMenuOpcion/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -84,7 +62,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage InsertarRol(RolModel model)
+        public HttpResponseMessage InsertarMenuOpcion(MenuOpcionModel model)
         {
             try
             {
@@ -92,8 +70,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarRol/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarRol/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/InsertarMenuOpcion/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/InsertarMenuOpcion/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -106,20 +84,19 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
-        public List<RolModel> ListarRoles(RolModel model)
+        public List<MenuOpcionModel> ListarMenuOpciones(MenuOpcionModel model)
         {
-            List<RolModel> response;
-            _model = new RolModel();
+            List<MenuOpcionModel> response;
+            _model = model;
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ListarRoles/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarRoles/", dataToSend);
-                    _jsonSerializer = new DataContractJsonSerializer(typeof(List<RolModel>));
-                    response = (List<RolModel>)_jsonSerializer.ReadObject(stream);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarMenuOpciones/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarMenuOpciones/", dataToSend);
+                    _jsonSerializer = new DataContractJsonSerializer(typeof(List<MenuOpcionModel>));
+                    response = (List<MenuOpcionModel>)_jsonSerializer.ReadObject(stream);
                     return response;
                 }
             }

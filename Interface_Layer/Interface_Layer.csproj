@@ -66,6 +66,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Angular\Controllers\menuopcionCtrl.js" />
+    <Content Include="Angular\Controllers\opcionCtrl.js" />
     <Content Include="Angular\myApp.js" />
     <Content Include="login\authenticate.html" />
     <Content Include="login\login.html" />
@@ -122,9 +124,11 @@
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Views\Index.html" />
+    <Content Include="Views\MenusOpciones.html" />
     <Content Include="Views\Menus.html" />
     <Content Include="Views\MenusRoles.html" />
     <Content Include="Views\Modulos.html" />
+    <Content Include="Views\Opciones.html" />
     <Content Include="Views\Personas.html" />
     <Content Include="Views\Roles.html" />
     <Content Include="Views\Sistemas.html" />

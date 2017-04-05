@@ -117,5 +117,89 @@ namespace Service_Layer.Services
         UriTemplate = "ListarMenus/")]
         List<MenuModel> ListarMenus(MenuModel dto);
         #endregion
+
+        #region Opcion
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "ActualizarOpcion/")]
+        int ActualizarOpcion(OpcionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "BuscarOpcion/")]
+        OpcionModel BuscarOpcion(OpcionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "EliminarOpcion/")]
+        int EliminarOpcion(OpcionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "InsertarOpcion/")]
+        int InsertarOpcion(OpcionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "ListarOpciones/")]
+        List<OpcionModel> ListarOpciones(OpcionModel dto);
+        #endregion
+
+        #region MenuOpcion
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "ActualizarMenuOpcion/")]
+        int ActualizarMenuOpcion(MenuOpcionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "BuscarMenuOpcion/")]
+        MenuOpcionModel BuscarMenuOpcion(MenuOpcionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "EliminarMenuOpcion/")]
+        int EliminarMenuOpcion(MenuOpcionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "InsertarMenuOpcion/")]
+        int InsertarMenuOpcion(MenuOpcionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "ListarMenuOpciones/")]
+        List<MenuOpcionModel> ListarMenuOpciones(MenuOpcionModel dto);
+        #endregion
     }
 }

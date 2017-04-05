@@ -39,7 +39,6 @@
         <div class="alert alert-danger" data-ng-show="tieneError">
             <strong>ERROR: </strong> {{ error }}
         </div>
-        <!--<strong class="error">{{ error }}</strong>-->
         <!--MANTENIMIENTO-->
         <div class="row" data-ng-show="estaEditable">
             <form name="frmModulo" style="width:800px;margin:0px auto;">
@@ -72,19 +71,15 @@
                     <label for="cmbSistema" class="col-md-2 control-label">Sistema: </label>
                     <div class="col-md-8">
                         <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mymodulo.Sistema">
-                            <!--<option ng-value="mymodulo.Sistema">{{mymodulo.}}</option>-->
                         </select>
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="txtEstado" class="col-md-2 control-label">Estado: </label>
                     <div class="col-md-6">
-                        <!--<input type="text" class="form-control" id="txtEstado" placeholder="Ingrese el estado del sistema (obligatorio)" data-ng-model="mysistema.Estado" required />-->
-                        <input type="radio" id="optActivo" name="Estado" ng-model="mymodulo.EstaActivo" ng-value="true"> Activo<br>
-                        <input type="radio" id="optInactivo" name="Estado" ng-model="mymodulo.EstaActivo" ng-value="false"> Inactivo<br>
+                        <input type="checkbox" id="chkEstado" name="Estado" ng-model="mymodulo.EstaActivo"><br>
                     </div>
                 </div>
-                <!--<input type="hidden" id="hdnId" data-ng-model="mymodulo.Sistema" />-->
                 <br />
                 <div class="container-fluid form-group">
                     <div class="col-md-offset-2 col-md-10">
@@ -116,7 +111,6 @@
                         <th class="col-md-1">Codigo</th>
                         <th class="col-md-4">Nombre</th>
                         <th class="col-md-2">Abreviatura</th>
-                        <!--<th>Descripcion</th>-->
                         <th class="col-md-1">Estado</th>
                         <th class="col-md-3">Sistema</th>
                         <th class="col-md-1"></th>
@@ -127,12 +121,10 @@
                         <td>{{modulo.Codigo}}</td>
                         <td>{{modulo.Nombre}}</td>
                         <td>{{modulo.Abreviatura}}</td>
-                        <!--<td>{{modulo.Descripcion}}</td>-->
                         <td>{{modulo.Estado}}</td>
                         <td>{{modulo.Sistema.Nombre}}</td>
                         <td>
                             <p>
-                                <!--<a data-ng-click="modificar(modulo)" href="javascript:;">Modificar</a>-->
                                 <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(modulo)" />
                             </p>
                         </td>

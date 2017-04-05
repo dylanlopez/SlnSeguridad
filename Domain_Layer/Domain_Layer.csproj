@@ -90,11 +90,15 @@
     <Compile Include="Queries\Personas\IDTipoDocumentoPersonaQuery.cs" />
     <Compile Include="Queries\Personas\IDUsuarioQuery.cs" />
     <Compile Include="Queries\Personas\IDUsuarioRolQuery.cs" />
+    <Compile Include="Queries\Sistemas\DMenuOpcionQuery.cs" />
     <Compile Include="Queries\Sistemas\DMenuQuery.cs" />
     <Compile Include="Queries\Sistemas\DModuloQuery.cs" />
+    <Compile Include="Queries\Sistemas\DOpcionQuery.cs" />
     <Compile Include="Queries\Sistemas\DSistemaQuery.cs" />
+    <Compile Include="Queries\Sistemas\IDMenuOpcionQuery.cs" />
     <Compile Include="Queries\Sistemas\IDMenuQuery.cs" />
     <Compile Include="Queries\Sistemas\IDModuloQuery.cs" />
+    <Compile Include="Queries\Sistemas\IDOpcionQuery.cs" />
     <Compile Include="Queries\Sistemas\IDSistemaQuery.cs" />
   </ItemGroup>
   <ItemGroup>

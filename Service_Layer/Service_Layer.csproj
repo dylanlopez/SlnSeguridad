@@ -73,7 +73,9 @@
     <Compile Include="Converters\Personas\SUsuarioConverter.cs" />
     <Compile Include="Converters\Personas\SUsuarioRolConverter.cs" />
     <Compile Include="Converters\Sistemas\SMenuConverter.cs" />
+    <Compile Include="Converters\Sistemas\SMenuOpcionConverter.cs" />
     <Compile Include="Converters\Sistemas\SModuloConverter.cs" />
+    <Compile Include="Converters\Sistemas\SOpcionConverter.cs" />
     <Compile Include="Converters\Sistemas\SSistemaConverter.cs" />
     <Compile Include="Models\Personas\MenuRolModel.cs" />
     <Compile Include="Models\Personas\PersonaModel.cs" />

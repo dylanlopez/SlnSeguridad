@@ -4,7 +4,7 @@
     $scope.estaCargando = true;
     $scope.estaEditable = false;
     $scope.tieneError = false;
-    $scope.mymodule = [];
+    $scope.mymodulo = [];
 
     $http({
         method: 'POST',
@@ -29,24 +29,14 @@
             $scope.tieneError = false;
             $scope.error = "";
 
-            //var system =
-            //{
-            //    "Id": $scope.sistema.Id,
-            //    "Codigo": $scope.sistema.Codigo,
-            //    "Nombre": $scope.sistema.Nombre,
-            //    "Abreviatura": $scope.sistema.Abreviatura,
-            //    "Descripcion": $scope.sistema.Descripcion,
-            //    "Estado": $scope.sistema.Estado,
-            //};
-
             var module =
             {
                 "Id": '',
                 "Codigo": '',
                 "Nombre": '',
                 "Abreviatura": '',
-                "Descripcion": '',
                 "Estado": '',
+                "Descripcion": '',
                 "Sistema": $scope.sistema,
             };
             console.debug(module);
@@ -70,15 +60,15 @@
 
     $scope.nuevo = function () {
         $scope.estaEditable = !$scope.estaEditable;
-        $scope.mymodule.Id = "";
+        $scope.mymodulo.Id = "";
         if ($scope.estaEditable == false) {
-            $scope.mymodule.Codigo = "";
-            $scope.mymodule.Nombre = "";
-            $scope.mymodule.Abreviatura = "";
-            $scope.mymodule.Descripcion = "";
-            $scope.mymodule.Estado = "";
-            $scope.mymodule.EstaActivo = false;
-            $scope.mymodule.Sistema = null;
+            $scope.mymodulo.Codigo = "";
+            $scope.mymodulo.Nombre = "";
+            $scope.mymodulo.Abreviatura = "";
+            $scope.mymodulo.Estado = "";
+            $scope.mymodulo.EstaActivo = false;
+            $scope.mymodulo.Descripcion = "";
+            $scope.mymodulo.Sistema = null;
         }
         $scope.modulos = [];
         $scope.tieneError = false;
@@ -88,39 +78,39 @@
     $scope.modificar = function (modulo) {
         $scope.estaEditable = !$scope.estaEditable;
         if ($scope.estaEditable == true) {
-            $scope.mymodule.Id = modulo.Id;
-            $scope.mymodule.Codigo = modulo.Codigo;
-            $scope.mymodule.Nombre = modulo.Nombre;
-            $scope.mymodule.Abreviatura = modulo.Abreviatura;
-            $scope.mymodule.Descripcion = modulo.Descripcion;
-            $scope.mymodule.Estado = modulo.Estado;
-            if (modulo.Estado == 'A') {
-                $scope.mymodule.EstaActivo = true;
+            $scope.mymodulo.Id = modulo.Id;
+            $scope.mymodulo.Codigo = modulo.Codigo;
+            $scope.mymodulo.Nombre = modulo.Nombre;
+            $scope.mymodulo.Abreviatura = modulo.Abreviatura;
+            $scope.mymodulo.Estado = modulo.Estado;
+            if (modulo.Estado == 'S') {
+                $scope.mymodulo.EstaActivo = true;
             }
-            else if (modulo.Estado == 'I') {
-                $scope.mymodule.EstaActivo = false;
+            else if (modulo.Estado == 'N') {
+                $scope.mymodulo.EstaActivo = false;
             }
-            $scope.mymodule.Sistema = modulo.Sistema;
+            $scope.mymodulo.Descripcion = modulo.Descripcion;
+            $scope.mymodulo.Sistema = modulo.Sistema;
         }
     };
 
     $scope.guardar = function () {
         $scope.estaCargando = true;
-        if ($scope.mymodule.EstaActivo) {
-            $scope.mymodule.Estado = "A";
+        if ($scope.mymodulo.EstaActivo) {
+            $scope.mymodulo.Estado = "S";
         }
         else {
-            $scope.mymodule.Estado = "I";
+            $scope.mymodulo.Estado = "N";
         }
         var module =
             {
-                "Id": $scope.mymodule.Id,
-                "Codigo": $scope.mymodule.Codigo,
-                "Nombre": $scope.mymodule.Nombre,
-                "Abreviatura": $scope.mymodule.Abreviatura,
-                "Descripcion": $scope.mymodule.Descripcion,
-                "Estado": $scope.mymodule.Estado,
-                "Sistema": $scope.mymodule.Sistema
+                "Id": $scope.mymodulo.Id,
+                "Codigo": $scope.mymodulo.Codigo,
+                "Nombre": $scope.mymodulo.Nombre,
+                "Abreviatura": $scope.mymodulo.Abreviatura,
+                "Estado": $scope.mymodulo.Estado,
+                "Descripcion": $scope.mymodulo.Descripcion,
+                "Sistema": $scope.mymodulo.Sistema
             };
 
         if (module.Id == "") //nuevo (insert)

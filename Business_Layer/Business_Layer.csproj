@@ -62,10 +62,14 @@
     <Compile Include="Logics\Personas\IBUsuarioLogic.cs" />
     <Compile Include="Logics\Personas\IBUsuarioRolLogic.cs" />
     <Compile Include="Logics\Sistemas\BMenuLogic.cs" />
+    <Compile Include="Logics\Sistemas\BMenuOpcionLogic.cs" />
     <Compile Include="Logics\Sistemas\BModuloLogic.cs" />
+    <Compile Include="Logics\Sistemas\BOpcionLogic.cs" />
     <Compile Include="Logics\Sistemas\BSistemaLogic.cs" />
     <Compile Include="Logics\Sistemas\IBMenuLogic.cs" />
+    <Compile Include="Logics\Sistemas\IBMenuOpcionLogic.cs" />
     <Compile Include="Logics\Sistemas\IBModuloLogic.cs" />
+    <Compile Include="Logics\Sistemas\IBOpcionLogic.cs" />
     <Compile Include="Logics\Sistemas\IBSistemaLogic.cs" />
     <Compile Include="Utils\BDecrypt.cs" />
     <Compile Include="Utils\BEncrypt.cs" />

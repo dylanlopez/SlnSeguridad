@@ -27,13 +27,13 @@
             $scope.mysistema.Codigo = "";
             $scope.mysistema.Nombre = "";
             $scope.mysistema.Abreviatura = "";
+            $scope.mysistema.Estado = "";
+            $scope.mysistema.EstaActivo = false;
             $scope.mysistema.Descripcion = "";
             $scope.mysistema.NombreServidor = "";
             $scope.mysistema.IPServidor = "";
             $scope.mysistema.RutaFisica = "";
             $scope.mysistema.RutaLogica = "";
-            $scope.mysistema.Estado = "";
-            $scope.mysistema.EstaActivo = false;
         }
         $scope.tieneError = false;
         $scope.error = "";
@@ -46,20 +46,18 @@
             $scope.mysistema.Codigo = sistema.Codigo;
             $scope.mysistema.Nombre = sistema.Nombre;
             $scope.mysistema.Abreviatura = sistema.Abreviatura;
+            $scope.mysistema.Estado = sistema.Estado;
+            if (sistema.Estado == 'S') {
+                $scope.mysistema.EstaActivo = true;
+            }
+            else if (sistema.Estado == 'N') {
+                $scope.mysistema.EstaActivo = false;
+            }
             $scope.mysistema.Descripcion = sistema.Descripcion;
             $scope.mysistema.NombreServidor = sistema.NombreServidor;
             $scope.mysistema.IPServidor = sistema.IPServidor;
             $scope.mysistema.RutaFisica = sistema.RutaFisica;
             $scope.mysistema.RutaLogica = sistema.RutaLogica;
-            $scope.mysistema.Estado = sistema.Estado;
-            if (sistema.Estado == 'S')
-            {
-                $scope.mysistema.EstaActivo = true;
-            }
-            else if(sistema.Estado == 'N')
-            {
-                $scope.mysistema.EstaActivo = false;
-            }
         }
     };
 
@@ -86,7 +84,7 @@
                 "RutaFisica": $scope.mysistema.RutaFisica, 
                 "RutaLogica": $scope.mysistema.RutaLogica
             };
-
+        console.debug(system);
 
         if (system.Id == "") //nuevo (insert)
         {
