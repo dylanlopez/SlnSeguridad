@@ -101,12 +101,13 @@ namespace Domain_Layer.Configurations
                 mapper.AddMapping<EMenuMapping>();
                 mapper.AddMapping<EOpcionMapping>();
                 mapper.AddMapping<EMenuOpcionMapping>();
-                //mapper.AddMapping<ETipoDocumentoPersonaMapping>();
-                //mapper.AddMapping<EPersonaMapping>();
-                //mapper.AddMapping<EUsuarioMapping>();
-                //mapper.AddMapping<ERolMapping>();
-                //mapper.AddMapping<EUsuarioRolMapping>();
-                //mapper.AddMapping<EMenuRolMapping>();
+
+                mapper.AddMapping<EUsuarioMapping>();
+                mapper.AddMapping<EPerfilMapping>();
+                mapper.AddMapping<ESistemaPerfilMapping>();
+                mapper.AddMapping<ERolMapping>();
+                mapper.AddMapping<EPerfilUsuarioRolMapping>();
+                mapper.AddMapping<EPermisoMapping>();
                 HbmMapping mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
                 return mapping;
             }

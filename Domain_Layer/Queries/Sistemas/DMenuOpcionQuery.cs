@@ -150,8 +150,7 @@ namespace Domain_Layer.Queries
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
                         IQuery query = _sessionMidis.CreateQuery("FROM EMenuOpcion x " +
-                                                                 "WHERE x.Menu.Id = COALESCE(:p_IdMenu, x.Menu.Id) " +
-                                                                 "AND x.Opcion.Id = COALESCE(:p_IdOpcion, x.Opcion.Id)");
+                                                                 "WHERE x.Menu.Id = COALESCE(:p_IdMenu, x.Menu.Id) ");
                         if (dto.Menu.Id != 0)
                         {
                             query.SetParameter("p_IdMenu", dto.Menu.Id);
@@ -159,14 +158,6 @@ namespace Domain_Layer.Queries
                         else
                         {
                             query.SetParameter("p_IdMenu", null, NHibernateUtil.Int32);
-                        }
-                        if (dto.Opcion.Id != 0)
-                        {
-                            query.SetParameter("p_IdOpcion", dto.Opcion.Id);
-                        }
-                        else
-                        {
-                            query.SetParameter("p_IdOpcion", null, NHibernateUtil.Int32);
                         }
                         var result = query.List<EMenuOpcion>();
                         if (result != null)

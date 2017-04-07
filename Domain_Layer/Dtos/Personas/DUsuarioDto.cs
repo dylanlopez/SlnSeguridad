@@ -29,7 +29,6 @@ namespace Domain_Layer.Dtos.Personas
             OtrosLogeos = '\0';
             Tipo = '\0';
             Estado = '\0';
-            Persona = new DPersonaDto();
         }
 
         /// <summary>
@@ -55,6 +54,30 @@ namespace Domain_Layer.Dtos.Personas
         /// set a value to the Contrasena.
         /// </value>
         public string Contrasena { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ApellidoPaterno, correspond to entity field ApellidoPaterno.
+        /// </summary>
+        /// <value>
+        /// set a value to the ApellidoPaterno.
+        /// </value>
+        public string ApellidoPaterno { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ApellidoMaterno, correspond to entity field ApellidoMaterno.
+        /// </summary>
+        /// <value>
+        /// set a value to the ApellidoMaterno.
+        /// </value>
+        public string ApellidoMaterno { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Nombres, correspond to entity field Nombres.
+        /// </summary>
+        /// <value>
+        /// set a value to the Nombres.
+        /// </value>
+        public string Nombres { get; set; }
 
         /// <summary>
         /// Gets or sets the Caduca, correspond to entity field Caduca.
@@ -119,13 +142,5 @@ namespace Domain_Layer.Dtos.Personas
         /// set a value to the Estado.
         /// </value>
         public char Estado { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Persona, correspond to entity Persona.
-        /// </summary>
-        /// <value>
-        /// set a value to the Persona.
-        /// </value>
-        public DPersonaDto Persona { get; set; }
     }
 }

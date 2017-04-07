@@ -25,7 +25,6 @@ namespace Domain_Layer.Converters.Personas
             dto.Id = entity.Id;
             dto.Nombre = entity.Nombre;
             dto.Descripcion = entity.Descripcion;
-            dto.Estado = entity.Estado;
             return dto;
         }
 
@@ -63,7 +62,6 @@ namespace Domain_Layer.Converters.Personas
             {
                 entity.Descripcion = string.Empty;
             }
-            entity.Estado = dto.Estado;
             return entity;
         }
     }

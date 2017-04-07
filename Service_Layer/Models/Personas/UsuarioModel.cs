@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace Service_Layer.Models.Personas
 {
@@ -11,53 +10,59 @@ namespace Service_Layer.Models.Personas
             Id = 0;
             Usuario = string.Empty;
             Contrasena = string.Empty;
+            ApellidoPaterno = string.Empty;
+            ApellidoMaterno = string.Empty;
+            Nombres = string.Empty;
             Caduca = '\0';
             PeriodoCaducidad = 0;
-            //FechaUltimoCambio = new DateTime();
-            //FechaUltimoCambio = DateTime.Now;
             FechaUltimoCambio = string.Empty;
             UnicoIngreso = '\0';
             HaIngresado = '\0';
             OtrosLogeos = '\0';
             Tipo = '\0';
             Estado = '\0';
-            Persona = new PersonaModel();
         }
 
-        [DataMember(Name = "Id")]
+        [DataMember(Name = "Id", Order = 0)]
         public int Id { get; set; }
 
-        [DataMember(Name = "Usuario")]
+        [DataMember(Name = "Usuario", Order = 1)]
         public string Usuario { get; set; }
 
-        [DataMember(Name = "Contrasena")]
+        [DataMember(Name = "Contrasena", Order = 2)]
         public string Contrasena { get; set; }
 
-        [DataMember(Name = "Caduca")]
+        [DataMember(Name = "ApellidoPaterno", Order = 3)]
+        public string ApellidoPaterno { get; set; }
+
+        [DataMember(Name = "ApellidoMaterno", Order = 4)]
+        public string ApellidoMaterno { get; set; }
+
+        [DataMember(Name = "Nombres", Order = 5)]
+        public string Nombres { get; set; }
+
+        [DataMember(Name = "Caduca", Order = 6)]
         public char Caduca { get; set; }
 
-        [DataMember(Name = "PeriodoCaducidad")]
+        [DataMember(Name = "PeriodoCaducidad", Order = 7)]
         public int PeriodoCaducidad { get; set; }
 
-        [DataMember(Name = "FechaUltimoCambio")]
+        [DataMember(Name = "FechaUltimoCambio", Order = 8)]
         public string FechaUltimoCambio { get; set; }
 
-        [DataMember(Name = "UnicoIngreso")]
+        [DataMember(Name = "UnicoIngreso", Order = 9)]
         public char UnicoIngreso { get; set; }
 
-        [DataMember(Name = "HaIngresado")]
+        [DataMember(Name = "HaIngresado", Order = 10)]
         public char HaIngresado { get; set; }
 
-        [DataMember(Name = "OtrosLogeos")]
+        [DataMember(Name = "OtrosLogeos", Order = 11)]
         public char OtrosLogeos { get; set; }
 
-        [DataMember(Name = "Tipo")]
+        [DataMember(Name = "Tipo", Order = 12)]
         public char Tipo { get; set; }
 
-        [DataMember(Name = "Estado")]
+        [DataMember(Name = "Estado", Order = 13)]
         public char Estado { get; set; }
-
-        [DataMember(Name = "Persona")]
-        public PersonaModel Persona { get; set; }
     }
 }

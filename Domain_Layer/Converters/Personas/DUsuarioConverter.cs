@@ -27,6 +27,9 @@ namespace Domain_Layer.Converters.Personas
             dto.Id = entity.Id;
             dto.Usuario = entity.Usuario;
             dto.Contrasena = entity.Contrasena;
+            dto.ApellidoPaterno = entity.ApellidoPaterno;
+            dto.ApellidoMaterno = entity.ApellidoMaterno;
+            dto.Nombres = entity.Nombres;
             dto.Caduca = entity.Caduca;
             dto.PeriodoCaducidad = entity.PeriodoCaducidad;
             //dto.FechaUltimoCambio = entity.FechaUltimoCambio.ToShortDateString();
@@ -37,7 +40,6 @@ namespace Domain_Layer.Converters.Personas
             dto.OtrosLogeos = entity.OtrosLogeos;
             dto.Tipo = entity.Tipo;
             dto.Estado = entity.Estado;
-            dto.Persona = DPersonaConverter.ToDto(entity.Persona);
             return dto;
         }
 
@@ -68,6 +70,9 @@ namespace Domain_Layer.Converters.Personas
             entity.Id = dto.Id;
             entity.Usuario = dto.Usuario;
             entity.Contrasena = dto.Contrasena;
+            entity.ApellidoPaterno = dto.ApellidoPaterno.ToUpper();
+            entity.ApellidoMaterno = dto.ApellidoMaterno.ToUpper();
+            entity.Nombres = dto.Nombres.ToUpper();
             entity.Caduca = dto.Caduca;
             entity.PeriodoCaducidad = dto.PeriodoCaducidad;
             if (!string.IsNullOrEmpty(dto.FechaUltimoCambio))
@@ -84,7 +89,6 @@ namespace Domain_Layer.Converters.Personas
             entity.OtrosLogeos = dto.OtrosLogeos;
             entity.Tipo = dto.Tipo;
             entity.Estado = dto.Estado;
-            entity.Persona = DPersonaConverter.ToEntity(dto.Persona);
             return entity;
         }
     }

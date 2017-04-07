@@ -6,12 +6,11 @@ using NHibernate;
 using System;
 using System.Collections.Generic;
 
-
 namespace Domain_Layer.Queries
 {
-    public partial class DQuery : IDMenuRolQuery
+    public partial class DQuery : IDPerfilQuery
     {
-        public int Eliminar(DMenuRolDto dto)
+        public int Actualizar(DPerfilUsuarioRolDto dto)
         {
             try
             {
@@ -19,14 +18,7 @@ namespace Domain_Layer.Queries
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        IQuery query = _sessionMidis.CreateQuery("DELETE EMenuRol x " +
-                                                                 "WHERE x.Id IN (SELECT y.Id " +
-                                                                 "FROM EMenuRol y " +
-                                                                 "WHERE y.Menu.Modulo.Sistema.Id = :p_IdSistema " +
-                                                                 "AND y.Rol.Id = :p_IdRol) ");
-                        query.SetParameter("p_IdSistema", dto.Menu.Modulo.Sistema.Id);
-                        query.SetParameter("p_IdRol", dto.Rol.Id);
-                        query.ExecuteUpdate();
+                        _sessionMidis.Update(DPerfilUsuarioRolConverter.ToEntity(dto));
                         _transactionMidis.Commit();
                         return dto.Id;
                     }
@@ -37,7 +29,7 @@ namespace Domain_Layer.Queries
                 throw ex;
             }
         }
-        public int Insertar(DMenuRolDto dto)
+        public int Insertar(DPerfilUsuarioRolDto dto)
         {
             try
             {
@@ -45,7 +37,7 @@ namespace Domain_Layer.Queries
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        _sessionMidis.Save(DMenuRolConverter.ToEntity(dto));
+                        _sessionMidis.Save(DPerfilUsuarioRolConverter.ToEntity(dto));
                         _sessionMidis.Flush();
                         _transactionMidis.Commit();
                         return dto.Id;
@@ -57,25 +49,34 @@ namespace Domain_Layer.Queries
                 throw ex;
             }
         }
-        public List<DMenuRolDto> Listar(DMenuRolDto dto)
+        public List<DPerfilUsuarioRolDto> Listar(DPerfilUsuarioRolDto dto)
         {
-            List<DMenuRolDto> list = null;
+            List<DPerfilUsuarioRolDto> list = null;
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        IQuery query = _sessionMidis.CreateQuery("FROM EMenuRol x " +
-                                                                 "WHERE x.Menu.Id = COALESCE(:p_IdMenu, x.Menu.Id) " +
+                        IQuery query = _sessionMidis.CreateQuery("FROM EPerfilUsuarioRol x " +
+                                                                 "WHERE x.Perfil.Id = COALESCE(:p_IdPerfil, x.Perfil.Id) " +
+                                                                 "AND x.Usuario.Id = COALESCE(:p_IdUsuario, x.Usuario.Id) " +
                                                                  "AND x.Rol.Id = COALESCE(:p_IdRol, x.Rol.Id) ");
-                        if (dto.Menu.Id != 0)
+                        if (dto.Perfil.Id != 0)
                         {
-                            query.SetParameter("p_IdMenu", dto.Menu.Id);
+                            query.SetParameter("p_IdPerfil", dto.Perfil.Id);
                         }
                         else
                         {
-                            query.SetParameter("p_IdMenu", null, NHibernateUtil.Int32);
+                            query.SetParameter("p_IdPerfil", null, NHibernateUtil.Int32);
+                        }
+                        if (dto.Usuario.Id != 0)
+                        {
+                            query.SetParameter("p_IdUsuario", dto.Usuario.Id);
+                        }
+                        else
+                        {
+                            query.SetParameter("p_IdUsuario", null, NHibernateUtil.Int32);
                         }
                         if (dto.Rol.Id != 0)
                         {
@@ -85,10 +86,11 @@ namespace Domain_Layer.Queries
                         {
                             query.SetParameter("p_IdRol", null, NHibernateUtil.Int32);
                         }
-                        var result = query.List<EMenuRol>();
+
+                        var result = query.List<EPerfilUsuarioRol>();
                         if (result != null)
                         {
-                            list = DMenuRolConverter.ToDtos(result);
+                            list = DPerfilUsuarioRolConverter.ToDtos(result);
                         }
                         return list;
                     }

@@ -10,7 +10,6 @@ namespace Service_Layer.Models.Personas
             Id = 0;
             Nombre = string.Empty;
             Descripcion = string.Empty;
-            Estado = '\0';
         }
 
         [DataMember(Name = "Id")]
@@ -21,8 +20,5 @@ namespace Service_Layer.Models.Personas
 
         [DataMember(Name = "Descripcion")]
         public string Descripcion { get; set; }
-
-        [DataMember(Name = "Estado")]
-        public char Estado { get; set; }
     }
 }

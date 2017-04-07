@@ -12,6 +12,11 @@ namespace Service_Layer.Converters.Personas
             model.Id = dto.Id;
             model.Usuario = dto.Usuario;
             model.Contrasena = dto.Contrasena;
+
+            model.ApellidoPaterno = dto.ApellidoPaterno;
+            model.ApellidoMaterno = dto.ApellidoMaterno;
+            model.Nombres = dto.Nombres;
+
             model.Caduca = dto.Caduca;
             model.PeriodoCaducidad = dto.PeriodoCaducidad;
             model.FechaUltimoCambio = dto.FechaUltimoCambio;
@@ -20,7 +25,6 @@ namespace Service_Layer.Converters.Personas
             model.OtrosLogeos = dto.OtrosLogeos;
             model.Tipo = dto.Tipo;
             model.Estado = dto.Estado;
-            model.Persona = SPersonaConverter.ToModel(dto.Persona);
             return model;
         }
 
@@ -41,6 +45,9 @@ namespace Service_Layer.Converters.Personas
             dto.Id = model.Id;
             dto.Usuario = model.Usuario;
             dto.Contrasena = model.Contrasena;
+            dto.ApellidoPaterno = model.ApellidoPaterno;
+            dto.ApellidoMaterno = model.ApellidoMaterno;
+            dto.Nombres = model.Nombres;
             dto.Caduca = model.Caduca;
             dto.PeriodoCaducidad = model.PeriodoCaducidad;
             dto.FechaUltimoCambio = model.FechaUltimoCambio;
@@ -49,7 +56,6 @@ namespace Service_Layer.Converters.Personas
             dto.OtrosLogeos = model.OtrosLogeos;
             dto.Tipo = model.Tipo;
             dto.Estado = model.Estado;
-            dto.Persona = SPersonaConverter.ToDto(model.Persona);
             return dto;
         }
     }

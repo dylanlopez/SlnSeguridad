@@ -142,15 +142,12 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MenuOpcionController.cs" />
-    <Compile Include="Controllers\MenuRolController.cs" />
     <Compile Include="Controllers\ModuloController.cs" />
     <Compile Include="Controllers\OpcionController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\SistemaController.cs" />
-    <Compile Include="Controllers\TipoDocumentoPersonaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
-    <Compile Include="Controllers\UsuarioRolController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

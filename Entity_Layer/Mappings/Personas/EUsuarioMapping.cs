@@ -52,6 +52,27 @@ namespace Entity_Layer.Mappings.Personas
                     map.Length(256);
                     map.NotNullable(true);
                 });
+            Property<String>(
+                x => x.ApellidoPaterno,
+                map => {
+                    map.Column("NO_APELLIDO_PATERNO");
+                    map.Length(50);
+                    map.NotNullable(true);
+                });
+            Property<String>(
+                x => x.ApellidoMaterno,
+                map => {
+                    map.Column("NO_APELLIDO_MATERNO");
+                    map.Length(50);
+                    map.NotNullable(true);
+                });
+            Property<String>(
+                x => x.Nombres,
+                map => {
+                    map.Column("NO_NOMBRE");
+                    map.Length(100);
+                    map.NotNullable(true);
+                });
             Property<Char>(
                 x => x.Caduca, 
                 map => {
@@ -69,7 +90,6 @@ namespace Entity_Layer.Mappings.Personas
                 x => x.FechaUltimoCambio, 
                 map => {
                     map.Column("FE_ULTIMOCAMBIO");
-                    //map.Type(NHibernateUtil.Date);
                     map.NotNullable(true);
                 });
             Property<Char>(
@@ -106,21 +126,6 @@ namespace Entity_Layer.Mappings.Personas
                     map.Column("IN_ACTIVO");
                     map.Length(1);
                     map.NotNullable(true);
-                });
-            //OneToOne<EPersona>(
-            //    x => x.Persona, 
-            //    map => {
-            //        //map.ForeignKey("FK_USUARIO_01");
-            //        map.PropertyReference(typeof(EPersona).GetPropertyOrFieldMatchingName("ID_PERSONA"));
-            //    });
-            ManyToOne<EPersona>(
-                x => x.Persona,
-                map => {
-                    map.Column("ID_PERSONA");
-                    map.NotNullable(true);
-                    map.Update(true);
-                    map.Insert(true);
-                    map.ForeignKey("FK_USUARIO_01");
                 });
         }
     }

@@ -308,7 +308,7 @@ namespace Service_Layer.Services
                 _logger.WriteInfoLog("iniciando EliminarMenu");
                 _menuLogic = new BLogic();
                 var dto = SMenuConverter.ToDto(model);
-                return _menuLogic.Insertar(dto);
+                return _menuLogic.Eliminar(dto);
             }
             catch (Exception ex)
             {
@@ -548,7 +548,7 @@ namespace Service_Layer.Services
                 _logger.WriteInfoLog("iniciando EliminarMenuOpcion");
                 _menuOpcionLogic = new BLogic();
                 var dto = SMenuOpcionConverter.ToDto(model);
-                return _menuOpcionLogic.Insertar(dto);
+                return _menuOpcionLogic.Eliminar(dto);
             }
             catch (Exception ex)
             {

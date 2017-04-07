@@ -49,18 +49,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logics\BLogic.cs" />
-    <Compile Include="Logics\Personas\BMenuRolLogic.cs" />
+    <Compile Include="Logics\Personas\BPerfilLogic.cs" />
     <Compile Include="Logics\Personas\BPersonaLogic.cs" />
     <Compile Include="Logics\Personas\BRolLogic.cs" />
-    <Compile Include="Logics\Personas\BTipoDocumentoPersonaLogic.cs" />
     <Compile Include="Logics\Personas\BUsuarioLogic.cs" />
-    <Compile Include="Logics\Personas\BUsuarioRolLogic.cs" />
-    <Compile Include="Logics\Personas\IBMenuRolLogic.cs" />
+    <Compile Include="Logics\Personas\IBPerfilLogic.cs" />
+    <Compile Include="Logics\Personas\IBPerfilUsuarioRolLogic.cs" />
+    <Compile Include="Logics\Personas\IBPermisoLogic.cs" />
     <Compile Include="Logics\Personas\IBPersonaLogic.cs" />
     <Compile Include="Logics\Personas\IBRolLogic.cs" />
-    <Compile Include="Logics\Personas\IBTipoDocumentoPersonaLogic.cs" />
+    <Compile Include="Logics\Personas\IBSistemaPerfilLogic.cs" />
     <Compile Include="Logics\Personas\IBUsuarioLogic.cs" />
-    <Compile Include="Logics\Personas\IBUsuarioRolLogic.cs" />
     <Compile Include="Logics\Sistemas\BMenuLogic.cs" />
     <Compile Include="Logics\Sistemas\BMenuOpcionLogic.cs" />
     <Compile Include="Logics\Sistemas\BModuloLogic.cs" />

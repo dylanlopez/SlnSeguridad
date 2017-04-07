@@ -12,12 +12,13 @@ namespace Business_Layer.Logics
         private IDOpcionQuery _opcionQuery;
         private IDMenuOpcionQuery _menuOpcionQuery;
 
-        private IDTipoDocumentoPersonaQuery _tipoDocumentoPersonaQuery;
         private IDPersonaQuery _personaQuery;
         private IDUsuarioQuery _usuarioQuery;
+        private IDPerfilQuery _perfilQuery;
+        private IDSistemaPerfilQuery _sistemaPerfilQuery;
         private IDRolQuery _rolQuery;
-        private IDUsuarioRolQuery _usuarioRolQuery;
-        private IDMenuRolQuery _menuRolQuery;
+        private IDPerfilUsuarioRolQuery _perfilUsuarioRolQuery;
+        private IDPermisoQuery _permisoQuery;
         private Loggin _logger;
     }
 }

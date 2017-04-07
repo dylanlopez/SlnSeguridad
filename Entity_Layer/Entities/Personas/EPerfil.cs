@@ -1,20 +1,19 @@
-﻿using Entity_Layer.Entities.Sistemas;
-using System;
+﻿using System;
 
 namespace Entity_Layer.Entities.Personas
 {
     /// <summary>
-    /// Here is the entity class EMenuRol, for store all the data and do the mapping after.
+    /// Here is the entity class EPerfil, for store all the data and do the mapping after.
     /// </summary>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <v1.0>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <description>Initial version</description>
     /// </v1.0>
-    public class EMenuRol
+    public class EPerfil
     {
         /// <summary>
-        /// Gets or sets the Id, correspond to table field ID_MENU_ROL.
+        /// Gets or sets the Id, correspond to table field ID_PERFIL.
         /// </summary>
         /// <value>
         /// set a value to the Id.
@@ -22,19 +21,19 @@ namespace Entity_Layer.Entities.Personas
         public virtual Int32 Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the Menu, correspond to table field ID_MENU.
+        /// Gets or sets the Nombre, correspond to table field NO_PERFIL.
         /// </summary>
         /// <value>
-        /// set a value to the Menu.
+        /// set a value to the Nombre.
         /// </value>
-        public virtual EMenu Menu { get; set; }
+        public virtual String Nombre { get; set; }
 
         /// <summary>
-        /// Gets or sets the Rol, correspond to table field ID_ROL.
+        /// Gets or sets the Descripcion, correspond to table field DE_DESCRIPCION.
         /// </summary>
         /// <value>
-        /// set a value to the Rol.
+        /// set a value to the Descripcion.
         /// </value>
-        public virtual ERol Rol { get; set; }
+        public virtual String Descripcion { get; set; }
     }
 }

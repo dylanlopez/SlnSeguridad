@@ -106,16 +106,15 @@ namespace Domain_Layer.Queries
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        IQuery query = _sessionMidis.CreateQuery("FROM ERol x " +
-                                                                 "WHERE x.Estado = COALESCE(:p_Estado, x.Estado) ");
-                        if (dto.Estado != '\0')
-                        {
-                            query.SetParameter("p_Estado", dto.Estado);
-                        }
-                        else
-                        {
-                            query.SetParameter("p_Estado", null, NHibernateUtil.Character);
-                        }
+                        IQuery query = _sessionMidis.CreateQuery("FROM ERol x " );
+                        //if (dto.Estado != '\0')
+                        //{
+                        //    query.SetParameter("p_Estado", dto.Estado);
+                        //}
+                        //else
+                        //{
+                        //    query.SetParameter("p_Estado", null, NHibernateUtil.Character);
+                        //}
                         var result = query.List<ERol>();
                         if (result != null)
                         {

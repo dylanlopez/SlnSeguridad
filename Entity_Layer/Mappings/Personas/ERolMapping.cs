@@ -50,13 +50,6 @@ namespace Entity_Layer.Mappings.Personas
                     map.Length(200);
                     map.NotNullable(false);
                 });
-            Property<Char>(
-                x => x.Estado, 
-                map => {
-                    map.Column("IN_ACTIVO");
-                    map.Length(1);
-                    map.NotNullable(true);
-                });
         }
     }
 }

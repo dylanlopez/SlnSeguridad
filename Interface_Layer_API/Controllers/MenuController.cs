@@ -108,14 +108,21 @@ namespace Interface_Layer_API.Controllers
             _model.Modulo = model.Modulo;
             try
             {
-                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
-                using (_restOperation = new BRestOperation())
+                if (_model.Modulo != null)
                 {
-                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarMenus/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarMenus/", dataToSend);
-                    _jsonSerializer = new DataContractJsonSerializer(typeof(List<MenuModel>));
-                    response = (List<MenuModel>)_jsonSerializer.ReadObject(stream);
-                    return response;
+                    var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
+                    using (_restOperation = new BRestOperation())
+                    {
+                        //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarMenus/", dataToSend);
+                        var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarMenus/", dataToSend);
+                        _jsonSerializer = new DataContractJsonSerializer(typeof(List<MenuModel>));
+                        response = (List<MenuModel>)_jsonSerializer.ReadObject(stream);
+                        return response;
+                    }
+                }
+                else
+                {
+                    return new List<MenuModel>();
                 }
             }
             catch (Exception ex)

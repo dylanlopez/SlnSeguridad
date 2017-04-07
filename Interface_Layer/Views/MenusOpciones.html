@@ -61,7 +61,7 @@
                         <select id="cmbMenu" class="form-control" ng-options="menu.Nombre for menu in menus track by menu.Id" data-ng-model="mymenuopcion.Menu"></select>
                     </div>
                 </div>
-                <div class="container-fluid form-group">
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="cmbMenu" class="col-md-2 control-label">Opción: </label>
                     <div class="col-md-8">
                         <select id="cmbMenu" class="form-control" ng-options="opcion.Nombre for opcion in opciones track by opcion.Id" data-ng-model="mymenuopcion.Opcion"></select>
@@ -70,13 +70,13 @@
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtEstado" class="col-md-2 control-label">¿Está Activo? </label>
                     <div class="col-md-6">
-                        <input type="checkbox" id="chkEstado" name="Estado" ng-model="mymenu.EstaActivo"><br>
+                        <input type="checkbox" id="chkEstado" name="Estado" ng-model="mymenuopcion.EstaActivo"><br>
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtEstado" class="col-md-2 control-label">¿Está Visible? </label>
                     <div class="col-md-6">
-                        <input type="checkbox" id="chkVisible" name="Visible" ng-model="mymenu.EstaVisible"><br>
+                        <input type="checkbox" id="chkVisible" name="Visible" ng-model="mymenuopcion.EstaVisible"><br>
                     </div>
                 </div>
                 <br />
@@ -112,16 +112,29 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="menuopcion in menuesopciones">
-                        <td>{{menuopcion.Sistema.Nombre}}</td>
-                        <td>{{menuopcion.Modulo.Nombre}}</td>
+                        <td>{{menuopcion.Menu.Modulo.Sistema.Nombre}}</td>
+                        <td>{{menuopcion.Menu.Modulo.Nombre}}</td>
                         <td>{{menuopcion.Menu.Nombre}}</td>
                         <td>{{menuopcion.Opcion.Nombre}}</td>
                         <td>{{menuopcion.Estado}}</td>
                         <td>{{menuopcion.Visible}}</td>
                         <td>
                             <p>
-                                <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(opcion)" />
+                                <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(menuopcion)" />
+                                <input type="button" class="btn btn-danger" value="Eliminar" data-toggle="modal" data-target="#confirm-delete" />
                             </p>
+                            <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">Confirmación</div>
+                                        <div class="modal-body">¿Desea realmente eliminar la opción del menú seleccionado?</div>
+                                        <div class="modal-footer">
+                                            <input type="button" class="btn btn-default" value="Cancelar" data-dismiss="modal" />
+                                            <input type="button" class="btn btn-danger btn-ok" value="Eliminar" data-dismiss="modal" data-ng-click="eliminar(menuopcion)" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -138,5 +151,12 @@
     <script type="text/javascript" src="../Angular/myApp.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/menuopcionCtrl.js"></script>
+    <script type="text/javascript">
+        $('#modal').on('show', function () {
+            var id = $(this).data('id'),
+                removeBtn = $(this).find('.danger');
+            removeBtn.attr('href', removeBtn.attr('href').replace(/(&|\?)ref=\d*/, '$1ref=' + id));
+        });
+    </script>
 </body>
 </html>

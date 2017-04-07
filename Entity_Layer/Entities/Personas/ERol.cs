@@ -21,7 +21,7 @@ namespace Entity_Layer.Entities.Personas
         public virtual Int32 Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the Nombre, correspond to table field NOMBRE.
+        /// Gets or sets the Nombre, correspond to table field NO_ROL.
         /// </summary>
         /// <value>
         /// set a value to the Nombre.
@@ -29,19 +29,11 @@ namespace Entity_Layer.Entities.Personas
         public virtual String Nombre { get; set; }
 
         /// <summary>
-        /// Gets or sets the Descripcion, correspond to table field DESCRIPCION.
+        /// Gets or sets the Descripcion, correspond to table field DE_DESCRIPCION.
         /// </summary>
         /// <value>
         /// set a value to the Descripcion.
         /// </value>
         public virtual String Descripcion { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Estado, correspond to table field ESTADO.
-        /// </summary>
-        /// <value>
-        /// set a value to the Estado.
-        /// </value>
-        public virtual Char Estado { get; set; }
     }
 }

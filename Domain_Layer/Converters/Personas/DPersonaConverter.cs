@@ -22,16 +22,10 @@ namespace Domain_Layer.Converters.Personas
         internal static DPersonaDto ToDto(EPersona entity)
         {
             var dto = new DPersonaDto();
-            dto.Id = entity.Id;
-            dto.Nombre = entity.Nombre;
             dto.NumeroDocumento = entity.NumeroDocumento;
-            dto.Direccion = entity.Direccion;
-            dto.Telefono = entity.Telefono;
-            dto.Celular = entity.Celular;
-            dto.Email = entity.Email;
-            dto.Tipo = entity.Tipo;
-            dto.Ambito = entity.Ambito;
-            dto.TipoDocumentoPersona = DTipoDocumentoPersonaConverter.ToDto(entity.TipoDocumentoPersona);
+            dto.ApellidoPaterno = entity.ApellidoPaterno;
+            dto.ApellidoMaterno = entity.ApellidoMaterno;
+            dto.Nombres = entity.Nombres;
             return dto;
         }
 
@@ -49,55 +43,6 @@ namespace Domain_Layer.Converters.Personas
                 dtos.Add(dto);
             }
             return dtos;
-        }
-
-        /// <summary>
-        /// Method for convert DTO class DPersonaDto to entity class EPersona.
-        /// </summary>
-        /// <param name="dto">The DTO class DPersonaDto.</param>
-        /// <returns></returns>
-        internal static EPersona ToEntity(DPersonaDto dto)
-        {
-            var entity = new EPersona();
-            entity.Id = dto.Id;
-            entity.Nombre = dto.Nombre.ToUpper();
-            entity.NumeroDocumento = dto.NumeroDocumento.ToUpper();
-            if (!string.IsNullOrEmpty(dto.Direccion))
-            {
-                entity.Direccion = dto.Direccion.ToUpper();
-            }
-            else
-            {
-                entity.Direccion = string.Empty;
-            }
-            if (!string.IsNullOrEmpty(dto.Telefono))
-            {
-                entity.Telefono = dto.Telefono;
-            }
-            else
-            {
-                entity.Telefono = string.Empty;
-            }
-            if (!string.IsNullOrEmpty(dto.Celular))
-            {
-                entity.Celular = dto.Celular;
-            }
-            else
-            {
-                entity.Celular = string.Empty;
-            }
-            if (!string.IsNullOrEmpty(dto.Email))
-            {
-                entity.Email = dto.Email;
-            }
-            else
-            {
-                entity.Email = string.Empty;
-            }
-            entity.Tipo = dto.Tipo;
-            entity.Ambito = dto.Ambito;
-            entity.TipoDocumentoPersona = DTipoDocumentoPersonaConverter.ToEntity(dto.TipoDocumentoPersona);
-            return entity;
         }
     }
 }

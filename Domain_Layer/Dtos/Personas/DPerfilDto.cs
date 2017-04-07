@@ -1,25 +1,23 @@
-﻿using Domain_Layer.Dtos.Sistemas;
-
-namespace Domain_Layer.Dtos.Personas
+﻿namespace Domain_Layer.Dtos.Personas
 {
     /// <summary>
-    /// Here is the DTO class DMenuRolDto.
+    /// Here is the DTO class DPerfilDto.
     /// </summary>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <v1.0>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <description>Initial version</description>
     /// </v1.0>
-    public class DMenuRolDto
+    public class DPerfilDto
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DMenuRolDto"/> class.
+        /// Initializes a new instance of the <see cref="DPerfilDto"/> class.
         /// </summary>
-        public DMenuRolDto()
+        public DPerfilDto()
         {
             Id = 0;
-            Menu = new DMenuDto();
-            Rol = new DRolDto();
+            Nombre = string.Empty;
+            Descripcion = string.Empty;
         }
 
         /// <summary>
@@ -31,19 +29,19 @@ namespace Domain_Layer.Dtos.Personas
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the Menu, correspond to entity Menu.
+        /// Gets or sets the Nombre, correspond to entity field Nombre.
         /// </summary>
         /// <value>
-        /// set a value to the Menu.
+        /// set a value to the Nombre.
         /// </value>
-        public DMenuDto Menu { get; set; }
+        public string Nombre { get; set; }
 
         /// <summary>
-        /// Gets or sets the Rol, correspond to entity Rol.
+        /// Gets or sets the Descripcion, correspond to entity field Descripcion.
         /// </summary>
         /// <value>
-        /// set a value to the Rol.
+        /// set a value to the Descripcion.
         /// </value>
-        public DRolDto Rol { get; set; }
+        public string Descripcion { get; set; }
     }
 }

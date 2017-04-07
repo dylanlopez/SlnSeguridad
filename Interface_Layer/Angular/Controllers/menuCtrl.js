@@ -22,36 +22,41 @@
     });
     
     $scope.buscarModulo = function () {
-        $scope.tieneError = false;
-        $scope.error = "";
-        //console.debug($scope.mymenu.Sistema);
-
-        var module =
-            {
-                "Id": '',
-                "Codigo": '',
-                "Nombre": '',
-                "Abreviatura": '',
-                "Descripcion": '',
-                "Estado": '',
-                "Sistema": $scope.mymenu.Sistema
-            };
-
-        $http({
-            method: 'POST',
-            url: webAPIControllers + '/api/Modulo/ListarModulos',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: module,
-        }).then(function successCallback(result) {
-            $scope.modulos = result.data;
-            $scope.estaCargando = false;
-        }, function errorCallback(result) {
+        if (angular.isUndefined($scope.mymenu.Sistema)) {
             $scope.tieneError = true;
-            $scope.error = "Ha ocurrido un error al listar: " + result;
-            $scope.estaCargando = false;
-        });
+            $scope.error = "Debe ingresar un sistema para poder ver sus módulos";
+        }
+        else {
+            $scope.tieneError = false;
+            $scope.error = "";
+
+            var module =
+                {
+                    "Id": '',
+                    "Codigo": '',
+                    "Nombre": '',
+                    "Abreviatura": '',
+                    "Descripcion": '',
+                    "Estado": '',
+                    "Sistema": $scope.mymenu.Sistema
+                };
+
+            $http({
+                method: 'POST',
+                url: webAPIControllers + '/api/Modulo/ListarModulos',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: module,
+            }).then(function successCallback(result) {
+                $scope.modulos = result.data;
+                $scope.estaCargando = false;
+            }, function errorCallback(result) {
+                $scope.tieneError = true;
+                $scope.error = "Ha ocurrido un error al listar: " + result;
+                $scope.estaCargando = false;
+            });
+        }
     };
     
     $scope.buscar = function () {

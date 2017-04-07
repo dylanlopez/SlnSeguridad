@@ -35,7 +35,10 @@ namespace Service_Layer.Converters.Sistemas
             dto.Estado = model.Estado;
             dto.Visible = model.Visible;
             dto.Menu = SMenuConverter.ToDto(model.Menu);
-            dto.Opcion = SOpcionConverter.ToDto(model.Opcion);
+            if(model.Opcion != null)
+            {
+                dto.Opcion = SOpcionConverter.ToDto(model.Opcion);
+            }
             return dto;
         }
     }

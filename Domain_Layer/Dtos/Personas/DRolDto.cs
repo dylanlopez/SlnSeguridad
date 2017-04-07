@@ -18,7 +18,6 @@
             Id = 0;
             Nombre = string.Empty;
             Descripcion = string.Empty;
-            Estado = '\0';
         }
 
         /// <summary>
@@ -44,13 +43,5 @@
         /// set a value to the Descripcion.
         /// </value>
         public string Descripcion { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Estado, correspond to entity field Estado.
-        /// </summary>
-        /// <value>
-        /// set a value to the Estado.
-        /// </value>
-        public char Estado { get; set; }
     }
 }

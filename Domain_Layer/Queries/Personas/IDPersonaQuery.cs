@@ -14,38 +14,10 @@ namespace Domain_Layer.Queries.Personas
 public interface IDPersonaQuery
     {
         /// <summary>
-        /// Update the specified entity class EPersona.
-        /// </summary>
-        /// <param name="dto">The dto class DPersonaDto.</param>
-        /// <returns></returns>
-        int Actualizar(DPersonaDto dto);
-
-        /// <summary>
         /// Search the specified entity class EPersona filter by Id.
         /// </summary>
         /// <param name="dto">The dto class DPersonaDto.</param>
         /// <returns></returns>
         DPersonaDto Buscar(DPersonaDto dto);
-
-        /// <summary>
-        /// Delete the specified entity class EPersona.
-        /// </summary>
-        /// <param name="dto">The dto class DPersonaDto.</param>
-        /// <returns></returns>
-        int Eliminar(DPersonaDto dto);
-
-        /// <summary>
-        /// Insert the specified entity class EPersona.
-        /// </summary>
-        /// <param name="dto">The dto class DPersonaDto.</param>
-        /// <returns></returns>
-        int Insertar(DPersonaDto dto);
-
-        /// <summary>
-        /// List the specified entities classes EPersona filter with params.
-        /// </summary>
-        /// <param name="dto">The dto class DPersonaDto.</param>
-        /// <returns></returns>
-        List<DPersonaDto> Listar(DPersonaDto dto);
     }
 }

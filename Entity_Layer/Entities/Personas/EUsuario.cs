@@ -21,7 +21,7 @@ namespace Entity_Layer.Entities.Personas
         public virtual Int32 Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the Usuario, correspond to table field USUARIO.
+        /// Gets or sets the Usuario, correspond to table field US_USUARIO.
         /// </summary>
         /// <value>
         /// set a value to the Usuario.
@@ -29,7 +29,7 @@ namespace Entity_Layer.Entities.Personas
         public virtual String Usuario { get; set; }
 
         /// <summary>
-        /// Gets or sets the Contrasena, correspond to table field CONTRASENA.
+        /// Gets or sets the Contrasena, correspond to table field US_CONTRASENA.
         /// </summary>
         /// <value>
         /// set a value to the Contrasena.
@@ -37,7 +37,31 @@ namespace Entity_Layer.Entities.Personas
         public virtual String Contrasena { get; set; }
 
         /// <summary>
-        /// Gets or sets the Caduca, correspond to table field CADUCA.
+        /// Gets or sets the ApellidoPaterno, correspond to table field NO_APELLIDO_PATERNO.
+        /// </summary>
+        /// <value>
+        /// set a value to the ApellidoPaterno.
+        /// </value>
+        public virtual String ApellidoPaterno { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ApellidoMaterno, correspond to table field NO_APELLIDO_MATERNO.
+        /// </summary>
+        /// <value>
+        /// set a value to the ApellidoMaterno.
+        /// </value>
+        public virtual String ApellidoMaterno { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Nombres, correspond to table field NO_NOMBRE.
+        /// </summary>
+        /// <value>
+        /// set a value to the Nombres.
+        /// </value>
+        public virtual String Nombres { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Caduca, correspond to table field IN_CADUCA.
         /// </summary>
         /// <value>
         /// set a value to the Caduca.
@@ -45,7 +69,7 @@ namespace Entity_Layer.Entities.Personas
         public virtual Char Caduca { get; set; }
 
         /// <summary>
-        /// Gets or sets the PeriodoCaducidad, correspond to table field PERIODO_CADUCIDAD.
+        /// Gets or sets the PeriodoCaducidad, correspond to table field NU_PERIODO_CADUCIDAD.
         /// </summary>
         /// <value>
         /// set a value to the PeriodoCaducidad.
@@ -53,7 +77,7 @@ namespace Entity_Layer.Entities.Personas
         public virtual Int32 PeriodoCaducidad { get; set; }
 
         /// <summary>
-        /// Gets or sets the FechaUltimoCambio, correspond to table field FECHA_ULTIMOCAMBIO.
+        /// Gets or sets the FechaUltimoCambio, correspond to table field FE_ULTIMOCAMBIO.
         /// </summary>
         /// <value>
         /// set a value to the FechaUltimoCambio.
@@ -61,7 +85,7 @@ namespace Entity_Layer.Entities.Personas
         public virtual DateTime FechaUltimoCambio { get; set; }
 
         /// <summary>
-        /// Gets or sets the UnicoIngreso, correspond to table field UNICO_INGRESO.
+        /// Gets or sets the UnicoIngreso, correspond to table field IN_UNICO_INGRESO.
         /// </summary>
         /// <value>
         /// set a value to the UnicoIngreso.
@@ -69,7 +93,7 @@ namespace Entity_Layer.Entities.Personas
         public virtual Char UnicoIngreso { get; set; }
 
         /// <summary>
-        /// Gets or sets the HaIngresado, correspond to table field HA_INGRESADO.
+        /// Gets or sets the HaIngresado, correspond to table field IN_HA_INGRESADO.
         /// </summary>
         /// <value>
         /// set a value to the HaIngresado.
@@ -85,7 +109,7 @@ namespace Entity_Layer.Entities.Personas
         public virtual Char OtrosLogeos { get; set; }
 
         /// <summary>
-        /// Gets or sets the Tipo, correspond to table field TIPO.
+        /// Gets or sets the Tipo, correspond to table field IN_TIPO.
         /// </summary>
         /// <value>
         /// set a value to the Tipo.
@@ -93,19 +117,11 @@ namespace Entity_Layer.Entities.Personas
         public virtual Char Tipo { get; set; }
 
         /// <summary>
-        /// Gets or sets the Estado, correspond to table field ESTADO.
+        /// Gets or sets the Estado, correspond to table field IN_ACTIVO.
         /// </summary>
         /// <value>
         /// set a value to the Estado.
         /// </value>
         public virtual Char Estado { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Persona, correspond to table field ID_PERSONA.
-        /// </summary>
-        /// <value>
-        /// set a value to the Persona.
-        /// </value>
-        public virtual EPersona Persona { get; set; }
     }
 }

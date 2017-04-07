@@ -111,23 +111,32 @@ namespace Domain_Layer.Queries
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
                         IQuery query = _sessionMidis.CreateQuery("FROM EUsuario x " +
-                                                                 "WHERE x.Usuario LIKE CONCAT('%', COALESCE(:p_Usuario, x.Usuario), '%') " +
-                                                                 "AND x.Persona.Nombre LIKE CONCAT('%', COALESCE(:p_PersonaNombre, x.Persona.Nombre), '%') ");
-                        if (!dto.Usuario.Equals(string.Empty))
+                                                                 "WHERE x.ApellidoPaterno LIKE CONCAT('%', :p_ApellidoPaterno, '%') " +
+                                                                 "AND x.ApellidoMaterno LIKE CONCAT('%', :p_ApellidoMaterno, '%') " +
+                                                                 "AND x.Nombres LIKE CONCAT('%', :p_Nombres, '%') ");
+                        if (!dto.ApellidoPaterno.Equals(String.Empty))
                         {
-                            query.SetParameter("p_Usuario", dto.Usuario);
+                            query.SetParameter("p_ApellidoPaterno", dto.ApellidoPaterno.ToUpper());
                         }
                         else
                         {
-                            query.SetParameter("p_Usuario", null, NHibernateUtil.String);
+                            query.SetParameter("p_ApellidoPaterno", null, NHibernateUtil.String);
                         }
-                        if (!dto.Persona.Nombre.Equals(string.Empty))
+                        if (!dto.ApellidoMaterno.Equals(String.Empty))
                         {
-                            query.SetParameter("p_PersonaNombre", dto.Persona.Nombre);
+                            query.SetParameter("p_ApellidoMaterno", dto.ApellidoMaterno.ToUpper());
                         }
                         else
                         {
-                            query.SetParameter("p_PersonaNombre", null, NHibernateUtil.String);
+                            query.SetParameter("p_ApellidoMaterno", null, NHibernateUtil.String);
+                        }
+                        if (!dto.Nombres.Equals(String.Empty))
+                        {
+                            query.SetParameter("p_Nombres", dto.Nombres.ToUpper());
+                        }
+                        else
+                        {
+                            query.SetParameter("p_Nombres", null, NHibernateUtil.String);
                         }
                         var result = query.List<EUsuario>();
                         if (result != null)

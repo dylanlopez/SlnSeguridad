@@ -12,7 +12,6 @@ namespace Service_Layer.Converters.Personas
             model.Id = dto.Id;
             model.Nombre = dto.Nombre;
             model.Descripcion = dto.Descripcion;
-            model.Estado = dto.Estado;
             return model;
         }
 
@@ -36,7 +35,6 @@ namespace Service_Layer.Converters.Personas
             {
                 dto.Descripcion = model.Descripcion.ToUpper();
             }
-            dto.Estado = model.Estado;
             return dto;
         }
     }
