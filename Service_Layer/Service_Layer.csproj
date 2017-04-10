@@ -66,16 +66,24 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\Personas\SPerfilConverter.cs" />
+    <Compile Include="Converters\Personas\SPerfilUsuarioRolConverter.cs" />
+    <Compile Include="Converters\Personas\SPermisoConverter.cs" />
     <Compile Include="Converters\Personas\SPersonaConverter.cs" />
     <Compile Include="Converters\Personas\SRolConverter.cs" />
+    <Compile Include="Converters\Personas\SSistemaPerfilConvert.cs" />
     <Compile Include="Converters\Personas\SUsuarioConverter.cs" />
     <Compile Include="Converters\Sistemas\SMenuConverter.cs" />
     <Compile Include="Converters\Sistemas\SMenuOpcionConverter.cs" />
     <Compile Include="Converters\Sistemas\SModuloConverter.cs" />
     <Compile Include="Converters\Sistemas\SOpcionConverter.cs" />
     <Compile Include="Converters\Sistemas\SSistemaConverter.cs" />
+    <Compile Include="Models\Personas\PerfilModel.cs" />
+    <Compile Include="Models\Personas\PerfilUsuarioRolModel.cs" />
+    <Compile Include="Models\Personas\PermisoModel.cs" />
     <Compile Include="Models\Personas\PersonaModel.cs" />
     <Compile Include="Models\Personas\RolModel.cs" />
+    <Compile Include="Models\Personas\SistemaPerfilModel.cs" />
     <Compile Include="Models\Personas\UsuarioModel.cs" />
     <Compile Include="Models\Sistemas\MenuModel.cs" />
     <Compile Include="Models\Sistemas\MenuOpcionModel.cs" />

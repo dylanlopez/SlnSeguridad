@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Midis Seguridad | Perfiles</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="../Content/style.css">
+</head>
+<body>
+    <!--MENU-->
+    <div ng-controller="MenusCtrl">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="Index.html">Midis Seguridad</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown" ng-repeat="modulo in modulos">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            {{modulo.Abreviatura}}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="menu in modulo.Menus">
+                                <a href="{{menu.Ruta}}">{{menu.Nombre}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!--CONTENIDO-->
+    <div class="container">
+        <div class="col-md-4"></div>
+        <h3 class="col-md-4">Perfiles</h3>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="container" ng-controller="PerfilCtrl">
+        <div class="alert alert-danger" data-ng-show="tieneError">
+            <strong>ERROR: </strong> {{ error }}
+        </div>
+        <!--MANTENIMIENTO-->
+        <div class="row">
+            <form name="frmPerfil" style="width:800px;margin:0px auto;">
+                <input type="hidden" id="hdnId" data-ng-model="myperfil.Id" />
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <label for="txtNombre" class="col-md-2 control-label">Nombre: </label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="txtNombre" placeholder="Ingrese el nombre del perfil (obligatorio)" data-ng-model="myperfil.Nombre" maxlength="50" required />
+                    </div>
+                </div>
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <label for="txtDescripcion" class="col-md-2 control-label">Descripcion: </label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="txtDescripcion" placeholder="Ingrese la descripción del perfil" data-ng-model="myperfil.Descripcion" maxlength="200" />
+                    </div>
+                </div>
+                <br />
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Guardar" data-ng-click="guardar()" data-ng-disabled="!frmPerfil.$valid" class="btn btn-primary" />
+                        <input type="button" value="Cancelar" data-ng-click="nuevo()" class="btn btn-danger" />
+                    </div>
+                </div>
+                <div class="container-fluid form-group" data-ng-hide="estaEditable">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" value="Nuevo" data-ng-click="nuevo()" class="btn btn-primary" />
+                    </div>
+                </div>
+                <br />
+            </form>
+        </div>
+
+        <!--LISTA-->
+        <div class="row" data-ng-hide="estaEditable">
+            <table class="table table-bordered table-hover" id="tab_logic">
+                <thead>
+                    <tr>
+                        <th class="col-md-4">Nombre</th>
+                        <th class="col-md-7">Descripcion</th>
+                        <th class="col-md-1"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="perfil in perfiles">
+                        <td>{{perfil.Nombre}}</td>
+                        <td>{{perfil.Descripcion}}</td>
+                        <td>
+                            <p>
+                                <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(perfil)" />
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="divLoader" data-ng-show="loading">
+            <img id="imgLoader" src="../Images/ajax-loader.gif" class="ajax-loader" />
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../Scripts/jquery-3.1.1.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="../Angular/myApp.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/perfilCtrl.js"></script>
+</body>
+</html>

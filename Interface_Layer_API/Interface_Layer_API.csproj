@@ -144,9 +144,13 @@
     <Compile Include="Controllers\MenuOpcionController.cs" />
     <Compile Include="Controllers\ModuloController.cs" />
     <Compile Include="Controllers\OpcionController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Controllers\PerfilUsuarioRolController.cs" />
+    <Compile Include="Controllers\PermisoController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\SistemaController.cs" />
+    <Compile Include="Controllers\SistemaPerfilController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

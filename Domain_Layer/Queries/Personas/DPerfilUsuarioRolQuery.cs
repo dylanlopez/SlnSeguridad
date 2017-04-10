@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Domain_Layer.Queries
 {
-    public partial class DQuery : IDPerfilQuery
+    public partial class DQuery : IDPerfilUsuarioRolQuery
     {
         public int Actualizar(DPerfilUsuarioRolDto dto)
         {

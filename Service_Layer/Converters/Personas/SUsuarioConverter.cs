@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Service_Layer.Converters.Personas
 {
-    internal class SUsuarioConverter
+    internal static class SUsuarioConverter
     {
         internal static UsuarioModel ToModel(DUsuarioDto dto)
         {

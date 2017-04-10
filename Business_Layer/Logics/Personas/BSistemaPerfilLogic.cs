@@ -6,38 +6,38 @@ using System.Collections.Generic;
 
 namespace Business_Layer.Logics
 {
-    public partial class BLogic : IBPerfilLogic
+    public partial class BLogic : IBSistemaPerfilLogic
     {
-        public int Actualizar(DPerfilDto dto)
+        public int Actualizar(DSistemaPerfilDto dto)
         {
             try
             {
-                _perfilQuery = new DQuery();
-                return _perfilQuery.Actualizar(dto);
+                _sistemaPerfilQuery = new DQuery();
+                return _sistemaPerfilQuery.Actualizar(dto);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public int Insertar(DPerfilDto dto)
+        public int Insertar(DSistemaPerfilDto dto)
         {
             try
             {
-                _perfilQuery = new DQuery();
-                return _perfilQuery.Insertar(dto);
+                _sistemaPerfilQuery = new DQuery();
+                return _sistemaPerfilQuery.Insertar(dto);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public List<DPerfilDto> Listar(DPerfilDto dto)
+        public List<DSistemaPerfilDto> Listar(DSistemaPerfilDto dto)
         {
             try
             {
-                _perfilQuery = new DQuery();
-                return _perfilQuery.Listar(dto);
+                _sistemaPerfilQuery = new DQuery();
+                return _sistemaPerfilQuery.Listar(dto);
             }
             catch (Exception ex)
             {

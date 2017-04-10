@@ -50,8 +50,11 @@
   <ItemGroup>
     <Compile Include="Logics\BLogic.cs" />
     <Compile Include="Logics\Personas\BPerfilLogic.cs" />
+    <Compile Include="Logics\Personas\BPerfilUsuarioRolLogic.cs" />
+    <Compile Include="Logics\Personas\BPermisoLogic.cs" />
     <Compile Include="Logics\Personas\BPersonaLogic.cs" />
     <Compile Include="Logics\Personas\BRolLogic.cs" />
+    <Compile Include="Logics\Personas\BSistemaPerfilLogic.cs" />
     <Compile Include="Logics\Personas\BUsuarioLogic.cs" />
     <Compile Include="Logics\Personas\IBPerfilLogic.cs" />
     <Compile Include="Logics\Personas\IBPerfilUsuarioRolLogic.cs" />
