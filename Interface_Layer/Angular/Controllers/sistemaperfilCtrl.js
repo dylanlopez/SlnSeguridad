@@ -48,7 +48,7 @@
             {
                 "Id": '',
                 "Estado": '',
-                "Menu": $scope.mysistemaperfil.Sistema,
+                "Sistema": $scope.mysistemaperfil.Sistema,
                 "Perfil": ''
             };
 
@@ -60,7 +60,7 @@
                 },
                 data: sistemaperfil,
             }).then(function successCallback(result) {
-                $scope.menuesopciones = result.data;
+                $scope.sistemasperfiles = result.data;
                 $scope.estaCargando = false;
             }, function errorCallback(result) {
                 $scope.tieneError = true;
@@ -72,7 +72,7 @@
 
     $scope.nuevo = function () {
         $scope.estaEditable = !$scope.estaEditable;
-        $scope.myperfil.Id = "";
+        $scope.mysistemaperfil.Id = "";
         if ($scope.estaEditable == false) {
             $scope.mysistemaperfil.Estado = "";
             $scope.mysistemaperfil.EstaActivo = false;

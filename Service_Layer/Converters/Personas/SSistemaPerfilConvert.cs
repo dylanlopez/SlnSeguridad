@@ -34,7 +34,10 @@ namespace Service_Layer.Converters.Personas
             dto.Id = model.Id;
             dto.Estado = model.Estado;
             dto.Sistema = SSistemaConverter.ToDto(model.Sistema);
-            dto.Perfil = SPerfilConverter.ToDto(model.Perfil);
+            if (model.Perfil != null)
+            {
+                dto.Perfil = SPerfilConverter.ToDto(model.Perfil);
+            }
             return dto;
         }
     }
