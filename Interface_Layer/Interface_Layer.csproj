@@ -69,6 +69,7 @@
     <Content Include="Angular\Controllers\menuopcionCtrl.js" />
     <Content Include="Angular\Controllers\opcionCtrl.js" />
     <Content Include="Angular\Controllers\perfilCtrl.js" />
+    <Content Include="Angular\Controllers\perfilusuariorolCtrl.js" />
     <Content Include="Angular\Controllers\sistemaperfilCtrl.js" />
     <Content Include="Angular\myApp.js" />
     <Content Include="login\authenticate.html" />
@@ -132,6 +133,7 @@
     <Content Include="Views\Modulos.html" />
     <Content Include="Views\Opciones.html" />
     <Content Include="Views\Perfiles.html" />
+    <Content Include="Views\PerfilesUsuariosRoles.html" />
     <Content Include="Views\Personas.html" />
     <Content Include="Views\Roles.html" />
     <Content Include="Views\Sistemas.html" />

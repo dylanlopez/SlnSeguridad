@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Midis Seguridad | Roles por Perfiles por Usuarios</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="../Content/style.css">
+</head>
+<body>
+    <!--MENU-->
+    <div ng-controller="MenusCtrl">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="Index.html">Midis Seguridad</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown" ng-repeat="modulo in modulos">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            {{modulo.Abreviatura}}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="menu in modulo.Menus">
+                                <a href="{{menu.Ruta}}">{{menu.Nombre}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="col-md-4"></div>
+        <h3 class="col-md-4">Roles por Perfiles por Usuarios</h3>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="container" ng-controller="PerfilUsuarioRolCtrl">
+        <div class="alert alert-danger" data-ng-show="tieneError">
+            <strong>ERROR: </strong> {{ error }}
+        </div>
+        <!--MANTENIMIENTO-->
+        <div class="row">
+            <form name="frmPerfilUsuarioRol" style="width:800px;margin:0px auto;">
+                <input type="hidden" id="hdnId" data-ng-model="myperfilusuariorol.Id" />
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <label for="cmbPerfil" class="col-md-2 control-label">Perfil: </label>
+                    <div class="col-md-8">
+                        <select id="cmbPerfil" class="form-control" ng-options="perfil.Nombre for perfil in perfiles track by perfil.Id" data-ng-model="myperfilusuariorol.Perfil"></select>
+                    </div>
+                </div>
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <label for="txtUsuario" class="col-md-2 control-label">Usuario: </label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="txtUsuario" placeholder="Ingrese el usuario (obligatorio)" data-ng-model="myperfilusuariorol.Usuario" maxlength="8" required />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="button" value="Buscar" data-ng-click="buscarUsuario()" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <label for="txtApellidoPaterno" class="col-md-2 control-label">Apellido Paterno: </label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="txtApellidoPaterno"  data-ng-model="myusuario.ApellidoPaterno" maxlength="50" disabled />
+                    </div>
+                </div>
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <label for="txtApellidoMaterno" class="col-md-2 control-label">Apellido Materno: </label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="txtApellidoMaterno" data-ng-model="myusuario.ApellidoMaterno" maxlength="50" disabled />
+                    </div>
+                </div>
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <label for="txtNombres" class="col-md-2 control-label">Nombres: </label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="txtNombres" data-ng-model="myusuario.Nombres" maxlength="100" disabled />
+                    </div>
+                </div>
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <label for="cmbPerfil" class="col-md-2 control-label">Rol: </label>
+                    <div class="col-md-8">
+                        <select id="cmbPerfil" class="form-control" ng-options="rol.Nombre for rol in roles track by rol.Id" data-ng-model="myperfilusuariorol.Rol"></select>
+                    </div>
+                </div>
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <label class="col-md-2 control-label">¿Está activo?: </label>
+                    <div class="col-md-6">
+                        <input type="checkbox" id="chkEstado" name="Estado" ng-model="myperfilusuariorol.EstaActivo"><br>
+                    </div>
+                </div>
+                <br />
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Guardar" data-ng-click="guardar()" data-ng-disabled="!frmPerfilUsuarioRol.$valid" class="btn btn-primary" />
+                        <input type="button" value="Cancelar" data-ng-click="nuevo()" class="btn btn-danger" />
+                    </div>
+                </div>
+                <div class="container-fluid form-group" data-ng-hide="estaEditable">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" value="Buscar" data-ng-click="buscar()" class="btn btn-primary" />
+                        <input type="button" value="Nuevo" data-ng-click="nuevo()" class="btn btn-primary" />
+                    </div>
+                </div>
+                <br />
+            </form>
+        </div>
+
+        <!--LISTA-->
+        <div class="row" data-ng-hide="estaEditable">
+            <table class="table table-bordered table-hover" id="tab_logic">
+                <thead>
+                    <tr>
+                        <th class="col-md-3">Perfil</th>
+                        <th class="col-md-4">Usuario</th>
+                        <th class="col-md-3">Rol</th>
+                        <th class="col-md-1">¿Activo?</th>
+                        <th class="col-md-1"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="perfilusuariorol in perfilesusuariosroles">
+                        <td>{{perfilusuariorol.Usuario}}</td>
+                        <td>{{perfilusuariorol.Usuario.ApellidoPaterno}} {{perfilusuariorol.Usuario.ApellidoMaterno}} {{perfilusuariorol.Usuario.Nombres}}</td>
+                        <td>{{perfilusuariorol.UnicoIngreso}}</td>
+                        <td>{{perfilusuariorol.Estado}}</td>
+                        <td>
+                            <p>
+                                <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(perfilusuariorol)" />
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="divLoader" data-ng-show="loading">
+            <img id="imgLoader" src="../Images/ajax-loader.gif" class="ajax-loader" />
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../Scripts/jquery-3.1.1.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="../Angular/myApp.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/perfilusuariorolCtrl.js"></script>
+</body>
+</html>

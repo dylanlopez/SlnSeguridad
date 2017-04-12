@@ -90,10 +90,10 @@
             $scope.mysistemaperfil.Estado = sistemaperfil.Estado;
             $scope.mysistemaperfil.Sistema = sistemaperfil.Sistema;
             $scope.mysistemaperfil.Perfil = sistemaperfil.Perfil;
-            if (modulo.Estado == 'S') {
+            if (sistemaperfil.Estado == 'S') {
                 $scope.mysistemaperfil.EstaActivo = true;
             }
-            else if (modulo.Estado == 'N') {
+            else if (sistemaperfil.Estado == 'N') {
                 $scope.mysistemaperfil.EstaActivo = false;
             }
         }
@@ -101,6 +101,12 @@
 
     $scope.guardar = function () {
         $scope.estaCargando = true;
+        if ($scope.mysistemaperfil.EstaActivo) {
+            $scope.mysistemaperfil.Estado = "S";
+        }
+        else {
+            $scope.mysistemaperfil.Estado = "N";
+        }
         var sistemaperfil =
             {
                 "Id": $scope.mysistemaperfil.Id,
@@ -121,6 +127,7 @@
                 data: sistemaperfil,
             }).then(function successCallback(result) {
                 $scope.nuevo();
+                $scope.sistemasperfiles = [];
                 $scope.tieneError = false;
                 $scope.error = "";
                 $scope.estaCargando = false;
@@ -141,6 +148,7 @@
                 data: sistemaperfil,
             }).then(function successCallback(result) {
                 $scope.nuevo();
+                $scope.sistemasperfiles = [];
                 $scope.tieneError = false;
                 $scope.error = "";
                 $scope.estaCargando = false;

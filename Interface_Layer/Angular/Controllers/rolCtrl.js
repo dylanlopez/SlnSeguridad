@@ -9,8 +9,7 @@
             {
                 "Id": '',
                 "Nombre": '',
-                "Descripcion": '',
-                "Estado": '',
+                "Descripcion": ''
             };
     $http({
         method: 'POST',
@@ -20,13 +19,11 @@
         },
         data: role,
     }).then(function successCallback(result) {
-        //console.log(result.data);
         $scope.roles = result.data;
         $scope.tieneError = false;
         $scope.error = "";
         $scope.estaCargando = false;
     }, function errorCallback(result) {
-        //console.error(result);
         $scope.tieneError = true;
         $scope.error = "Ha ocuirrido un error al listar: " + result;
         $scope.estaCargando = false;
@@ -38,7 +35,6 @@
         if ($scope.estaEditable == false) {
             $scope.myrol.Nombre = "";
             $scope.myrol.Descripcion = "";
-            $scope.myrol.EstaActivo = false;
         }
         $scope.roles = [];
         $scope.tieneError = false;
@@ -51,12 +47,6 @@
             $scope.myrol.Id = role.Id;
             $scope.myrol.Nombre = role.Nombre;
             $scope.myrol.Descripcion = role.Descripcion;
-            if (role.Estado == 'A') {
-                $scope.myrol.EstaActivo = true;
-            }
-            else if (sistema.Estado == 'I') {
-                $scope.myrol.EstaActivo = false;
-            }
         }
     };
 
@@ -66,15 +56,8 @@
             {
                 "Id": $scope.myrol.Id,
                 "Nombre": $scope.myrol.Nombre,
-                "Descripcion": $scope.myrol.Descripcion,
-                "Estado": '',
+                "Descripcion": $scope.myrol.Descripcion
             };
-        if ($scope.myrol.EstaActivo) {
-            role.Estado = "A";
-        }
-        else {
-            role.Estado = "I";
-        }
         if (role.Id == "") //nuevo (insert)
         {
             $http({
@@ -96,7 +79,6 @@
                 $scope.error = "";
                 $scope.estaCargando = false;
             }, function errorCallback(result) {
-                //console.error(result);
                 $scope.tieneError = true;
                 $scope.error = "Ha ocuirrido un error al insertar: " + result;
                 $scope.estaCargando = false;
@@ -123,7 +105,6 @@
                 $scope.error = "";
                 $scope.estaCargando = false;
             }, function errorCallback(result) {
-                //console.error(result);
                 $scope.tieneError = true;
                 $scope.error = "Ha ocuirrido un error al actualizar: " + result;
                 $scope.estaCargando = false;

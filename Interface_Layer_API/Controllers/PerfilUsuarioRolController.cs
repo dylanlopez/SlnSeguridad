@@ -26,8 +26,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ActualizarPerfilUsuarioRol/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ActualizarPerfilUsuarioRol/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ActualizarPerfilUsuarioRol/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ActualizarPerfilUsuarioRol/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -48,8 +48,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarPerfilUsuarioRol/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarPerfilUsuarioRol/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarPerfilUsuarioRol/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarPerfilUsuarioRol/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);

@@ -26,8 +26,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ActualizarRol/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ActualizarRol/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ActualizarRol/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ActualizarRol/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -48,8 +48,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/BuscarRol/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/BuscarRol/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/BuscarRol/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/BuscarRol/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(PersonaModel));
                     _model = (RolModel)_jsonSerializer.ReadObject(stream);
                     return _model;
@@ -70,8 +70,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/EliminarRol/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/EliminarRol/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/EliminarRol/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/EliminarRol/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -92,8 +92,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarRol/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarRol/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarRol/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarRol/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
