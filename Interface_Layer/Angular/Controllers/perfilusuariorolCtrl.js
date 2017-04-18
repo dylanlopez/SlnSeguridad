@@ -53,11 +53,73 @@
             $scope.myusuario.ApellidoPaterno = "LOPEZ";
             $scope.myusuario.ApellidoMaterno = "ENCISO";
             $scope.myusuario.Nombres = "DYLAN";
+            $scope.myusuario.NombresCompletos = "LOPEZ ENCISO DYLAN";
         } else if ($scope.myperfilusuariorol.Usuario == '32991309') {
             $scope.myusuario.Id = "2";
             $scope.myusuario.ApellidoPaterno = "VASQUEZ";
             $scope.myusuario.ApellidoMaterno = "RAMIREZ";
             $scope.myusuario.Nombres = "ALEX";
+            $scope.myusuario.NombresCompletos = "VASQUEZ RAMIREZ ALEX";
+        }
+    };
+
+    $scope.buscar = function () {
+        //console.debug($scope.myperfilusuariorol.Perfil);
+        //console.debug($scope.myperfilusuariorol.Usuario);
+        //console.debug($scope.myperfilusuariorol.Rol);
+        if (angular.isUndefined($scope.myperfilusuariorol.Perfil) &&
+            angular.isUndefined($scope.myperfilusuariorol.Usuario) &&
+            angular.isUndefined($scope.myperfilusuariorol.Rol)) {
+            $scope.tieneError = true;
+            $scope.error = "Debe ingresar un perfil o usuario o rol para poder buscar";
+        }
+        else {
+            $scope.tieneError = false;
+            $scope.error = "";
+
+            var user =
+            {
+                "Id": $scope.myusuario.Id,
+                "Usuario": $scope.myperfilusuariorol.Usuario,
+                "Contrasena": '',
+                "ApellidoPaterno": '',
+                "ApellidoMaterno": '',
+                "Nombres": '',
+                "Caduca": '',
+                "PeriodoCaducidad": '',
+                "FechaUltimoCambio": '',
+                "UnicoIngreso": '',
+                "HaIngresado": '',
+                "OtrosLogeos": '',
+                "Tipo": '',
+                "Estado": ''
+            };
+
+            var perfilusuariorol =
+            {
+                "Id": '',
+                "Estado": '',
+                "Perfil": $scope.myperfilusuariorol.Perfil,
+                //"Usuario": $scope.myperfilusuariorol.Usuario,
+                "Usuario": user,
+                "Rol": $scope.myperfilusuariorol.Rol
+            };
+
+            $http({
+                method: 'POST',
+                url: webAPIControllers + '/api/PerfilUsuarioRol/ListarPerfilesUsuariosRoles',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: perfilusuariorol,
+            }).then(function successCallback(result) {
+                $scope.perfilesusuariosroles = result.data;
+                $scope.estaCargando = false;
+            }, function errorCallback(result) {
+                $scope.tieneError = true;
+                $scope.error = "Ha ocurrido un error al listar: " + result;
+                $scope.estaCargando = false;
+            });
         }
     };
 
@@ -126,7 +188,7 @@
             "Tipo": '',
             "Estado": ''
         };
-        console.debug(user);
+        //console.debug(user);
         
         var perfilusuariorol =
             {
@@ -137,7 +199,7 @@
                 "Usuario": user,
                 "Rol": $scope.myperfilusuariorol.Rol,
             };
-        console.debug(perfilusuariorol);
+        //console.debug(perfilusuariorol);
 
         if (perfilusuariorol.Id == "") //nuevo (insert)
         {

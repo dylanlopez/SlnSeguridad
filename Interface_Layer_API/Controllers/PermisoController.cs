@@ -26,8 +26,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ActualizarPermiso/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ActualizarPermiso/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ActualizarPermiso/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ActualizarPermiso/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -48,8 +48,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/EliminarPermiso/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/EliminarPermiso/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/EliminarPermiso/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/EliminarPermiso/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -70,8 +70,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarPermiso/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarPermiso/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarPermiso/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarPermiso/", dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);

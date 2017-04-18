@@ -43,13 +43,13 @@
         <div class="row">
             <form name="frmPerfilUsuarioRol" style="width:800px;margin:0px auto;">
                 <input type="hidden" id="hdnId" data-ng-model="myperfilusuariorol.Id" />
-                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                <div class="container-fluid form-group">
                     <label for="cmbPerfil" class="col-md-2 control-label">Perfil: </label>
                     <div class="col-md-8">
                         <select id="cmbPerfil" class="form-control" ng-options="perfil.Nombre for perfil in perfiles track by perfil.Id" data-ng-model="myperfilusuariorol.Perfil"></select>
                     </div>
                 </div>
-                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                <div class="container-fluid form-group">
                     <label for="txtUsuario" class="col-md-2 control-label">Usuario: </label>
                     <div class="col-md-6">
                         <input type="text" class="form-control" id="txtUsuario" placeholder="Ingrese el usuario (obligatorio)" data-ng-model="myperfilusuariorol.Usuario" maxlength="8" required />
@@ -76,10 +76,16 @@
                         <input type="text" class="form-control" id="txtNombres" data-ng-model="myusuario.Nombres" maxlength="100" disabled />
                     </div>
                 </div>
-                <div class="container-fluid form-group" data-ng-show="estaEditable">
-                    <label for="cmbPerfil" class="col-md-2 control-label">Rol: </label>
+                <div class="container-fluid form-group" data-ng-hide="estaEditable">
+                    <label for="txtNombresCompletos" class="col-md-2 control-label">Nombres: </label>
                     <div class="col-md-8">
-                        <select id="cmbPerfil" class="form-control" ng-options="rol.Nombre for rol in roles track by rol.Id" data-ng-model="myperfilusuariorol.Rol"></select>
+                        <input type="text" class="form-control" id="txtNombresCompletos" data-ng-model="myusuario.NombresCompletos" maxlength="100" disabled />
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="cmbRol" class="col-md-2 control-label">Rol: </label>
+                    <div class="col-md-8">
+                        <select id="cmbRol" class="form-control" ng-options="rol.Nombre for rol in roles track by rol.Id" data-ng-model="myperfilusuariorol.Rol"></select>
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
@@ -119,9 +125,9 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="perfilusuariorol in perfilesusuariosroles">
-                        <td>{{perfilusuariorol.Usuario}}</td>
+                        <td>{{perfilusuariorol.Perfil.Nombre}}</td>
                         <td>{{perfilusuariorol.Usuario.ApellidoPaterno}} {{perfilusuariorol.Usuario.ApellidoMaterno}} {{perfilusuariorol.Usuario.Nombres}}</td>
-                        <td>{{perfilusuariorol.UnicoIngreso}}</td>
+                        <td>{{perfilusuariorol.Rol.Nombre}}</td>
                         <td>{{perfilusuariorol.Estado}}</td>
                         <td>
                             <p>

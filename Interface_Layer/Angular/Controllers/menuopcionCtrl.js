@@ -126,7 +126,8 @@
     };
 
     $scope.buscar = function () {
-        if (angular.isUndefined($scope.mymenuopcion.Sistema) && angular.isUndefined($scope.mymenuopcion.Modulo) && 
+        if (angular.isUndefined($scope.mymenuopcion.Sistema) ||
+            angular.isUndefined($scope.mymenuopcion.Modulo) ||
             angular.isUndefined($scope.mymenuopcion.Menu)) {
             $scope.tieneError = true;
             $scope.error = "Debe ingresar un sistema, módulo y menú para poder ver sus opciones";

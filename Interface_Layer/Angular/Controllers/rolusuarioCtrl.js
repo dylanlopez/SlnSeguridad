@@ -123,12 +123,12 @@
             };
         var repetido = false;
         angular.forEach($scope.usuariosroles, function (value) {
-            console.debug("USUARIO");
-            console.debug(value.Usuario);
-            console.debug(usuariorol.Usuario);
-            console.debug("ROL");
-            console.debug(value.Rol);
-            console.debug(usuariorol.Rol);
+            //console.debug("USUARIO");
+            //console.debug(value.Usuario);
+            //console.debug(usuariorol.Usuario);
+            //console.debug("ROL");
+            //console.debug(value.Rol);
+            //console.debug(usuariorol.Rol);
             if (value.Usuario.Id == usuariorol.Usuario.Id && value.Rol.Id == usuariorol.Rol.Id) {
                 repetido = true;
             }
@@ -144,7 +144,7 @@
     };
 
     $scope.eliminarRol = function (usuariorol) {
-        console.debug(usuariorol);
+        //console.debug(usuariorol);
         for (var i = 0; i < $scope.usuariosroles.length; i++) {
             var obj = $scope.usuariosroles[i];
             if (obj.Id == usuariorol.Id) {

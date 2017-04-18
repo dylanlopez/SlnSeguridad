@@ -33,9 +33,18 @@ namespace Service_Layer.Converters.Personas
             var dto = new DPerfilUsuarioRolDto();
             dto.Id = model.Id;
             dto.Estado = model.Estado;
-            dto.Perfil = SPerfilConverter.ToDto(model.Perfil);
-            dto.Usuario = SUsuarioConverter.ToDto(model.Usuario);
-            dto.Rol = SRolConverter.ToDto(model.Rol);
+            if (model.Perfil != null)
+            {
+                dto.Perfil = SPerfilConverter.ToDto(model.Perfil);
+            }
+            if (model.Usuario != null)
+            {
+                dto.Usuario = SUsuarioConverter.ToDto(model.Usuario);
+            }
+            if (model.Rol != null)
+            {
+                dto.Rol = SRolConverter.ToDto(model.Rol);
+            }
             return dto;
         }
     }

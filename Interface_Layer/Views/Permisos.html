@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Midis Seguridad | Permisos</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="../Content/style.css">
+</head>
+<body>
+    <!--MENU-->
+    <div ng-controller="MenusCtrl">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="Index.html">Midis Seguridad</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown" ng-repeat="modulo in modulos">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            {{modulo.Abreviatura}}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="menu in modulo.Menus">
+                                <a href="{{menu.Ruta}}">{{menu.Nombre}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid" ng-controller="PermisoCtrl">
+        <div class="alert alert-danger" data-ng-show="tieneError">
+            <strong>ERROR: </strong> {{ error }}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="container">
+                    <h4>Roles por Usuarios por Perfiles</h4>
+                    <form name="frmBusquedaRolUsuarioPerfil">
+                        <div class="container-fluid form-group">
+                            <label for="cmbPerfil" class="col-md-2 control-label">Perfil: </label>
+                            <div class="col-md-4">
+                                <select id="cmbPerfil" class="form-control" ng-options="perfil.Nombre for perfil in perfiles track by perfil.Id" data-ng-model="mypermiso.Perfil"></select>
+                            </div>
+                        </div>
+                        <div class="container-fluid form-group">
+                            <label for="txtUsuario" class="col-md-2 control-label">Usuario: </label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" id="txtUsuario" placeholder="Ingrese el usuario (obligatorio)" data-ng-model="myperfilusuariorol.Usuario" maxlength="8" required />
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" value="Buscar" data-ng-click="buscarUsuario()" class="btn btn-primary" />
+                            </div>
+                        </div>
+                        <div class="container-fluid form-group">
+                            <label for="txtNombresCompletos" class="col-md-2 control-label">Nombres: </label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="txtNombresCompletos" data-ng-model="myusuario.NombresCompletos" maxlength="100" disabled />
+                            </div>
+                        </div>
+                        <div class="container-fluid form-group">
+                            <label for="cmbRol" class="col-md-2 control-label">Rol: </label>
+                            <div class="col-md-4">
+                                <select id="cmbRol" class="form-control" ng-options="rol.Nombre for rol in roles track by rol.Id" data-ng-model="myperfilusuariorol.Rol"></select>
+                            </div>
+                        </div>
+                        <p>
+                            <input type="button" value="Buscar" data-ng-click="buscarRolesUsuariosPerfiles()" class="btn btn-primary" />
+                        </p>
+                    </form>
+                    <div class="list-group col-md-6">
+                        <a href="#" class="list-group-item" ng-repeat="perfilusuariorol in perfilesusuariosroles" data-ng-click="buscar(perfilusuariorol, $index)" ng-class="{active: $index == selectedRolUsuarioPerfil}">
+                            <p class="list-group-item-text">{{perfilusuariorol.Perfil.Nombre}} - {{perfilusuariorol.Usuario.ApellidoPaterno}} {{perfilusuariorol.Usuario.ApellidoMaterno}} {{perfilusuariorol.Usuario.Nombres}} - {{perfilusuariorol.Rol.Nombre}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="container">
+                    <h4>Opciones por Menú</h4>
+                    <form name="frmBusquedaOpcionMenu">
+                        <div class="container-fluid form-group">
+                            <label for="cmbSistema" class="col-md-2 control-label">Sistema: </label>
+                            <div class="col-md-4">
+                                <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mymenuopcion.Sistema" ng-change="buscarModulo()"></select>
+                            </div>
+                        </div>
+                        <div class="container-fluid form-group">
+                            <label for="cmbModulo" class="col-md-2 control-label">Modulo: </label>
+                            <div class="col-md-4">
+                                <select id="cmbModulo" class="form-control" ng-options="modulo.Nombre for modulo in modulos track by modulo.Id" data-ng-model="mymenuopcion.Modulo" ng-change="buscarMenu()"></select>
+                            </div>
+                        </div>
+                        <div class="container-fluid form-group">
+                            <label for="cmbMenu" class="col-md-2 control-label">Menú: </label>
+                            <div class="col-md-4">
+                                <select id="cmbMenu" class="form-control" ng-options="menu.Nombre for menu in menus track by menu.Id" data-ng-model="mymenuopcion.Menu"></select>
+                            </div>
+                        </div>
+                        <p>
+                            <input type="button" value="Buscar" data-ng-click="buscarMenuesOpciones()" class="btn btn-primary" />
+                        </p>
+                    </form>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item" ng-repeat="menuopcion in menuesopciones" data-ng-click="seleccionaMenuOpcion(menuopcion, $index)" ng-class="{active: $index == selectedMenuOpcion}">
+                            <p class="list-group-item-text">{{menuopcion.Menu.Modulo.Sistema.Nombre}} - {{menuopcion.Menu.Modulo.Nombre}} - {{menuopcion.Menu.Nombre}} - {{menuopcion.Opcion.Nombre}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-md-10">
+                    <input type="hidden" id="hdnRolUsuarioPerfil" data-ng-model="rolusuarioperfilSeleccionado" />
+                    <input type="hidden" id="hdnMenuOpcion" data-ng-model="menuOpcionSeleccionada" />
+                </div>
+                <div class="col-md-2">
+                    <input type="button" class="btn btn-primary" value="Agregar" data-ng-click="agregaOpcionMenu()" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <h4>Permisos</h4>
+                <table class="table table-bordered table-hover" id="tab_logic">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">Perfil</th>
+                            <th class="col-md-3">Usuario</th>
+                            <th class="col-md-1">Rol</th>
+                            <th class="col-md-1">Sistema</th>
+                            <th class="col-md-1">Modulo</th>
+                            <th class="col-md-2">Menú</th>
+                            <th class="col-md-1">Opción</th>
+                            <th class="col-md-1"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="permiso in permisos">
+                            <td>{{permiso.PerfilUsuarioRol.Perfil.Nombre}}</td>
+                            <td>{{permiso.PerfilUsuarioRol.Usuario.ApellidoPaterno}} {{permiso.PerfilUsuarioRol.Usuario.ApellidoMaterno}} {{permiso.PerfilUsuarioRol.Usuario.Nombres}}</td>
+                            <td>{{permiso.PerfilUsuarioRol.Rol.Nombre}}</td>
+                            <td>{{permiso.MenuOpcion.Menu.Modulo.Sistema.Nombre}}</td>
+                            <td>{{permiso.MenuOpcion.Menu.Modulo.Nombre}}</td>
+                            <td>{{permiso.MenuOpcion.Menu.Nombre}}</td>
+                            <td>{{permiso.MenuOpcion.Opcion.Nombre}}</td>
+                            <td>
+                                <p>
+                                    <input type="button" class="btn btn-danger" value="Eliminar" data-ng-click="eliminarMenu(menurol)" />
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!--<div class="list-group">
+                    <a href="#" class="list-group-item" ng-repeat="permiso in permisos">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <label class="list-group-item-text"></label>
+                            </div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-2">
+                                <input type="button" class="btn btn-danger" value="Eliminar" data-ng-click="eliminarMenu(menurol)" />
+                            </div>
+                        </div>
+                    </a>
+                </div>-->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
+                <input type="button" class="btn btn-primary" value="Guardar" data-ng-click="guardar()" />
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../Scripts/jquery-3.1.1.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="../Angular/myApp.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/permisoCtrl.js"></script>
+</body>
+</html>
