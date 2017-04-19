@@ -124,8 +124,18 @@ namespace Domain_Layer.Queries
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
                         IQuery query = _sessionMidis.CreateQuery("FROM EModulo x " +
-                                                                 "WHERE x.Estado = COALESCE(:p_Estado, x.Estado) " +
-                                                                 "AND x.Sistema.Id = COALESCE(:p_IdSistema, x.Sistema.Id)");
+                                                                 "WHERE x.Nombre LIKE CONCAT('%', :p_Nombre, '%') " + 
+                                                                 "AND x.Estado = COALESCE(:p_Estado, x.Estado) " +
+                                                                 "AND x.Sistema.Id = COALESCE(:p_IdSistema, x.Sistema.Id) " +
+                                                                 "ORDER BY x.Sistema.Nombre, x.Nombre");
+                        if (!dto.Nombre.Equals(String.Empty))
+                        {
+                            query.SetParameter("p_Nombre", dto.Nombre.ToUpper());
+                        }
+                        else
+                        {
+                            query.SetParameter("p_Nombre", null, NHibernateUtil.String);
+                        }
                         if (dto.Estado != '\0')
                         {
                             query.SetParameter("p_Estado", dto.Estado);

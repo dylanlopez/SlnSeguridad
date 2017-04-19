@@ -99,10 +99,10 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        public List<SistemaModel> ListarSistemas()
+        public List<SistemaModel> ListarSistemas(SistemaModel model)
         {
             List<SistemaModel> response;
-            _model = new SistemaModel();
+            _model = model;
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));

@@ -5,19 +5,41 @@
     $scope.tieneError = false;
     $scope.mysistema = [];
 
-    $http({
-        method: 'POST',
-        url: webAPIControllers + '/api/Sistema/ListarSistemas',
-    }).then(function successCallback(result) {
-        $scope.sistemas = result.data;
-        $scope.tieneError = false;
-        $scope.error = "";
-        $scope.estaCargando = false;
-    }, function errorCallback(result) {
-        $scope.tieneError = true;
-        $scope.error = "Ha ocuirrido un error al listar: " + result;
-        $scope.estaCargando = false;
-    });
+    $scope.buscar = function () {
+        $scope.estaCargando = true;
+
+        var system =
+        {
+            "Id": '',
+            "Codigo": '',
+            "Nombre": $scope.mysistema.Nombre,
+            "Abreviatura": '',
+            "Estado": '',
+            "Descripcion": '',
+            "NombreServidor": '',
+            "IPServidor": '',
+            "RutaFisica": '',
+            "RutaLogica": ''
+        };
+
+        $http({
+            method: 'POST',
+            url: webAPIControllers + '/api/Sistema/ListarSistemas',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: system
+        }).then(function successCallback(result) {
+            $scope.sistemas = result.data;
+            $scope.tieneError = false;
+            $scope.error = "";
+            $scope.estaCargando = false;
+        }, function errorCallback(result) {
+            $scope.tieneError = true;
+            $scope.error = "Ha ocuirrido un error al listar: " + result;
+            $scope.estaCargando = false;
+        });
+    };
 
     $scope.nuevo = function () {
         $scope.estaEditable = !$scope.estaEditable;
@@ -35,6 +57,7 @@
             $scope.mysistema.RutaFisica = "";
             $scope.mysistema.RutaLogica = "";
         }
+        $scope.sistemas = [];
         $scope.tieneError = false;
         $scope.error = "";
     };
@@ -84,8 +107,6 @@
                 "RutaFisica": $scope.mysistema.RutaFisica, 
                 "RutaLogica": $scope.mysistema.RutaLogica
             };
-        console.debug(system);
-
         if (system.Id == "") //nuevo (insert)
         {
             $http({
@@ -97,13 +118,12 @@
                 data: system,
             }).then(function successCallback(result) {
                 $scope.nuevo();
-
-                $http({
-                    method: 'POST',
-                    url: webAPIControllers + '/api/Sistema/ListarSistemas',
-                }).then(function successCallback(result) {
-                    $scope.sistemas = result.data;
-                });
+                //$http({
+                //    method: 'POST',
+                //    url: webAPIControllers + '/api/Sistema/ListarSistemas',
+                //}).then(function successCallback(result) {
+                //    $scope.sistemas = result.data;
+                //});
                 $scope.tieneError = false;
                 $scope.error = "";
                 $scope.estaCargando = false;
@@ -124,13 +144,12 @@
                 data: system,
             }).then(function successCallback(result) {
                 $scope.nuevo();
-
-                $http({
-                    method: 'POST',
-                    url: webAPIControllers + '/api/Sistema/ListarSistemas',
-                }).then(function successCallback(result) {
-                    $scope.sistemas = result.data;
-                });
+                //$http({
+                //    method: 'POST',
+                //    url: webAPIControllers + '/api/Sistema/ListarSistemas',
+                //}).then(function successCallback(result) {
+                //    $scope.sistemas = result.data;
+                //});
                 $scope.tieneError = false;
                 $scope.error = "";
                 $scope.estaCargando = false;

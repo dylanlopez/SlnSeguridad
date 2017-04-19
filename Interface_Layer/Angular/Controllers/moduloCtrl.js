@@ -6,9 +6,26 @@
     $scope.tieneError = false;
     $scope.mymodulo = [];
 
+    var system =
+        {
+            "Id": '',
+            "Codigo": '',
+            "Nombre": '',
+            "Abreviatura": '',
+            "Estado": '',
+            "Descripcion": '',
+            "NombreServidor": '',
+            "IPServidor": '',
+            "RutaFisica": '',
+            "RutaLogica": ''
+        };
     $http({
         method: 'POST',
         url: webAPIControllers + '/api/Sistema/ListarSistemas',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: system
     }).then(function successCallback(result) {
         $scope.sistemas = result.data;
         $scope.tieneError = false;
@@ -21,7 +38,7 @@
     });
 
     $scope.buscar = function () {
-        if (angular.isUndefined($scope.sistema)) {
+        if (angular.isUndefined($scope.mymodulo.Sistema)) {
             $scope.tieneError = true;
             $scope.error = "Debe ingresar un sistema para poder ver sus módulos";
         }
@@ -33,13 +50,12 @@
             {
                 "Id": '',
                 "Codigo": '',
-                "Nombre": '',
+                "Nombre": $scope.mymodulo.Nombre,
                 "Abreviatura": '',
                 "Estado": '',
                 "Descripcion": '',
-                "Sistema": $scope.sistema,
+                "Sistema": $scope.mymodulo.Sistema,
             };
-            console.debug(module);
             $http({
                 method: 'POST',
                 url: webAPIControllers + '/api/Modulo/ListarModulos',

@@ -34,7 +34,10 @@ namespace Service_Layer.Converters.Sistemas
             dto.Id = model.Id;
             dto.Estado = model.Estado;
             dto.Visible = model.Visible;
-            dto.Menu = SMenuConverter.ToDto(model.Menu);
+            if (model.Menu != null)
+            {
+                dto.Menu = SMenuConverter.ToDto(model.Menu);
+            }
             if(model.Opcion != null)
             {
                 dto.Opcion = SOpcionConverter.ToDto(model.Opcion);

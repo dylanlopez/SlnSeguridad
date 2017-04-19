@@ -107,7 +107,42 @@ namespace Domain_Layer.Queries
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
                         IQuery query = _sessionMidis.CreateQuery("FROM EPermiso x " +
-                                                                 "WHERE x.Estado = COALESCE(:p_Estado, x.Estado) ");
+                                                                 "WHERE x.PerfilUsuarioRol.Perfil.Id = :p_IdPerfil " +
+                                                                 "AND x.PerfilUsuarioRol.Usuario.Id = :p_IdUsuario " +
+                                                                 "AND x.PerfilUsuarioRol.Rol.Id = :p_IdRol " +
+                                                                 "AND x.PerfilUsuarioRol.Estado = 'S' " +
+                                                                 "AND x.MenuOpcion.Menu.Modulo.Sistema.Id = COALESCE(:p_IdSistema, x.MenuOpcion.Menu.Modulo.Sistema.Id) " +
+                                                                 "AND x.MenuOpcion.Menu.Modulo.Id = COALESCE(:p_IdModulo, x.MenuOpcion.Menu.Modulo.Id) " +
+                                                                 "AND x.MenuOpcion.Menu.Id = COALESCE(:p_IdMenu, x.MenuOpcion.Menu.Id) " +
+                                                                 "AND x.MenuOpcion.Estado = 'S' " +
+                                                                 "AND x.Estado = COALESCE(:p_Estado, x.Estado) ");
+                        query.SetParameter("p_IdPerfil", dto.PerfilUsuarioRol.Perfil.Id);
+                        query.SetParameter("p_IdUsuario", dto.PerfilUsuarioRol.Usuario.Id);
+                        query.SetParameter("p_IdRol", dto.PerfilUsuarioRol.Rol.Id);
+                        if (dto.MenuOpcion.Menu.Modulo.Sistema.Id != 0)
+                        {
+                            query.SetParameter("p_IdSistema", dto.MenuOpcion.Menu.Modulo.Sistema.Id);
+                        }
+                        else
+                        {
+                            query.SetParameter("p_IdSistema", null, NHibernateUtil.Int32);
+                        }
+                        if (dto.MenuOpcion.Menu.Modulo.Id != 0)
+                        {
+                            query.SetParameter("p_IdModulo", dto.MenuOpcion.Menu.Modulo.Id);
+                        }
+                        else
+                        {
+                            query.SetParameter("p_IdModulo", null, NHibernateUtil.Int32);
+                        }
+                        if (dto.MenuOpcion.Menu.Id != 0)
+                        {
+                            query.SetParameter("p_IdMenu", dto.MenuOpcion.Menu.Id);
+                        }
+                        else
+                        {
+                            query.SetParameter("p_IdMenu", null, NHibernateUtil.Int32);
+                        }
                         if (dto.Estado != '\0')
                         {
                             query.SetParameter("p_Estado", dto.Estado);

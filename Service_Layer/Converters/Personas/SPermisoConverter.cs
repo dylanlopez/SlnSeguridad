@@ -35,8 +35,14 @@ namespace Service_Layer.Converters.Personas
             dto.Id = model.Id;
             dto.Estado = model.Estado;
             dto.FechaAlta = model.FechaAlta;
-            dto.PerfilUsuarioRol = SPerfilUsuarioRolConverter.ToDto(model.PerfilUsuarioRol);
-            dto.MenuOpcion = SMenuOpcionConverter.ToDto(model.MenuOpcion);
+            if (model.PerfilUsuarioRol != null)
+            {
+                dto.PerfilUsuarioRol = SPerfilUsuarioRolConverter.ToDto(model.PerfilUsuarioRol);
+            }
+            if (model.MenuOpcion != null)
+            {
+                dto.MenuOpcion = SMenuOpcionConverter.ToDto(model.MenuOpcion);
+            }
             return dto;
         }
     }

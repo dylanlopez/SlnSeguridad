@@ -41,10 +41,10 @@
             <strong>ERROR: </strong> {{ error }}
         </div>
         <!--MANTENIMIENTO-->
-        <div class="row" data-ng-show="estaEditable">
+        <div class="row">
             <form name="frmSistema" style="width:800px;margin:0px auto;">
                 <input type="hidden" id="hdnId" data-ng-model="mysistema.Id" />
-                <div class="container-fluid form-group">
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtCodigo" class="col-md-2 control-label">Codigo: </label>
                     <div class="col-md-2">
                         <input type="text" class="form-control" id="txtCodigo" placeholder="Ingrese el codigo del sistema (obligatorio)" data-ng-model="mysistema.Codigo" maxlength="02" required />
@@ -56,43 +56,43 @@
                         <input type="text" class="form-control" id="txtNombre" placeholder="Ingrese el nombre del sistema (obligatorio)" data-ng-model="mysistema.Nombre" maxlength="50" required />
                     </div>
                 </div>
-                <div class="container-fluid form-group">
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtAbreviatura" class="col-md-2 control-label">Abreviatura: </label>
                     <div class="col-md-6">
                         <input type="text" class="form-control" id="txtAbreviatura" placeholder="Ingrese la abreviatura del sistema (obligatorio)" data-ng-model="mysistema.Abreviatura" maxlength="20" required />
                     </div>
                 </div>
-                <div class="container-fluid form-group">
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtDescripcion" class="col-md-2 control-label">Descripcion: </label>
                     <div class="col-md-10">
                         <input type="text" class="form-control" id="txtDescripcion" placeholder="Ingrese la descripción del sistema" data-ng-model="mysistema.Descripcion" maxlength="200" />
                     </div>
                 </div>
-                <div class="container-fluid form-group">
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtNombreServidor" class="col-md-2 control-label">Nombre de Servidor: </label>
                     <div class="col-md-10">
                         <input type="text" class="form-control" id="txtNombreServidor" placeholder="Ingrese la nombre del servidor donde se alojará el sistema" data-ng-model="mysistema.NombreServidor" maxlength="50" />
                     </div>
                 </div>
-                <div class="container-fluid form-group">
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtIpServidor" class="col-md-2 control-label">Ip de Servidor: </label>
                     <div class="col-md-10">
                         <input type="text" class="form-control" id="txtIpServidor" placeholder="Ingrese la ip del servidor donde se alojará el sistema" data-ng-model="mysistema.IPServidor" maxlength="15" />
                     </div>
                 </div>
-                <div class="container-fluid form-group">
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtRutaFisica" class="col-md-2 control-label">Ruta Física: </label>
                     <div class="col-md-10">
                         <input type="text" class="form-control" id="txtRutaFisica" placeholder="Ingrese la ruta física donde se alojará el sistema" data-ng-model="mysistema.RutaFisica" maxlength="200" />
                     </div>
                 </div>
-                <div class="container-fluid form-group">
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtRutaLogica" class="col-md-2 control-label">Ruta Lógica: </label>
                     <div class="col-md-10">
                         <input type="text" class="form-control" id="txtRutaLogica" placeholder="Ingrese la ruta lógica donde se alojará el sistema" data-ng-model="mysistema.RutaLogica" maxlength="200" />
                     </div>
                 </div>
-                <div class="container-fluid form-group">
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtEstado" class="col-md-2 control-label">¿Está activo?: </label>
                     <div class="col-md-6">
                         <input type="checkbox" id="chkEstado" name="Estado" ng-model="mysistema.EstaActivo"><br>
@@ -100,9 +100,13 @@
                 </div>
                 <br />
                 <div class="container-fluid form-group">
-                    <div class="col-md-offset-2 col-md-10">
+                    <div class="col-md-offset-2 col-md-10" data-ng-show="estaEditable">
                         <input type="submit" value="Guardar" data-ng-click="guardar()" data-ng-disabled="!frmSistema.$valid" class="btn btn-primary" />
                         <input type="button" value="Cancelar" data-ng-click="nuevo()" class="btn btn-danger" />
+                    </div>
+                    <div class="col-md-offset-2 col-md-10" data-ng-hide="estaEditable">
+                        <input type="button" value="Nuevo" data-ng-click="nuevo()" class="btn btn-primary" />
+                        <input type="button" value="Buscar" data-ng-click="buscar()" class="btn btn-primary" />
                     </div>
                 </div>
                 <br />
@@ -111,9 +115,6 @@
 
         <!--LISTA-->
         <div class="row" data-ng-hide="estaEditable">
-            <p>
-                <input type="button" value="Nuevo" data-ng-click="nuevo()" class="btn btn-primary" />
-            </p>
             <table class="table table-bordered table-hover" id="tab_logic">
                 <thead>
                     <tr>

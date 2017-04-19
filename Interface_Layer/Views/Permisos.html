@@ -49,7 +49,7 @@
                         <div class="container-fluid form-group">
                             <label for="txtUsuario" class="col-md-2 control-label">Usuario: </label>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" id="txtUsuario" placeholder="Ingrese el usuario (obligatorio)" data-ng-model="myperfilusuariorol.Usuario" maxlength="8" required />
+                                <input type="text" class="form-control" id="txtUsuario" placeholder="Ingrese el usuario (obligatorio)" data-ng-model="mypermiso.Usuario" maxlength="8" required />
                             </div>
                             <div class="col-md-1">
                                 <input type="button" value="Buscar" data-ng-click="buscarUsuario()" class="btn btn-primary" />
@@ -64,7 +64,7 @@
                         <div class="container-fluid form-group">
                             <label for="cmbRol" class="col-md-2 control-label">Rol: </label>
                             <div class="col-md-4">
-                                <select id="cmbRol" class="form-control" ng-options="rol.Nombre for rol in roles track by rol.Id" data-ng-model="myperfilusuariorol.Rol"></select>
+                                <select id="cmbRol" class="form-control" ng-options="rol.Nombre for rol in roles track by rol.Id" data-ng-model="mypermiso.Rol"></select>
                             </div>
                         </div>
                         <p>
@@ -72,7 +72,7 @@
                         </p>
                     </form>
                     <div class="list-group col-md-6">
-                        <a href="#" class="list-group-item" ng-repeat="perfilusuariorol in perfilesusuariosroles" data-ng-click="buscar(perfilusuariorol, $index)" ng-class="{active: $index == selectedRolUsuarioPerfil}">
+                        <a href="#" class="list-group-item" ng-repeat="perfilusuariorol in perfilesusuariosroles" data-ng-click="seleccionaPerfilUsuarioRol(perfilusuariorol, $index)" ng-class="{active: $index == selectedRolUsuarioPerfil}">
                             <p class="list-group-item-text">{{perfilusuariorol.Perfil.Nombre}} - {{perfilusuariorol.Usuario.ApellidoPaterno}} {{perfilusuariorol.Usuario.ApellidoMaterno}} {{perfilusuariorol.Usuario.Nombres}} - {{perfilusuariorol.Rol.Nombre}}</p>
                         </a>
                     </div>
@@ -86,19 +86,19 @@
                         <div class="container-fluid form-group">
                             <label for="cmbSistema" class="col-md-2 control-label">Sistema: </label>
                             <div class="col-md-4">
-                                <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mymenuopcion.Sistema" ng-change="buscarModulo()"></select>
+                                <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mypermiso.Sistema" ng-change="buscarModulo()"></select>
                             </div>
                         </div>
                         <div class="container-fluid form-group">
                             <label for="cmbModulo" class="col-md-2 control-label">Modulo: </label>
                             <div class="col-md-4">
-                                <select id="cmbModulo" class="form-control" ng-options="modulo.Nombre for modulo in modulos track by modulo.Id" data-ng-model="mymenuopcion.Modulo" ng-change="buscarMenu()"></select>
+                                <select id="cmbModulo" class="form-control" ng-options="modulo.Nombre for modulo in modulos track by modulo.Id" data-ng-model="mypermiso.Modulo" ng-change="buscarMenu()"></select>
                             </div>
                         </div>
                         <div class="container-fluid form-group">
                             <label for="cmbMenu" class="col-md-2 control-label">Menú: </label>
                             <div class="col-md-4">
-                                <select id="cmbMenu" class="form-control" ng-options="menu.Nombre for menu in menus track by menu.Id" data-ng-model="mymenuopcion.Menu"></select>
+                                <select id="cmbMenu" class="form-control" ng-options="menu.Nombre for menu in menus track by menu.Id" data-ng-model="mypermiso.Menu"></select>
                             </div>
                         </div>
                         <p>
@@ -113,15 +113,18 @@
                 </div>
             </div>
         </div>
-
+        <br />
         <div class="row">
             <div class="container">
-                <div class="col-md-10">
+                <div class="col-md-4">
                     <input type="hidden" id="hdnRolUsuarioPerfil" data-ng-model="rolusuarioperfilSeleccionado" />
                     <input type="hidden" id="hdnMenuOpcion" data-ng-model="menuOpcionSeleccionada" />
                 </div>
                 <div class="col-md-2">
                     <input type="button" class="btn btn-primary" value="Agregar" data-ng-click="agregaOpcionMenu()" />
+                </div>
+                <div class="col-md-2">
+                    <input type="button" class="btn btn-primary" value="Buscar" data-ng-click="buscar()" />
                 </div>
             </div>
         </div>
@@ -153,7 +156,9 @@
                             <td>{{permiso.MenuOpcion.Opcion.Nombre}}</td>
                             <td>
                                 <p>
-                                    <input type="button" class="btn btn-danger" value="Eliminar" data-ng-click="eliminarMenu(menurol)" />
+                                    <input type="button" class="btn btn-danger" value="Desactivar" data-ng-click="cambiarEstado(permiso)" ng-show="permiso.Estado=='S' && permiso.Id!=''" />
+                                    <input type="button" class="btn btn-success" value="Activar" data-ng-click="cambiarEstado(permiso)" ng-show="permiso.Estado=='N' && permiso.Id!=''" />
+                                    <input type="button" class="btn btn-primary" value="Guardar" data-ng-click="guardar(permiso)" ng-show="permiso.Id==''" />
                                 </p>
                             </td>
                         </tr>
@@ -174,13 +179,6 @@
                         </div>
                     </a>
                 </div>-->
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-10"></div>
-            <div class="col-md-2">
-                <input type="button" class="btn btn-primary" value="Guardar" data-ng-click="guardar()" />
             </div>
         </div>
     </div>

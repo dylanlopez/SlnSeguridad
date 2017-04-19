@@ -65,8 +65,8 @@ namespace Interface_Layer_API.Controllers
         public List<ModuloModel> ListarModulos(ModuloModel model)
         {
             List<ModuloModel> response;
-            _model = new ModuloModel();
-            _model.Sistema = model.Sistema;
+            //_model = new ModuloModel();
+            _model = model;
             try
             {
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
