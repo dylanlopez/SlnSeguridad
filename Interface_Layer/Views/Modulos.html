@@ -75,9 +75,9 @@
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
-                    <label for="txtEstado" class="col-md-2 control-label">Estado: </label>
+                    <label for="chkActivo" class="col-md-2 control-label">¿Está Activo?: </label>
                     <div class="col-md-6">
-                        <input type="checkbox" id="chkEstado" name="Estado" ng-model="mymodulo.EstaActivo"><br>
+                        <input type="checkbox" id="chkActivo" name="Activo" ng-model="mymodulo.EstaActivo"><br>
                     </div>
                 </div>
                 <br />
@@ -103,7 +103,7 @@
                         <th class="col-md-1">Codigo</th>
                         <th class="col-md-4">Nombre</th>
                         <th class="col-md-2">Abreviatura</th>
-                        <th class="col-md-1">Estado</th>
+                        <th class="col-md-1">Activo</th>
                         <th class="col-md-3">Sistema</th>
                         <th class="col-md-1"></th>
                     </tr>
@@ -113,7 +113,7 @@
                         <td>{{modulo.Codigo}}</td>
                         <td>{{modulo.Nombre}}</td>
                         <td>{{modulo.Abreviatura}}</td>
-                        <td>{{modulo.Estado}}</td>
+                        <td>{{modulo.Activo}}</td>
                         <td>{{modulo.Sistema.Nombre}}</td>
                         <td>
                             <p>
@@ -135,5 +135,7 @@
     <script type="text/javascript" src="../Angular/myApp.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/moduloCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/sistemaFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/moduloFctr.js"></script>
 </body>
 </html>

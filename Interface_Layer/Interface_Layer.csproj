@@ -72,7 +72,12 @@
     <Content Include="Angular\Controllers\perfilusuariorolCtrl.js" />
     <Content Include="Angular\Controllers\permisoCtrl.js" />
     <Content Include="Angular\Controllers\sistemaperfilCtrl.js" />
+    <Content Include="Angular\Factories\menuFctr.js" />
+    <Content Include="Angular\Factories\menuopcionFctr.js" />
+    <Content Include="Angular\Factories\moduloFctr.js" />
+    <Content Include="Angular\Factories\opcionFctr.js" />
     <Content Include="Angular\myApp.js" />
+    <Content Include="Angular\Factories\sistemaFctr.js" />
     <Content Include="login\authenticate.html" />
     <Content Include="login\login.html" />
     <Content Include="packages.config" />

@@ -26,7 +26,7 @@ namespace Domain_Layer.Converters.Sistemas
             dto.Codigo = entity.Codigo;
             dto.Nombre = entity.Nombre;
             dto.Abreviatura = entity.Abreviatura;
-            dto.Estado = entity.Estado;
+            dto.Activo = entity.Activo;
             dto.Descripcion = entity.Descripcion;
             dto.NombreServidor = entity.NombreServidor;
             dto.IPServidor = entity.IPServidor;
@@ -63,7 +63,7 @@ namespace Domain_Layer.Converters.Sistemas
             entity.Codigo = dto.Codigo.ToUpper();
             entity.Nombre = dto.Nombre.ToUpper();
             entity.Abreviatura = dto.Abreviatura.ToUpper();
-            entity.Estado = dto.Estado;
+            entity.Activo = dto.Activo;
             if (!string.IsNullOrEmpty(dto.Descripcion))
             {
                 entity.Descripcion = dto.Descripcion.ToUpper();

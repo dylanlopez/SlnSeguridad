@@ -1,4 +1,5 @@
-﻿myApp.controller("ModuloCtrl", function ($scope, $http, webAPIControllers) {
+﻿//myApp.controller("ModuloCtrl", function ($scope, $http, webAPIControllers) {
+myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, ModuloFctr) {
     $scope.sistemas = [];
     $scope.modulos = [];
     $scope.estaCargando = true;
@@ -6,36 +7,50 @@
     $scope.tieneError = false;
     $scope.mymodulo = [];
 
-    var system =
-        {
-            "Id": '',
-            "Codigo": '',
-            "Nombre": '',
-            "Abreviatura": '',
-            "Estado": '',
-            "Descripcion": '',
-            "NombreServidor": '',
-            "IPServidor": '',
-            "RutaFisica": '',
-            "RutaLogica": ''
-        };
-    $http({
-        method: 'POST',
-        url: webAPIControllers + '/api/Sistema/ListarSistemas',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        data: system
-    }).then(function successCallback(result) {
-        $scope.sistemas = result.data;
-        $scope.tieneError = false;
-        $scope.error = "";
-        $scope.estaCargando = false;
-    }, function errorCallback(result) {
-        $scope.tieneError = true;
-        $scope.error = "Ha ocuirrido un error al listar: " + result;
-        $scope.estaCargando = false;
-    });
+    //var system =
+    //    {
+    //        "Id": '',
+    //        "Codigo": '',
+    //        "Nombre": '',
+    //        "Abreviatura": '',
+    //        "Estado": '',
+    //        "Descripcion": '',
+    //        "NombreServidor": '',
+    //        "IPServidor": '',
+    //        "RutaFisica": '',
+    //        "RutaLogica": ''
+    //    };
+
+    system.Activo = 'S';
+    SistemaFctr.ListarSistemas(system)
+        .then(function successCallback(response) {
+            $scope.sistemas = response;
+            $scope.tieneError = false;
+            $scope.error = "";
+            $scope.estaCargando = false;
+        }, function errorCallback(response) {
+            $scope.tieneError = true;
+            $scope.error = "Ha ocuirrido un error al listar: " + response;
+            $scope.estaCargando = false;
+        });
+
+    //$http({
+    //    method: 'POST',
+    //    url: webAPIControllers + '/api/Sistema/ListarSistemas',
+    //    headers: {
+    //        'Content-Type': 'application/json'
+    //    },
+    //    data: system
+    //}).then(function successCallback(result) {
+    //    $scope.sistemas = result.data;
+    //    $scope.tieneError = false;
+    //    $scope.error = "";
+    //    $scope.estaCargando = false;
+    //}, function errorCallback(result) {
+    //    $scope.tieneError = true;
+    //    $scope.error = "Ha ocuirrido un error al listar: " + result;
+    //    $scope.estaCargando = false;
+    //});
 
     $scope.buscar = function () {
         if (angular.isUndefined($scope.mymodulo.Sistema)) {
@@ -43,34 +58,47 @@
             $scope.error = "Debe ingresar un sistema para poder ver sus módulos";
         }
         else {
-            $scope.tieneError = false;
-            $scope.error = "";
+            $scope.estaCargando = true;
+            //var module =
+            //{
+            //    "Id": '',
+            //    "Codigo": '',
+            //    "Nombre": $scope.mymodulo.Nombre,
+            //    "Abreviatura": '',
+            //    "Estado": '',
+            //    "Descripcion": '',
+            //    "Sistema": $scope.mymodulo.Sistema,
+            //};
+            module.Nombre = $scope.mymodulo.Nombre;
+            module.Sistema = $scope.mymodulo.Sistema;
 
-            var module =
-            {
-                "Id": '',
-                "Codigo": '',
-                "Nombre": $scope.mymodulo.Nombre,
-                "Abreviatura": '',
-                "Estado": '',
-                "Descripcion": '',
-                "Sistema": $scope.mymodulo.Sistema,
-            };
-            $http({
-                method: 'POST',
-                url: webAPIControllers + '/api/Modulo/ListarModulos',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: module,
-            }).then(function successCallback(result) {
-                $scope.modulos = result.data;
-                $scope.estaCargando = false;
-            }, function errorCallback(result) {
-                $scope.tieneError = true;
-                $scope.error = "Ha ocuirrido un error al listar: " + result;
-                $scope.estaCargando = false;
-            });
+            ModuloFctr.ListarModulos(module)
+                .then(function successCallback(response) {
+                    $scope.modulos = response;
+                    $scope.tieneError = false;
+                    $scope.error = "";
+                    $scope.estaCargando = false;
+                }, function errorCallback(response) {
+                    $scope.tieneError = true;
+                    $scope.error = "Ha ocuirrido un error al listar: " + response;
+                    $scope.estaCargando = false;
+                });
+
+            //$http({
+            //    method: 'POST',
+            //    url: webAPIControllers + '/api/Modulo/ListarModulos',
+            //    headers: {
+            //        'Content-Type': 'application/json'
+            //    },
+            //    data: module,
+            //}).then(function successCallback(result) {
+            //    $scope.modulos = result.data;
+            //    $scope.estaCargando = false;
+            //}, function errorCallback(result) {
+            //    $scope.tieneError = true;
+            //    $scope.error = "Ha ocuirrido un error al listar: " + result;
+            //    $scope.estaCargando = false;
+            //});
         }
     };
 
@@ -81,10 +109,18 @@
             $scope.mymodulo.Codigo = "";
             $scope.mymodulo.Nombre = "";
             $scope.mymodulo.Abreviatura = "";
-            $scope.mymodulo.Estado = "";
+            $scope.mymodulo.Activo = "";
             $scope.mymodulo.EstaActivo = false;
             $scope.mymodulo.Descripcion = "";
             $scope.mymodulo.Sistema = null;
+            ModuloFctr.CleanModulo(module);
+            //module.Id = null;
+            //module.Codigo = null;
+            //module.Nombre = null;
+            //module.Abreviatura = null;
+            //module.Activo = null;
+            //module.Descripcion = null;
+            //module.Sistema = null;
         }
         $scope.modulos = [];
         $scope.tieneError = false;
@@ -98,11 +134,11 @@
             $scope.mymodulo.Codigo = modulo.Codigo;
             $scope.mymodulo.Nombre = modulo.Nombre;
             $scope.mymodulo.Abreviatura = modulo.Abreviatura;
-            $scope.mymodulo.Estado = modulo.Estado;
-            if (modulo.Estado == 'S') {
+            $scope.mymodulo.Activo = modulo.Activo;
+            if (modulo.Activo == 'S') {
                 $scope.mymodulo.EstaActivo = true;
             }
-            else if (modulo.Estado == 'N') {
+            else if (modulo.Activo == 'N') {
                 $scope.mymodulo.EstaActivo = false;
             }
             $scope.mymodulo.Descripcion = modulo.Descripcion;
@@ -113,63 +149,94 @@
     $scope.guardar = function () {
         $scope.estaCargando = true;
         if ($scope.mymodulo.EstaActivo) {
-            $scope.mymodulo.Estado = "S";
+            $scope.mymodulo.Activo = "S";
         }
         else {
-            $scope.mymodulo.Estado = "N";
+            $scope.mymodulo.Activo = "N";
         }
-        var module =
-            {
-                "Id": $scope.mymodulo.Id,
-                "Codigo": $scope.mymodulo.Codigo,
-                "Nombre": $scope.mymodulo.Nombre,
-                "Abreviatura": $scope.mymodulo.Abreviatura,
-                "Estado": $scope.mymodulo.Estado,
-                "Descripcion": $scope.mymodulo.Descripcion,
-                "Sistema": $scope.mymodulo.Sistema
-            };
-
+        //var module =
+        //    {
+        //        "Id": $scope.mymodulo.Id,
+        //        "Codigo": $scope.mymodulo.Codigo,
+        //        "Nombre": $scope.mymodulo.Nombre,
+        //        "Abreviatura": $scope.mymodulo.Abreviatura,
+        //        "Estado": $scope.mymodulo.Estado,
+        //        "Descripcion": $scope.mymodulo.Descripcion,
+        //        "Sistema": $scope.mymodulo.Sistema
+        //    };
+        module.Id = $scope.mymodulo.Id;
+        module.Codigo = $scope.mymodulo.Codigo;
+        module.Nombre = $scope.mymodulo.Nombre;
+        module.Abreviatura = $scope.mymodulo.Abreviatura;
+        module.Activo = $scope.mymodulo.Activo;
+        module.Descripcion = $scope.mymodulo.Descripcion;
+        module.Sistema = $scope.mymodulo.Sistema;
         if (module.Id == "") //nuevo (insert)
         {
-            $http({
-                method: 'POST',
-                url: webAPIControllers + '/api/Modulo/InsertarModulo',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: module,
-            }).then(function successCallback(result) {
-                $scope.nuevo();
-                $scope.modulos = [];
-                $scope.tieneError = false;
-                $scope.error = "";
-                $scope.estaCargando = false;
-            }, function errorCallback(result) {
-                $scope.tieneError = true;
-                $scope.error = "Ha ocuirrido un error al insertar: " + result;
-                $scope.estaCargando = false;
-            });
+            ModuloFctr.InsertarModulo(module)
+                .then(function successCallback(response) {
+                    $scope.nuevo();
+                    $scope.modulos = [];
+                    $scope.tieneError = false;
+                    $scope.error = "";
+                    $scope.estaCargando = false;
+                }, function errorCallback(response) {
+                    $scope.tieneError = true;
+                    $scope.error = "Ha ocuirrido un error al insertar: " + error;
+                    $scope.estaCargando = false;
+                });
+            //$http({
+            //    method: 'POST',
+            //    url: webAPIControllers + '/api/Modulo/InsertarModulo',
+            //    headers: {
+            //        'Content-Type': 'application/json'
+            //    },
+            //    data: module,
+            //}).then(function successCallback(result) {
+            //    $scope.nuevo();
+            //    $scope.modulos = [];
+            //    $scope.tieneError = false;
+            //    $scope.error = "";
+            //    $scope.estaCargando = false;
+            //}, function errorCallback(result) {
+            //    $scope.tieneError = true;
+            //    $scope.error = "Ha ocuirrido un error al insertar: " + result;
+            //    $scope.estaCargando = false;
+            //});
         }
         else //actualizar (update)
         {
-            $http({
-                method: 'PUT',
-                url: webAPIControllers + '/api/Modulo/ActualizarModulo/' + module.Id,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: module,
-            }).then(function successCallback(result) {
-                $scope.nuevo();
-                $scope.modulos = [];
-                $scope.tieneError = false;
-                $scope.error = "";
-                $scope.estaCargando = false;
-            }, function errorCallback(result) {
-                $scope.tieneError = true;
-                $scope.error = "Ha ocuirrido un error al actualizar: " + result;
-                $scope.estaCargando = false;
-            });
+            ModuloFctr.ActualizarModulo(module)
+                .then(function successCallback(response) {
+                    $scope.nuevo();
+                    $scope.modulos = [];
+                    $scope.tieneError = false;
+                    $scope.error = "";
+                    $scope.estaCargando = false;
+                }, function errorCallback(response) {
+                    $scope.tieneError = true;
+                    $scope.error = "Ha ocuirrido un error al actualizar: " + result;
+                    $scope.estaCargando = false;
+                    $scope.estaCargando = false;
+                });
+            //$http({
+            //    method: 'PUT',
+            //    url: webAPIControllers + '/api/Modulo/ActualizarModulo/' + module.Id,
+            //    headers: {
+            //        'Content-Type': 'application/json'
+            //    },
+            //    data: module,
+            //}).then(function successCallback(result) {
+            //    $scope.nuevo();
+            //    $scope.modulos = [];
+            //    $scope.tieneError = false;
+            //    $scope.error = "";
+            //    $scope.estaCargando = false;
+            //}, function errorCallback(result) {
+            //    $scope.tieneError = true;
+            //    $scope.error = "Ha ocuirrido un error al actualizar: " + result;
+            //    $scope.estaCargando = false;
+            //});
         }
     };
 });

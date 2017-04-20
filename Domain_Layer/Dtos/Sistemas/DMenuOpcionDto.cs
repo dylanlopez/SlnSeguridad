@@ -16,7 +16,7 @@
         public DMenuOpcionDto()
         {
             Id = 0;
-            Estado = '\0';
+            Activo = '\0';
             Visible = '\0';
             Menu = new DMenuDto();
             Opcion = new DOpcionDto();
@@ -36,7 +36,7 @@
         /// <value>
         /// value to the Estado.
         /// </value>
-        public char Estado { get; set; }
+        public char Activo { get; set; }
 
         /// <summary>
         /// Gets or sets the Visible, correspond to entity field Visible.

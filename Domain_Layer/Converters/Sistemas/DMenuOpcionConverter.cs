@@ -23,7 +23,7 @@ namespace Domain_Layer.Converters.Sistemas
         {
             var dto = new DMenuOpcionDto();
             dto.Id = entity.Id;
-            dto.Estado = entity.Estado;
+            dto.Activo = entity.Activo;
             dto.Visible = entity.Visible;
             dto.Menu = DMenuConverter.ToDto(entity.Menu);
             dto.Opcion = DOpcionConverter.ToDto(entity.Opcion);
@@ -55,7 +55,7 @@ namespace Domain_Layer.Converters.Sistemas
         {
             var entity = new EMenuOpcion();
             entity.Id = dto.Id;
-            entity.Estado = dto.Estado;
+            entity.Activo = dto.Activo;
             entity.Visible = dto.Visible;
             entity.Menu = DMenuConverter.ToEntity(dto.Menu);
             entity.Opcion = DOpcionConverter.ToEntity(dto.Opcion);

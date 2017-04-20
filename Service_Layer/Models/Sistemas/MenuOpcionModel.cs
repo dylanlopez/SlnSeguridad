@@ -7,7 +7,7 @@ namespace Service_Layer.Models.Sistemas
         public MenuOpcionModel()
         {
             Id = 0;
-            Estado = '\0';
+            Activo = '\0';
             Visible = '\0';
             Menu = new MenuModel();
             Opcion = new OpcionModel();
@@ -16,8 +16,8 @@ namespace Service_Layer.Models.Sistemas
         [DataMember(Name = "Id", Order = 0)]
         public int Id { get; set; }
 
-        [DataMember(Name = "Estado", Order = 1)]
-        public char Estado { get; set; }
+        [DataMember(Name = "Activo", Order = 1)]
+        public char Activo { get; set; }
 
         [DataMember(Name = "Visible", Order = 2)]
         public char Visible { get; set; }

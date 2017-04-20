@@ -26,7 +26,7 @@ namespace Entity_Layer.Entities.Sistemas
         /// <value>
         /// set a value to the Estado.
         /// </value>
-        public virtual Char Estado { get; set; }
+        public virtual Char Activo { get; set; }
 
         /// <summary>
         /// Gets or sets the Visible, correspond to table field IN_VISIBLE.

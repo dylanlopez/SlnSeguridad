@@ -49,7 +49,7 @@
                         <input type="text" class="form-control" id="txtCodigo" placeholder="Ingrese el codigo del menú (obligatorio)" data-ng-model="mymenu.Codigo" maxlength="7" required />
                     </div>
                 </div>
-                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                <div class="container-fluid form-group">
                     <label for="txtNombre" class="col-md-2 control-label">Nombre: </label>
                     <div class="col-md-6">
                         <input type="text" class="form-control" id="txtNombre" placeholder="Ingrese el nombre del menú (obligatorio)" data-ng-model="mymenu.Nombre" maxlength="50" required />
@@ -80,9 +80,9 @@
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
-                    <label for="txtEstado" class="col-md-2 control-label">Estado: </label>
+                    <label for="chkActivo" class="col-md-2 control-label">¿Está Activo?: </label>
                     <div class="col-md-6">
-                        <input type="checkbox" id="chkEstado" name="Estado" ng-model="mymenu.EstaActivo"><br>
+                        <input type="checkbox" id="chkActivo" name="Activo" ng-model="mymenu.EstaActivo"><br>
                     </div>
                 </div>
                 <br />
@@ -110,7 +110,7 @@
                         <th class="col-md-1">Codigo</th>
                         <th class="col-md-3">Nombre</th>
                         <th class="col-md-2">Ruta</th>
-                        <th class="col-md-1">Estado</th>
+                        <th class="col-md-1">Activo</th>
                         <th class="col-md-3">Modulo</th>
                         <th class="col-md-1"></th>
                     </tr>
@@ -120,14 +120,14 @@
                         <td>{{menu.Codigo}}</td>
                         <td>{{menu.Nombre}}</td>
                         <td>{{menu.Ruta}}</td>
-                        <td>{{menu.Estado}}</td>
+                        <td>{{menu.Activo}}</td>
                         <td>{{menu.Modulo.Nombre}}</td>
                         <td>
                             <p>
                                 <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(menu)" />
-                                <input type="button" class="btn btn-danger" value="Eliminar" data-toggle="modal" data-target="#confirm-delete" />
+                                <!--<input type="button" class="btn btn-danger" value="Eliminar" data-toggle="modal" data-target="#confirm-delete" />-->
                             </p>
-                            <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <!--<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">Confirmación</div>
@@ -138,7 +138,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                         </td>
                     </tr>
                 </tbody>
@@ -155,12 +155,15 @@
     <script type="text/javascript" src="../Angular/myApp.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/menuCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/sistemaFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/moduloFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/menuFctr.js"></script>
     <script type="text/javascript">
-        $('#modal').on('show', function () {
-            var id = $(this).data('id'),
-                removeBtn = $(this).find('.danger');
-            removeBtn.attr('href', removeBtn.attr('href').replace(/(&|\?)ref=\d*/, '$1ref=' + id));
-        });
+        //$('#modal').on('show', function () {
+        //    var id = $(this).data('id'),
+        //        removeBtn = $(this).find('.danger');
+        //    removeBtn.attr('href', removeBtn.attr('href').replace(/(&|\?)ref=\d*/, '$1ref=' + id));
+        //});
     </script>
 </body>
 </html>

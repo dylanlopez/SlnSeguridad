@@ -150,7 +150,8 @@ namespace Domain_Layer.Queries
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
                         IQuery query = _sessionMidis.CreateQuery("FROM EOpcion x " +
-                                                                 "WHERE x.Nombre LIKE CONCAT('%', COALESCE(:p_Nombre, x.Nombre), '%') ");
+                                                                 "WHERE x.Nombre LIKE CONCAT('%', COALESCE(:p_Nombre, x.Nombre), '%') " +
+                                                                 "ORDER BY x.Nombre ");
                         if (!dto.Nombre.Equals(String.Empty))
                         {
                             query.SetParameter("p_Nombre", dto.Nombre.ToUpper());

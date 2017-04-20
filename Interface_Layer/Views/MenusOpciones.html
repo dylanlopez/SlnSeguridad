@@ -68,13 +68,13 @@
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
-                    <label for="txtEstado" class="col-md-2 control-label">¿Está Activo? </label>
+                    <label for="chkActivo" class="col-md-2 control-label">¿Está Activo?: </label>
                     <div class="col-md-6">
-                        <input type="checkbox" id="chkEstado" name="Estado" ng-model="mymenuopcion.EstaActivo"><br>
+                        <input type="checkbox" id="chkActivo" name="Activo" ng-model="mymenuopcion.EstaActivo"><br>
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
-                    <label for="txtEstado" class="col-md-2 control-label">¿Está Visible? </label>
+                    <label for="chkVisible" class="col-md-2 control-label">¿Está Visible? </label>
                     <div class="col-md-6">
                         <input type="checkbox" id="chkVisible" name="Visible" ng-model="mymenuopcion.EstaVisible"><br>
                     </div>
@@ -151,6 +151,11 @@
     <script type="text/javascript" src="../Angular/myApp.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/menuopcionCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/sistemaFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/moduloFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/menuFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/opcionFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/menuopcionFctr.js"></script>
     <script type="text/javascript">
         $('#modal').on('show', function () {
             var id = $(this).data('id'),

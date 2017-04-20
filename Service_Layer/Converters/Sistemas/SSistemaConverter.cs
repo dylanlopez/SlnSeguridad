@@ -13,7 +13,7 @@ namespace Service_Layer.Converters.Sistemas
             model.Codigo = dto.Codigo;
             model.Nombre = dto.Nombre;
             model.Abreviatura = dto.Abreviatura;
-            model.Estado = dto.Estado;
+            model.Activo = dto.Activo;
             model.Descripcion = dto.Descripcion;
             model.NombreServidor = dto.NombreServidor;
             model.IPServidor = dto.IPServidor;
@@ -40,7 +40,7 @@ namespace Service_Layer.Converters.Sistemas
             dto.Codigo = model.Codigo;
             dto.Nombre = model.Nombre;
             dto.Abreviatura = model.Abreviatura;
-            dto.Estado = model.Estado;
+            dto.Activo = model.Activo;
             if (!string.IsNullOrEmpty(model.Descripcion))
             {
                 dto.Descripcion = model.Descripcion;

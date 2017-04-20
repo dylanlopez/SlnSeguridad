@@ -14,7 +14,7 @@ namespace Service_Layer.Converters.Sistemas
             model.Nombre = dto.Nombre;
             model.Ruta = dto.Ruta;
             model.Descripcion = dto.Descripcion;
-            model.Estado = dto.Estado;
+            model.Activo = dto.Activo;
             model.Modulo = SModuloConverter.ToModel(dto.Modulo);
             return model;
         }
@@ -41,7 +41,7 @@ namespace Service_Layer.Converters.Sistemas
             {
                 dto.Descripcion = model.Descripcion;
             }
-            dto.Estado = model.Estado;
+            dto.Activo = model.Activo;
             dto.Modulo = SModuloConverter.ToDto(model.Modulo);
             return dto;
         }

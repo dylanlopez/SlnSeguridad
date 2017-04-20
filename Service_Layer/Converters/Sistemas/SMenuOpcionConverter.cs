@@ -10,7 +10,7 @@ namespace Service_Layer.Converters.Sistemas
         {
             var model = new MenuOpcionModel();
             model.Id = dto.Id;
-            model.Estado = dto.Estado;
+            model.Activo = dto.Activo;
             model.Visible = dto.Visible;
             model.Menu = SMenuConverter.ToModel(dto.Menu);
             model.Opcion = SOpcionConverter.ToModel(dto.Opcion);
@@ -32,7 +32,7 @@ namespace Service_Layer.Converters.Sistemas
         {
             var dto = new DMenuOpcionDto();
             dto.Id = model.Id;
-            dto.Estado = model.Estado;
+            dto.Activo = model.Activo;
             dto.Visible = model.Visible;
             if (model.Menu != null)
             {

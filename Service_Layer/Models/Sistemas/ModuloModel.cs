@@ -12,7 +12,7 @@ namespace Service_Layer.Models.Sistemas
             Codigo = string.Empty;
             Nombre = string.Empty;
             Abreviatura = string.Empty;
-            Estado = '\0';
+            Activo = '\0';
             Descripcion = string.Empty;
             Sistema = new SistemaModel();
             Menus = new List<MenuModel>();
@@ -30,8 +30,8 @@ namespace Service_Layer.Models.Sistemas
         [DataMember(Name = "Abreviatura", Order = 3)]
         public string Abreviatura { get; set; }
 
-        [DataMember(Name = "Estado", Order = 4)]
-        public char Estado { get; set; }
+        [DataMember(Name = "Activo", Order = 4)]
+        public char Activo { get; set; }
 
         [DataMember(Name = "Descripcion", Order = 5)]
         public string Descripcion { get; set; }

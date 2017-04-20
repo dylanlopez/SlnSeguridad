@@ -19,7 +19,7 @@
             Codigo = string.Empty;
             Nombre = string.Empty;
             Abreviatura = string.Empty;
-            Estado = '\0';
+            Activo = '\0';
             Descripcion = string.Empty;
             NombreServidor = string.Empty;
             IPServidor = string.Empty;
@@ -65,7 +65,7 @@
         /// <value>
         /// value to the Estado.
         /// </value>
-        public char Estado { get; set; }
+        public char Activo { get; set; }
 
         /// <summary>
         /// Gets or sets the Descripcion, correspond to entity field Descripcion.
