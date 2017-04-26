@@ -26,7 +26,7 @@ namespace Domain_Layer.Converters.Personas
             var dto = new DPermisoDto();
             dto.Id = entity.Id;
             dto.FechaAlta = entity.FechaAlta.ToString();
-            dto.Estado = entity.Estado;
+            dto.Activo = entity.Activo;
             dto.PerfilUsuarioRol = DPerfilUsuarioRolConverter.ToDto(entity.PerfilUsuarioRol);
             dto.MenuOpcion = DMenuOpcionConverter.ToDto(entity.MenuOpcion);
             return dto;
@@ -58,7 +58,7 @@ namespace Domain_Layer.Converters.Personas
             var entity = new EPermiso();
             entity.Id = dto.Id;
             entity.FechaAlta = Convert.ToDateTime(dto.FechaAlta);
-            entity.Estado = dto.Estado;
+            entity.Activo = dto.Activo;
             entity.PerfilUsuarioRol = DPerfilUsuarioRolConverter.ToEntity(dto.PerfilUsuarioRol);
             entity.MenuOpcion = DMenuOpcionConverter.ToEntity(dto.MenuOpcion);
             return entity;

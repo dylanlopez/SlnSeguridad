@@ -32,7 +32,16 @@
         module.Abreviatura = null;
         module.Activo = null;
         module.Descripcion = null;
-        module.Sistema = null;
+        module.Sistema.Id = null;
+        module.Sistema.Codigo = null;
+        module.Sistema.Nombre = null;
+        module.Sistema.Abreviatura = null;
+        module.Sistema.Activo = null;
+        module.Sistema.Descripcion = null;
+        module.Sistema.NombreServidor = null;
+        module.Sistema.IPServidor = null;
+        module.Sistema.RutaFisica = null;
+        module.Sistema.RutaLogica = null;
     }
 
     return modulo;

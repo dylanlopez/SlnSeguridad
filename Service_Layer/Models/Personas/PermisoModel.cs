@@ -10,7 +10,7 @@ namespace Service_Layer.Models.Personas
         {
             Id = 0;
             FechaAlta = string.Empty;
-            Estado = '\0';
+            Activo = '\0';
             PerfilUsuarioRol = new PerfilUsuarioRolModel();
             MenuOpcion = new MenuOpcionModel();
         }
@@ -21,8 +21,8 @@ namespace Service_Layer.Models.Personas
         [DataMember(Name = "FechaAlta", Order = 1)]
         public string FechaAlta { get; set; }
 
-        [DataMember(Name = "Estado", Order = 2)]
-        public char Estado { get; set; }
+        [DataMember(Name = "Activo", Order = 2)]
+        public char Activo { get; set; }
 
         [DataMember(Name = "PerfilUsuarioRol", Order = 3)]
         public PerfilUsuarioRolModel PerfilUsuarioRol { get; set; }

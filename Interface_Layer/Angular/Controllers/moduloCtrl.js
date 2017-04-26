@@ -53,11 +53,13 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
     //});
 
     $scope.buscar = function () {
-        if (angular.isUndefined($scope.mymodulo.Sistema)) {
+        if (angular.isUndefined($scope.mymodulo.Sistema) || $scope.mymodulo.Sistema == null) {
             $scope.tieneError = true;
             $scope.error = "Debe ingresar un sistema para poder ver sus módulos";
         }
         else {
+            $scope.error = "";
+            $scope.tieneError = false;
             $scope.estaCargando = true;
             //var module =
             //{
@@ -75,8 +77,6 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
             ModuloFctr.ListarModulos(module)
                 .then(function successCallback(response) {
                     $scope.modulos = response;
-                    $scope.tieneError = false;
-                    $scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
@@ -113,7 +113,6 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
             $scope.mymodulo.EstaActivo = false;
             $scope.mymodulo.Descripcion = "";
             $scope.mymodulo.Sistema = null;
-            ModuloFctr.CleanModulo(module);
             //module.Id = null;
             //module.Codigo = null;
             //module.Nombre = null;
@@ -122,6 +121,7 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
             //module.Descripcion = null;
             //module.Sistema = null;
         }
+        ModuloFctr.CleanModulo(module);
         $scope.modulos = [];
         $scope.tieneError = false;
         $scope.error = "";

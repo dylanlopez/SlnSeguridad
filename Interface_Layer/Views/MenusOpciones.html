@@ -46,25 +46,25 @@
                 <div class="container-fluid form-group">
                     <label for="cmbSistema" class="col-md-2 control-label">Sistema: </label>
                     <div class="col-md-8">
-                        <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mymenuopcion.Sistema" ng-change="buscarModulo()"></select>
+                        <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mymenuopcion.Sistema" ng-change="buscarModulo()" required></select>
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="cmbModulo" class="col-md-2 control-label">Modulo: </label>
                     <div class="col-md-8">
-                        <select id="cmbModulo" class="form-control" ng-options="modulo.Nombre for modulo in modulos track by modulo.Id" data-ng-model="mymenuopcion.Modulo" ng-change="buscarMenu()"></select>
+                        <select id="cmbModulo" class="form-control" ng-options="modulo.Nombre for modulo in modulos track by modulo.Id" data-ng-model="mymenuopcion.Modulo" ng-change="buscarMenu()" required></select>
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="cmbMenu" class="col-md-2 control-label">Menú: </label>
                     <div class="col-md-8">
-                        <select id="cmbMenu" class="form-control" ng-options="menu.Nombre for menu in menus track by menu.Id" data-ng-model="mymenuopcion.Menu"></select>
+                        <select id="cmbMenu" class="form-control" ng-options="menu.Nombre for menu in menus track by menu.Id" data-ng-model="mymenuopcion.Menu" required></select>
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="cmbOpcion" class="col-md-2 control-label">Opción: </label>
                     <div class="col-md-8">
-                        <select id="cmbOpcion" class="form-control" ng-options="opcion.Nombre for opcion in opciones track by opcion.Id" data-ng-model="mymenuopcion.Opcion"></select>
+                        <select id="cmbOpcion" class="form-control" ng-options="opcion.Nombre for opcion in opciones track by opcion.Id" data-ng-model="mymenuopcion.Opcion" required></select>
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">

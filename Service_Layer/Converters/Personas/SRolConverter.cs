@@ -29,8 +29,14 @@ namespace Service_Layer.Converters.Personas
         internal static DRolDto ToDto(RolModel model)
         {
             var dto = new DRolDto();
-            dto.Id = model.Id;
-            dto.Nombre = model.Nombre.ToUpper();
+            if(model.Id != null)
+            {
+                dto.Id = model.Id;
+            }
+            if (!string.IsNullOrEmpty(model.Nombre))
+            {
+                dto.Nombre = model.Nombre;
+            }
             if (!string.IsNullOrEmpty(model.Descripcion))
             {
                 dto.Descripcion = model.Descripcion.ToUpper();

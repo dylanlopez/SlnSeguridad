@@ -14,7 +14,7 @@ namespace Domain_Layer.Dtos.Personas
         {
             Id = 0;
             FechaAlta = string.Empty;
-            Estado = '\0';
+            Activo = '\0';
             PerfilUsuarioRol = new DPerfilUsuarioRolDto();
             MenuOpcion = new DMenuOpcionDto();
         }
@@ -41,7 +41,7 @@ namespace Domain_Layer.Dtos.Personas
         /// <value>
         /// set a value to the Estado.
         /// </value>
-        public char Estado { get; set; }
+        public char Activo { get; set; }
 
         /// <summary>
         /// Gets or sets the PerfilUsuarioRol, correspond to entity field PerfilUsuarioRol.

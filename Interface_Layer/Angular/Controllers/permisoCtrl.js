@@ -117,7 +117,7 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
         });
 
     $scope.buscarRolesUsuariosPerfiles = function () {
-        if (angular.isUndefined($scope.mypermiso.Perfil) &&
+        if ((angular.isUndefined($scope.mypermiso.Perfil) || $scope.mypermiso.Perfil == null) &&
             angular.isUndefined($scope.mypermiso.Usuario) &&
             angular.isUndefined($scope.mypermiso.Rol)) {
             $scope.tieneError = true;
@@ -156,9 +156,15 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
             //    "Usuario": user,
             //    "Rol": $scope.mypermiso.Rol
             //};
-            profileuserrole.Perfil = $scope.mypermiso.Perfil;
-            profileuserrole.Usuario = user;
-            profileuserrole.Rol = $scope.mypermiso.Rol;
+            if (!angular.isUndefined($scope.mypermiso.Perfil) && $scope.mypermiso.Perfil != null) {
+                profileuserrole.Perfil = $scope.mypermiso.Perfil;
+            }
+            if (!angular.isUndefined(user) && user != null) {
+                profileuserrole.Usuario = user;
+            }
+            if (!angular.isUndefined($scope.mypermiso.Rol) && $scope.mypermiso.Rol != null) {
+                profileuserrole.Rol = $scope.mypermiso.Rol;
+            }
 
             //$http({
             //    method: 'POST',
@@ -319,13 +325,18 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
     };
 
     $scope.buscarMenuesOpciones = function () {
-        if (angular.isUndefined($scope.mypermiso.Sistema) &&
-            angular.isUndefined($scope.mypermiso.Modulo) &&
-            angular.isUndefined($scope.mypermiso.Menu)) {
+        console.debug($scope.mypermiso.Sistema);
+        console.debug($scope.mypermiso.Modulo);
+        console.debug($scope.mypermiso.Menu);
+        if ((angular.isUndefined($scope.mypermiso.Sistema) || $scope.mypermiso.Sistema == null) || 
+            (angular.isUndefined($scope.mypermiso.Modulo) || $scope.mypermiso.Modulo == null) || 
+            (angular.isUndefined($scope.mypermiso.Menu) || $scope.mypermiso.Menu == null)) {
+            console.info("if");
             $scope.tieneError = true;
             $scope.error = "Debe ingresar un sistema, módulo y menú para poder ver sus opciones";
         }
         else {
+            console.info("else");
             //$scope.tieneError = false;
             //$scope.error = "";
             //var menuopcion =
@@ -536,7 +547,7 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
         //        "MenuOpcion": $scope.menuOpcionSeleccionado
         //    };
         permission.FechaAlta = fechaUltimoCambio;
-        permission.Estado = "S";
+        permission.Activo = "S";
         permission.PerfilUsuarioRol = $scope.rolUsuarioPerfilSeleccionado;
         permission.MenuOpcion = $scope.menuOpcionSeleccionado;
         var repetido = false;
@@ -562,10 +573,10 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
         $scope.estaCargando = true;
         console.debug(permiso);
         if (permiso.Id != '') {
-            if (permiso.Estado == 'S') {
-                permiso.Estado = 'N';
-            } else if (permiso.Estado == 'N') {
-                permiso.Estado = 'S';
+            if (permiso.Activo == 'S') {
+                permiso.Activo = 'N';
+            } else if (permiso.Activo == 'N') {
+                permiso.Activo = 'S';
             }
 
             PermisoFctr.ActualizarPermiso(permiso)

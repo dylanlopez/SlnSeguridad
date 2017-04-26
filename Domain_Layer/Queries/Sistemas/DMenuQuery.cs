@@ -154,8 +154,9 @@ namespace Domain_Layer.Queries
                         IQuery query = _sessionMidis.CreateQuery("FROM EMenu x " +
                                                                  "WHERE x.Nombre LIKE CONCAT('%', :p_Nombre, '%') " +
                                                                  "AND x.Activo = COALESCE(:p_Activo, x.Activo) " +
+                                                                 "AND x.Modulo.Sistema.Id = COALESCE(:p_IdSistema, x.Modulo.Sistema.Id) " +
                                                                  "AND x.Modulo.Id = COALESCE(:p_IdModulo, x.Modulo.Id) " +
-                                                                 "ORDER BY x.Nombre");
+                                                                 "ORDER BY x.Modulo.Sistema.Nombre, x.Modulo.Nombre, x.Nombre");
                         if (!dto.Nombre.Equals(String.Empty))
                         {
                             query.SetParameter("p_Nombre", dto.Nombre.ToUpper());
@@ -171,6 +172,14 @@ namespace Domain_Layer.Queries
                         else
                         {
                             query.SetParameter("p_Activo", null, NHibernateUtil.Character);
+                        }
+                        if (dto.Modulo.Sistema.Id != 0)
+                        {
+                            query.SetParameter("p_IdSistema", dto.Modulo.Sistema.Id);
+                        }
+                        else
+                        {
+                            query.SetParameter("p_IdSistema", null, NHibernateUtil.Int32);
                         }
                         if (dto.Modulo.Id != 0)
                         {

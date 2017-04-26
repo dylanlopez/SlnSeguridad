@@ -132,13 +132,13 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
             $scope.error = "Debe ingresar un sistema y módulo para poder ver sus menús";
         }
         else {
+            $scope.tieneError = false;
+            $scope.error = "";
             $scope.estaCargando = true;
             menu.Modulo = $scope.mymenuopcion.Modulo;
             MenuFctr.ListarMenus(menu)
                 .then(function successCallback(response) {
                     $scope.menus = response;
-                    $scope.tieneError = false;
-                    $scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
@@ -176,9 +176,9 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
     };
 
     $scope.buscar = function () {
-        if (angular.isUndefined($scope.mymenuopcion.Sistema) ||
-            angular.isUndefined($scope.mymenuopcion.Modulo) ||
-            angular.isUndefined($scope.mymenuopcion.Menu)) {
+        if ((angular.isUndefined($scope.mymenuopcion.Sistema) || $scope.mymenuopcion.Sistema == null) &&
+            (angular.isUndefined($scope.mymenuopcion.Modulo) || $scope.mymenuopcion.Modulo == null) &&
+            (angular.isUndefined($scope.mymenuopcion.Menu) || $scope.mymenuopcion.Menu == null)) {
             $scope.tieneError = true;
             $scope.error = "Debe ingresar un sistema, módulo y menú para poder ver sus opciones";
         }
@@ -232,12 +232,13 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
             $scope.mymenuopcion.EstaActivo = false;
             $scope.mymenuopcion.Visible = "";
             $scope.mymenuopcion.EstaVisible = false;
-            $scope.mymenuopcion.Sistema = null;
-            $scope.mymenuopcion.Modulo = null;
-            $scope.mymenuopcion.Menu = null;
-            $scope.mymenuopcion.Opcion = null;
-            MenuOpcionFctr.CleanMenuOpcion(menuoption);
         }
+        $scope.mymenuopcion.Sistema = null;
+        $scope.mymenuopcion.Modulo = null;
+        $scope.mymenuopcion.Menu = null;
+        $scope.mymenuopcion.Opcion = null;
+        MenuOpcionFctr.CleanMenuOpcion(menuoption);
+        //console.debug(profileuserrole);
         $scope.menuesopciones = [];
         $scope.tieneError = false;
         $scope.error = "";
@@ -271,6 +272,8 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
     };
 
     $scope.guardar = function () {
+        $scope.tieneError = false;
+        $scope.error = "";
         $scope.estaCargando = true;
         if ($scope.mymenuopcion.EstaActivo) {
             $scope.mymenuopcion.Activo = "S";
@@ -304,8 +307,6 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
                 .then(function successCallback(response) {
                     $scope.nuevo();
                     $scope.menuesopciones = [];
-                    $scope.tieneError = false;
-                    $scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
@@ -338,8 +339,6 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
                 .then(function successCallback(response) {
                     $scope.nuevo();
                     $scope.menuesopciones = [];
-                    $scope.tieneError = false;
-                    $scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;

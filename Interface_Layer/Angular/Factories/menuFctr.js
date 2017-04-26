@@ -32,7 +32,22 @@
         menu.Ruta = null;
         menu.Descripcion = null;
         menu.Activo = null;
-        menu.Modulo = null;
+        menu.Modulo.Id = null;
+        menu.Modulo.Codigo = null;
+        menu.Modulo.Nombre = null;
+        menu.Modulo.Abreviatura = null;
+        menu.Modulo.Activo = null;
+        menu.Modulo.Descripcion = null;
+        menu.Modulo.Sistema.Id = null;
+        menu.Modulo.Sistema.Codigo = null;
+        menu.Modulo.Sistema.Nombre = null;
+        menu.Modulo.Sistema.Abreviatura = null;
+        menu.Modulo.Sistema.Activo = null;
+        menu.Modulo.Sistema.Descripcion = null;
+        menu.Modulo.Sistema.NombreServidor = null;
+        menu.Modulo.Sistema.IPServidor = null;
+        menu.Modulo.Sistema.RutaFisica = null;
+        menu.Modulo.Sistema.RutaLogica = null;
     }
 
     return menue;

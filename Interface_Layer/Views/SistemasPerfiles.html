@@ -47,13 +47,13 @@
                 <div class="container-fluid form-group">
                     <label for="cmbSistema" class="col-md-2 control-label">Sistema: </label>
                     <div class="col-md-8">
-                        <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mysistemaperfil.Sistema"></select>
+                        <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mysistemaperfil.Sistema" required></select>
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="cmbPerfil" class="col-md-2 control-label">Perfil: </label>
                     <div class="col-md-8">
-                        <select id="cmbPerfil" class="form-control" ng-options="perfil.Nombre for perfil in perfiles track by perfil.Id" data-ng-model="mysistemaperfil.Perfil"></select>
+                        <select id="cmbPerfil" class="form-control" ng-options="perfil.Nombre for perfil in perfiles track by perfil.Id" data-ng-model="mysistemaperfil.Perfil" required></select>
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">

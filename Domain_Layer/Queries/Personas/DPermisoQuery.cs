@@ -110,12 +110,12 @@ namespace Domain_Layer.Queries
                                                                  "WHERE x.PerfilUsuarioRol.Perfil.Id = :p_IdPerfil " +
                                                                  "AND x.PerfilUsuarioRol.Usuario.Id = :p_IdUsuario " +
                                                                  "AND x.PerfilUsuarioRol.Rol.Id = :p_IdRol " +
-                                                                 "AND x.PerfilUsuarioRol.Estado = 'S' " +
+                                                                 "AND x.PerfilUsuarioRol.Activo = 'S' " +
                                                                  "AND x.MenuOpcion.Menu.Modulo.Sistema.Id = COALESCE(:p_IdSistema, x.MenuOpcion.Menu.Modulo.Sistema.Id) " +
                                                                  "AND x.MenuOpcion.Menu.Modulo.Id = COALESCE(:p_IdModulo, x.MenuOpcion.Menu.Modulo.Id) " +
                                                                  "AND x.MenuOpcion.Menu.Id = COALESCE(:p_IdMenu, x.MenuOpcion.Menu.Id) " +
-                                                                 "AND x.MenuOpcion.Estado = 'S' " +
-                                                                 "AND x.Estado = COALESCE(:p_Estado, x.Estado) ");
+                                                                 "AND x.MenuOpcion.Activo = 'S' " +
+                                                                 "AND x.Activo = COALESCE(:p_Activo, x.Activo) ");
                         query.SetParameter("p_IdPerfil", dto.PerfilUsuarioRol.Perfil.Id);
                         query.SetParameter("p_IdUsuario", dto.PerfilUsuarioRol.Usuario.Id);
                         query.SetParameter("p_IdRol", dto.PerfilUsuarioRol.Rol.Id);
@@ -143,13 +143,13 @@ namespace Domain_Layer.Queries
                         {
                             query.SetParameter("p_IdMenu", null, NHibernateUtil.Int32);
                         }
-                        if (dto.Estado != '\0')
+                        if (dto.Activo != '\0')
                         {
-                            query.SetParameter("p_Estado", dto.Estado);
+                            query.SetParameter("p_Activo", dto.Activo);
                         }
                         else
                         {
-                            query.SetParameter("p_Estado", null, NHibernateUtil.Character);
+                            query.SetParameter("p_Activo", null, NHibernateUtil.Character);
                         }
                         var result = query.List<EPermiso>();
                         if (result != null)

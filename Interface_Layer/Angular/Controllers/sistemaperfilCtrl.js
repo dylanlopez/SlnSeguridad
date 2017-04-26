@@ -118,10 +118,10 @@ myApp.controller("SistemaPerfilCtrl", function ($scope, system, systemprofile,
         if ($scope.estaEditable == false) {
             $scope.mysistemaperfil.Activo = "";
             $scope.mysistemaperfil.EstaActivo = false;
-            $scope.mysistemaperfil.Sistema = null;
-            $scope.mysistemaperfil.Perfil = null;
-            SistemaPerfilFctr.CleanSistemaPerfil(systemprofile);
         }
+        $scope.mysistemaperfil.Sistema = null;
+        $scope.mysistemaperfil.Perfil = null;
+        SistemaPerfilFctr.CleanSistemaPerfil(systemprofile);
         $scope.tieneError = false;
         $scope.error = "";
     };
@@ -143,6 +143,8 @@ myApp.controller("SistemaPerfilCtrl", function ($scope, system, systemprofile,
     };
 
     $scope.guardar = function () {
+        $scope.tieneError = false;
+        $scope.error = "";
         $scope.estaCargando = true;
         if ($scope.mysistemaperfil.EstaActivo) {
             $scope.mysistemaperfil.Activo = "S";
@@ -168,8 +170,6 @@ myApp.controller("SistemaPerfilCtrl", function ($scope, system, systemprofile,
                 .then(function successCallback(response) {
                     $scope.nuevo();
                     $scope.sistemasperfiles = [];
-                    $scope.tieneError = false;
-                    $scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
@@ -202,8 +202,6 @@ myApp.controller("SistemaPerfilCtrl", function ($scope, system, systemprofile,
                 .then(function successCallback(response) {
                     $scope.nuevo();
                     $scope.sistemasperfiles = [];
-                    $scope.tieneError = false;
-                    $scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;

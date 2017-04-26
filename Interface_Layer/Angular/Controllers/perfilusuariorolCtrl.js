@@ -75,6 +75,9 @@ myApp.controller("PerfilUsuarioRolCtrl", function ($scope, user, role, profileus
     
 
     $scope.buscarUsuario = function () {
+        $scope.tieneError = false;
+        $scope.error = "";
+        $scope.estaCargando = true;
         user.Usuario = $scope.myperfilusuariorol.Usuario;
         UsuarioFctr.BuscarUsuarioPorUsuario(user)
             .then(function successCallback(response) {
@@ -108,9 +111,9 @@ myApp.controller("PerfilUsuarioRolCtrl", function ($scope, user, role, profileus
         //console.debug($scope.myperfilusuariorol.Perfil);
         //console.debug($scope.myperfilusuariorol.Usuario);
         //console.debug($scope.myperfilusuariorol.Rol);
-        if (angular.isUndefined($scope.myperfilusuariorol.Perfil) &&
-            angular.isUndefined($scope.myperfilusuariorol.Usuario) &&
-            angular.isUndefined($scope.myperfilusuariorol.Rol)) {
+        if ((angular.isUndefined($scope.myperfilusuariorol.Perfil) || $scope.myperfilusuariorol.Perfil == null) &&
+            (angular.isUndefined($scope.myperfilusuariorol.Usuario) || $scope.myperfilusuariorol.Usuario == null) &&
+            (angular.isUndefined($scope.myperfilusuariorol.Rol) || $scope.myperfilusuariorol.Rol == null)) {
             $scope.tieneError = true;
             $scope.error = "Debe ingresar un perfil o usuario o rol para poder buscar";
         }
@@ -150,9 +153,15 @@ myApp.controller("PerfilUsuarioRolCtrl", function ($scope, user, role, profileus
             //    "Usuario": user,
             //    "Rol": $scope.myperfilusuariorol.Rol
             //};
-            profileuserrole.Perfil = $scope.myperfilusuariorol.Perfil;
-            profileuserrole.Usuario = user;
-            profileuserrole.Rol = $scope.myperfilusuariorol.Rol;
+            if (!angular.isUndefined($scope.myperfilusuariorol.Perfil) && $scope.myperfilusuariorol.Perfil != null) {
+                profileuserrole.Perfil = $scope.myperfilusuariorol.Perfil;
+            }
+            if (!angular.isUndefined(user) && user != null) {
+                profileuserrole.Usuario = user;
+            }
+            if (!angular.isUndefined($scope.myperfilusuariorol.Rol) && $scope.myperfilusuariorol.Rol != null) {
+                profileuserrole.Rol = $scope.myperfilusuariorol.Rol;
+            }
             //$http({
             //    method: 'POST',
             //    url: webAPIControllers + '/api/PerfilUsuarioRol/ListarPerfilesUsuariosRoles',
@@ -188,16 +197,19 @@ myApp.controller("PerfilUsuarioRolCtrl", function ($scope, user, role, profileus
         if ($scope.estaEditable == false) {
             $scope.myperfilusuariorol.Activo = "";
             $scope.myperfilusuariorol.EstaActivo = false;
-            $scope.myperfilusuariorol.Perfil = null;
-            $scope.myperfilusuariorol.Usuario = null;
-            $scope.myusuario.Id = "";
-            $scope.myusuario.ApellidoPaterno = "";
-            $scope.myusuario.ApellidoMaterno = "";
-            $scope.myusuario.Nombres = "";
-            $scope.myusuario.NombresCompletos = "";
-            $scope.myperfilusuariorol.Rol = null;
-            PerfilUsuarioRolFctr.CleanPerfilUsuarioRol(profileuserrole);
         }
+        $scope.myperfilusuariorol.Perfil = null;
+        $scope.myperfilusuariorol.Usuario = null;
+        //console.debug($scope.myusuario);
+        $scope.myusuario.Id = "";
+        $scope.myusuario.ApellidoPaterno = "";
+        $scope.myusuario.ApellidoMaterno = "";
+        $scope.myusuario.Nombres = "";
+        $scope.myusuario.NombresCompletos = "";
+        $scope.myperfilusuariorol.Rol = null;
+        console.debug(profileuserrole);
+        PerfilUsuarioRolFctr.CleanPerfilUsuarioRol(profileuserrole);
+        $scope.perfilesusuariosroles = [];
         $scope.tieneError = false;
         $scope.error = "";
     };
@@ -224,6 +236,8 @@ myApp.controller("PerfilUsuarioRolCtrl", function ($scope, user, role, profileus
     };
 
     $scope.guardar = function () {
+        $scope.tieneError = false;
+        $scope.error = "";
         $scope.estaCargando = true;
         if ($scope.myperfilusuariorol.EstaActivo) {
             $scope.myperfilusuariorol.Activo = "S";
@@ -295,8 +309,6 @@ myApp.controller("PerfilUsuarioRolCtrl", function ($scope, user, role, profileus
                 .then(function successCallback(response) {
                     $scope.nuevo();
                     $scope.perfilesusuariosroles = [];
-                    $scope.tieneError = false;
-                    $scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
@@ -328,8 +340,6 @@ myApp.controller("PerfilUsuarioRolCtrl", function ($scope, user, role, profileus
                 .then(function successCallback(response) {
                     $scope.nuevo();
                     $scope.perfilesusuariosroles = [];
-                    $scope.tieneError = false;
-                    $scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;

@@ -28,9 +28,29 @@
     perfilusuariorol.CleanPerfilUsuarioRol = function (profileuserrole) {
         profileuserrole.Id = null;
         profileuserrole.Estado = null;
-        profileuserrole.Perfil = null;
-        profileuserrole.Usuario = null;
-        profileuserrole.Rol = null;
+        profileuserrole.Perfil.Id = null;
+        profileuserrole.Perfil.Nombre = null;
+        profileuserrole.Perfil.Descripcion = null;
+        profileuserrole.Usuario.Id = null;
+        profileuserrole.Usuario.Usuario = null;
+        profileuserrole.Usuario.Contrasena = null;
+        profileuserrole.Usuario.ApellidoPaterno = null;
+        profileuserrole.Usuario.ApellidoMaterno = null;
+        profileuserrole.Usuario.Nombres = null;
+        profileuserrole.Usuario.Caduca = null;
+        profileuserrole.Usuario.PeriodoCaducidad = null;
+        profileuserrole.Usuario.FechaUltimoCambio = null;
+        profileuserrole.Usuario.Ubigeo = null;
+        profileuserrole.Usuario.CodigoVersion = null;
+        profileuserrole.Usuario.UnicoIngreso = null;
+        profileuserrole.Usuario.HaIngresado = null;
+        profileuserrole.Usuario.OtrosLogeos = null;
+        profileuserrole.Usuario.Tipo = null;
+        profileuserrole.Usuario.Activo = null;
+        profileuserrole.Usuario.Email = null;
+        profileuserrole.Rol.Id = null;
+        profileuserrole.Rol.Nombre = null;
+        profileuserrole.Rol.Descripcion = null;
     }
 
     return perfilusuariorol;

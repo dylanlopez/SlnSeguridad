@@ -24,7 +24,18 @@ myApp.value('module',
         Abreviatura: '',
         Activo: '',
         Descripcion: '',
-        Sistema: ''
+        Sistema: {
+            Id: '',
+            Codigo: '',
+            Nombre: '',
+            Abreviatura: '',
+            Activo: '',
+            Descripcion: '',
+            NombreServidor: '',
+            IPServidor: '',
+            RutaFisica: '',
+            RutaLogica: ''
+        }
     });
 myApp.value('menu',
     {
@@ -34,7 +45,26 @@ myApp.value('menu',
         Ruta: '',
         Descripcion: '',
         Estado: '',
-        Modulo: ''
+        Modulo: {
+            Id: '',
+            Codigo: '',
+            Nombre: '',
+            Abreviatura: '',
+            Activo: '',
+            Descripcion: '',
+            Sistema: {
+                Id: '',
+                Codigo: '',
+                Nombre: '',
+                Abreviatura: '',
+                Activo: '',
+                Descripcion: '',
+                NombreServidor: '',
+                IPServidor: '',
+                RutaFisica: '',
+                RutaLogica: ''
+            }
+        }
     });
 myApp.value('option',
     {
@@ -48,8 +78,40 @@ myApp.value('menuoption',
         Id: '',
         Activo: '',
         Visible: '',
-        Menu: '',
-        Opcion: ''
+        Menu: {
+            Id: '',
+            Codigo: '',
+            Nombre: '',
+            Ruta: '',
+            Descripcion: '',
+            Estado: '',
+            Modulo: {
+                Id: '',
+                Codigo: '',
+                Nombre: '',
+                Abreviatura: '',
+                Activo: '',
+                Descripcion: '',
+                Sistema: {
+                    Id: '',
+                    Codigo: '',
+                    Nombre: '',
+                    Abreviatura: '',
+                    Activo: '',
+                    Descripcion: '',
+                    NombreServidor: '',
+                    IPServidor: '',
+                    RutaFisica: '',
+                    RutaLogica: ''
+                }
+            }
+        },
+        Opcion: {
+            Id: '',
+            Nombre: '',
+            NombreControlAsociado: '',
+            Descripcion: ''
+        }
     });
 myApp.value('user',
     {
@@ -81,8 +143,23 @@ myApp.value('systemprofile',
     {
         Id: '',
         Activo: '',
-        Sistema: '',
-        Perfil: ''
+        Sistema: {
+            Id: '',
+            Codigo: '',
+            Nombre: '',
+            Abreviatura: '',
+            Activo: '',
+            Descripcion: '',
+            NombreServidor: '',
+            IPServidor: '',
+            RutaFisica: '',
+            RutaLogica: ''
+        },
+        Perfil: {
+            Id: '',
+            Nombre: '',
+            Descripcion: ''
+        }
     });
 myApp.value('role',
     {
@@ -94,15 +171,111 @@ myApp.value('profileuserrole',
     {
         Id: '',
         Activo: '',
-        Perfil: '',
-        Usuario: '',
-        Rol: ''
+        Perfil: {
+            Id: '',
+            Nombre: '',
+            Descripcion: ''
+        },
+        Usuario: {
+            Id: '',
+            Usuario: '',
+            Contrasena: '',
+            ApellidoPaterno: '',
+            ApellidoMaterno: '',
+            Nombres: '',
+            Caduca: '',
+            PeriodoCaducidad: '',
+            FechaUltimoCambio: '',
+            Ubigeo: '',
+            CodigoVersion: '',
+            UnicoIngreso: '',
+            HaIngresado: '',
+            OtrosLogeos: '',
+            Tipo: '',
+            Activo: '',
+            Email: ''
+        },
+        Rol: {
+            Id: '',
+            Nombre: '',
+            Descripcion: ''
+        }
     });
 myApp.value('permission',
     {
         Id: '',
         FechaAlta: '',
-        Estado: '',
-        PerfilUsuarioRol: '',
-        MenuOpcion: ''
+        Activo: '',
+        PerfilUsuarioRol: {
+            Id: '',
+            Activo: '',
+            Perfil: {
+                Id: '',
+                Nombre: '',
+                Descripcion: ''
+            },
+            Usuario: {
+                Id: '',
+                Usuario: '',
+                Contrasena: '',
+                ApellidoPaterno: '',
+                ApellidoMaterno: '',
+                Nombres: '',
+                Caduca: '',
+                PeriodoCaducidad: '',
+                FechaUltimoCambio: '',
+                Ubigeo: '',
+                CodigoVersion: '',
+                UnicoIngreso: '',
+                HaIngresado: '',
+                OtrosLogeos: '',
+                Tipo: '',
+                Activo: '',
+                Email: ''
+            },
+            Rol: {
+                Id: '',
+                Nombre: '',
+                Descripcion: ''
+            }
+        },
+        MenuOpcion: {
+            Id: '',
+            Activo: '',
+            Visible: '',
+            Menu: {
+                Id: '',
+                Codigo: '',
+                Nombre: '',
+                Ruta: '',
+                Descripcion: '',
+                Estado: '',
+                Modulo: {
+                    Id: '',
+                    Codigo: '',
+                    Nombre: '',
+                    Abreviatura: '',
+                    Activo: '',
+                    Descripcion: '',
+                    Sistema: {
+                        Id: '',
+                        Codigo: '',
+                        Nombre: '',
+                        Abreviatura: '',
+                        Activo: '',
+                        Descripcion: '',
+                        NombreServidor: '',
+                        IPServidor: '',
+                        RutaFisica: '',
+                        RutaLogica: ''
+                    }
+                }
+            },
+            Opcion: {
+                Id: '',
+                Nombre: '',
+                NombreControlAsociado: '',
+                Descripcion: ''
+            }
+        }
     });

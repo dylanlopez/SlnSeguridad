@@ -11,7 +11,7 @@ namespace Service_Layer.Converters.Personas
         {
             var model = new PermisoModel();
             model.Id = dto.Id;
-            model.Estado = dto.Estado;
+            model.Activo = dto.Activo;
             model.FechaAlta = dto.FechaAlta;
             model.PerfilUsuarioRol = SPerfilUsuarioRolConverter.ToModel(dto.PerfilUsuarioRol);
             model.MenuOpcion = SMenuOpcionConverter.ToModel(dto.MenuOpcion);
@@ -33,7 +33,7 @@ namespace Service_Layer.Converters.Personas
         {
             var dto = new DPermisoDto();
             dto.Id = model.Id;
-            dto.Estado = model.Estado;
+            dto.Activo = model.Activo;
             dto.FechaAlta = model.FechaAlta;
             if (model.PerfilUsuarioRol != null)
             {

@@ -156,8 +156,8 @@
                             <td>{{permiso.MenuOpcion.Opcion.Nombre}}</td>
                             <td>
                                 <p>
-                                    <input type="button" class="btn btn-danger" value="Desactivar" data-ng-click="cambiarEstado(permiso)" ng-show="permiso.Estado=='S' && permiso.Id!=''" />
-                                    <input type="button" class="btn btn-success" value="Activar" data-ng-click="cambiarEstado(permiso)" ng-show="permiso.Estado=='N' && permiso.Id!=''" />
+                                    <input type="button" class="btn btn-danger" value="Desactivar" data-ng-click="cambiarEstado(permiso)" ng-show="permiso.Activo=='S' && permiso.Id!=''" />
+                                    <input type="button" class="btn btn-success" value="Activar" data-ng-click="cambiarEstado(permiso)" ng-show="permiso.Activo=='N' && permiso.Id!=''" />
                                     <input type="button" class="btn btn-primary" value="Guardar" data-ng-click="guardar(permiso)" ng-show="permiso.Id==''" />
                                 </p>
                             </td>
