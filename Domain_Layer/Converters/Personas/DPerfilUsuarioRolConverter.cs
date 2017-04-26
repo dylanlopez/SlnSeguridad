@@ -23,7 +23,7 @@ namespace Domain_Layer.Converters.Personas
         {
             var dto = new DPerfilUsuarioRolDto();
             dto.Id = entity.Id;
-            dto.Estado = entity.Estado;
+            dto.Activo = entity.Activo;
             dto.Perfil = DPerfilConverter.ToDto(entity.Perfil);
             dto.Usuario = DUsuarioConverter.ToDto(entity.Usuario);
             dto.Rol = DRolConverter.ToDto(entity.Rol);
@@ -55,7 +55,7 @@ namespace Domain_Layer.Converters.Personas
         {
             var entity = new EPerfilUsuarioRol();
             entity.Id = dto.Id;
-            entity.Estado = dto.Estado;
+            entity.Activo = dto.Activo;
             entity.Perfil = DPerfilConverter.ToEntity(dto.Perfil);
             entity.Usuario = DUsuarioConverter.ToEntity(dto.Usuario);
             entity.Rol = DRolConverter.ToEntity(dto.Rol);

@@ -18,7 +18,7 @@ namespace Domain_Layer.Dtos.Personas
         public DSistemaPerfilDto()
         {
             Id = 0;
-            Estado = '\0';
+            Activo = '\0';
             Sistema = new DSistemaDto();
             Perfil = new DPerfilDto();
         }
@@ -37,7 +37,7 @@ namespace Domain_Layer.Dtos.Personas
         /// <value>
         /// set a value to the Estado.
         /// </value>
-        public char Estado { get; set; }
+        public char Activo { get; set; }
 
         /// <summary>
         /// Gets or sets the Sistema, correspond to entity field Sistema.

@@ -39,33 +39,35 @@ namespace Service_Layer.Services
         }
 
         #region Persona
-        //public PersonaModel BuscarPersona(PersonaModel model)
-        //{
-        //    if (_logger == null)
-        //    {
-        //        _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
-        //    }
-        //    try
-        //    {
-        //        _logger.WriteInfoLog("iniciando BuscarPersona");
-        //        _personaLogic = new BLogic();
-        //        var dto = Mapper.Map<DPersonaDto>(model);
-        //        var resp = Mapper.Map<PersonaModel>(_personaLogic.Buscar(dto));
-        //        //return _personaLogic.Buscar(dto);
-        //        return resp;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.WriteErrorLog(ex);
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        _logger = null;
-        //    }
-        //}
+        public PersonaModel BuscarPersona(PersonaModel model)
+        {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
+            try
+            {
+                _logger.WriteInfoLog("iniciando BuscarPersona");
+                _personaLogic = new BLogic();
+                //var dto = Mapper.Map<DPersonaDto>(model);
+                var dto = SPersonaConverter.ToDto(model);
+                //var resp = Mapper.Map<PersonaModel>(_personaLogic.Buscar(dto));
+                var resp = SPersonaConverter.ToModel(_personaLogic.Buscar(dto));
+                //return _personaLogic.Buscar(dto);
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteErrorLog(ex);
+                throw ex;
+            }
+            finally
+            {
+                _logger = null;
+            }
+        }
         #endregion
-        
+
         #region Usuario
         public int ActualizarUsuario(UsuarioModel model)
         {
@@ -102,6 +104,30 @@ namespace Service_Layer.Services
                 _usuarioLogic = new BLogic();
                 var dto = SUsuarioConverter.ToDto(model);
                 var resp = SUsuarioConverter.ToModel(_usuarioLogic.Buscar(dto));
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteErrorLog(ex);
+                throw ex;
+            }
+            finally
+            {
+                _logger = null;
+            }
+        }
+        public UsuarioModel BuscarUsuarioPorUsuario(UsuarioModel model)
+        {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
+            try
+            {
+                _logger.WriteInfoLog("iniciando BuscarUsuarioPorUsuario");
+                _usuarioLogic = new BLogic();
+                var dto = SUsuarioConverter.ToDto(model);
+                var resp = SUsuarioConverter.ToModel(_usuarioLogic.BuscarPorUsuario(dto));
                 return resp;
             }
             catch (Exception ex)

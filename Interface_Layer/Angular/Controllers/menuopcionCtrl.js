@@ -82,14 +82,14 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
             $scope.error = "Debe ingresar un sistema para poder ver sus módulos";
         }
         else {
+            $scope.tieneError = false;
+            $scope.error = "";
             $scope.estaCargando = true;
             module.Activo = 'S';
             module.Sistema = $scope.mymenuopcion.Sistema;
             ModuloFctr.ListarModulos(module)
                 .then(function successCallback(response) {
                     $scope.modulos = response;
-                    $scope.tieneError = false;
-                    $scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
@@ -183,14 +183,13 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
             $scope.error = "Debe ingresar un sistema, módulo y menú para poder ver sus opciones";
         }
         else {
+            $scope.tieneError = false;
+            $scope.error = "";
             $scope.estaCargando = true;
-
             menuoption.Menu = $scope.mymenuopcion.Menu;
             MenuOpcionFctr.ListarMenuOpciones(menuoption)
                 .then(function successCallback(response) {
                     $scope.menuesopciones = response;
-                    $scope.tieneError = false;
-                    $scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;

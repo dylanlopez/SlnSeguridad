@@ -116,14 +116,14 @@
                         <td>{{menuopcion.Menu.Modulo.Nombre}}</td>
                         <td>{{menuopcion.Menu.Nombre}}</td>
                         <td>{{menuopcion.Opcion.Nombre}}</td>
-                        <td>{{menuopcion.Estado}}</td>
+                        <td>{{menuopcion.Activo}}</td>
                         <td>{{menuopcion.Visible}}</td>
                         <td>
                             <p>
                                 <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(menuopcion)" />
-                                <input type="button" class="btn btn-danger" value="Eliminar" data-toggle="modal" data-target="#confirm-delete" />
+                                <!--<input type="button" class="btn btn-danger" value="Eliminar" data-toggle="modal" data-target="#confirm-delete" />-->
                             </p>
-                            <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <!--<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">Confirmación</div>
@@ -134,7 +134,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                         </td>
                     </tr>
                 </tbody>
@@ -157,11 +157,11 @@
     <script type="text/javascript" src="../Angular/Factories/opcionFctr.js"></script>
     <script type="text/javascript" src="../Angular/Factories/menuopcionFctr.js"></script>
     <script type="text/javascript">
-        $('#modal').on('show', function () {
-            var id = $(this).data('id'),
-                removeBtn = $(this).find('.danger');
-            removeBtn.attr('href', removeBtn.attr('href').replace(/(&|\?)ref=\d*/, '$1ref=' + id));
-        });
+        //$('#modal').on('show', function () {
+        //    var id = $(this).data('id'),
+        //        removeBtn = $(this).find('.danger');
+        //    removeBtn.attr('href', removeBtn.attr('href').replace(/(&|\?)ref=\d*/, '$1ref=' + id));
+        //});
     </script>
 </body>
 </html>

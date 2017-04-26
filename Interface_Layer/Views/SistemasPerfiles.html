@@ -50,16 +50,16 @@
                         <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mysistemaperfil.Sistema"></select>
                     </div>
                 </div>
-                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                <div class="container-fluid form-group">
                     <label for="cmbPerfil" class="col-md-2 control-label">Perfil: </label>
                     <div class="col-md-8">
                         <select id="cmbPerfil" class="form-control" ng-options="perfil.Nombre for perfil in perfiles track by perfil.Id" data-ng-model="mysistemaperfil.Perfil"></select>
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
-                    <label for="chkEstado" class="col-md-2 control-label">Estado: </label>
+                    <label for="chkActivo" class="col-md-2 control-label">¿Está Activo?: </label>
                     <div class="col-md-6">
-                        <input type="checkbox" id="chkEstado" name="Estado" ng-model="mysistemaperfil.EstaActivo"><br>
+                        <input type="checkbox" id="chkActivo" name="Activo" ng-model="mysistemaperfil.EstaActivo"><br>
                     </div>
                 </div>
                 <br />
@@ -94,7 +94,7 @@
                     <tr ng-repeat="sistemaperfil in sistemasperfiles">
                         <td>{{sistemaperfil.Sistema.Nombre}}</td>
                         <td>{{sistemaperfil.Perfil.Nombre}}</td>
-                        <td>{{sistemaperfil.Estado}}</td>
+                        <td>{{sistemaperfil.Activo}}</td>
                         <td>
                             <p>
                                 <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(sistemaperfil)" />
@@ -115,5 +115,8 @@
     <script type="text/javascript" src="../Angular/myApp.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/sistemaperfilCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/sistemaFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/perfilFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/sistemaperfilFctr.js"></script>
 </body>
 </html>

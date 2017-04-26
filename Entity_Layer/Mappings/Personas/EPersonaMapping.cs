@@ -24,32 +24,46 @@ namespace Entity_Layer.Mappings.Personas
         {
             Schema("ES_SEGURIDAD");
             Table("SEGTV_PERSONA");
-            Id<String>(
+            
+            Id<Int32>(
+                x => x.Numero,
+                map => {
+                    map.Column("NU_PERSONA");
+                });
+            Property<String>(
+                x => x.TipoDocumento,
+                map => {
+                    map.Column("IN_DOC_NACIMIENTO");
+                    map.Length(10);
+                    map.NotNullable(true);
+                });
+            Property<String>(
                 x => x.NumeroDocumento,
                 map => {
-                    map.Column("ID_PERSONA");
+                    map.Column("NU_DOC_NACIMIENTO");
+                    map.Length(10);
+                    map.NotNullable(true);
                 });
             Property<String>(
                 x => x.ApellidoPaterno, 
                 map => {
-                    map.Column("NO_PERSONA");
+                    map.Column("NO_APELLIDO_PATERNO");
                     map.Length(50);
                     map.NotNullable(true);
                 });
             Property<String>(
                 x => x.ApellidoMaterno, 
                 map => {
-                    map.Column("NU_DOCUMENTO");
-                    map.Length(15);
+                    map.Column("NO_APELLIDO_MATERNO");
+                    map.Length(50);
                     map.NotNullable(true);
-                    map.UniqueKey("UK_PERSONA_01");
                 });
             Property<String>(
                 x => x.Nombres,
                 map => {
-                    map.Column("DE_DIRECCION");
-                    map.Length(255);
-                    map.NotNullable(false);
+                    map.Column("NO_NOMBRE");
+                    map.Length(100);
+                    map.NotNullable(true);
                 });
         }
     }

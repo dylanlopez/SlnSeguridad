@@ -65,6 +65,28 @@ namespace Interface_Layer_API.Controllers
             }
         }
 
+        [HttpPost]
+        public UsuarioModel BuscarUsuarioPorUsuario(UsuarioModel model)
+        {
+            _model = model;
+            try
+            {
+                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
+                using (_restOperation = new BRestOperation())
+                {
+                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/BuscarUsuarioPorUsuario/", dataToSend);
+                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/BuscarUsuarioPorUsuario/", dataToSend);
+                    _jsonSerializer = new DataContractJsonSerializer(typeof(UsuarioModel));
+                    _model = (UsuarioModel)_jsonSerializer.ReadObject(stream);
+                    return _model;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound, ex));
+            }
+        }
+
         [HttpDelete]
         public HttpResponseMessage EliminarUsuario(UsuarioModel model)
         {

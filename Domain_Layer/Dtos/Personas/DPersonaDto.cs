@@ -15,11 +15,17 @@
         /// </summary>
         public DPersonaDto()
         {
+            Numero = 0;
+            TipoDocumento = string.Empty;
             NumeroDocumento = string.Empty;
             ApellidoPaterno = string.Empty;
             ApellidoMaterno = string.Empty;
             Nombres = string.Empty;
         }
+
+        public int Numero { get; set; }
+
+        public string TipoDocumento { get; set; }
 
         /// <summary>
         /// Gets or sets the Nombre, correspond to entity field Nombre.

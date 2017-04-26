@@ -51,3 +51,58 @@ myApp.value('menuoption',
         Menu: '',
         Opcion: ''
     });
+myApp.value('user',
+    {
+        Id: '',
+        Usuario: '',
+        Contrasena: '',
+        ApellidoPaterno: '',
+        ApellidoMaterno: '',
+        Nombres: '',
+        Caduca: '',
+        PeriodoCaducidad: '',
+        FechaUltimoCambio: '',
+        Ubigeo: '',
+        CodigoVersion: '',
+        UnicoIngreso: '',
+        HaIngresado: '',
+        OtrosLogeos: '',
+        Tipo: '',
+        Activo: '',
+        Email: ''
+    });
+myApp.value('profile',
+    {
+        Id: '',
+        Nombre: '',
+        Descripcion: ''
+    });
+myApp.value('systemprofile',
+    {
+        Id: '',
+        Activo: '',
+        Sistema: '',
+        Perfil: ''
+    });
+myApp.value('role',
+    {
+        Id: '',
+        Nombre: '',
+        Descripcion: ''
+    });
+myApp.value('profileuserrole',
+    {
+        Id: '',
+        Activo: '',
+        Perfil: '',
+        Usuario: '',
+        Rol: ''
+    });
+myApp.value('permission',
+    {
+        Id: '',
+        FechaAlta: '',
+        Estado: '',
+        PerfilUsuarioRol: '',
+        MenuOpcion: ''
+    });

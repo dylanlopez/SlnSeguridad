@@ -85,6 +85,22 @@ namespace Entity_Layer.Entities.Personas
         public virtual DateTime FechaUltimoCambio { get; set; }
 
         /// <summary>
+        /// Gets or sets the Ubigeo, correspond to table field UBIGEO.
+        /// </summary>
+        /// <value>
+        /// set a value to the Ubigeo.
+        /// </value>
+        public virtual String Ubigeo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the CodigoVersion, correspond to table field CO_VERSION.
+        /// </summary>
+        /// <value>
+        /// set a value to the CodigoVersion.
+        /// </value>
+        public virtual Int32 CodigoVersion { get; set; }
+
+        /// <summary>
         /// Gets or sets the UnicoIngreso, correspond to table field IN_UNICO_INGRESO.
         /// </summary>
         /// <value>
@@ -122,6 +138,14 @@ namespace Entity_Layer.Entities.Personas
         /// <value>
         /// set a value to the Estado.
         /// </value>
-        public virtual Char Estado { get; set; }
+        public virtual Char Activo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Email, correspond to table field NO_EMAIL.
+        /// </summary>
+        /// <value>
+        /// set a value to the Email.
+        /// </value>
+        public virtual String Email { get; set; }
     }
 }

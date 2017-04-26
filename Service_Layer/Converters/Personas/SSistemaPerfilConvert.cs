@@ -11,7 +11,7 @@ namespace Service_Layer.Converters.Personas
         {
             var model = new SistemaPerfilModel();
             model.Id = dto.Id;
-            model.Estado = dto.Estado;
+            model.Activo = dto.Activo;
             model.Sistema = SSistemaConverter.ToModel(dto.Sistema);
             model.Perfil = SPerfilConverter.ToModel(dto.Perfil);
             return model;
@@ -32,8 +32,11 @@ namespace Service_Layer.Converters.Personas
         {
             var dto = new DSistemaPerfilDto();
             dto.Id = model.Id;
-            dto.Estado = model.Estado;
-            dto.Sistema = SSistemaConverter.ToDto(model.Sistema);
+            dto.Activo = model.Activo;
+            if (model.Sistema != null)
+            {
+                dto.Sistema = SSistemaConverter.ToDto(model.Sistema);
+            }
             if (model.Perfil != null)
             {
                 dto.Perfil = SPerfilConverter.ToDto(model.Perfil);

@@ -24,7 +24,7 @@ namespace Domain_Layer.Converters.Personas
         {
             var dto = new DSistemaPerfilDto();
             dto.Id = entity.Id;
-            dto.Estado = entity.Estado;
+            dto.Activo = entity.Activo;
             dto.Sistema = DSistemaConverter.ToDto(entity.Sistema);
             dto.Perfil = DPerfilConverter.ToDto(entity.Perfil);
             return dto;
@@ -55,7 +55,7 @@ namespace Domain_Layer.Converters.Personas
         {
             var entity = new ESistemaPerfil();
             entity.Id = dto.Id;
-            entity.Estado = dto.Estado;
+            entity.Activo = dto.Activo;
             entity.Sistema = DSistemaConverter.ToEntity(dto.Sistema);
             entity.Perfil = DPerfilConverter.ToEntity(dto.Perfil);
             return entity;

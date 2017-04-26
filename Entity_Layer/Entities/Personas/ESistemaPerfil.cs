@@ -22,12 +22,12 @@ namespace Entity_Layer.Entities.Personas
         public virtual Int32 Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the Estado, correspond to table field IN_ACTIVO.
+        /// Gets or sets the Activo, correspond to table field IN_ACTIVO.
         /// </summary>
         /// <value>
-        /// set a value to the Estado.
+        /// set a value to the Activo.
         /// </value>
-        public virtual Char Estado { get; set; }
+        public virtual Char Activo { get; set; }
 
         /// <summary>
         /// Gets or sets the Sistema, correspond to table field ID_SISTEMA.

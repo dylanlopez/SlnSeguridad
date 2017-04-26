@@ -22,6 +22,8 @@ namespace Domain_Layer.Converters.Personas
         internal static DPersonaDto ToDto(EPersona entity)
         {
             var dto = new DPersonaDto();
+            dto.Numero = entity.Numero;
+            dto.TipoDocumento = entity.TipoDocumento;
             dto.NumeroDocumento = entity.NumeroDocumento;
             dto.ApellidoPaterno = entity.ApellidoPaterno;
             dto.ApellidoMaterno = entity.ApellidoMaterno;

@@ -28,7 +28,7 @@ namespace Domain_Layer.Dtos.Personas
             HaIngresado = '\0';
             OtrosLogeos = '\0';
             Tipo = '\0';
-            Estado = '\0';
+            Activo = '\0';
         }
 
         /// <summary>
@@ -103,6 +103,10 @@ namespace Domain_Layer.Dtos.Personas
         /// </value>
         public string FechaUltimoCambio { get; set; }
 
+        public string Ubigeo { get; set; }
+
+        public int CodigoVersion { get; set; }
+
         /// <summary>
         /// Gets or sets the UnicoIngreso, correspond to entity field UnicoIngreso.
         /// </summary>
@@ -141,6 +145,8 @@ namespace Domain_Layer.Dtos.Personas
         /// <value>
         /// set a value to the Estado.
         /// </value>
-        public char Estado { get; set; }
+        public char Activo { get; set; }
+
+        public string Email { get; set; }
     }
 }

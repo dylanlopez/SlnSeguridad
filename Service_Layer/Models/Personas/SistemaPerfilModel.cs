@@ -9,7 +9,7 @@ namespace Service_Layer.Models.Personas
         public SistemaPerfilModel()
         {
             Id = 0;
-            Estado = '\0';
+            Activo = '\0';
             Sistema = new SistemaModel();
             Perfil = new PerfilModel();
         }
@@ -17,8 +17,8 @@ namespace Service_Layer.Models.Personas
         [DataMember(Name = "Id", Order = 0)]
         public int Id { get; set; }
 
-        [DataMember(Name = "Estado", Order = 1)]
-        public char Estado { get; set; }
+        [DataMember(Name = "Activo", Order = 1)]
+        public char Activo { get; set; }
 
         [DataMember(Name = "Sistema", Order = 2)]
         public SistemaModel Sistema { get; set; }

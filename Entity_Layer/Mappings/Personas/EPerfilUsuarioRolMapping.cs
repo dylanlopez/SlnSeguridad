@@ -37,7 +37,7 @@ namespace Entity_Layer.Mappings.Personas
                         }));
                 });
             Property<Char>(
-                x => x.Estado,
+                x => x.Activo,
                 map => {
                     map.Column("IN_ACTIVO");
                     map.Length(1);

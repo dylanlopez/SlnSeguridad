@@ -9,13 +9,13 @@ namespace Service_Layer.Services
     public interface ISPersonasService
     {
         #region Persona
-        //[OperationContract]
-        //[WebInvoke(Method = "POST",
-        //ResponseFormat = WebMessageFormat.Json,
-        //RequestFormat = WebMessageFormat.Json,
-        //BodyStyle = WebMessageBodyStyle.Bare,
-        //UriTemplate = "BuscarPersona/")]
-        //PersonaModel BuscarPersona(PersonaModel dto);
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "BuscarPersona/")]
+        PersonaModel BuscarPersona(PersonaModel dto);
         #endregion
 
         #region Usuario
@@ -34,6 +34,14 @@ namespace Service_Layer.Services
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "BuscarUsuario/")]
         UsuarioModel BuscarUsuario(UsuarioModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "BuscarUsuarioPorUsuario/")]
+        UsuarioModel BuscarUsuarioPorUsuario(UsuarioModel dto);
 
         [OperationContract]
         [WebInvoke(Method = "POST",

@@ -8,7 +8,7 @@
         public DPerfilUsuarioRolDto()
         {
             Id = 0;
-            Estado = '\0';
+            Activo = '\0';
             Perfil = new DPerfilDto();
             Usuario = new DUsuarioDto();
             Rol = new DRolDto();
@@ -28,7 +28,7 @@
         /// <value>
         /// set a value to the Estado.
         /// </value>
-        public char Estado { get; set; }
+        public char Activo { get; set; }
 
         /// <summary>
         /// Gets or sets the Perfil, correspond to entity field Perfil.

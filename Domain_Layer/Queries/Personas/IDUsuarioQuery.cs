@@ -27,6 +27,8 @@ namespace Domain_Layer.Queries.Personas
         /// <returns></returns>
         DUsuarioDto Buscar(DUsuarioDto dto);
 
+        DUsuarioDto BuscarPorUsuario(DUsuarioDto dto);
+
         /// <summary>
         /// Insert the specified entity class EUsuario.
         /// </summary>

@@ -92,6 +92,19 @@ namespace Entity_Layer.Mappings.Personas
                     map.Column("FE_ULTIMOCAMBIO");
                     map.NotNullable(true);
                 });
+            Property<String>(
+                x => x.Ubigeo,
+                map => {
+                    map.Column("UBIGEO");
+                    map.Length(6);
+                    map.NotNullable(true);
+                });
+            Property<Int32>(
+                x => x.CodigoVersion,
+                map => {
+                    map.Column("CO_VERSION");
+                    map.NotNullable(true);
+                });
             Property<Char>(
                 x => x.UnicoIngreso,
                 map => {
@@ -121,11 +134,18 @@ namespace Entity_Layer.Mappings.Personas
                     map.NotNullable(true);
                 });
             Property<Char>(
-                x => x.Estado, 
+                x => x.Activo, 
                 map => {
                     map.Column("IN_ACTIVO");
                     map.Length(1);
                     map.NotNullable(true);
+                });
+            Property<String>(
+                x => x.Email,
+                map => {
+                    map.Column("NO_EMAIL");
+                    map.Length(200);
+                    map.NotNullable(false);
                 });
         }
     }

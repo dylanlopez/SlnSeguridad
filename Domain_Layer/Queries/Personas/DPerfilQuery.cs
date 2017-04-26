@@ -58,7 +58,8 @@ namespace Domain_Layer.Queries
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        IQuery query = _sessionMidis.CreateQuery("FROM EPerfil x ");
+                        IQuery query = _sessionMidis.CreateQuery("FROM EPerfil x " + 
+                                                                 "ORDER BY x.Nombre ");
                         var result = query.List<EPerfil>();
                         if (result != null)
                         {

@@ -35,11 +35,14 @@ namespace Domain_Layer.Converters.Personas
             //dto.FechaUltimoCambio = entity.FechaUltimoCambio.ToShortDateString();
             dto.FechaUltimoCambio = entity.FechaUltimoCambio.ToString();
             //dto.FechaUltimoCambio = entity.FechaUltimoCambio;
+            dto.Ubigeo = entity.Ubigeo;
+            dto.CodigoVersion = entity.CodigoVersion;
             dto.UnicoIngreso = entity.UnicoIngreso;
             dto.HaIngresado = entity.HaIngresado;
             dto.OtrosLogeos = entity.OtrosLogeos;
             dto.Tipo = entity.Tipo;
-            dto.Estado = entity.Estado;
+            dto.Activo = entity.Activo;
+            dto.Email = entity.Email;
             return dto;
         }
 
@@ -83,12 +86,15 @@ namespace Domain_Layer.Converters.Personas
                 dto.FechaUltimoCambio = dto.FechaUltimoCambio.Substring(0, 10);
                 entity.FechaUltimoCambio = DateTime.ParseExact(dto.FechaUltimoCambio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             }
+            entity.Ubigeo = dto.Ubigeo;
+            entity.CodigoVersion = dto.CodigoVersion;
             //entity.FechaUltimoCambio = dto.FechaUltimoCambio;
             entity.UnicoIngreso = dto.UnicoIngreso;
             entity.HaIngresado = dto.HaIngresado;
             entity.OtrosLogeos = dto.OtrosLogeos;
             entity.Tipo = dto.Tipo;
-            entity.Estado = dto.Estado;
+            entity.Activo = dto.Activo;
+            entity.Email = dto.Email;
             return entity;
         }
     }

@@ -32,6 +32,18 @@ namespace Business_Layer.Logics
                 throw ex;
             }
         }
+        public DUsuarioDto BuscarPorUsuario(DUsuarioDto dto)
+        {
+            try
+            {
+                _usuarioQuery = new DQuery();
+                return _usuarioQuery.BuscarPorUsuario(dto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public int Eliminar(DUsuarioDto dto)
         {
             try

@@ -16,11 +16,14 @@ namespace Service_Layer.Models.Personas
             Caduca = '\0';
             PeriodoCaducidad = 0;
             FechaUltimoCambio = string.Empty;
+            Ubigeo = string.Empty;
+            CodigoVersion = 0;
+            Email = string.Empty;
             UnicoIngreso = '\0';
             HaIngresado = '\0';
             OtrosLogeos = '\0';
             Tipo = '\0';
-            Estado = '\0';
+            Activo = '\0';
         }
 
         [DataMember(Name = "Id", Order = 0)]
@@ -50,19 +53,28 @@ namespace Service_Layer.Models.Personas
         [DataMember(Name = "FechaUltimoCambio", Order = 8)]
         public string FechaUltimoCambio { get; set; }
 
-        [DataMember(Name = "UnicoIngreso", Order = 9)]
+        [DataMember(Name = "Ubigeo", Order = 9)]
+        public string Ubigeo { get; set; }
+
+        [DataMember(Name = "CodigoVersion", Order = 10)]
+        public int CodigoVersion { get; set; }
+
+        [DataMember(Name = "UnicoIngreso", Order = 11)]
         public char UnicoIngreso { get; set; }
 
-        [DataMember(Name = "HaIngresado", Order = 10)]
+        [DataMember(Name = "HaIngresado", Order = 12)]
         public char HaIngresado { get; set; }
 
-        [DataMember(Name = "OtrosLogeos", Order = 11)]
+        [DataMember(Name = "OtrosLogeos", Order = 13)]
         public char OtrosLogeos { get; set; }
 
-        [DataMember(Name = "Tipo", Order = 12)]
+        [DataMember(Name = "Tipo", Order = 14)]
         public char Tipo { get; set; }
 
-        [DataMember(Name = "Estado", Order = 13)]
-        public char Estado { get; set; }
+        [DataMember(Name = "Activo", Order = 15)]
+        public char Activo { get; set; }
+
+        [DataMember(Name = "Email", Order = 16)]
+        public string Email { get; set; }
     }
 }

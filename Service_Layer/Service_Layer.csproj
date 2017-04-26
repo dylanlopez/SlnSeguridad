@@ -78,6 +78,9 @@
     <Compile Include="Converters\Sistemas\SModuloConverter.cs" />
     <Compile Include="Converters\Sistemas\SOpcionConverter.cs" />
     <Compile Include="Converters\Sistemas\SSistemaConverter.cs" />
+    <Compile Include="Models\Externos\DepartamentoModel.cs" />
+    <Compile Include="Models\Externos\DistritoModel.cs" />
+    <Compile Include="Models\Externos\ProvinciaModel.cs" />
     <Compile Include="Models\Personas\PerfilModel.cs" />
     <Compile Include="Models\Personas\PerfilUsuarioRolModel.cs" />
     <Compile Include="Models\Personas\PermisoModel.cs" />

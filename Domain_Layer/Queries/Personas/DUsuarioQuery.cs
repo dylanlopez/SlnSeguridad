@@ -62,6 +62,35 @@ namespace Domain_Layer.Queries
                 throw ex;
             }
         }
+        public DUsuarioDto BuscarPorUsuario(DUsuarioDto dto)
+        {
+            DUsuarioDto item = null;
+            try
+            {
+                using (_sessionMidis = _sessionFactoryMidis.OpenSession())
+                {
+                    using (_transactionMidis = _sessionMidis.BeginTransaction())
+                    {
+                        IQuery query = _sessionMidis.CreateQuery("FROM EUsuario x " +
+                                                                 "WHERE x.Usuario = :p_Usuario ");
+                        query.SetParameter("p_Usuario", dto.Usuario);
+                        var result = query.List<EUsuario>();
+                        if (result != null)
+                        {
+                            if (result.Count > 0)
+                            {
+                                item = DUsuarioConverter.ToDto(result[0]);
+                            }
+                        }
+                        return item;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public int Eliminar(DUsuarioDto dto)
         {
             try

@@ -10,7 +10,7 @@ namespace Service_Layer.Converters.Personas
         {
             var model = new PerfilUsuarioRolModel();
             model.Id = dto.Id;
-            model.Estado = dto.Estado;
+            model.Activo = dto.Activo;
             model.Perfil = SPerfilConverter.ToModel(dto.Perfil);
             model.Usuario = SUsuarioConverter.ToModel(dto.Usuario);
             model.Rol = SRolConverter.ToModel(dto.Rol);
@@ -32,7 +32,7 @@ namespace Service_Layer.Converters.Personas
         {
             var dto = new DPerfilUsuarioRolDto();
             dto.Id = model.Id;
-            dto.Estado = model.Estado;
+            dto.Activo = model.Activo;
             if (model.Perfil != null)
             {
                 dto.Perfil = SPerfilConverter.ToDto(model.Perfil);

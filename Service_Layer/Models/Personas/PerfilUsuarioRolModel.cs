@@ -7,7 +7,7 @@ namespace Service_Layer.Models.Personas
         public PerfilUsuarioRolModel()
         {
             Id = 0;
-            Estado = '\0';
+            Activo = '\0';
             Perfil = new PerfilModel();
             Usuario = new UsuarioModel();
             Rol = new RolModel();
@@ -16,8 +16,8 @@ namespace Service_Layer.Models.Personas
         [DataMember(Name = "Id", Order = 0)]
         public int Id { get; set; }
 
-        [DataMember(Name = "Estado", Order = 1)]
-        public char Estado { get; set; }
+        [DataMember(Name = "Activo", Order = 1)]
+        public char Activo { get; set; }
 
         [DataMember(Name = "Perfil", Order = 2)]
         public PerfilModel Perfil { get; set; }

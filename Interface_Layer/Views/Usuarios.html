@@ -45,8 +45,11 @@
                 <input type="hidden" id="hdnId" data-ng-model="myusuario.Id" />
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtUsuario" class="col-md-2 control-label">Usuario: </label>
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <input type="text" class="form-control" id="txtUsuario" placeholder="Ingrese el usuario (obligatorio)" data-ng-model="myusuario.Usuario" maxlength="100" required />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="button" value="Buscar" data-ng-click="buscarPersona()" class="btn btn-primary" />
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
@@ -58,19 +61,43 @@
                 <div class="container-fluid form-group">
                     <label for="txtApellidoPaterno" class="col-md-2 control-label">Apellido Paterno: </label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="txtApellidoPaterno" placeholder="Ingrese el apellido paterno" data-ng-model="myusuario.ApellidoPaterno" maxlength="50" required />
+                        <input type="text" class="form-control" id="txtApellidoPaterno" placeholder="Ingrese el apellido paterno" data-ng-model="myusuario.ApellidoPaterno" maxlength="50" required ng-disabled="estaEditable" />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="txtApellidoMaterno" class="col-md-2 control-label">Apellido Materno: </label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="txtApellidoMaterno" placeholder="Ingrese el apellido materno" data-ng-model="myusuario.ApellidoMaterno" maxlength="50" required />
+                        <input type="text" class="form-control" id="txtApellidoMaterno" placeholder="Ingrese el apellido materno" data-ng-model="myusuario.ApellidoMaterno" maxlength="50" required ng-disabled="estaEditable" />
                     </div>
                 </div>
                 <div class="container-fluid form-group">
                     <label for="txtNombres" class="col-md-2 control-label">Nombres: </label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="txtNombres" placeholder="Ingrese el nombre" data-ng-model="myusuario.Nombres" maxlength="100" required />
+                        <input type="text" class="form-control" id="txtNombres" placeholder="Ingrese el nombre" data-ng-model="myusuario.Nombres" maxlength="100" required ng-disabled="estaEditable" />
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="txtEmail" class="col-md-2 control-label">Email: </label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="txtEmail" placeholder="Ingrese el email" data-ng-model="myusuario.Email" maxlength="200" />
+                    </div>
+                </div>
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <label for="cmbDepartamento" class="col-md-2 control-label">Departamento: </label>
+                    <div class="col-md-8">
+                        <select id="cmbDepartamento" class="form-control" ng-options="departamento.descripcionDepartamento for departamento in departamentos track by departamento.codigoDepartamento" data-ng-model="myusuario.Departamento" ng-change="buscarProvincias()"></select>
+                    </div>
+                </div>
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <label for="cmbProvincia" class="col-md-2 control-label">Provincia: </label>
+                    <div class="col-md-8">
+                        <select id="cmbProvincia" class="form-control" ng-options="provincia.descripcionProvincia for provincia in provincias track by provincia.codigoProvincia" data-ng-model="myusuario.Provincia" ng-change="buscarDistritos()"></select>
+                    </div>
+                </div>
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
+                    <label for="cmbDistrito" class="col-md-2 control-label">Distritos: </label>
+                    <div class="col-md-8">
+                        <select id="cmbDistrito" class="form-control" ng-options="distrito.descripcionDistrito for distrito in distritos track by distrito.codigoDistrito" data-ng-model="myusuario.Distrito"></select>
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
@@ -173,5 +200,8 @@
     <script type="text/javascript" src="../Angular/myApp.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/usuarioCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/ubigeoFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/personaFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/usuarioFctr.js"></script>
 </body>
 </html>

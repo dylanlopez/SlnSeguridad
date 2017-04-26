@@ -59,7 +59,9 @@ namespace Domain_Layer.Queries
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
                         IQuery query = _sessionMidis.CreateQuery("FROM ESistemaPerfil x " +
-                                                                 "WHERE x.Sistema.Id = COALESCE(:p_IdSistema, x.Sistema.Id) ");
+                                                                 "WHERE x.Sistema.Id = COALESCE(:p_IdSistema, x.Sistema.Id) " +
+                                                                 "AND x.Perfil.Id = COALESCE(:p_IdPerfil, x.Perfil.Id) " +
+                                                                 "ORDER BY x.Sistema.Nombre, x.Perfil.Nombre ");
                         if (dto.Sistema.Id != 0)
                         {
                             query.SetParameter("p_IdSistema", dto.Sistema.Id);
@@ -67,6 +69,14 @@ namespace Domain_Layer.Queries
                         else
                         {
                             query.SetParameter("p_IdSistema", null, NHibernateUtil.Int32);
+                        }
+                        if (dto.Perfil.Id != 0)
+                        {
+                            query.SetParameter("p_IdPerfil", dto.Perfil.Id);
+                        }
+                        else
+                        {
+                            query.SetParameter("p_IdPerfil", null, NHibernateUtil.Int32);
                         }
                         var result = query.List<ESistemaPerfil>();
                         if (result != null)

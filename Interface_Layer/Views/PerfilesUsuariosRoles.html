@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-hide="estaEditable">
-                    <label for="txtNombresCompletos" class="col-md-2 control-label">Nombres: </label>
+                    <label for="txtNombresCompletos" class="col-md-2 control-label">Nombres Completos: </label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" id="txtNombresCompletos" data-ng-model="myusuario.NombresCompletos" maxlength="100" disabled />
                     </div>
@@ -89,9 +89,9 @@
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
-                    <label class="col-md-2 control-label">¿Está activo?: </label>
+                    <label for="chkActivo" class="col-md-2 control-label">¿Está Activo?: </label>
                     <div class="col-md-6">
-                        <input type="checkbox" id="chkEstado" name="Estado" ng-model="myperfilusuariorol.EstaActivo"><br>
+                        <input type="checkbox" id="chkActivo" name="Activo" ng-model="myperfilusuariorol.EstaActivo"><br>
                     </div>
                 </div>
                 <br />
@@ -128,7 +128,7 @@
                         <td>{{perfilusuariorol.Perfil.Nombre}}</td>
                         <td>{{perfilusuariorol.Usuario.ApellidoPaterno}} {{perfilusuariorol.Usuario.ApellidoMaterno}} {{perfilusuariorol.Usuario.Nombres}}</td>
                         <td>{{perfilusuariorol.Rol.Nombre}}</td>
-                        <td>{{perfilusuariorol.Estado}}</td>
+                        <td>{{perfilusuariorol.Activo}}</td>
                         <td>
                             <p>
                                 <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(perfilusuariorol)" />
@@ -149,5 +149,9 @@
     <script type="text/javascript" src="../Angular/myApp.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
     <script type="text/javascript" src="../Angular/Controllers/perfilusuariorolCtrl.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/perfilFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/usuarioFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/rolFctr.js"></script>
+    <script type="text/javascript" src="../Angular/Factories/perfilusuariorolFctr.js"></script>
 </body>
 </html>

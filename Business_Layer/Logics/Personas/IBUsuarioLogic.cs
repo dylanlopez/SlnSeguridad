@@ -11,7 +11,9 @@ namespace Business_Layer.Logics.Personas
         
         DUsuarioDto Buscar(DUsuarioDto dto);
 
-        
+        DUsuarioDto BuscarPorUsuario(DUsuarioDto dto);
+
+
         int Eliminar(DUsuarioDto dto);
 
         

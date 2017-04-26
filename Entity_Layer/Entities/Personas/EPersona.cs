@@ -12,6 +12,10 @@ namespace Entity_Layer.Entities.Personas
     /// </v1.0>
     public class EPersona
     {
+        public virtual Int32 Numero { get; set; }
+
+        public virtual String TipoDocumento { get; set; }
+
         /// <summary>
         /// Gets or sets the NumeroDocumento, correspond to table field NUMERO_DOCUMENTO.
         /// </summary>
