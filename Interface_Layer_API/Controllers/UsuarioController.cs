@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Service_Layer.Models.Personas;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
@@ -18,6 +19,7 @@ namespace Interface_Layer_API.Controllers
         private BRestOperation _restOperation;
 
         [HttpPut]
+        //[Authorize]
         public HttpResponseMessage ActualizarUsuario(UsuarioModel model)
         {
             try
@@ -27,11 +29,14 @@ namespace Interface_Layer_API.Controllers
                 //{
                 //    _model.TipoDocumentoPersona.Nombre = String.Empty;
                 //}
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SPersonasService.svc/ActualizarUsuario/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ActualizarUsuario/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ActualizarUsuario/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ActualizarUsuario/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -49,11 +54,14 @@ namespace Interface_Layer_API.Controllers
             _model = model;
             try
             {
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SPersonasService.svc/BuscarUsuario/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/BuscarUsuario/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/BuscarUsuario/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/BuscarUsuario/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(UsuarioModel));
                     _model = (UsuarioModel)_jsonSerializer.ReadObject(stream);
                     return _model;
@@ -71,11 +79,14 @@ namespace Interface_Layer_API.Controllers
             _model = model;
             try
             {
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SPersonasService.svc/BuscarUsuarioPorUsuario/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/BuscarUsuarioPorUsuario/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/BuscarUsuarioPorUsuario/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/BuscarUsuarioPorUsuario/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(UsuarioModel));
                     _model = (UsuarioModel)_jsonSerializer.ReadObject(stream);
                     return _model;
@@ -88,16 +99,20 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpDelete]
+        //[Authorize]
         public HttpResponseMessage EliminarUsuario(UsuarioModel model)
         {
             _model = model;
             try
             {
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SPersonasService.svc/EliminarUsuario/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/EliminarUsuario/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/EliminarUsuario/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/EliminarUsuario/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -110,6 +125,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
+        //[Authorize]
         public HttpResponseMessage InsertarUsuario(UsuarioModel model)
         {
             try
@@ -119,11 +135,14 @@ namespace Interface_Layer_API.Controllers
                 //{
                 //    _model.TipoDocumentoPersona.Nombre = String.Empty;
                 //}
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SPersonasService.svc/InsertarUsuario/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarUsuario/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarUsuario/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarUsuario/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -136,6 +155,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
+        //[Authorize]
         public List<UsuarioModel> ListarUsuarios(UsuarioModel model)
         {
             List<UsuarioModel> response;
@@ -147,12 +167,15 @@ namespace Interface_Layer_API.Controllers
                 //modelito.Usuario = "ADMIN";
                 //modelito.Persona.Nombre = "ADMIN";
                 //var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(modelito));
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SPersonasService.svc/ListarUsuarios/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ListarUsuarios/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarUsuarios/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarUsuarios/", dataToSend);
                     //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarUsuarios/");
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(List<UsuarioModel>));
                     response = (List<UsuarioModel>)_jsonSerializer.ReadObject(stream);
                     return response;

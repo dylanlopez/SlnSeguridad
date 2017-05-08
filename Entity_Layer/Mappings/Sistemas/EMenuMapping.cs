@@ -26,7 +26,7 @@ namespace Entity_Layer.Mappings.Sistemas
         /// </summary>
         public EMenuMapping()
         {
-            Schema("ES_SEGURIDAD");
+            //Schema("ES_SEGURIDAD");
             Table("SEGTM_MENU");
             Id<Int32>(
                 x => x.Id,
@@ -36,7 +36,7 @@ namespace Entity_Layer.Mappings.Sistemas
                         Generators.Sequence,
                         seq => seq.Params(new
                         {
-                            schema = "ES_SEGURIDAD",
+                            //schema = "ES_SEGURIDAD",
                             sequence = "SEQ_MENU"
                         }));
                 });

@@ -52,6 +52,12 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
     //    $scope.estaCargando = false;
     //});
 
+    $scope.setearSistema = function () {
+        if (!angular.isUndefined($scope.mymodulo.Sistema) && $scope.mymodulo.Sistema != null) {
+            $scope.mymodulo.Codigo = $scope.mymodulo.Sistema.Codigo;
+        }
+    };
+
     $scope.buscar = function () {
         if (angular.isUndefined($scope.mymodulo.Sistema) || $scope.mymodulo.Sistema == null) {
             $scope.tieneError = true;

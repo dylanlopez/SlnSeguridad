@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Service_Layer.Models.Personas;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
@@ -18,16 +19,20 @@ namespace Interface_Layer_API.Controllers
         private BRestOperation _restOperation;
 
         [HttpPut]
+        //[Authorize]
         public HttpResponseMessage ActualizarPerfil(PerfilModel model)
         {
             try
             {
                 _model = model;
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SPersonasService.svc/ActualizarPerfil/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ActualizarPerfil/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ActualizarPerfil/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ActualizarPerfil/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -40,16 +45,20 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
+        //[Authorize]
         public HttpResponseMessage InsertarPerfil(PerfilModel model)
         {
             try
             {
                 _model = model;
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SPersonasService.svc/InsertarPerfil/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/InsertarPerfil/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarPerfil/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/InsertarPerfil/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -62,17 +71,21 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
+        //[Authorize]
         public List<PerfilModel> ListarPerfiles()
         {
             List<PerfilModel> response;
             _model = new PerfilModel();
             try
             {
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SPersonasService.svc/ListarPerfiles/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/ListarPerfiles/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarPerfiles/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/ListarPerfiles/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(List<PerfilModel>));
                     response = (List<PerfilModel>)_jsonSerializer.ReadObject(stream);
                     return response;

@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Service_Layer.Models.Externos;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
@@ -20,15 +21,19 @@ namespace Interface_Layer_API.Controllers
         private BRestOperation _restOperation;
 
         [HttpPost]
+        //[Authorize]
         public List<DepartamentoModel> ListarDepartamentos()
         {
+            var ubigeoPath = ConfigurationManager.AppSettings["UbigeoServicePath"].ToString();
+            ubigeoPath = ubigeoPath + "listarDepartamento/";
             List<DepartamentoModel> response;
             try
             {
                 //var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://192.168.64.19:7070/SistemaS100/listarDepartamento/");
+                    //var stream = _restOperation.Post("http://192.168.64.19:7070/SistemaS100/listarDepartamento/");
+                    var stream = _restOperation.Post(ubigeoPath);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(List<DepartamentoModel>));
                     response = (List<DepartamentoModel>)_jsonSerializer.ReadObject(stream);
                     return response;
@@ -40,7 +45,7 @@ namespace Interface_Layer_API.Controllers
             }
         }
 
-        [HttpPost]
+        //[HttpPost]
         public List<ProvinciaModel> ListarProvincias(DepartamentoModel model)
         {
             ProvinciaRequest request = new ProvinciaRequest();
@@ -67,7 +72,7 @@ namespace Interface_Layer_API.Controllers
             }
         }
 
-        [HttpPost]
+        //[HttpPost]
         public List<DistritoModel> ListarDistritos(ProvinciaModel model)
         {
             DistritoRequest request = new DistritoRequest();

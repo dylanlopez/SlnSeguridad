@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,18 +34,16 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Domain_Layer\Domain_Layer.csproj">
-      <Project>{98dbea5b-4174-4ddb-9a3d-460a58b2a9d4}</Project>
-      <Name>Domain_Layer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Logging_Layer\Logging_Layer.csproj">
-      <Project>{3aaae934-617b-41c6-97de-f5ec022e4493}</Project>
-      <Name>Logging_Layer</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logics\BLogic.cs" />
@@ -73,6 +71,8 @@
     <Compile Include="Logics\Sistemas\IBModuloLogic.cs" />
     <Compile Include="Logics\Sistemas\IBOpcionLogic.cs" />
     <Compile Include="Logics\Sistemas\IBSistemaLogic.cs" />
+    <Compile Include="Logics\Vistas\BVistaPermisoQuery.cs" />
+    <Compile Include="Logics\Vistas\IBVistaPermisoQuery.cs" />
     <Compile Include="Utils\BDecrypt.cs" />
     <Compile Include="Utils\BEncrypt.cs" />
     <Compile Include="Utils\BRestOperation.cs" />
@@ -80,7 +80,16 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Domain_Layer\Domain_Layer.csproj">
+      <Project>{98dbea5b-4174-4ddb-9a3d-460a58b2a9d4}</Project>
+      <Name>Domain_Layer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logging_Layer\Logging_Layer.csproj">
+      <Project>{3aaae934-617b-41c6-97de-f5ec022e4493}</Project>
+      <Name>Logging_Layer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

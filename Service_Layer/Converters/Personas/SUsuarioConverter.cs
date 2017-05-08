@@ -1,4 +1,5 @@
-﻿using Domain_Layer.Dtos.Personas;
+﻿using Business_Layer.Utils;
+using Domain_Layer.Dtos.Personas;
 using Service_Layer.Models.Personas;
 using System.Collections.Generic;
 
@@ -6,12 +7,21 @@ namespace Service_Layer.Converters.Personas
 {
     internal static class SUsuarioConverter
     {
+        private static BEncrypt _encrypt;
+        private static BDecrypt _decrypt;
+
         internal static UsuarioModel ToModel(DUsuarioDto dto)
         {
+            _decrypt = new BDecrypt();
             var model = new UsuarioModel();
             model.Id = dto.Id;
             model.Usuario = dto.Usuario;
-            model.Contrasena = dto.Contrasena;
+            if (!string.IsNullOrEmpty(dto.Contrasena))
+            {
+                _decrypt.TextToDecrypt = dto.Contrasena;
+                _decrypt.Decrypt256();
+                model.Contrasena = _decrypt.TextDecrypted;
+            }
             model.ApellidoPaterno = dto.ApellidoPaterno;
             model.ApellidoMaterno = dto.ApellidoMaterno;
             model.Nombres = dto.Nombres;
@@ -42,10 +52,16 @@ namespace Service_Layer.Converters.Personas
 
         internal static DUsuarioDto ToDto(UsuarioModel model)
         {
+            _encrypt = new BEncrypt();
             var dto = new DUsuarioDto();
             dto.Id = model.Id;
             dto.Usuario = model.Usuario;
-            dto.Contrasena = model.Contrasena;
+            if (!string.IsNullOrEmpty(model.Contrasena))
+            {
+                _encrypt.TextToEncrypt = model.Contrasena;
+                _encrypt.Encrypt256();
+                dto.Contrasena = _encrypt.TextEncrypted;
+            }
             dto.ApellidoPaterno = model.ApellidoPaterno;
             dto.ApellidoMaterno = model.ApellidoMaterno;
             dto.Nombres = model.Nombres;

@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Service_Layer.Models.Sistemas;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
@@ -18,16 +19,20 @@ namespace Interface_Layer_API.Controllers
         private BRestOperation _restOperation;
 
         [HttpPut]
+        //[Authorize]
         public HttpResponseMessage ActualizarOpcion(OpcionModel model)
         {
             try
             {
                 _model = model;
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SSistemasServices.svc/ActualizarOpcion/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ActualizarOpcion/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ActualizarOpcion/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ActualizarOpcion/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -40,16 +45,20 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpDelete]
+        //[Authorize]
         public HttpResponseMessage EliminarOpcion(OpcionModel model)
         {
             _model = model;
             try
             {
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SSistemasServices.svc/EliminarOpcion/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/EliminarOpcion/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/EliminarOpcion/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/EliminarOpcion/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -62,16 +71,20 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
+        //[Authorize]
         public HttpResponseMessage InsertarOpcion(OpcionModel model)
         {
             try
             {
                 _model = model;
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SSistemasServices.svc/InsertarOpcion/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/InsertarOpcion/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/InsertarOpcion/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/InsertarOpcion/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -91,11 +104,14 @@ namespace Interface_Layer_API.Controllers
             _model = model;
             try
             {
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SSistemasServices.svc/ListarOpciones/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarOpciones/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarOpciones/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarOpciones/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(List<OpcionModel>));
                     response = (List<OpcionModel>)_jsonSerializer.ReadObject(stream);
                     return response;

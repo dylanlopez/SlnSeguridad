@@ -82,6 +82,12 @@ myApp.controller("MenuCtrl", function ($scope, system, module, menu, SistemaFctr
             //});
         }
     };
+
+    $scope.setearModulo = function () {
+        if (!angular.isUndefined($scope.mymenu.Modulo) && $scope.mymenu.Modulo != null) {
+            $scope.mymenu.Codigo = $scope.mymenu.Modulo.Codigo;
+        }
+    };
     
     $scope.buscar = function () {
         if (angular.isUndefined($scope.mymenu.Sistema) || $scope.mymenu.Sistema == null) {

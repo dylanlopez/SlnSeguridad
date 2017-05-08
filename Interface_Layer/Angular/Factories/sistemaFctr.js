@@ -1,8 +1,8 @@
 ﻿myApp.factory('SistemaFctr', function ($http, webAPIControllers) {
     var sistema = {};
-    var urlListarSistemas = webAPIControllers + '/api/Sistema/ListarSistemas';
-    var urlInsertarSistema = webAPIControllers + '/api/Sistema/InsertarSistema';
-    var urlActualizarSistema = webAPIControllers + '/api/Sistema/ActualizarSistema/';
+    var urlListarSistemas = webAPIControllers + 'api/Sistema/ListarSistemas';
+    var urlInsertarSistema = webAPIControllers + 'api/Sistema/InsertarSistema';
+    var urlActualizarSistema = webAPIControllers + 'api/Sistema/ActualizarSistema/';
     var header = {
         'Content-Type': 'application/json'
     }

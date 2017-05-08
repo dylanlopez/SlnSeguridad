@@ -79,7 +79,7 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                return null;
             }
             finally
             {

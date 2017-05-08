@@ -1,8 +1,8 @@
 ﻿myApp.factory('PerfilUsuarioRolFctr', function ($http, webAPIControllers) {
     var perfilusuariorol = {};
-    var urlListarPerfilesUsuariosRoles = webAPIControllers + '/api/PerfilUsuarioRol/ListarPerfilesUsuariosRoles';
-    var urlInsertarPerfilUsuarioRol = webAPIControllers + '/api/PerfilUsuarioRol/InsertarPerfilUsuarioRol';
-    var urlActualizarPerfilUsuarioRol = webAPIControllers + '/api/PerfilUsuarioRol/ActualizarPerfilUsuarioRol/';
+    var urlListarPerfilesUsuariosRoles = webAPIControllers + 'api/PerfilUsuarioRol/ListarPerfilesUsuariosRoles';
+    var urlInsertarPerfilUsuarioRol = webAPIControllers + 'api/PerfilUsuarioRol/InsertarPerfilUsuarioRol';
+    var urlActualizarPerfilUsuarioRol = webAPIControllers + 'api/PerfilUsuarioRol/ActualizarPerfilUsuarioRol/';
     var header = {
         'Content-Type': 'application/json'
     }

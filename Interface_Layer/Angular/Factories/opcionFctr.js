@@ -1,8 +1,8 @@
 ﻿myApp.factory('OpcionFctr', function ($http, webAPIControllers) {
     var opcion = {};
-    var urlListarOpciones = webAPIControllers + '/api/Opcion/ListarOpciones';
-    var urlInsertarOpcion = webAPIControllers + '/api/Opcion/InsertarOpcion';
-    var urlActualizarOpcion = webAPIControllers + '/api/Opcion/ActualizarOpcion/';
+    var urlListarOpciones = webAPIControllers + 'api/Opcion/ListarOpciones';
+    var urlInsertarOpcion = webAPIControllers + 'api/Opcion/InsertarOpcion';
+    var urlActualizarOpcion = webAPIControllers + 'api/Opcion/ActualizarOpcion/';
     var header = {
         'Content-Type': 'application/json'
     }

@@ -1,4 +1,5 @@
 ﻿using Service_Layer.Models.Personas;
+using Service_Layer.Models.Vistas;
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
@@ -220,6 +221,16 @@ namespace Service_Layer.Services
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "ListarPermisos/")]
         List<PermisoModel> ListarPermisos(PermisoModel dto);
+        #endregion
+
+        #region Acreditacion
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "AcreditacionUPS/")]
+        List<VistaPermisoResponse> AcreditacionUPS(VistaPermisoRequest dto);
         #endregion
     }
 }

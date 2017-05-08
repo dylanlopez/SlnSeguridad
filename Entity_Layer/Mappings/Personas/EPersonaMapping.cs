@@ -22,9 +22,8 @@ namespace Entity_Layer.Mappings.Personas
         /// </summary>
         public EPersonaMapping()
         {
-            Schema("ES_SEGURIDAD");
+            //Schema("ES_SEGURIDAD");
             Table("SEGTV_PERSONA");
-            
             Id<Int32>(
                 x => x.Numero,
                 map => {

@@ -1,10 +1,14 @@
 ﻿//using AutoMapper;
 using Business_Layer.Logics;
 using Business_Layer.Logics.Personas;
+using Business_Layer.Logics.Vistas;
 using Domain_Layer.Dtos.Personas;
+using Domain_Layer.Dtos.Vistas;
 using Logging_Layer;
 using Service_Layer.Converters.Personas;
+using Service_Layer.Converters.Vistas;
 using Service_Layer.Models.Personas;
+using Service_Layer.Models.Vistas;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,6 +25,7 @@ namespace Service_Layer.Services
         private IBRolLogic _rolLogic;
         private IBPerfilUsuarioRolLogic _perfilUsuarioRolLogic;
         private IBPermisoLogic _permisoLogic;
+        private IBVistaPermisoQuery _vistaPermisoQuery;
         private Loggin _logger;
 
         public SPersonasService()
@@ -551,7 +556,7 @@ namespace Service_Layer.Services
         }
         #endregion
 
-        #region Usuario
+        #region Permiso
         public int ActualizarPermiso(PermisoModel model)
         {
             if (_logger == null)
@@ -633,6 +638,33 @@ namespace Service_Layer.Services
                 _permisoLogic = new BLogic();
                 var dto = SPermisoConverter.ToDto(model);
                 var resp = SPermisoConverter.ToModels(_permisoLogic.Listar(dto));
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteErrorLog(ex);
+                throw ex;
+            }
+            finally
+            {
+                _logger = null;
+            }
+        }
+        #endregion
+
+        #region Acreditacion
+        public List<VistaPermisoResponse> AcreditacionUPS(VistaPermisoRequest request)
+        {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
+            try
+            {
+                _logger.WriteInfoLog("iniciando AcreditacionUP");
+                _vistaPermisoQuery = new BLogic();
+                var dto = SVistaPermisoConverter.ToDto(request);
+                var resp = SVistaPermisoConverter.ToModels(_vistaPermisoQuery.Listar(dto));
                 return resp;
             }
             catch (Exception ex)

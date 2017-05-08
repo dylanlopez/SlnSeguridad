@@ -53,7 +53,9 @@ namespace Domain_Layer.Queries
             DPersonaDto item = null;
             try
             {
-                var cns = "Data Source=(DESCRIPTION= (ADDRESS_LIST= (ADDRESS= (PROTOCOL=TCP)(HOST=192.168.64.159)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XE)));User Id=ES_SEGURIDAD;Password=midis2017";
+                var cns = "Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.10.40.22)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = dbsisfoh))); User Id=DESA01;Password=oracle";
+                //var cns = "Data Source=(DESCRIPTION = (ADDRESS_LIST= (ADDRESS= (PROTOCOL=TCP)(HOST=192.168.64.159)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XE)));User Id=ES_SEGURIDAD;Password=midis2017";
+                //var cns = "Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.10.40.22)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = dbsisfoh))); User Id=DESA01;Password=oracle";
                 OracleConnection cn = new OracleConnection();
                 //OracleConnection cn = new OracleConnection(_connection);
                 cn.ConnectionString = cns;
@@ -64,7 +66,8 @@ namespace Domain_Layer.Queries
                 cn.Open();
                 cmd.Connection = cn;
                 //cmd.InitialLONGFetchSize = 1000;
-                cmd.CommandText = "ES_SEGURIDAD.CZSP_GET_PERSONA_DATOS";
+                cmd.CommandText = "CZAVALETA.CZSP_GET_PERSONA_DATOS";
+                //cmd.CommandText = "ES_SEGURIDAD.CZSP_GET_PERSONA_DATOS";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("P_IN_DOC_NACIMIENTO", OracleDbType.Varchar2).Value = dto.TipoDocumento;
                 cmd.Parameters.Add("P_NU_DOC_NACIMIENTO", OracleDbType.Varchar2).Value = dto.NumeroDocumento;
@@ -87,9 +90,12 @@ namespace Domain_Layer.Queries
                     item.Numero = Convert.ToInt32(myReader["NU_PERSONA"]);
                     item.TipoDocumento = myReader["IN_DOC_NACIMIENTO"].ToString();
                     item.NumeroDocumento = myReader["NU_DOC_NACIMIENTO"].ToString();
-                    item.ApellidoPaterno = myReader["NO_APELLIDO_PATERNO"].ToString();
-                    item.ApellidoMaterno = myReader["NO_APELLIDO_MATERNO"].ToString();
-                    item.Nombres = myReader["NO_NOMBRE"].ToString();
+                    //item.ApellidoPaterno = myReader["NO_APELLIDO_PATERNO"].ToString();
+                    item.ApellidoPaterno = myReader["AP_PRIMER"].ToString();
+                    //item.ApellidoMaterno = myReader["NO_APELLIDO_MATERNO"].ToString();
+                    item.ApellidoMaterno = myReader["AP_SEGUNDO"].ToString();
+                    //item.Nombres = myReader["NO_NOMBRE"].ToString();
+                    item.Nombres = myReader["PRENOM_INSCRITO"].ToString();
                 }
 
                 //da.SelectCommand = cmd;

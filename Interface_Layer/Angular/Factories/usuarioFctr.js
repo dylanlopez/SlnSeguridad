@@ -1,10 +1,10 @@
 ﻿myApp.factory('UsuarioFctr', function ($http, webAPIControllers) {
     var usuario = {};
 
-    var urlListarUsuarios = webAPIControllers + '/api/Usuario/ListarUsuarios';
-    var urlInsertarUsuario = webAPIControllers + '/api/Usuario/InsertarUsuario';
-    var urlActualizarUsuario = webAPIControllers + '/api/Usuario/ActualizarUsuario/';
-    var urlBuscarUsuarioPorUsuario = webAPIControllers + '/api/Usuario/BuscarUsuarioPorUsuario';
+    var urlListarUsuarios = webAPIControllers + 'api/Usuario/ListarUsuarios';
+    var urlInsertarUsuario = webAPIControllers + 'api/Usuario/InsertarUsuario';
+    var urlActualizarUsuario = webAPIControllers + 'api/Usuario/ActualizarUsuario/';
+    var urlBuscarUsuarioPorUsuario = webAPIControllers + 'api/Usuario/BuscarUsuarioPorUsuario';
     var header = {
         'Content-Type': 'application/json'
     }

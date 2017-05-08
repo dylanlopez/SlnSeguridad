@@ -1,5 +1,6 @@
 ﻿using Domain_Layer.Queries.Personas;
 using Domain_Layer.Queries.Sistemas;
+using Domain_Layer.Queries.Vistas;
 using Logging_Layer;
 
 namespace Business_Layer.Logics
@@ -19,6 +20,9 @@ namespace Business_Layer.Logics
         private IDRolQuery _rolQuery;
         private IDPerfilUsuarioRolQuery _perfilUsuarioRolQuery;
         private IDPermisoQuery _permisoQuery;
+
+        private IDVistaPermisoQuery _vistaPermisoQuery;
+
         private Loggin _logger;
     }
 }

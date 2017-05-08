@@ -43,6 +43,12 @@
         <div class="row">
             <form name="frmModulo" style="width:800px;margin:0px auto;">
                 <input type="hidden" id="hdnId" data-ng-model="mymodulo.Id" />
+                <div class="container-fluid form-group">
+                    <label for="cmbSistema" class="col-md-2 control-label">Sistema: </label>
+                    <div class="col-md-8">
+                        <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mymodulo.Sistema" ng-change="setearSistema()" required></select>
+                    </div>
+                </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtCodigo" class="col-md-2 control-label">Codigo: </label>
                     <div class="col-md-2">
@@ -65,13 +71,6 @@
                     <label for="txtDescripcion" class="col-md-2 control-label">Descripcion: </label>
                     <div class="col-md-10">
                         <input type="text" class="form-control" id="txtDescripcion" placeholder="Ingrese la abreviatura del módulo" data-ng-model="mymodulo.Descripcion" maxlength="200" />
-                    </div>
-                </div>
-                <div class="container-fluid form-group">
-                    <label for="cmbSistema" class="col-md-2 control-label">Sistema: </label>
-                    <div class="col-md-8">
-                        <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mymodulo.Sistema" required>
-                        </select>
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">

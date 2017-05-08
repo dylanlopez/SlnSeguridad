@@ -1,8 +1,8 @@
 ﻿myApp.factory('PermisoFctr', function ($http, webAPIControllers) {
     var permiso = {};
-    var urlListarPermisos = webAPIControllers + '/api/Permiso/ListarPermisos';
-    var urlInsertarPermiso = webAPIControllers + '/api/Permiso/InsertarPermiso';
-    var urlActualizarPermiso = webAPIControllers + '/api/Permiso/ActualizarPermiso/';
+    var urlListarPermisos = webAPIControllers + 'api/Permiso/ListarPermisos';
+    var urlInsertarPermiso = webAPIControllers + 'api/Permiso/InsertarPermiso';
+    var urlActualizarPermiso = webAPIControllers + 'api/Permiso/ActualizarPermiso/';
     var header = {
         'Content-Type': 'application/json'
     }

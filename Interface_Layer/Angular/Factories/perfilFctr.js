@@ -1,8 +1,8 @@
 ﻿myApp.factory('PerfilFctr', function ($http, webAPIControllers) {
     var perfil = {};
-    var urlListarPerfiles = webAPIControllers + '/api/Perfil/ListarPerfiles';
-    var urlInsertarPerfil = webAPIControllers + '/api/Perfil/InsertarPerfil';
-    var urlActualizarPerfil = webAPIControllers + '/api/Perfil/ActualizarPerfil/';
+    var urlListarPerfiles = webAPIControllers + 'api/Perfil/ListarPerfiles';
+    var urlInsertarPerfil = webAPIControllers + 'api/Perfil/InsertarPerfil';
+    var urlActualizarPerfil = webAPIControllers + 'api/Perfil/ActualizarPerfil/';
     var header = {
         'Content-Type': 'application/json'
     }

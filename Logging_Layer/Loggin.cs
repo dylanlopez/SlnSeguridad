@@ -19,7 +19,15 @@ namespace Logging_Layer
             {
                 log4net.Config.XmlConfigurator.Configure();
                 _currentAssemblyName = mb.ReflectedType.Assembly.GetName().Name;
-                _currentClassName = mb.ReflectedType.Name;
+                //_currentClassName = mb.ReflectedType.Name;
+                if(mb.ReflectedType.GetInterfaces().Length > 0)
+                {
+                    _currentClassName = mb.ReflectedType.Name + "(" + mb.ReflectedType.GetInterfaces()[0] + ")";
+                }
+                else
+                {
+                    _currentClassName = mb.ReflectedType.Name;
+                }
                 _currentMathodName = st.GetFrame(1).GetMethod().Name;
                 _currentFullPath = _currentAssemblyName + "." + _currentClassName + "." + _currentMathodName;
                 LoggerClient = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);

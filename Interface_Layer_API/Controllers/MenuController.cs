@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Service_Layer.Models.Sistemas;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
@@ -18,10 +19,13 @@ namespace Interface_Layer_API.Controllers
         private BRestOperation _restOperation;
 
         [HttpPut]
+        //[Authorize]
         public HttpResponseMessage ActualizarMenu(MenuModel model)
         {
             try
             {
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SSistemasServices.svc/ActualizarMenu/";
                 _model = model;
                 if (_model.Modulo.Descripcion == null)
                 {
@@ -35,7 +39,8 @@ namespace Interface_Layer_API.Controllers
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ActualizarMenu/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ActualizarMenu/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ActualizarMenu/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -48,16 +53,20 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpDelete]
+        //[Authorize]
         public HttpResponseMessage EliminarMenu(MenuModel model)
         {
             _model = model;
             try
             {
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SSistemasServices.svc/EliminarMenu/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/EliminarMenu/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/EliminarMenu/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/EliminarMenu/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -70,11 +79,12 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
+        //[Authorize]
         public HttpResponseMessage InsertarMenu(MenuModel model)
         {
+            _model = model;
             try
             {
-                _model = model;
                 if(_model.Modulo.Descripcion == null)
                 {
                     _model.Modulo.Descripcion = String.Empty;
@@ -83,11 +93,14 @@ namespace Interface_Layer_API.Controllers
                 {
                     _model.Modulo.Sistema.Descripcion = String.Empty;
                 }
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SSistemasServices.svc/InsertarMenu/";
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/InsertarMenu/", dataToSend);
-                    var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/InsertarMenu/", dataToSend);
+                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/InsertarMenu/", dataToSend);
+                    var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -108,13 +121,16 @@ namespace Interface_Layer_API.Controllers
             _model.Modulo = model.Modulo;
             try
             {
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SSistemasServices.svc/ListarMenus/";
                 if (_model.Modulo != null)
                 {
                     var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                     using (_restOperation = new BRestOperation())
                     {
                         //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarMenus/", dataToSend);
-                        var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarMenus/", dataToSend);
+                        //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarMenus/", dataToSend);
+                        var stream = _restOperation.Post(path, dataToSend);
                         _jsonSerializer = new DataContractJsonSerializer(typeof(List<MenuModel>));
                         response = (List<MenuModel>)_jsonSerializer.ReadObject(stream);
                         return response;

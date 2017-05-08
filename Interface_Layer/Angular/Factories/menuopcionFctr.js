@@ -1,8 +1,8 @@
 ﻿myApp.factory('MenuOpcionFctr', function ($http, webAPIControllers) {
     var menuopcion = {};
-    var urlListarMenuOpciones = webAPIControllers + '/api/MenuOpcion/ListarMenuOpciones';
-    var urlInsertarMenuOpcion = webAPIControllers + '/api/MenuOpcion/InsertarMenuOpcion';
-    var urlActualizarMenuOpcion = webAPIControllers + '/api/MenuOpcion/ActualizarMenuOpcion/';
+    var urlListarMenuOpciones = webAPIControllers + 'api/MenuOpcion/ListarMenuOpciones';
+    var urlInsertarMenuOpcion = webAPIControllers + 'api/MenuOpcion/InsertarMenuOpcion';
+    var urlActualizarMenuOpcion = webAPIControllers + 'api/MenuOpcion/ActualizarMenuOpcion/';
     var header = {
         'Content-Type': 'application/json'
     }

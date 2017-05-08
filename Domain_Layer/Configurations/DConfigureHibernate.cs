@@ -1,5 +1,6 @@
 ﻿using Entity_Layer.Mappings.Personas;
 using Entity_Layer.Mappings.Sistemas;
+using Entity_Layer.Mappings.Vistas;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
@@ -108,6 +109,8 @@ namespace Domain_Layer.Configurations
                 mapper.AddMapping<ERolMapping>();
                 mapper.AddMapping<EPerfilUsuarioRolMapping>();
                 mapper.AddMapping<EPermisoMapping>();
+
+                mapper.AddMapping<EVistaPermisoMapping>();
                 HbmMapping mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
                 return mapping;
             }

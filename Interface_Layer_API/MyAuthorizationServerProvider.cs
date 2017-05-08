@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Service_Layer.Models.Personas;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Security.Claims;
@@ -26,6 +27,8 @@ namespace Interface_Layer_API
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
+            var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+            path = path + "Services/SPersonasService.svc/BuscarUsuario/";
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             _model = new UsuarioModel();
             _model.Usuario = context.UserName;
@@ -34,7 +37,8 @@ namespace Interface_Layer_API
             using (_restOperation = new BRestOperation())
             {
                 //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SPersonasService.svc/BuscarUsuario/", dataToSend);
-                var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/BuscarUsuario/", dataToSend);
+                //var stream = _restOperation.Post("http://localhost:55291/Services/SPersonasService.svc/BuscarUsuario/", dataToSend);
+                var stream = _restOperation.Post(path, dataToSend);
                 _jsonSerializer = new DataContractJsonSerializer(typeof(UsuarioModel));
                 _model = (UsuarioModel)_jsonSerializer.ReadObject(stream);
             }

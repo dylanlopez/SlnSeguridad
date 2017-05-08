@@ -1,8 +1,8 @@
 ﻿myApp.factory('SistemaPerfilFctr', function ($http, webAPIControllers) {
     var sistemaperfil = {};
-    var urlListarSistemasPerfiles = webAPIControllers + '/api/SistemaPerfil/ListarSistemasPerfiles';
-    var urlInsertarSistemaPerfil = webAPIControllers + '/api/SistemaPerfil/InsertarSistemaPerfil';
-    var urlActualizarSistemaPerfil = webAPIControllers + '/api/SistemaPerfil/ActualizarSistemaPerfil/';
+    var urlListarSistemasPerfiles = webAPIControllers + 'api/SistemaPerfil/ListarSistemasPerfiles';
+    var urlInsertarSistemaPerfil = webAPIControllers + 'api/SistemaPerfil/InsertarSistemaPerfil';
+    var urlActualizarSistemaPerfil = webAPIControllers + 'api/SistemaPerfil/ActualizarSistemaPerfil/';
     var header = {
         'Content-Type': 'application/json'
     }

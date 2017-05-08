@@ -1,8 +1,8 @@
 ﻿myApp.factory('ModuloFctr', function ($http, webAPIControllers) {
     var modulo = {};
-    var urlListarModulos = webAPIControllers + '/api/Modulo/ListarModulos';
-    var urlInsertarModulo = webAPIControllers + '/api/Modulo/InsertarModulo';
-    var urlActualizarModulo = webAPIControllers + '/api/Modulo/ActualizarModulo/';
+    var urlListarModulos = webAPIControllers + 'api/Modulo/ListarModulos';
+    var urlInsertarModulo = webAPIControllers + 'api/Modulo/InsertarModulo';
+    var urlActualizarModulo = webAPIControllers + 'api/Modulo/ActualizarModulo/';
     var header = {
         'Content-Type': 'application/json'
     }

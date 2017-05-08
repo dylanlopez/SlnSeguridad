@@ -23,7 +23,7 @@ namespace Entity_Layer.Mappings.Personas
         /// </summary>
         public EPermisoMapping()
         {
-            Schema("ES_SEGURIDAD");
+            //Schema("ES_SEGURIDAD");
             Table("SEGTV_PERMISO");
             Id<Int32>(
                 x => x.Id,
@@ -33,7 +33,7 @@ namespace Entity_Layer.Mappings.Personas
                         Generators.Sequence,
                         seq => seq.Params(new
                         {
-                            schema = "ES_SEGURIDAD",
+                            //schema = "ES_SEGURIDAD",
                             sequence = "SEQ_PERFIL_USUARIO_ROL"
                         }));
                 });

@@ -64,14 +64,14 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
         $scope.tieneError = false;
         $scope.error = "";
         $scope.estaCargando = true;
-        user.Usuario = $scope.myusuario.Usuario;
+        user.Usuario = $scope.mypermiso.Usuario;
         UsuarioFctr.BuscarUsuarioPorUsuario(user)
             .then(function successCallback(response) {
                 $scope.myusuario.Id = response.Id;
                 $scope.myusuario.ApellidoPaterno = response.ApellidoPaterno;
                 $scope.myusuario.ApellidoMaterno = response.ApellidoMaterno;
                 $scope.myusuario.Nombres = response.Nombres;
-                $scope.myusuario.NombresCompletos = response.ApellidoPaterno + response.ApellidoMaterno + response.Nombres;
+                $scope.myusuario.NombresCompletos = response.ApellidoPaterno + " " + response.ApellidoMaterno + " " + response.Nombres;
                 $scope.estaCargando = false;
             }, function errorCallback(response) {
                 $scope.tieneError = true;

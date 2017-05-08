@@ -1,8 +1,8 @@
 ﻿myApp.factory('MenuFctr', function ($http, webAPIControllers) {
     var menue = {};
-    var urlListarMenus = webAPIControllers + '/api/Menu/ListarMenus';
-    var urlInsertarMenu = webAPIControllers + '/api/Menu/InsertarMenu';
-    var urlActualizarMenu = webAPIControllers + '/api/Menu/ActualizarMenu/';
+    var urlListarMenus = webAPIControllers + 'api/Menu/ListarMenus';
+    var urlInsertarMenu = webAPIControllers + 'api/Menu/InsertarMenu';
+    var urlActualizarMenu = webAPIControllers + 'api/Menu/ActualizarMenu/';
     var header = {
         'Content-Type': 'application/json'
     }

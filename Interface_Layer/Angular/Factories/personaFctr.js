@@ -1,6 +1,6 @@
 ﻿myApp.factory('PersonaFctr', function ($http, webAPIControllers) {
     var persona = {};
-    var urlBuscarPersona = webAPIControllers + '/api/Persona/BuscarPersona';
+    var urlBuscarPersona = webAPIControllers + 'api/Persona/BuscarPersona';
 
     var header = {
         'Content-Type': 'application/json'

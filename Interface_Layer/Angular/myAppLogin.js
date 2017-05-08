@@ -7,13 +7,17 @@ myAppLogin.config(['$routeProvider', function ($routeProvider) {
             redirectTo: '/authenticated'
         })
         .when('/home', {
-            templateUrl: '/login/authenticate.html',
-            controller: 'authenticateController'
+            templateUrl: '/Views/Index.html',
+            controller: 'MenusCtrl'
         })
         .when('/authenticated', {
             templateUrl: '/login/authenticate.html',
             controller: 'authenticateController'
         })
+        //.when('/authenticated', {
+        //    templateUrl: '/login/authenticate.html',
+        //    controller: 'authenticateController'
+        //})
         .when('/login', {
             templateUrl: '/login/login.html',
             controller: 'loginController'
@@ -147,6 +151,7 @@ myAppLogin.config(['$httpProvider', function ($httpProvider) {
                 console.debug(currentUser);
                 if (currentUser != null) {
                     config.headers['Authorization'] = 'Bearer ' + currentUser.access_token;
+                    console.debug(currentUser.access_token);
                     window.location = "Views/Index.html";
                 }
                 return config;

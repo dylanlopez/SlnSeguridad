@@ -1,8 +1,8 @@
 ﻿myApp.factory('UbigeoFctr', function ($http, webAPIControllers) {
     var ubigeo = {};
-    var urlListarDepartamentos = webAPIControllers + '/api/Ubigeo/ListarDepartamentos';
-    var urlListarProvincias = webAPIControllers + '/api/Ubigeo/ListarProvincias';
-    var urlListarDistritos = webAPIControllers + '/api/Ubigeo/ListarDistritos';
+    var urlListarDepartamentos = webAPIControllers + 'api/Ubigeo/ListarDepartamentos';
+    var urlListarProvincias = webAPIControllers + 'api/Ubigeo/ListarProvincias';
+    var urlListarDistritos = webAPIControllers + 'api/Ubigeo/ListarDistritos';
 
     var header = {
         'Content-Type': 'application/json'

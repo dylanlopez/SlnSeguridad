@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -52,7 +52,16 @@
     <Reference Include="System.Data" />
     <Reference Include="System.XML" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Entity_Layer\Entity_Layer.csproj">
+      <Project>{223fc177-7bba-40c8-af33-e8d4bf372405}</Project>
+      <Name>Entity_Layer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logging_Layer\Logging_Layer.csproj">
+      <Project>{3aaae934-617b-41c6-97de-f5ec022e4493}</Project>
+      <Name>Logging_Layer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\DConfigureHibernate.cs" />
     <Compile Include="Connections\DConexion.cs" />
@@ -68,6 +77,7 @@
     <Compile Include="Converters\Sistemas\DModuloConverter.cs" />
     <Compile Include="Converters\Sistemas\DOpcionConverter.cs" />
     <Compile Include="Converters\Sistemas\DSistemaConverter.cs" />
+    <Compile Include="Converters\Vistas\DVistaPermisoConverter.cs" />
     <Compile Include="Dtos\Personas\DPerfilDto.cs" />
     <Compile Include="Dtos\Personas\DPerfilUsuarioRolDto.cs" />
     <Compile Include="Dtos\Personas\DPermisoDto.cs" />
@@ -80,6 +90,8 @@
     <Compile Include="Dtos\Sistemas\DModuloDto.cs" />
     <Compile Include="Dtos\Sistemas\DOpcionDto.cs" />
     <Compile Include="Dtos\Sistemas\DSistemaDto.cs" />
+    <Compile Include="Dtos\Vistas\DVistaPermisoDto.cs" />
+    <Compile Include="Queries\Vistas\DVistaPermisoQuery.cs" />
     <Compile Include="Queries\DQuery.cs" />
     <Compile Include="Queries\Personas\DPerfilQuery.cs" />
     <Compile Include="Queries\Personas\DPerfilUsuarioRolQuery.cs" />
@@ -105,16 +117,7 @@
     <Compile Include="Queries\Sistemas\IDModuloQuery.cs" />
     <Compile Include="Queries\Sistemas\IDOpcionQuery.cs" />
     <Compile Include="Queries\Sistemas\IDSistemaQuery.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Entity_Layer\Entity_Layer.csproj">
-      <Project>{223fc177-7bba-40c8-af33-e8d4bf372405}</Project>
-      <Name>Entity_Layer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Logging_Layer\Logging_Layer.csproj">
-      <Project>{3aaae934-617b-41c6-97de-f5ec022e4493}</Project>
-      <Name>Logging_Layer</Name>
-    </ProjectReference>
+    <Compile Include="Queries\Vistas\IDVistaPermisoQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

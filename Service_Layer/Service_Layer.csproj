@@ -30,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,14 +39,27 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.1.1.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.24160719\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -78,6 +92,7 @@
     <Compile Include="Converters\Sistemas\SModuloConverter.cs" />
     <Compile Include="Converters\Sistemas\SOpcionConverter.cs" />
     <Compile Include="Converters\Sistemas\SSistemaConverter.cs" />
+    <Compile Include="Converters\Vistas\SVistaPermisoConverter.cs" />
     <Compile Include="Models\Externos\DepartamentoModel.cs" />
     <Compile Include="Models\Externos\DistritoModel.cs" />
     <Compile Include="Models\Externos\ProvinciaModel.cs" />
@@ -93,6 +108,8 @@
     <Compile Include="Models\Sistemas\ModuloModel.cs" />
     <Compile Include="Models\Sistemas\OpcionModel.cs" />
     <Compile Include="Models\Sistemas\SistemaModel.cs" />
+    <Compile Include="Models\Vistas\VistaPermisoRequest.cs" />
+    <Compile Include="Models\Vistas\VistaPermisoResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CORSEnablingBehavior.cs" />
     <Compile Include="Services\ISPersonasService.cs" />
@@ -112,6 +129,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\Compiled_Path.pubxml" />
     <None Include="Properties\PublishProfiles\IIS_IIS.pubxml" />
     <None Include="Properties\PublishProfiles\IIS_Local.pubxml" />
     <None Include="Web.Debug.config">

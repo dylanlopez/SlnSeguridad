@@ -43,6 +43,18 @@
         <div class="row">
             <form name="frmMenu" style="width:800px;margin:0px auto;">
                 <input type="hidden" id="hdnId" data-ng-model="mymenu.Id" />
+                <div class="container-fluid form-group">
+                    <label for="cmbSistema" class="col-md-2 control-label">Sistema: </label>
+                    <div class="col-md-8">
+                        <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mymenu.Sistema" ng-change="buscarModulo()" required></select>
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="cmbModulo" class="col-md-2 control-label">Modulo: </label>
+                    <div class="col-md-8">
+                        <select id="cmbModulo" class="form-control" ng-options="modulo.Nombre for modulo in modulos track by modulo.Id" data-ng-model="mymenu.Modulo" ng-change="setearModulo()" required></select>
+                    </div>
+                </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtCodigo" class="col-md-2 control-label">Codigo: </label>
                     <div class="col-md-2">
@@ -65,18 +77,6 @@
                     <label for="txtDescripcion" class="col-md-2 control-label">Descripcion: </label>
                     <div class="col-md-10">
                         <input type="text" class="form-control" id="txtDescripcion" placeholder="Ingrese la descripción del menú" data-ng-model="mymenu.Descripcion" maxlength="200" />
-                    </div>
-                </div>
-                <div class="container-fluid form-group">
-                    <label for="cmbSistema" class="col-md-2 control-label">Sistema: </label>
-                    <div class="col-md-8">
-                        <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mymenu.Sistema" ng-change="buscarModulo()" required></select>
-                    </div>
-                </div>
-                <div class="container-fluid form-group">
-                    <label for="cmbModulo" class="col-md-2 control-label">Modulo: </label>
-                    <div class="col-md-8">
-                        <select id="cmbModulo" class="form-control" ng-options="modulo.Nombre for modulo in modulos track by modulo.Id" data-ng-model="mymenu.Modulo" required></select>
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">

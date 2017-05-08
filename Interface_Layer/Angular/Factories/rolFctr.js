@@ -1,8 +1,8 @@
 ﻿myApp.factory('RolFctr', function ($http, webAPIControllers) {
     var rol = {};
-    var urlListarRoles = webAPIControllers + '/api/Rol/ListarRoles';
-    var urlInsertarRol = webAPIControllers + '/api/Rol/InsertarRol';
-    var urlActualizarRol = webAPIControllers + '/api/Rol/ActualizarRol/';
+    var urlListarRoles = webAPIControllers + 'api/Rol/ListarRoles';
+    var urlInsertarRol = webAPIControllers + 'api/Rol/InsertarRol';
+    var urlActualizarRol = webAPIControllers + 'api/Rol/ActualizarRol/';
     var header = {
         'Content-Type': 'application/json'
     }
