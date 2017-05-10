@@ -49,7 +49,7 @@ namespace Entity_Layer.Mappings.Personas
                 map => {
                     map.Column("ID_SISTEMA");
                     map.NotNullable(true);
-                    map.Update(false);
+                    map.Update(true);
                     map.Insert(true);
                     map.ForeignKey("FK_SISTEMA_PERFIL_01");
                     map.UniqueKey("UK_SISTEMA_PERFIL_01");
@@ -59,7 +59,7 @@ namespace Entity_Layer.Mappings.Personas
                 map => {
                     map.Column("ID_PERFIL");
                     map.NotNullable(true);
-                    map.Update(false);
+                    map.Update(true);
                     map.Insert(true);
                     map.ForeignKey("FK_SISTEMA_PERFIL_02");
                     map.UniqueKey("UK_SISTEMA_PERFIL_01");

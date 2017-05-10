@@ -2,7 +2,7 @@
     var sistemaperfil = {};
     var urlListarSistemasPerfiles = webAPIControllers + 'api/SistemaPerfil/ListarSistemasPerfiles';
     var urlInsertarSistemaPerfil = webAPIControllers + 'api/SistemaPerfil/InsertarSistemaPerfil';
-    var urlActualizarSistemaPerfil = webAPIControllers + 'api/SistemaPerfil/ActualizarSistemaPerfil/';
+    var urlActualizarSistemaPerfil = webAPIControllers + 'api/SistemaPerfil/ActualizarSistemaPerfil';
     var header = {
         'Content-Type': 'application/json'
     }
@@ -20,7 +20,7 @@
     }
 
     sistemaperfil.ActualizarSistemaPerfil = function (systemprofile) {
-        return $http.put(urlActualizarSistemaPerfil + systemprofile.Id, systemprofile, header).then(function (response) {
+        return $http.post(urlActualizarSistemaPerfil, systemprofile, header).then(function (response) {
             return response.data;
         });
     }

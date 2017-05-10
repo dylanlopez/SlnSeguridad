@@ -2,7 +2,7 @@
     var perfil = {};
     var urlListarPerfiles = webAPIControllers + 'api/Perfil/ListarPerfiles';
     var urlInsertarPerfil = webAPIControllers + 'api/Perfil/InsertarPerfil';
-    var urlActualizarPerfil = webAPIControllers + 'api/Perfil/ActualizarPerfil/';
+    var urlActualizarPerfil = webAPIControllers + 'api/Perfil/ActualizarPerfil';
     var header = {
         'Content-Type': 'application/json'
     }
@@ -20,7 +20,7 @@
     }
 
     perfil.ActualizarPerfil = function (profile) {
-        return $http.put(urlActualizarPerfil + profile.Id, profile, header).then(function (response) {
+        return $http.post(urlActualizarPerfil, profile, header).then(function (response) {
             return response.data;
         });
     }

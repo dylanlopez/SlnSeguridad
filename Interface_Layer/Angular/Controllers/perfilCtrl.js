@@ -14,7 +14,7 @@ myApp.controller("PerfilCtrl", function ($scope, profile, PerfilFctr) {
             $scope.estaCargando = false;
         }, function errorCallback(response) {
             $scope.tieneError = true;
-            $scope.error = "Ha ocuirrido un error al listar: " + response;
+            $scope.error = "Ha ocurrido un error al listar: " + response;
             $scope.estaCargando = false;
         });
 
@@ -79,12 +79,12 @@ myApp.controller("PerfilCtrl", function ($scope, profile, PerfilFctr) {
                             $scope.estaCargando = false;
                         }, function errorCallback(response) {
                             $scope.tieneError = true;
-                            $scope.error = "Ha ocuirrido un error al listar: " + response;
+                            $scope.error = "Ha ocurrido un error al listar: " + response.data.Message;
                             $scope.estaCargando = false;
                         });
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
-                    $scope.error = "Ha ocuirrido un error al insertar: " + error;
+                    $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
                     $scope.estaCargando = false;
                 });
 
@@ -126,12 +126,12 @@ myApp.controller("PerfilCtrl", function ($scope, profile, PerfilFctr) {
                             $scope.estaCargando = false;
                         }, function errorCallback(response) {
                             $scope.tieneError = true;
-                            $scope.error = "Ha ocuirrido un error al listar: " + response;
+                            $scope.error = "Ha ocurrido un error al listar: " + response.data.Message;
                             $scope.estaCargando = false;
                         });
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
-                    $scope.error = "Ha ocuirrido un error al actualizar: " + result;
+                    $scope.error = "Ha ocurrido un error al actualizar: " + response.data.Message;
                     $scope.estaCargando = false;
                 });
 

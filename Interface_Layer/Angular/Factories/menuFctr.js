@@ -2,7 +2,7 @@
     var menue = {};
     var urlListarMenus = webAPIControllers + 'api/Menu/ListarMenus';
     var urlInsertarMenu = webAPIControllers + 'api/Menu/InsertarMenu';
-    var urlActualizarMenu = webAPIControllers + 'api/Menu/ActualizarMenu/';
+    var urlActualizarMenu = webAPIControllers + 'api/Menu/ActualizarMenu';
     var header = {
         'Content-Type': 'application/json'
     }
@@ -20,7 +20,7 @@
     }
 
     menue.ActualizarMenu = function (menu) {
-        return $http.put(urlActualizarMenu + menu.Id, menu, header).then(function (response) {
+        return $http.post(urlActualizarMenu, menu, header).then(function (response) {
             return response.data;
         });
     }

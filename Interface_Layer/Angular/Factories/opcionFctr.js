@@ -2,7 +2,7 @@
     var opcion = {};
     var urlListarOpciones = webAPIControllers + 'api/Opcion/ListarOpciones';
     var urlInsertarOpcion = webAPIControllers + 'api/Opcion/InsertarOpcion';
-    var urlActualizarOpcion = webAPIControllers + 'api/Opcion/ActualizarOpcion/';
+    var urlActualizarOpcion = webAPIControllers + 'api/Opcion/ActualizarOpcion';
     var header = {
         'Content-Type': 'application/json'
     }
@@ -20,7 +20,7 @@
     }
 
     opcion.ActualizarOpcion = function (option) {
-        return $http.put(urlActualizarOpcion + option.Id, option, header).then(function (response) {
+        return $http.post(urlActualizarOpcion, option, header).then(function (response) {
             return response.data;
         });
     }

@@ -18,7 +18,8 @@ namespace Interface_Layer_API.Controllers
         private DataContractJsonSerializer _jsonSerializer;
         private BRestOperation _restOperation;
 
-        [HttpPut]
+        [HttpPost]
+        //[HttpPut]
         //[Authorize]
         public HttpResponseMessage ActualizarMenu(MenuModel model)
         {
@@ -43,6 +44,14 @@ namespace Interface_Layer_API.Controllers
                     var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
+                    if (response == 0)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se actualizó correctamente");
+                    }
+                    else if (response == -2146232008)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Se intentó guardar un código duplicado");
+                    }
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
             }
@@ -52,7 +61,8 @@ namespace Interface_Layer_API.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpPost]
+        //[HttpDelete]
         //[Authorize]
         public HttpResponseMessage EliminarMenu(MenuModel model)
         {
@@ -69,6 +79,10 @@ namespace Interface_Layer_API.Controllers
                     var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
+                    if (response == 0)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se eliminó correctamente");
+                    }
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
             }
@@ -103,6 +117,14 @@ namespace Interface_Layer_API.Controllers
                     var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
+                    if (response == 0)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se insertó correctamente");
+                    }
+                    else if (response == -2146232008)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Se intentó guardar un código duplicado");
+                    }
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
             }
@@ -118,7 +140,8 @@ namespace Interface_Layer_API.Controllers
         {
             List<MenuModel> response;
             _model = new MenuModel();
-            _model.Modulo = model.Modulo;
+            //_model.Modulo = model.Modulo;
+            _model = model;
             try
             {
                 var path = ConfigurationManager.AppSettings["WCFPath"].ToString();

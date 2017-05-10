@@ -46,10 +46,10 @@
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtUsuario" class="col-md-2 control-label">Usuario: </label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="txtUsuario" placeholder="Ingrese el usuario (obligatorio)" data-ng-model="myusuario.Usuario" maxlength="100" required />
+                        <input type="text" class="form-control" id="txtUsuario" name="txtUsuario" placeholder="Ingrese el usuario (obligatorio)" data-ng-model="myusuario.Usuario" maxlength="100" required />
                     </div>
                     <div class="col-md-2">
-                        <input type="button" value="Buscar" data-ng-click="buscarPersona()" class="btn btn-primary" />
+                        <input id="btnBuscarUsuario" name="btnBuscarUsuario" type="button" value="Buscar" data-ng-click="buscarPersona()" class="btn btn-primary" />
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
@@ -76,7 +76,7 @@
                         <input type="text" class="form-control" id="txtNombres" placeholder="Ingrese el nombre" data-ng-model="myusuario.Nombres" maxlength="100" required ng-disabled="estaEditable" />
                     </div>
                 </div>
-                <div class="container-fluid form-group">
+                <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtEmail" class="col-md-2 control-label">Email: </label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" id="txtEmail" placeholder="Ingrese el email" data-ng-model="myusuario.Email" maxlength="200" />
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
-                    <label for="cmbDistrito" class="col-md-2 control-label">Distritos: </label>
+                    <label for="cmbDistrito" class="col-md-2 control-label">Distrito: </label>
                     <div class="col-md-8">
                         <select id="cmbDistrito" class="form-control" ng-options="distrito.descripcionDistrito for distrito in distritos track by distrito.codigoDistrito" data-ng-model="myusuario.Distrito"></select>
                     </div>
@@ -115,13 +115,13 @@
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
-                    <label class="col-md-2 control-label">¿Unico Ingreso?: </label>
+                    <label class="col-md-2 control-label">¿Único Ingreso?: </label>
                     <div class="col-md-6">
                         <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myusuario.EsUnicoIngreso"><br>
                     </div>
                 </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
-                    <label class="col-md-2 control-label">¿Otros Logeos?: </label>
+                    <label class="col-md-2 control-label">¿Otros Tipos de Inicio de Sesión?: </label>
                     <div class="col-md-6">
                         <input type="checkbox" id="chkCaduca" name="Estado" ng-model="myusuario.TieneOtrosLogeos"><br>
                     </div>
@@ -163,8 +163,8 @@
                     <tr>
                         <th class="col-md-2">Usuario</th>
                         <th class="col-md-1">Caduca</th>
-                        <th class="col-md-1">Unico Ingreso</th>
-                        <th class="col-md-1">Otros Logeos</th>
+                        <th class="col-md-1">Único Ingreso</th>
+                        <th class="col-md-1">Otros Tipos de Inicio de Sesión</th>
                         <th class="col-md-1">Tipo</th>
                         <th class="col-md-1">Estado</th>
                         <th class="col-md-4">Persona</th>

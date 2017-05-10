@@ -18,7 +18,8 @@ namespace Interface_Layer_API.Controllers
         private DataContractJsonSerializer _jsonSerializer;
         private BRestOperation _restOperation;
 
-        [HttpPut]
+        [HttpPost]
+        //[HttpPut]
         //[Authorize]
         public HttpResponseMessage ActualizarSistemaPerfil(SistemaPerfilModel model)
         {
@@ -35,6 +36,14 @@ namespace Interface_Layer_API.Controllers
                     var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
+                    if (response == 0)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se actualizó porque ya existe un perfil por sistema repetido");
+                    }
+                    else if (response == -2146232008)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Se intentó guardar un perfil de sistema duplicado");
+                    }
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
             }
@@ -61,6 +70,14 @@ namespace Interface_Layer_API.Controllers
                     var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(int));
                     var response = (int)_jsonSerializer.ReadObject(stream);
+                    if (response == 0)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se insertó correctamente");
+                    }
+                    else if (response == -2146232008)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Se intentó guardar un perfil de sistema duplicado");
+                    }
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
             }
@@ -88,6 +105,10 @@ namespace Interface_Layer_API.Controllers
                     var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(List<SistemaPerfilModel>));
                     response = (List<SistemaPerfilModel>)_jsonSerializer.ReadObject(stream);
+                    //if (response == null)
+                    //{
+                    //    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se insertó correctamente");
+                    //}
                     return response;
                 }
             }

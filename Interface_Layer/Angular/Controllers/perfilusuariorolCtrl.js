@@ -32,7 +32,7 @@ myApp.controller("PerfilUsuarioRolCtrl", function ($scope, user, role, profileus
             $scope.estaCargando = false;
         }, function errorCallback(response) {
             $scope.tieneError = true;
-            $scope.error = "Ha ocuirrido un error al listar: " + response;
+            $scope.error = "Ha ocurrido un error al listar: " + response;
             $scope.estaCargando = false;
         });
 
@@ -69,7 +69,7 @@ myApp.controller("PerfilUsuarioRolCtrl", function ($scope, user, role, profileus
             $scope.estaCargando = false;
         }, function errorCallback(response) {
             $scope.tieneError = true;
-            $scope.error = "Ha ocuirrido un error al listar: " + response;
+            $scope.error = "Ha ocurrido un error al listar: " + response;
             $scope.estaCargando = false;
         });
     
@@ -81,15 +81,21 @@ myApp.controller("PerfilUsuarioRolCtrl", function ($scope, user, role, profileus
         user.Usuario = $scope.myperfilusuariorol.Usuario;
         UsuarioFctr.BuscarUsuarioPorUsuario(user)
             .then(function successCallback(response) {
-                $scope.myusuario.Id = response.Id;
-                $scope.myusuario.ApellidoPaterno = response.ApellidoPaterno;
-                $scope.myusuario.ApellidoMaterno = response.ApellidoMaterno;
-                $scope.myusuario.Nombres = response.Nombres;
-                $scope.myusuario.NombresCompletos = response.ApellidoPaterno + response.ApellidoMaterno + response.Nombres;
-                $scope.estaCargando = false;
+                if (response.Id == 0) {
+                    $scope.tieneError = true;
+                    $scope.error = "El usuario no existe en la base de datos";
+                    $scope.estaCargando = false;
+                } else {
+                    $scope.myusuario.Id = response.Id;
+                    $scope.myusuario.ApellidoPaterno = response.ApellidoPaterno;
+                    $scope.myusuario.ApellidoMaterno = response.ApellidoMaterno;
+                    $scope.myusuario.Nombres = response.Nombres;
+                    $scope.myusuario.NombresCompletos = response.ApellidoPaterno + " " + response.ApellidoMaterno + " " + response.Nombres;
+                    $scope.estaCargando = false;
+                }
             }, function errorCallback(response) {
                 $scope.tieneError = true;
-                $scope.error = "Ha ocuirrido un error al buscar usuario: " + response;
+                $scope.error = "Ha ocurrido un error al buscar usuario: " + response;
                 $scope.estaCargando = false;
             });
         //if ($scope.myperfilusuariorol.Usuario == '44481138') {
@@ -185,7 +191,7 @@ myApp.controller("PerfilUsuarioRolCtrl", function ($scope, user, role, profileus
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
-                    $scope.error = "Ha ocuirrido un error al listar: " + response;
+                    $scope.error = "Ha ocurrido un error al listar: " + response;
                     $scope.estaCargando = false;
                 });
         }
@@ -312,7 +318,7 @@ myApp.controller("PerfilUsuarioRolCtrl", function ($scope, user, role, profileus
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
-                    $scope.error = "Ha ocuirrido un error al insertar: " + error;
+                    $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
                     $scope.estaCargando = false;
                 });
         }
@@ -343,7 +349,7 @@ myApp.controller("PerfilUsuarioRolCtrl", function ($scope, user, role, profileus
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
-                    $scope.error = "Ha ocuirrido un error al actualizar: " + result;
+                    $scope.error = "Ha ocurrido un error al actualizar: " + response.data.Message;
                     $scope.estaCargando = false;
                     $scope.estaCargando = false;
                 });

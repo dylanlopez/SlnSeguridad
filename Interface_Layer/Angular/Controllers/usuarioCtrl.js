@@ -193,11 +193,20 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
         //console.debug(person);
         PersonaFctr.BuscarPersona(person)
             .then(function successCallback(response) {
-                $scope.persona = response;
-                $scope.myusuario.ApellidoPaterno = $scope.persona.ApellidoPaterno;
-                $scope.myusuario.ApellidoMaterno = $scope.persona.ApellidoMaterno;
-                $scope.myusuario.Nombres = $scope.persona.Nombres;
-                $scope.estaCargando = false;
+                //console.debug(person);
+                if (response.ApellidoPaterno.length == 0 &&
+                    response.ApellidoMaterno.length == 0 &&
+                    response.Nombres.length == 0) {
+                    $scope.tieneError = true;
+                    $scope.error = "La persona no existe en la base de datos";
+                    $scope.estaCargando = false;
+                } else {
+                    $scope.persona = response;
+                    $scope.myusuario.ApellidoPaterno = $scope.persona.ApellidoPaterno;
+                    $scope.myusuario.ApellidoMaterno = $scope.persona.ApellidoMaterno;
+                    $scope.myusuario.Nombres = $scope.persona.Nombres;
+                    $scope.estaCargando = false;
+                }
             }, function errorCallback(response) {
                 $scope.tieneError = true;
                 $scope.error = "Ha ocurrido un error al buscar persona: " + response;
@@ -231,11 +240,13 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
         $scope.estaEditable = !$scope.estaEditable;
         $scope.myusuario.Id = "";
         if ($scope.estaEditable == false) {
+            document.getElementById("txtUsuario").disabled = false;
+            document.getElementById("btnBuscarUsuario").disabled = false;
             $scope.myusuario.Usuario = "";
             $scope.myusuario.Contrasena = "";
-            $scope.myusuario.ApellidoPaterno = "";
-            $scope.myusuario.ApellidoMaterno = "";
-            $scope.myusuario.Nombres = "";
+            //$scope.myusuario.ApellidoPaterno = "";
+            //$scope.myusuario.ApellidoMaterno = "";
+            //$scope.myusuario.Nombres = "";
             $scope.myusuario.Email = "";
             $scope.myusuario.Caduca = "";
             $scope.myusuario.EstaCaduca = false;
@@ -252,6 +263,9 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
             $scope.myusuario.EstaActivo = false;
             UsuarioFctr.CleanUsuario(user)
         }
+        $scope.myusuario.ApellidoPaterno = "";
+        $scope.myusuario.ApellidoMaterno = "";
+        $scope.myusuario.Nombres = "";
         $scope.usuarios = [];
         $scope.tieneError = false;
         $scope.error = "";
@@ -260,6 +274,8 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
     $scope.modificar = function (user) {
         $scope.estaEditable = !$scope.estaEditable;
         if ($scope.estaEditable == true) {
+            document.getElementById("txtUsuario").disabled = true;
+            document.getElementById("btnBuscarUsuario").disabled = true;
             $scope.myusuario.Id = user.Id;
             $scope.myusuario.Usuario = user.Usuario;
             $scope.myusuario.Contrasena = user.Contrasena;
@@ -445,7 +461,7 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
-                    $scope.error = "Ha ocuirrido un error al insertar: " + response;
+                    $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
                     $scope.estaCargando = false;
                 });
             //$http({
@@ -478,7 +494,7 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
-                    $scope.error = "Ha ocuirrido un error al insertar: " + response;
+                    $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
                     $scope.estaCargando = false;
                 });
             //$http({

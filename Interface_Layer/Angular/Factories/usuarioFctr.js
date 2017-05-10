@@ -3,7 +3,7 @@
 
     var urlListarUsuarios = webAPIControllers + 'api/Usuario/ListarUsuarios';
     var urlInsertarUsuario = webAPIControllers + 'api/Usuario/InsertarUsuario';
-    var urlActualizarUsuario = webAPIControllers + 'api/Usuario/ActualizarUsuario/';
+    var urlActualizarUsuario = webAPIControllers + 'api/Usuario/ActualizarUsuario';
     var urlBuscarUsuarioPorUsuario = webAPIControllers + 'api/Usuario/BuscarUsuarioPorUsuario';
     var header = {
         'Content-Type': 'application/json'
@@ -22,7 +22,7 @@
     }
 
     usuario.ActualizarUsuario = function (user) {
-        return $http.put(urlActualizarUsuario + user.Id, user, header).then(function (response) {
+        return $http.post(urlActualizarUsuario, user, header).then(function (response) {
             return response.data;
         });
     }

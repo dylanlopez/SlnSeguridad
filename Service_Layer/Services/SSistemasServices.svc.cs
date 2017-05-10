@@ -52,7 +52,12 @@ namespace Service_Layer.Services
             catch(Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if(ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -79,6 +84,7 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
+                //throw ex;
                 return null;
             }
             finally
@@ -102,7 +108,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -133,7 +144,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                return null;
+                //throw ex;
             }
             finally
             {
@@ -159,7 +171,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -186,7 +203,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -209,7 +227,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -240,7 +263,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -266,7 +290,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -290,7 +319,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -313,7 +343,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -336,7 +367,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -360,7 +396,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -386,7 +423,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -410,7 +452,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -433,7 +476,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -456,7 +500,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -480,7 +529,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -506,7 +556,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -530,7 +581,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -553,7 +605,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -576,7 +629,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -600,7 +654,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {

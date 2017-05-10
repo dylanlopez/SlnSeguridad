@@ -2,7 +2,7 @@
     var permiso = {};
     var urlListarPermisos = webAPIControllers + 'api/Permiso/ListarPermisos';
     var urlInsertarPermiso = webAPIControllers + 'api/Permiso/InsertarPermiso';
-    var urlActualizarPermiso = webAPIControllers + 'api/Permiso/ActualizarPermiso/';
+    var urlActualizarPermiso = webAPIControllers + 'api/Permiso/ActualizarPermiso';
     var header = {
         'Content-Type': 'application/json'
     }
@@ -20,7 +20,7 @@
     }
 
     permiso.ActualizarPermiso = function (permission) {
-        return $http.put(urlActualizarPermiso + permission.Id, permission, header).then(function (response) {
+        return $http.post(urlActualizarPermiso, permission, header).then(function (response) {
             return response.data;
         });
     }

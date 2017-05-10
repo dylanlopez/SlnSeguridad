@@ -2,7 +2,7 @@
     var modulo = {};
     var urlListarModulos = webAPIControllers + 'api/Modulo/ListarModulos';
     var urlInsertarModulo = webAPIControllers + 'api/Modulo/InsertarModulo';
-    var urlActualizarModulo = webAPIControllers + 'api/Modulo/ActualizarModulo/';
+    var urlActualizarModulo = webAPIControllers + 'api/Modulo/ActualizarModulo';
     var header = {
         'Content-Type': 'application/json'
     }
@@ -20,7 +20,7 @@
     }
 
     modulo.ActualizarModulo = function (module) {
-        return $http.put(urlActualizarModulo + module.Id, module, header).then(function (response) {
+        return $http.post(urlActualizarModulo, module, header).then(function (response) {
             return response.data;
         });
     }

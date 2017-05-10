@@ -57,14 +57,25 @@ namespace Service_Layer.Services
                 //var dto = Mapper.Map<DPersonaDto>(model);
                 var dto = SPersonaConverter.ToDto(model);
                 //var resp = Mapper.Map<PersonaModel>(_personaLogic.Buscar(dto));
-                var resp = SPersonaConverter.ToModel(_personaLogic.Buscar(dto));
+                //var resp = SPersonaConverter.ToModel(_personaLogic.Buscar(dto));
+                var person = _personaLogic.Buscar(dto);
+                PersonaModel resp = null;
+                if (person != null)
+                {
+                    resp = SPersonaConverter.ToModel(person);
+                }
+                else
+                {
+                    resp = new PersonaModel();
+                }
                 //return _personaLogic.Buscar(dto);
                 return resp;
             }
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -90,7 +101,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -114,7 +130,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -132,13 +149,24 @@ namespace Service_Layer.Services
                 _logger.WriteInfoLog("iniciando BuscarUsuarioPorUsuario");
                 _usuarioLogic = new BLogic();
                 var dto = SUsuarioConverter.ToDto(model);
-                var resp = SUsuarioConverter.ToModel(_usuarioLogic.BuscarPorUsuario(dto));
+                //var resp = SUsuarioConverter.ToModel(_usuarioLogic.BuscarPorUsuario(dto));
+                var user = _usuarioLogic.BuscarPorUsuario(dto);
+                UsuarioModel resp = null;
+                if (user != null)
+                {
+                    resp = SUsuarioConverter.ToModel(user);
+                }
+                else
+                {
+                    resp = new UsuarioModel();
+                }
                 return resp;
             }
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -161,7 +189,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -184,7 +213,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -208,7 +242,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -234,7 +269,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -257,7 +297,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -281,7 +326,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -307,7 +353,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -330,7 +381,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -354,7 +410,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                return null;
+                //throw ex;
             }
             finally
             {
@@ -380,7 +437,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -404,7 +466,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -427,7 +490,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -450,7 +514,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -474,7 +543,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -500,7 +570,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -523,7 +598,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -547,7 +627,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -573,7 +654,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -596,7 +682,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -619,7 +706,12 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
             }
             finally
             {
@@ -643,7 +735,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {
@@ -670,7 +763,8 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
-                throw ex;
+                //throw ex;
+                return null;
             }
             finally
             {

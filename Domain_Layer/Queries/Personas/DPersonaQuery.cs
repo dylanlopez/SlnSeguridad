@@ -72,6 +72,7 @@ namespace Domain_Layer.Queries
                 cmd.Parameters.Add("P_IN_DOC_NACIMIENTO", OracleDbType.Varchar2).Value = dto.TipoDocumento;
                 cmd.Parameters.Add("P_NU_DOC_NACIMIENTO", OracleDbType.Varchar2).Value = dto.NumeroDocumento;
                 cmd.Parameters.Add("P_ERROR", OracleDbType.Varchar2).Direction = ParameterDirection.Output;
+                cmd.Parameters["P_ERROR"].Size = 10;
                 cmd.Parameters.Add("P_CUR_MENSAJE", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
                 cmd.ExecuteNonQuery();
                 //OracleDataReader reader = cmd.ExecuteReader();

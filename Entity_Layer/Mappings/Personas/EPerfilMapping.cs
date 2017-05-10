@@ -42,6 +42,7 @@ namespace Entity_Layer.Mappings.Personas
                     map.Column("NO_PERFIL");
                     map.Length(50);
                     map.NotNullable(true);
+                    map.UniqueKey("UK_PERFIL_01");
                 });
             Property<String>(
                 x => x.Descripcion,

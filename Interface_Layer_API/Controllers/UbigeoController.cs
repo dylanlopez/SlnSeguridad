@@ -45,7 +45,7 @@ namespace Interface_Layer_API.Controllers
             }
         }
 
-        //[HttpPost]
+        [HttpPost]
         public List<ProvinciaModel> ListarProvincias(DepartamentoModel model)
         {
             ProvinciaRequest request = new ProvinciaRequest();
@@ -72,7 +72,7 @@ namespace Interface_Layer_API.Controllers
             }
         }
 
-        //[HttpPost]
+        [HttpPost]
         public List<DistritoModel> ListarDistritos(ProvinciaModel model)
         {
             DistritoRequest request = new DistritoRequest();

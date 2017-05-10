@@ -2,7 +2,7 @@
     var sistema = {};
     var urlListarSistemas = webAPIControllers + 'api/Sistema/ListarSistemas';
     var urlInsertarSistema = webAPIControllers + 'api/Sistema/InsertarSistema';
-    var urlActualizarSistema = webAPIControllers + 'api/Sistema/ActualizarSistema/';
+    var urlActualizarSistema = webAPIControllers + 'api/Sistema/ActualizarSistema';
     var header = {
         'Content-Type': 'application/json'
     }
@@ -20,7 +20,7 @@
     }
 
     sistema.ActualizarSistema = function (system) {
-        return $http.put(urlActualizarSistema + system.Id, system, header).then(function (response) {
+        return $http.post(urlActualizarSistema, system, header).then(function (response) {
             return response.data;
         });
     }

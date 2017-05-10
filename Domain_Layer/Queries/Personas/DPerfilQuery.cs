@@ -18,9 +18,12 @@ namespace Domain_Layer.Queries
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        _sessionMidis.Update(DPerfilConverter.ToEntity(dto));
+                        var entity = DPerfilConverter.ToEntity(dto);
+                        _sessionMidis.Update(entity);
+                        //_sessionMidis.Update(DPerfilConverter.ToEntity(dto));
                         _transactionMidis.Commit();
-                        return dto.Id;
+                        //return dto.Id;
+                        return entity.Id;
                     }
                 }
             }
@@ -37,10 +40,13 @@ namespace Domain_Layer.Queries
                 {
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        _sessionMidis.Save(DPerfilConverter.ToEntity(dto));
+                        var entity = DPerfilConverter.ToEntity(dto);
+                        _sessionMidis.Save(entity);
+                        //_sessionMidis.Save(DPerfilConverter.ToEntity(dto));
                         _sessionMidis.Flush();
                         _transactionMidis.Commit();
-                        return dto.Id;
+                        //return dto.Id;
+                        return entity.Id;
                     }
                 }
             }

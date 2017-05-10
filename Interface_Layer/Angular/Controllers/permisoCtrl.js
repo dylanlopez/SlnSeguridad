@@ -67,12 +67,18 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
         user.Usuario = $scope.mypermiso.Usuario;
         UsuarioFctr.BuscarUsuarioPorUsuario(user)
             .then(function successCallback(response) {
-                $scope.myusuario.Id = response.Id;
-                $scope.myusuario.ApellidoPaterno = response.ApellidoPaterno;
-                $scope.myusuario.ApellidoMaterno = response.ApellidoMaterno;
-                $scope.myusuario.Nombres = response.Nombres;
-                $scope.myusuario.NombresCompletos = response.ApellidoPaterno + " " + response.ApellidoMaterno + " " + response.Nombres;
-                $scope.estaCargando = false;
+                if (response.Id == 0) {
+                    $scope.tieneError = true;
+                    $scope.error = "El usuario no existe en la base de datos";
+                    $scope.estaCargando = false;
+                } else {
+                    $scope.myusuario.Id = response.Id;
+                    $scope.myusuario.ApellidoPaterno = response.ApellidoPaterno;
+                    $scope.myusuario.ApellidoMaterno = response.ApellidoMaterno;
+                    $scope.myusuario.Nombres = response.Nombres;
+                    $scope.myusuario.NombresCompletos = response.ApellidoPaterno + " " + response.ApellidoMaterno + " " + response.Nombres;
+                    $scope.estaCargando = false;
+                }
             }, function errorCallback(response) {
                 $scope.tieneError = true;
                 $scope.error = "Ha ocurrido un error al buscar usuario: " + response;
@@ -331,12 +337,12 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
         if ((angular.isUndefined($scope.mypermiso.Sistema) || $scope.mypermiso.Sistema == null) || 
             (angular.isUndefined($scope.mypermiso.Modulo) || $scope.mypermiso.Modulo == null) || 
             (angular.isUndefined($scope.mypermiso.Menu) || $scope.mypermiso.Menu == null)) {
-            console.info("if");
+            //console.info("if");
             $scope.tieneError = true;
             $scope.error = "Debe ingresar un sistema, módulo y menú para poder ver sus opciones";
         }
         else {
-            console.info("else");
+            //console.info("else");
             //$scope.tieneError = false;
             //$scope.error = "";
             //var menuopcion =
@@ -436,12 +442,12 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
         //    "Opcion": {}
         //};
         if (!angular.isUndefined($scope.mypermiso.Menu)) {
-            console.debug("Undefined 1");
+            //console.debug("Undefined 1");
             //menuopcion.Menu = $scope.mypermiso.Menu;
             menuoption.Menu = $scope.mypermiso.Menu;
         } else {
             if (!angular.isUndefined($scope.mypermiso.Modulo)) {
-                console.debug("Undefined 2");
+                //console.debug("Undefined 2");
                 //var menu =
                 //{
                 //    "Id": '',
@@ -523,47 +529,55 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
     };
 
     $scope.agregaOpcionMenu = function () {
-        $scope.tieneError = false;
-        $scope.error = "";
-        
-        var fecha = new Date();
-        var dia = fecha.getDate().toString();
-        if (dia.toString().length < 2) {
-            dia = "0" + dia;
-        }
-        var mes = fecha.getMonth().toString();
-        if (mes.toString().length < 2) {
-            mes = "0" + mes;
-        }
-        var anho = fecha.getFullYear().toString();
-        var fechaUltimoCambio = dia + "/" + mes + "/" + anho;
-        
-        //var permiso =
-        //    {
-        //        "Id": '',
-        //        "FechaAlta": fechaUltimoCambio,
-        //        "Estado": 'S',
-        //        "PerfilUsuarioRol": $scope.rolUsuarioPerfilSeleccionado,
-        //        "MenuOpcion": $scope.menuOpcionSeleccionado
-        //    };
-        permission.FechaAlta = fechaUltimoCambio;
-        permission.Activo = "S";
-        permission.PerfilUsuarioRol = $scope.rolUsuarioPerfilSeleccionado;
-        permission.MenuOpcion = $scope.menuOpcionSeleccionado;
-        var repetido = false;
-        angular.forEach($scope.permisos, function (value) {
-            if (value.PerfilUsuarioRol.Id == permission.PerfilUsuarioRol.Id &&
-                value.MenuOpcion.Id == permission.MenuOpcion.Id) {
-                repetido = true;
-            }
-        });
-        if (!repetido) {
-            $scope.permisos.push(permission);
+        if ((angular.isUndefined($scope.rolUsuarioPerfilSeleccionado) || $scope.rolUsuarioPerfilSeleccionado == null) || 
+            (angular.isUndefined($scope.menuOpcionSeleccionado) || $scope.menuOpcionSeleccionado == null)) {
+            $scope.tieneError = true;
+            $scope.error = "Debe ingresar un rol por usuario por perfil y/o una opcion por menu";
+        } else {
             $scope.tieneError = false;
             $scope.error = "";
-        } else {
-            $scope.tieneError = true;
-            $scope.error = "Ha ocurrido un error, al agregar el menu al rol. Ya se encuentra ingresado";
+
+            var fecha = new Date();
+            var dia = fecha.getDate().toString();
+            if (dia.toString().length < 2) {
+                dia = "0" + dia;
+            }
+            var mes = fecha.getMonth().toString();
+            if (mes.toString().length < 2) {
+                mes = "0" + mes;
+            }
+            var anho = fecha.getFullYear().toString();
+            var fechaUltimoCambio = dia + "/" + mes + "/" + anho;
+
+            //var permiso =
+            //    {
+            //        "Id": '',
+            //        "FechaAlta": fechaUltimoCambio,
+            //        "Estado": 'S',
+            //        "PerfilUsuarioRol": $scope.rolUsuarioPerfilSeleccionado,
+            //        "MenuOpcion": $scope.menuOpcionSeleccionado
+            //    };
+            console.debug($scope.rolUsuarioPerfilSeleccionado);
+            console.debug($scope.menuOpcionSeleccionado);
+            permission.FechaAlta = fechaUltimoCambio;
+            permission.Activo = "S";
+            permission.PerfilUsuarioRol = $scope.rolUsuarioPerfilSeleccionado;
+            permission.MenuOpcion = $scope.menuOpcionSeleccionado;
+            var repetido = false;
+            angular.forEach($scope.permisos, function (value) {
+                if (value.PerfilUsuarioRol.Id == permission.PerfilUsuarioRol.Id &&
+                    value.MenuOpcion.Id == permission.MenuOpcion.Id) {
+                    repetido = true;
+                }
+            });
+            if (!repetido) {
+                $scope.permisos.push(permission);
+                $scope.tieneError = false;
+                $scope.error = "";
+            } else {
+                $scope.tieneError = true;
+                $scope.error = "Ha ocurrido un error, al agregar el menu al rol. Ya se encuentra ingresado";
+            }
         }
     };
 
@@ -584,8 +598,7 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
-                    $scope.error = "Ha ocuirrido un error al actualizar: " + result;
-                    $scope.estaCargando = false;
+                    $scope.error = "Ha ocuirrido un error al actualizar: " + response.data.Message;
                     $scope.estaCargando = false;
                 });
 
@@ -637,7 +650,7 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
                 $scope.estaCargando = false;
             }, function errorCallback(response) {
                 $scope.tieneError = true;
-                $scope.error = "Ha ocuirrido un error al insertar: " + error;
+                $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
                 $scope.estaCargando = false;
             });
     };

@@ -2,7 +2,7 @@
     var rol = {};
     var urlListarRoles = webAPIControllers + 'api/Rol/ListarRoles';
     var urlInsertarRol = webAPIControllers + 'api/Rol/InsertarRol';
-    var urlActualizarRol = webAPIControllers + 'api/Rol/ActualizarRol/';
+    var urlActualizarRol = webAPIControllers + 'api/Rol/ActualizarRol';
     var header = {
         'Content-Type': 'application/json'
     }
@@ -20,7 +20,7 @@
     }
 
     rol.ActualizarRol = function (role) {
-        return $http.put(urlActualizarRol + role.Id, role, header).then(function (response) {
+        return $http.post(urlActualizarRol, role, header).then(function (response) {
             return response.data;
         });
     }
