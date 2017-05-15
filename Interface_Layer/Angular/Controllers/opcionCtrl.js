@@ -121,7 +121,7 @@ myApp.controller("OpcionCtrl", function ($scope, option, OpcionFctr) {
         }
         else //actualizar (update)
         {
-            OpcionFctr.ActualizarOpcion(system)
+            OpcionFctr.ActualizarOpcion(option)
                 .then(function successCallback(response) {
                     $scope.nuevo();
                     $scope.tieneError = false;

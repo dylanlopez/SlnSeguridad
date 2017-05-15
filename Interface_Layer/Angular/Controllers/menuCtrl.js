@@ -164,7 +164,6 @@ myApp.controller("MenuCtrl", function ($scope, system, module, menu, SistemaFctr
         $scope.mymenu.Id = "";
         if ($scope.estaEditable == false) {
             $scope.mymenu.Codigo = "";
-            $scope.mymenu.Nombre = "";
             $scope.mymenu.Ruta = "";
             $scope.mymenu.Descripcion = "";
             $scope.mymenu.Activo = "";
@@ -174,6 +173,7 @@ myApp.controller("MenuCtrl", function ($scope, system, module, menu, SistemaFctr
         }
         $scope.mymenu.Sistema = null;
         $scope.mymenu.Modulo = null;
+        $scope.mymenu.Nombre = "";
         MenuFctr.CleanMenu(menu);
         //console.debug(menu);
         $scope.menus = [];

@@ -293,17 +293,19 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
             //console.debug($scope.myusuario.Departamento);
             //console.debug($scope.departamentos);
             //console.debug(user.Ubigeo);
-            var departamento = user.Ubigeo.substring(0, 2);
-            var provincia = user.Ubigeo.substring(2, 4);
-            var distrito = user.Ubigeo.substring(4, 6);
-            //console.debug(departamento);
-            //console.debug(provincia);
-            //console.debug(distrito);
+            var codDepartamento = user.Ubigeo.substring(0, 2);
+            var codProvincia = user.Ubigeo.substring(2, 4);
+            var codDistrito = user.Ubigeo.substring(4, 6);
+            console.info(codDepartamento);
+            console.info(codProvincia);
+            console.info(codDistrito);
 
+            //console.debug($scope.departamentos);
             angular.forEach($scope.departamentos, function (value) {
-                if (value.codigoDepartamento == departamento) {
+                if (value.codigoDepartamento == codDepartamento) {
                     $scope.myusuario.Departamento = value;
-                    $scope.buscarProvincias();
+                    //$scope.buscarProvincias();
+
                     //console.debug(provincia);
                     //console.debug($scope.provincias);
                     //angular.forEach($scope.provincias, function (value2) {
@@ -325,36 +327,69 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
                     //    });
                     //$q.all($scope.buscarProvincias());
 
-                    //var departamento =
-                    //    {
-                    //        "codigoDepartamento": '',
-                    //        "descripcionDepartamento": '',
-                    //        "codigoVersion": ''
-                    //    };
-                    //departamento = $scope.myusuario.Departamento;
-                    //UbigeoFctr.ListarProvincias(departamento)
-                    //    .then(function successCallback(response) {
-                    //        $scope.provincias = response;
-                    //        $scope.myusuario.Provincia = value;
-                    //        $scope.estaCargando = false;
-                    //    }, function errorCallback(response) {
-                    //        $scope.tieneError = true;
-                    //        $scope.error = "Ha ocurrido un error al listar provincias: " + response;
-                    //        $scope.estaCargando = false;
-                    //    });
+                    var departamento =
+                        {
+                            "codigoDepartamento": '',
+                            "descripcionDepartamento": '',
+                            "codigoVersion": ''
+                        };
+                    departamento.codigoDepartamento = codDepartamento;
+                    UbigeoFctr.ListarProvincias(departamento)
+                        .then(function successCallback(response) {
+                            $scope.provincias = response;
+                            angular.forEach($scope.provincias, function (value) {
+                                if (value.codigoProvincia == codProvincia) {
+                                    $scope.myusuario.Provincia = value;
+                                    //$scope.buscarDistritos();
+
+                                    var provincia =
+                                    {
+                                        "codigoProvincia": '',
+                                        "codigoDepartamento": '',
+                                        "descripcionProvincia": '',
+                                        "codigoVersion": ''
+                                    };
+                                    provincia.codigoProvincia = codProvincia;
+                                    provincia.codigoDepartamento = codDepartamento;
+                                    UbigeoFctr.ListarDistritos(provincia)
+                                        .then(function successCallback(response) {
+                                            $scope.distritos = response;
+                                            angular.forEach($scope.distritos, function (value) {
+                                                if (value.codigoDistrito == codDistrito) {
+                                                    $scope.myusuario.Distrito = value;
+                                                }
+                                            });
+                                            //$scope.estaCargando = false;
+                                        }, function errorCallback(response) {
+                                            $scope.tieneError = true;
+                                            $scope.error = "Ha ocurrido un error al listar provincias: " + response;
+                                            $scope.estaCargando = false;
+                                        });
+                                }
+                            });
+
+                            //$scope.myusuario.Provincia = value;
+                            //$scope.estaCargando = false;
+                        }, function errorCallback(response) {
+                            $scope.tieneError = true;
+                            $scope.error = "Ha ocurrido un error al listar provincias: " + response;
+                            $scope.estaCargando = false;
+                        });
                 }
             });
-            angular.forEach($scope.provincias, function (value) {
-                if (value.codigoProvincia == provincia) {
-                    $scope.myusuario.Provincia = value;
-                    $scope.buscarDistritos();
-                }
-            });
-            angular.forEach($scope.distritos, function (value) {
-                if (value.codigoDistrito == distrito) {
-                    $scope.myusuario.Distrito = value;
-                }
-            });
+            //console.debug($scope.provincias);
+            //angular.forEach($scope.provincias, function (value) {
+            //    if (value.codigoProvincia == provincia) {
+            //        $scope.myusuario.Provincia = value;
+            //        $scope.buscarDistritos();
+            //    }
+            //});
+            //console.debug($scope.distritos);
+            //angular.forEach($scope.distritos, function (value) {
+            //    if (value.codigoDistrito == distrito) {
+            //        $scope.myusuario.Distrito = value;
+            //    }
+            //});
             //$scope.myusuario.Departamento.codigoDepartamento = user.Ubigeo.substring(0, 2);
 
             if (user.UnicoIngreso == "S") {

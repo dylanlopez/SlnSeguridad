@@ -58,6 +58,7 @@ namespace Entity_Layer.Mappings.Sistemas
                     map.Update(true);
                     map.Insert(true);
                     map.ForeignKey("FK_MENU_OPCION_01");
+                    map.UniqueKey("UK_MENU_OPCION_01");
                 });
             ManyToOne<EOpcion>(
                 x => x.Opcion,
@@ -67,6 +68,7 @@ namespace Entity_Layer.Mappings.Sistemas
                     map.Update(true);
                     map.Insert(true);
                     map.ForeignKey("FK_MENU_OPCION_02");
+                    map.UniqueKey("UK_MENU_OPCION_01");
                 });
         }
     }

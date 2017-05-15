@@ -622,6 +622,16 @@ namespace Service_Layer.Services
                 _perfilUsuarioRolLogic = new BLogic();
                 var dto = SPerfilUsuarioRolConverter.ToDto(model);
                 var resp = SPerfilUsuarioRolConverter.ToModels(_perfilUsuarioRolLogic.Listar(dto));
+                //var rolesusersprofiles = _perfilUsuarioRolLogic.Listar(dto);
+                //List<PerfilUsuarioRolModel> resp = null;
+                //if (user != null)
+                //{
+                //    resp = SUsuarioConverter.ToModel(user);
+                //}
+                //else
+                //{
+                //    resp = new UsuarioModel();
+                //}
                 return resp;
             }
             catch (Exception ex)

@@ -9,6 +9,7 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
     $scope.perfilesusuariosroles = [];
     $scope.perfiles = [];
     $scope.roles = [];
+    $scope.menuesopciones = [];
     $scope.sistemas = [];
     $scope.modulos = [];
     $scope.menus = [];
@@ -133,6 +134,7 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
             $scope.tieneError = false;
             $scope.error = "";
             $scope.estaCargando = true;
+            $scope.perfilesusuariosroles = [];
             //var user =
             //{
             //    "Id": $scope.myusuario.Id,
@@ -189,7 +191,13 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
             //});
             PerfilUsuarioRolFctr.ListarPerfilesUsuariosRoles(profileuserrole)
                 .then(function successCallback(response) {
-                    $scope.perfilesusuariosroles = response;
+                    //console.debug(response);
+                    if (response.length == 0) {
+                        $scope.tieneError = true;
+                        $scope.error = "No hay resultados para la búsqueda seleccionada";
+                    } else {
+                        $scope.perfilesusuariosroles = response;
+                    }
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
@@ -331,9 +339,9 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
     };
 
     $scope.buscarMenuesOpciones = function () {
-        console.debug($scope.mypermiso.Sistema);
-        console.debug($scope.mypermiso.Modulo);
-        console.debug($scope.mypermiso.Menu);
+        //console.debug($scope.mypermiso.Sistema);
+        //console.debug($scope.mypermiso.Modulo);
+        //console.debug($scope.mypermiso.Menu);
         if ((angular.isUndefined($scope.mypermiso.Sistema) || $scope.mypermiso.Sistema == null) || 
             (angular.isUndefined($scope.mypermiso.Modulo) || $scope.mypermiso.Modulo == null) || 
             (angular.isUndefined($scope.mypermiso.Menu) || $scope.mypermiso.Menu == null)) {
@@ -372,10 +380,17 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
             $scope.tieneError = false;
             $scope.error = "";
             $scope.estaCargando = true;
+            $scope.menuesopciones = [];
             menuoption.Menu = $scope.mypermiso.Menu;
             MenuOpcionFctr.ListarMenuOpciones(menuoption)
                 .then(function successCallback(response) {
-                    $scope.menuesopciones = response;
+                    //$scope.menuesopciones = response;
+                    if (response.length == 0) {
+                        $scope.tieneError = true;
+                        $scope.error = "No hay resultados para la búsqueda seleccionada";
+                    } else {
+                        $scope.menuesopciones = response;
+                    }
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
@@ -528,6 +543,19 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
         //});
     };
 
+    $scope.limpiar = function () {
+        $scope.mypermiso.Perfil = null
+        $scope.mypermiso.Usuario = ""
+        $scope.myusuario.NombresCompletos = ""
+        $scope.mypermiso.Rol = null
+        $scope.mypermiso.Sistema = null
+        $scope.mypermiso.Modulo = null
+        $scope.mypermiso.Menu = null
+        $scope.permisos = [];
+        $scope.perfilesusuariosroles = [];
+        $scope.menuesopciones = [];
+    };
+
     $scope.agregaOpcionMenu = function () {
         if ((angular.isUndefined($scope.rolUsuarioPerfilSeleccionado) || $scope.rolUsuarioPerfilSeleccionado == null) || 
             (angular.isUndefined($scope.menuOpcionSeleccionado) || $scope.menuOpcionSeleccionado == null)) {
@@ -557,8 +585,8 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
             //        "PerfilUsuarioRol": $scope.rolUsuarioPerfilSeleccionado,
             //        "MenuOpcion": $scope.menuOpcionSeleccionado
             //    };
-            console.debug($scope.rolUsuarioPerfilSeleccionado);
-            console.debug($scope.menuOpcionSeleccionado);
+            //console.debug($scope.rolUsuarioPerfilSeleccionado);
+            //console.debug($scope.menuOpcionSeleccionado);
             permission.FechaAlta = fechaUltimoCambio;
             permission.Activo = "S";
             permission.PerfilUsuarioRol = $scope.rolUsuarioPerfilSeleccionado;
@@ -595,6 +623,7 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
 
             PermisoFctr.ActualizarPermiso(permiso)
                 .then(function successCallback(response) {
+                    $scope.limpiar();
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
@@ -647,6 +676,7 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
         $scope.estaCargando = true;
         PermisoFctr.InsertarPermiso(permiso)
             .then(function successCallback(response) {
+                $scope.limpiar();
                 $scope.estaCargando = false;
             }, function errorCallback(response) {
                 $scope.tieneError = true;

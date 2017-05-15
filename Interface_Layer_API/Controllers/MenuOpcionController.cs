@@ -40,6 +40,10 @@ namespace Interface_Layer_API.Controllers
                     {
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se actualizó correctamente");
                     }
+                    else if (response == -2146232008)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Se intentó guardar un menú y opción duplicado");
+                    }
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
             }
@@ -100,6 +104,10 @@ namespace Interface_Layer_API.Controllers
                     if (response == 0)
                     {
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se insertó correctamente");
+                    }
+                    else if (response == -2146232008)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Se intentó guardar un menú y opción duplicado");
                     }
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }

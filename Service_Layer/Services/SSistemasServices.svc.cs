@@ -556,6 +556,10 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
                 //throw ex;
                 return 0;
             }
@@ -629,6 +633,10 @@ namespace Service_Layer.Services
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
                 //throw ex;
                 return 0;
             }

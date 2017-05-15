@@ -20,7 +20,7 @@
     }
 
     menuopcion.ActualizarMenuOpcion = function (menuoption) {
-        return $http.post(urlActualizarMenu, menuoption, header).then(function (response) {
+        return $http.post(urlActualizarMenuOpcion, menuoption, header).then(function (response) {
             return response.data;
         });
     }
