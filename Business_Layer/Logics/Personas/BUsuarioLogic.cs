@@ -20,6 +20,18 @@ namespace Business_Layer.Logics
                 throw ex;
             }
         }
+        public int ActualizarContrasena(DUsuarioDto dto)
+        {
+            try
+            {
+                _usuarioQuery = new DQuery();
+                return _usuarioQuery.ActualizarContrasena(dto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DUsuarioDto Buscar(DUsuarioDto dto)
         {
             try

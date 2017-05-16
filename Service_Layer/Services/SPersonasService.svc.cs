@@ -113,6 +113,70 @@ namespace Service_Layer.Services
                 _logger = null;
             }
         }
+        public UsuarioUPResponse ActualizarUsuarioUP(UsuarioUPRequest request)
+        {
+            UsuarioUPResponse response = new UsuarioUPResponse();
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
+            try
+            {
+                _logger.WriteInfoLog("iniciando ActualizarUsuarioUP");
+                if (string.IsNullOrEmpty(request.Usuario))
+                {
+                    response.Codigo = "0101";
+                    response.Descripcion = "No se puede ingresar un usuario en blanco";
+                    return response;
+                }
+                if (request.Usuario.Length != 8)
+                {
+                    response.Codigo = "0102";
+                    response.Descripcion = "El usuario es un DNI de 8 digitos";
+                    return response;
+                }
+                if (string.IsNullOrEmpty(request.ContrasenaAnterior) || string.IsNullOrEmpty(request.ContrasenaNueva))
+                {
+                    response.Codigo = "0201";
+                    response.Descripcion = "No se puede ingresar una contraseña en blanco";
+                    return response;
+                }
+                if (request.ContrasenaNueva.Equals(request.ContrasenaAnterior))
+                {
+                    response.Codigo = "0202";
+                    response.Descripcion = "La contraseña nueva es igual a la contraseña anterior";
+                    return response;
+                }
+                _usuarioLogic = new BLogic();
+                var dto = SUsuarioUPConverter.ToDto(request.Usuario, request.ContrasenaAnterior);
+                //var resp = SUsuarioConverter.ToModel(_usuarioLogic.BuscarPorUsuario(dto));
+                var user = _usuarioLogic.Buscar(dto);
+                if (user != null)
+                {
+                    dto = SUsuarioUPConverter.ToDto(request.Usuario, request.ContrasenaNueva);
+                    int resp = _usuarioLogic.ActualizarContrasena(dto);
+                }
+                else
+                {
+                    response.Codigo = "0301";
+                    response.Descripcion = "No se puede cambiar el usuario y contraseña del usuario porque no se puede encontrar el usuario. Verifique el usuario y contraseña";
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteErrorLog(ex);
+                //throw ex;
+                response.Codigo = "9998";
+                response.Descripcion = "Error al comunicarse con la base de datos";
+                return response; 
+                //return null;
+            }
+            finally
+            {
+                _logger = null;
+            }
+        }
         public UsuarioModel BuscarUsuario(UsuarioModel model)
         {
             if (_logger == null)
@@ -756,8 +820,9 @@ namespace Service_Layer.Services
         #endregion
 
         #region Acreditacion
-        public List<VistaPermisoResponse> AcreditacionUPS(VistaPermisoRequest request)
+        public AcreditacionUPSResponse AcreditacionUPS(AcreditacionUPSRequest request)
         {
+            AcreditacionUPSResponse response = new AcreditacionUPSResponse();
             if (_logger == null)
             {
                 _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
@@ -765,16 +830,63 @@ namespace Service_Layer.Services
             try
             {
                 _logger.WriteInfoLog("iniciando AcreditacionUP");
+                if (string.IsNullOrEmpty(request.Usuario))
+                {
+                    response.Codigo = "0101";
+                    response.Descripcion = "No se puede ingresar un usuario en blanco";
+                    return response;
+                }
+                if (request.Usuario.Length != 8)
+                {
+                    response.Codigo = "0102";
+                    response.Descripcion = "El usuario es un DNI de 8 digitos";
+                    return response;
+                }
+                if (string.IsNullOrEmpty(request.Contrasena))
+                {
+                    response.Codigo = "0201";
+                    response.Descripcion = "No se puede ingresar una contraseña en blanco";
+                    return response;
+                }
+                if (string.IsNullOrEmpty(request.CodigoSistema))
+                {
+                    response.Codigo = "0301";
+                    response.Descripcion = "No se puede ingresar una codigo de sistema en blanco";
+                    return response;
+                }
                 _vistaPermisoQuery = new BLogic();
-                var dto = SVistaPermisoConverter.ToDto(request);
-                var resp = SVistaPermisoConverter.ToModels(_vistaPermisoQuery.Listar(dto));
-                return resp;
+                var dto = SAcreditacionUPSConverter.ToDto(request);
+                var resp = _vistaPermisoQuery.Listar(dto);
+                if (resp != null)
+                {
+                    if (resp.Count > 0)
+                    {
+                        response.Result = SAcreditacionUPSConverter.ToModels(resp);
+                    }
+                    else
+                    {
+                        response.Codigo = "9997";
+                        response.Descripcion = "No devuelve ningún registro";
+                        return response;
+                    }
+                }
+                else
+                {
+                    response.Codigo = "9997";
+                    response.Descripcion = "No devuelve ningún registro";
+                    return response;
+                }
+                //var resp = SAcreditacionUPSConverter.ToModels(_vistaPermisoQuery.Listar(dto));
+                return response;
             }
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
                 //throw ex;
-                return null;
+                response.Codigo = "9998";
+                response.Descripcion = "Error al comunicarse con la base de datos";
+                return response;
+                //return null;
             }
             finally
             {

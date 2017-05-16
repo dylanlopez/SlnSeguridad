@@ -32,6 +32,30 @@ namespace Domain_Layer.Queries
                 throw ex;
             }
         }
+        public int ActualizarContrasena(DUsuarioDto dto)
+        {
+            try
+            {
+                using (_sessionMidis = _sessionFactoryMidis.OpenSession())
+                {
+                    using (_transactionMidis = _sessionMidis.BeginTransaction())
+                    {
+                        IQuery query = _sessionMidis.CreateQuery("UPDATE EUsuario " +
+                                                                 "SET Contrasena = :p_Contrasena " +
+                                                                 "WHERE Usuario = :p_Usuario ");
+                        query.SetParameter("p_Usuario", dto.Usuario);
+                        query.SetParameter("p_Contrasena", dto.Contrasena);
+                        int result = query.ExecuteUpdate();
+                        _transactionMidis.Commit();
+                        return result;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DUsuarioDto Buscar(DUsuarioDto dto)
         {
             DUsuarioDto item = null;

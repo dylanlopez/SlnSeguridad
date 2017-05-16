@@ -22,30 +22,31 @@ namespace Domain_Layer.Queries
             List<DVistaPermisoDto> list = null;
             try
             {
-                _logger.WriteInfoLog("Step 0");
+                //_logger.WriteInfoLog("Step 0");
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
                 {
-                    _logger.WriteInfoLog("Step 1");
+                    //_logger.WriteInfoLog("Step 1");
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
-                        _logger.WriteInfoLog("Step 2");
+                        //_logger.WriteInfoLog("Step 2");
                         IQuery query = _sessionMidis.CreateQuery("FROM EVistaPermiso x " +
-                                                                 "WHERE x.CodigoSistema = :p_CodigoSistema " +
-                                                                 "AND x.Usuario = :p_Usuario " +
-                                                                 "AND x.Contrasena = :p_Contrasena " +
-                                                                 "ORDER BY x.NombreSistema, x.NombreModulo, x.NombreMenu ");
-                        _logger.WriteInfoLog("Step 3");
-                        query.SetParameter("p_CodigoSistema", dto.CodigoSistema.ToUpper());
+                                                                 "WHERE x.CodigoSistema LIKE :p_CodigoSistema " +
+                                                                 "AND x.Usuario LIKE :p_Usuario " +
+                                                                 "AND x.Contrasena LIKE :p_Contrasena ");
+                        //"ORDER BY x.NombreSistema, x.NombreModulo, x.NombreMenu ");
+                        //IQuery query = _sessionMidis.CreateQuery("FROM EVistaPermiso x ");
+                        //_logger.WriteInfoLog("Step 3");
+                        query.SetParameter("p_CodigoSistema", dto.CodigoSistema);
                         query.SetParameter("p_Usuario", dto.Usuario);
                         query.SetParameter("p_Contrasena", dto.Contrasena);
-                        _logger.WriteInfoLog("Step 4");
+                        //_logger.WriteInfoLog("Step 4");
                         var result = query.List<EVistaPermiso>();
-                        _logger.WriteInfoLog("Step 5");
+                        //_logger.WriteInfoLog("Step 5");
                         if (result != null)
                         {
-                            _logger.WriteInfoLog("Step 6");
+                            //_logger.WriteInfoLog("Step 6");
                             list = DVistaPermisoConverter.ToDtos(result);
-                            _logger.WriteInfoLog("Step 7");
+                            //_logger.WriteInfoLog("Step 7");
                         }
                         return list;
                     }

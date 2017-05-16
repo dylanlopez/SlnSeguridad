@@ -21,8 +21,10 @@ namespace Domain_Layer.Converters.Vistas
             dto.NombreRol = entity.NombreRol;
             dto.CodigoSistema = entity.CodigoSistema;
             dto.NombreSistema = entity.NombreSistema;
+            dto.RutaLogica = entity.RutaLogica;
             dto.NombreModulo = entity.NombreModulo;
             dto.NombreMenu = entity.NombreMenu;
+            dto.MenuRuta = entity.MenuRuta;
             dto.NombreOpcion = entity.NombreOpcion;
             dto.ControlAsociado = entity.ControlAsociado;
             dto.Visible = entity.Visible;

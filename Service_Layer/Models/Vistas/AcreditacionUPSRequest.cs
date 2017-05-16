@@ -3,9 +3,9 @@
 namespace Service_Layer.Models.Vistas
 {
     [DataContract]
-    public class VistaPermisoRequest
+    public class AcreditacionUPSRequest
     {
-        public VistaPermisoRequest()
+        public AcreditacionUPSRequest()
         {
             Usuario = string.Empty;
             Contrasena = string.Empty;

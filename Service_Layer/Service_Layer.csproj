@@ -92,7 +92,8 @@
     <Compile Include="Converters\Sistemas\SModuloConverter.cs" />
     <Compile Include="Converters\Sistemas\SOpcionConverter.cs" />
     <Compile Include="Converters\Sistemas\SSistemaConverter.cs" />
-    <Compile Include="Converters\Vistas\SVistaPermisoConverter.cs" />
+    <Compile Include="Converters\Vistas\SUsuarioUPConverter.cs" />
+    <Compile Include="Converters\Vistas\SAcreditacionUPSConverter.cs" />
     <Compile Include="Models\Externos\DepartamentoModel.cs" />
     <Compile Include="Models\Externos\DistritoModel.cs" />
     <Compile Include="Models\Externos\ProvinciaModel.cs" />
@@ -108,8 +109,11 @@
     <Compile Include="Models\Sistemas\ModuloModel.cs" />
     <Compile Include="Models\Sistemas\OpcionModel.cs" />
     <Compile Include="Models\Sistemas\SistemaModel.cs" />
-    <Compile Include="Models\Vistas\VistaPermisoRequest.cs" />
-    <Compile Include="Models\Vistas\VistaPermisoResponse.cs" />
+    <Compile Include="Models\Vistas\UsuarioUPRequest.cs" />
+    <Compile Include="Models\Vistas\UsuarioUPResponse.cs" />
+    <Compile Include="Models\Vistas\AcreditacionUPSRequest.cs" />
+    <Compile Include="Models\Vistas\AcreditacionUPSResponse.cs" />
+    <Compile Include="Models\Vistas\VistaPermisoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CORSEnablingBehavior.cs" />
     <Compile Include="Services\ISPersonasService.cs" />

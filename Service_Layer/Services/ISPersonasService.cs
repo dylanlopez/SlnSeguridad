@@ -33,6 +33,14 @@ namespace Service_Layer.Services
         ResponseFormat = WebMessageFormat.Json,
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "ActualizarUsuarioUP/")]
+        UsuarioUPResponse ActualizarUsuarioUP(UsuarioUPRequest request);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "BuscarUsuario/")]
         UsuarioModel BuscarUsuario(UsuarioModel dto);
 
@@ -230,7 +238,7 @@ namespace Service_Layer.Services
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "AcreditacionUPS/")]
-        List<VistaPermisoResponse> AcreditacionUPS(VistaPermisoRequest dto);
+        AcreditacionUPSResponse AcreditacionUPS(AcreditacionUPSRequest request);
         #endregion
     }
 }

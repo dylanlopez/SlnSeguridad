@@ -101,6 +101,14 @@ namespace Entity_Layer.Entities.Vistas
         public virtual String NombreSistema { get; set; }
 
         /// <summary>
+        /// Gets or sets the RutaLogica, correspond to table field DE_RUTA_LOGICA.
+        /// </summary>
+        /// <value>
+        /// set a value to the RutaLogica.
+        /// </value>
+        public virtual String RutaLogica { get; set; }
+
+        /// <summary>
         /// Gets or sets the NombreModulo, correspond to table field NO_MODULO.
         /// </summary>
         /// <value>
@@ -115,6 +123,14 @@ namespace Entity_Layer.Entities.Vistas
         /// set a value to the NombreMenu.
         /// </value>
         public virtual String NombreMenu { get; set; }
+
+        /// <summary>
+        /// Gets or sets the MenuRuta, correspond to table field DE_RUTA.
+        /// </summary>
+        /// <value>
+        /// set a value to the MenuRuta.
+        /// </value>
+        public virtual String MenuRuta { get; set; }
 
         /// <summary>
         /// Gets or sets the NombreOpcion, correspond to table field NO_OPCION.
@@ -139,5 +155,27 @@ namespace Entity_Layer.Entities.Vistas
         /// set a value to the Visible.
         /// </value>
         public virtual Char Visible { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as EVistaPermiso;
+
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            return Usuario == other.Usuario && NombreMenu == other.NombreMenu && NombreOpcion == other.NombreOpcion;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = GetType().GetHashCode();
+                hash = (hash * 31) ^ Usuario.GetHashCode();
+                hash = (hash * 31) ^ NombreMenu.GetHashCode();
+
+                return hash;
+            }
+        }
     }
 }

@@ -26,9 +26,13 @@
 
         public string NombreSistema { get; set; }
 
+        public string RutaLogica { get; set; }
+
         public string NombreModulo { get; set; }
 
         public string NombreMenu { get; set; }
+
+        public string MenuRuta { get; set; }
 
         public string NombreOpcion { get; set; }
 

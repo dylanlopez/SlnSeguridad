@@ -11,22 +11,39 @@ namespace Entity_Layer.Mappings.Vistas
         {
             //Schema("ES_SEGURIDAD");
             Table("SEGVI_PERMISO");
-            Mutable(true);
+            Mutable(false);
+            //Id<String>(
+            //    x => x.Usuario,
+            //    map =>
+            //    {
+            //        map.Column("US_USUARIO");
+            //        map.Length(100);
+            //    });
+            ComposedId(map =>
+            {
+                map.Property(x => x.Usuario);
+                map.Property(x => x.NombreSistema);
+                map.Property(x => x.NombreModulo);
+                map.Property(x => x.NombreMenu);
+                map.Property(x => x.NombreOpcion);
+            });
+            Property<String>(
+                x => x.Usuario,
+                map =>
+                {
+                    map.Column("US_USUARIO");
+                    map.Length(100);
+                });
             Property<String>(
                 x => x.NombrePerfil,
                 map => {
                     map.Column("NO_PERFIL");
                     map.Length(50);
                 });
-            Id<String>(
-                x => x.Usuario,
-                map => {
-                    map.Column("US_USUARIO");
-                    map.Length(100);
-                });
             //Property<String>(
             //    x => x.Usuario,
-            //    map => {
+            //    map =>
+            //    {
             //        map.Column("US_USUARIO");
             //        map.Length(100);
             //        map.NotNullable(true);
@@ -86,29 +103,72 @@ namespace Entity_Layer.Mappings.Vistas
                 });
             Property<String>(
                 x => x.NombreSistema,
-                map => {
+                map =>
+                {
                     map.Column("NO_SISTEMA");
                     map.Length(50);
                 });
+            //Id<String>(
+            //    x => x.NombreSistema,
+            //    map =>
+            //    {
+            //        map.Column("NO_SISTEMA");
+            //        map.Length(50);
+            //    });
+            Property<String>(
+                x => x.RutaLogica,
+                map => {
+                    map.Column("DE_RUTA_LOGICA");
+                    map.Length(200);
+                });
             Property<String>(
                 x => x.NombreModulo,
-                map => {
+                map =>
+                {
                     map.Column("NO_MODULO");
                     map.Length(50);
                 });
+            //Id<String>(
+            //    x => x.NombreModulo,
+            //    map =>
+            //    {
+            //        map.Column("NO_MODULO");
+            //        map.Length(50);
+            //    });
+            Property<String>(
+                x => x.MenuRuta,
+                map => {
+                    map.Column("DE_RUTA");
+                    map.Length(200);
+                });
             Property<String>(
                 x => x.NombreMenu,
-                map => {
+                map =>
+                {
                     map.Column("NO_MENU");
                     map.Length(50);
                 });
+            //Id<String>(
+            //    x => x.NombreMenu,
+            //    map =>
+            //    {
+            //        map.Column("NO_MENU");
+            //        map.Length(50);
+            //    });
             Property<String>(
                 x => x.NombreOpcion,
-                map => {
+                map =>
+                {
                     map.Column("NO_OPCION");
                     map.Length(50);
-                    map.NotNullable(true);
                 });
+            //Id<String>(
+            //    x => x.NombreOpcion,
+            //    map =>
+            //    {
+            //        map.Column("NO_OPCION");
+            //        map.Length(50);
+            //    });
             Property<String>(
                 x => x.ControlAsociado,
                 map => {

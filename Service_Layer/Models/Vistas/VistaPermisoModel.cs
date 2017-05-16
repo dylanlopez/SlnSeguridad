@@ -3,9 +3,9 @@
 namespace Service_Layer.Models.Vistas
 {
     [DataContract]
-    public class VistaPermisoResponse
+    public class VistaPermisoModel
     {
-        public VistaPermisoResponse()
+        public VistaPermisoModel()
         {
             NombrePerfil = string.Empty;
             Usuario = string.Empty;
@@ -62,19 +62,25 @@ namespace Service_Layer.Models.Vistas
         [DataMember(Name = "NombreSistema", Order = 11)]
         public string NombreSistema { get; set; }
 
-        [DataMember(Name = "NombreModulo", Order = 12)]
+        [DataMember(Name = "RutaLogica", Order = 12)]
+        public string RutaLogica { get; set; }
+
+        [DataMember(Name = "NombreModulo", Order = 13)]
         public string NombreModulo { get; set; }
 
-        [DataMember(Name = "NombreMenu", Order = 13)]
+        [DataMember(Name = "NombreMenu", Order = 14)]
         public string NombreMenu { get; set; }
 
-        [DataMember(Name = "NombreOpcion", Order = 14)]
+        [DataMember(Name = "MenuRuta", Order = 15)]
+        public string MenuRuta { get; set; }
+
+        [DataMember(Name = "NombreOpcion", Order = 16)]
         public string NombreOpcion { get; set; }
 
-        [DataMember(Name = "ControlAsociado", Order = 15)]
+        [DataMember(Name = "ControlAsociado", Order = 17)]
         public string ControlAsociado { get; set; }
 
-        [DataMember(Name = "Visible", Order = 16)]
+        [DataMember(Name = "Visible", Order = 18)]
         public char Visible { get; set; }
     }
 }
