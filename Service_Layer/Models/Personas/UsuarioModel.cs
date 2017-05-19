@@ -19,6 +19,7 @@ namespace Service_Layer.Models.Personas
             Ubigeo = string.Empty;
             CodigoVersion = 0;
             Email = string.Empty;
+            PrimeraVez = '\0';
             UnicoIngreso = '\0';
             HaIngresado = '\0';
             OtrosLogeos = '\0';
@@ -59,22 +60,25 @@ namespace Service_Layer.Models.Personas
         [DataMember(Name = "CodigoVersion", Order = 10)]
         public int CodigoVersion { get; set; }
 
-        [DataMember(Name = "UnicoIngreso", Order = 11)]
+        [DataMember(Name = "PrimeraVez", Order = 11)]
+        public char PrimeraVez { get; set; }
+
+        [DataMember(Name = "UnicoIngreso", Order = 12)]
         public char UnicoIngreso { get; set; }
 
-        [DataMember(Name = "HaIngresado", Order = 12)]
+        [DataMember(Name = "HaIngresado", Order = 13)]
         public char HaIngresado { get; set; }
 
-        [DataMember(Name = "OtrosLogeos", Order = 13)]
+        [DataMember(Name = "OtrosLogeos", Order = 14)]
         public char OtrosLogeos { get; set; }
 
-        [DataMember(Name = "Tipo", Order = 14)]
+        [DataMember(Name = "Tipo", Order = 15)]
         public char Tipo { get; set; }
 
-        [DataMember(Name = "Activo", Order = 15)]
+        [DataMember(Name = "Activo", Order = 16)]
         public char Activo { get; set; }
 
-        [DataMember(Name = "Email", Order = 16)]
+        [DataMember(Name = "Email", Order = 17)]
         public string Email { get; set; }
     }
 }

@@ -32,6 +32,26 @@ namespace Business_Layer.Logics
                 throw ex;
             }
         }
+        public int ActualizarEstado(DUsuarioDto dto)
+        {
+            try
+            {
+                _usuarioQuery = new DQuery();
+                if (dto.HaIngresado == 'S')
+                {
+                    dto.HaIngresado = 'N';
+                }
+                else if (dto.HaIngresado == 'N')
+                {
+                    dto.HaIngresado = 'S';
+                }
+                return _usuarioQuery.ActualizarEstado(dto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DUsuarioDto Buscar(DUsuarioDto dto)
         {
             try

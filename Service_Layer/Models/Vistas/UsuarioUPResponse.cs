@@ -8,7 +8,7 @@ namespace Service_Layer.Models.Vistas
         public UsuarioUPResponse()
         {
             Codigo = "0000";
-            Descripcion = "Ok";
+            Descripcion = "Actualizado correctamente";
         }
 
         [DataMember(Name = "Codigo", Order = 0)]

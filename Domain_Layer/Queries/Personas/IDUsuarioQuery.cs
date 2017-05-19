@@ -21,11 +21,18 @@ namespace Domain_Layer.Queries.Personas
         int Actualizar(DUsuarioDto dto);
 
         /// <summary>
-        /// Update the specified entity class EUsuario.
+        /// Update the field Contrasena and FechaUltimoCambio for the entity class EUsuario.
         /// </summary>
         /// <param name="dto">The dto class DUsuarioDto.</param>
         /// <returns></returns>
         int ActualizarContrasena(DUsuarioDto dto);
+
+        /// <summary>
+        /// Update the field HaIngresado for the entity class EUsuario.
+        /// </summary>
+        /// <param name="dto">The dto class DUsuarioDto.</param>
+        /// <returns></returns>
+        int ActualizarEstado(DUsuarioDto dto);
 
         /// <summary>
         /// Search the specified entity class EUsuario filter by Id.

@@ -5,6 +5,7 @@ using Entity_Layer.Entities.Personas;
 using NHibernate;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Domain_Layer.Queries
 {
@@ -41,10 +42,42 @@ namespace Domain_Layer.Queries
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
                         IQuery query = _sessionMidis.CreateQuery("UPDATE EUsuario " +
-                                                                 "SET Contrasena = :p_Contrasena " +
+                                                                 "SET Contrasena = :p_Contrasena, " +
+                                                                 "FechaUltimoCambio = :p_FechaUltimoCambio " +
                                                                  "WHERE Usuario = :p_Usuario ");
                         query.SetParameter("p_Usuario", dto.Usuario);
                         query.SetParameter("p_Contrasena", dto.Contrasena);
+                        //query.SetParameter("p_FechaUltimoCambio", dto.FechaUltimoCambio);
+                        query.SetParameter("p_FechaUltimoCambio", DateTime.ParseExact(dto.FechaUltimoCambio, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+                        int result = query.ExecuteUpdate();
+                        _transactionMidis.Commit();
+                        return result;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public int ActualizarEstado(DUsuarioDto dto)
+        {
+            try
+            {
+                using (_sessionMidis = _sessionFactoryMidis.OpenSession())
+                {
+                    using (_transactionMidis = _sessionMidis.BeginTransaction())
+                    {
+                        //IQuery query = _sessionMidis.CreateQuery("UPDATE EUsuario " +
+                        //                                         "SET HaIngresado = :p_HaIngresado " +
+                        //                                         "WHERE Usuario = :p_Usuario " +
+                        //                                         "AND Contrasena = :p_Contrasena ");
+                        IQuery query = _sessionMidis.CreateQuery("UPDATE EUsuario " +
+                                                                 "SET HaIngresado = :p_HaIngresado " +
+                                                                 "WHERE Usuario = :p_Usuario ");
+                        query.SetParameter("p_Usuario", dto.Usuario);
+                        //query.SetParameter("p_Contrasena", dto.Contrasena);
+                        query.SetParameter("p_HaIngresado", dto.HaIngresado);
                         int result = query.ExecuteUpdate();
                         _transactionMidis.Commit();
                         return result;

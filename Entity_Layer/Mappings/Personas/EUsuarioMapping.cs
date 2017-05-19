@@ -106,6 +106,13 @@ namespace Entity_Layer.Mappings.Personas
                     map.NotNullable(true);
                 });
             Property<Char>(
+                x => x.PrimeraVez,
+                map => {
+                    map.Column("IN_PRIMERA_VEZ");
+                    map.Length(1);
+                    map.NotNullable(true);
+                });
+            Property<Char>(
                 x => x.UnicoIngreso,
                 map => {
                     map.Column("IN_UNICO_INGRESO");

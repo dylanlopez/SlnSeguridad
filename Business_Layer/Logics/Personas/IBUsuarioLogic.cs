@@ -10,6 +10,8 @@ namespace Business_Layer.Logics.Personas
 
         int ActualizarContrasena(DUsuarioDto dto);
 
+        int ActualizarEstado(DUsuarioDto dto);
+
         DUsuarioDto Buscar(DUsuarioDto dto);
 
         DUsuarioDto BuscarPorUsuario(DUsuarioDto dto);

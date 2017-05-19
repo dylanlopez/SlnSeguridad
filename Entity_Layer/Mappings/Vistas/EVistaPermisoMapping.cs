@@ -21,18 +21,18 @@ namespace Entity_Layer.Mappings.Vistas
             //    });
             ComposedId(map =>
             {
+                map.Property(x => x.IdPerfil);
                 map.Property(x => x.Usuario);
-                map.Property(x => x.NombreSistema);
-                map.Property(x => x.NombreModulo);
-                map.Property(x => x.NombreMenu);
-                map.Property(x => x.NombreOpcion);
+                map.Property(x => x.IdRol);
+                map.Property(x => x.IdSistema);
+                map.Property(x => x.IdModulo);
+                map.Property(x => x.IdMenu);
+                map.Property(x => x.IdOpcion);
             });
-            Property<String>(
-                x => x.Usuario,
-                map =>
-                {
-                    map.Column("US_USUARIO");
-                    map.Length(100);
+            Property<Int32>(
+                x => x.IdPerfil,
+                map => {
+                    map.Column("ID_PERFIL");
                 });
             Property<String>(
                 x => x.NombrePerfil,
@@ -40,14 +40,13 @@ namespace Entity_Layer.Mappings.Vistas
                     map.Column("NO_PERFIL");
                     map.Length(50);
                 });
-            //Property<String>(
-            //    x => x.Usuario,
-            //    map =>
-            //    {
-            //        map.Column("US_USUARIO");
-            //        map.Length(100);
-            //        map.NotNullable(true);
-            //    });
+            Property<String>(
+                x => x.Usuario,
+                map =>
+                {
+                    map.Column("US_USUARIO");
+                    map.Length(100);
+                });
             Property<String>(
                 x => x.Contrasena,
                 map => {
@@ -89,11 +88,46 @@ namespace Entity_Layer.Mappings.Vistas
                     map.Column("NO_EMAIL");
                     map.Length(200);
                 });
+            Property<Char>(
+                x => x.Caduca,
+                map => {
+                    map.Column("IN_CADUCA");
+                    map.Length(1);
+                });
+            Property<DateTime>(
+                x => x.FechaUltimoCambio,
+                map => {
+                    map.Column("FE_ULTIMOCAMBIO");
+                });
+            Property<Int32>(
+                x => x.PeriodoCaducidad,
+                map => {
+                    map.Column("NU_PERIODO_CADUCIDAD");
+                });
+            Property<Char>(
+                x => x.PrimeraVez,
+                map => {
+                    map.Column("IN_PRIMERA_VEZ");
+                    map.Length(1);
+                });
+            Property<Int32>(
+                x => x.IdRol,
+                map => {
+                    map.Column("ID_ROL");
+                });
             Property<String>(
                 x => x.NombreRol,
                 map => {
                     map.Column("NO_ROL");
                     map.Length(50);
+                });
+
+
+
+            Property<Int32>(
+                x => x.IdSistema,
+                map => {
+                    map.Column("ID_SISTEMA");
                 });
             Property<String>(
                 x => x.CodigoSistema,
@@ -108,18 +142,22 @@ namespace Entity_Layer.Mappings.Vistas
                     map.Column("NO_SISTEMA");
                     map.Length(50);
                 });
-            //Id<String>(
-            //    x => x.NombreSistema,
-            //    map =>
-            //    {
-            //        map.Column("NO_SISTEMA");
-            //        map.Length(50);
-            //    });
             Property<String>(
                 x => x.RutaLogica,
                 map => {
                     map.Column("DE_RUTA_LOGICA");
                     map.Length(200);
+                });
+            Property<Int32>(
+                x => x.IdModulo,
+                map => {
+                    map.Column("ID_MODULO");
+                });
+            Property<String>(
+                x => x.CodigoModulo,
+                map => {
+                    map.Column("CO_MODULO");
+                    map.Length(4);
                 });
             Property<String>(
                 x => x.NombreModulo,
@@ -128,18 +166,16 @@ namespace Entity_Layer.Mappings.Vistas
                     map.Column("NO_MODULO");
                     map.Length(50);
                 });
-            //Id<String>(
-            //    x => x.NombreModulo,
-            //    map =>
-            //    {
-            //        map.Column("NO_MODULO");
-            //        map.Length(50);
-            //    });
-            Property<String>(
-                x => x.MenuRuta,
+            Property<Int32>(
+                x => x.IdMenu,
                 map => {
-                    map.Column("DE_RUTA");
-                    map.Length(200);
+                    map.Column("ID_MENU");
+                });
+            Property<String>(
+                x => x.CodigoMenu,
+                map => {
+                    map.Column("CO_MENU");
+                    map.Length(7);
                 });
             Property<String>(
                 x => x.NombreMenu,
@@ -148,13 +184,17 @@ namespace Entity_Layer.Mappings.Vistas
                     map.Column("NO_MENU");
                     map.Length(50);
                 });
-            //Id<String>(
-            //    x => x.NombreMenu,
-            //    map =>
-            //    {
-            //        map.Column("NO_MENU");
-            //        map.Length(50);
-            //    });
+            Property<String>(
+                x => x.MenuRuta,
+                map => {
+                    map.Column("DE_RUTA");
+                    map.Length(200);
+                });
+            Property<Int32>(
+                x => x.IdOpcion,
+                map => {
+                    map.Column("ID_OPCION");
+                });
             Property<String>(
                 x => x.NombreOpcion,
                 map =>
@@ -162,13 +202,6 @@ namespace Entity_Layer.Mappings.Vistas
                     map.Column("NO_OPCION");
                     map.Length(50);
                 });
-            //Id<String>(
-            //    x => x.NombreOpcion,
-            //    map =>
-            //    {
-            //        map.Column("NO_OPCION");
-            //        map.Length(50);
-            //    });
             Property<String>(
                 x => x.ControlAsociado,
                 map => {

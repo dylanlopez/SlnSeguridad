@@ -33,8 +33,16 @@ namespace Service_Layer.Services
         ResponseFormat = WebMessageFormat.Json,
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
-        UriTemplate = "ActualizarUsuarioUP/")]
-        UsuarioUPResponse ActualizarUsuarioUP(UsuarioUPRequest request);
+        UriTemplate = "ActualizarContrasenaUsuarioUP/")]
+        UsuarioUPResponse ActualizarContrasenaUsuarioUP(UsuarioUPRequest request);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "ActualizarHaIngresadoUsuarioU/")]
+        UsuarioUPResponse ActualizarHaIngresadoUsuarioU(UsuarioURequest request);
 
         [OperationContract]
         [WebInvoke(Method = "POST",

@@ -1,7 +1,7 @@
 ﻿'use strict';
 var myApp = angular.module('myApp', [])
 
-myApp.constant('webAPIControllers', 'http://localhost:58309/');
+myApp.constant('webAPIControllers', 'http://localhost/MidisSeguridadDOF_API/');
 //myApp.constant('webAPIControllers_Local', 'http://localhost:58309/');
 //myApp.constant('webAPIControllers_IIS', 'http://localhost/MidisSeguridadDOF_API/');
 //myApp.constant('webAPIControllers_QA', 'http://app_pruebas.midis.gob.pe/Interface_Layer_API/');
@@ -129,6 +129,7 @@ myApp.value('user',
         FechaUltimoCambio: '',
         Ubigeo: '',
         CodigoVersion: '',
+        PrimeraVez: '',
         UnicoIngreso: '',
         HaIngresado: '',
         OtrosLogeos: '',
@@ -191,6 +192,7 @@ myApp.value('profileuserrole',
             FechaUltimoCambio: '',
             Ubigeo: '',
             CodigoVersion: '',
+            PrimeraVez: '',
             UnicoIngreso: '',
             HaIngresado: '',
             OtrosLogeos: '',
@@ -229,6 +231,7 @@ myApp.value('permission',
                 FechaUltimoCambio: '',
                 Ubigeo: '',
                 CodigoVersion: '',
+                PrimeraVez: '',
                 UnicoIngreso: '',
                 HaIngresado: '',
                 OtrosLogeos: '',

@@ -254,7 +254,9 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
             $scope.myusuario.Distrito = null;
             $scope.myusuario.Provincia = null;
             $scope.myusuario.Departamento = null;
+            $scope.myusuario.PrimeraVez = null;
             $scope.myusuario.UnicoIngreso = "";
+            $scope.myusuario.HaIngresado = null;
             $scope.myusuario.EsUnicoIngreso = false;
             $scope.myusuario.OtrosLogeos = "";
             $scope.myusuario.TieneOtrosLogeos = false;
@@ -293,12 +295,14 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
             //console.debug($scope.myusuario.Departamento);
             //console.debug($scope.departamentos);
             //console.debug(user.Ubigeo);
+            $scope.myusuario.PrimeraVez = user.PrimeraVez;
+            $scope.myusuario.HaIngresado = user.HaIngresado;
             var codDepartamento = user.Ubigeo.substring(0, 2);
             var codProvincia = user.Ubigeo.substring(2, 4);
             var codDistrito = user.Ubigeo.substring(4, 6);
-            console.info(codDepartamento);
-            console.info(codProvincia);
-            console.info(codDistrito);
+            //console.info(codDepartamento);
+            //console.info(codProvincia);
+            //console.info(codDistrito);
 
             //console.debug($scope.departamentos);
             angular.forEach($scope.departamentos, function (value) {
@@ -443,12 +447,13 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
         if (dia.toString().length < 2) {
             dia = "0" + dia;
         }
-        var mes = fecha.getMonth().toString();
+        var mes = (fecha.getMonth() + 1).toString();
         if (mes.toString().length < 2) {
             mes = "0" + mes;
         }
         var anho = fecha.getFullYear().toString();
         var fechaUltimoCambio = dia + "/" + mes + "/" + anho;
+        //console.info(fechaUltimoCambio);
 
         //var user =
         //{
@@ -475,18 +480,20 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
         user.Nombres = $scope.myusuario.Nombres;
         user.Caduca = $scope.myusuario.Caduca;
         user.PeriodoCaducidad = $scope.myusuario.PeriodoCaducidad;
-        user.FechaUltimoCambio = $scope.myusuario.FechaUltimoCambio;
+        //user.FechaUltimoCambio = $scope.myusuario.FechaUltimoCambio;
+        user.FechaUltimoCambio = fechaUltimoCambio;
         user.Ubigeo = $scope.myusuario.Departamento.codigoDepartamento + $scope.myusuario.Provincia.codigoProvincia + $scope.myusuario.Distrito.codigoDistrito;
         user.CodigoVersion = $scope.myusuario.Departamento.codigoVersion;
         user.UnicoIngreso = $scope.myusuario.UnicoIngreso;
-        user.HaIngresado = 'N';
         user.OtrosLogeos = $scope.myusuario.OtrosLogeos;
         user.Tipo = $scope.myusuario.Tipo;
         user.Activo = $scope.myusuario.Activo;
         user.Email = $scope.myusuario.Email;
-        console.debug(user);
+        //console.debug(user);
         if (user.Id == "") //nuevo (insert)
         {
+            user.HaIngresado = 'N';
+            user.PrimeraVez = 'S';
             UsuarioFctr.InsertarUsuario(user)
                 .then(function successCallback(response) {
                     $scope.nuevo();
@@ -520,6 +527,8 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
         }
         else //actualizar (update)
         {
+            user.HaIngresado = $scope.myusuario.HaIngresado;
+            user.PrimeraVez = $scope.myusuario.PrimeraVez;
             UsuarioFctr.ActualizarUsuario(user)
                 .then(function successCallback(response) {
                     $scope.nuevo();

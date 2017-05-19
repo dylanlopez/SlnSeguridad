@@ -20,10 +20,16 @@ namespace Domain_Layer.Dtos.Personas
             Id = 0;
             Usuario = string.Empty;
             Contrasena = string.Empty;
+            ApellidoPaterno = string.Empty;
+            ApellidoMaterno = string.Empty;
+            Nombres = string.Empty;
             Caduca = '\0';
             PeriodoCaducidad = 0;
             //FechaUltimoCambio = new DateTime();
             FechaUltimoCambio = string.Empty;
+            Ubigeo = string.Empty;
+            CodigoVersion = 0;
+            PrimeraVez = '\0';
             UnicoIngreso = '\0';
             HaIngresado = '\0';
             OtrosLogeos = '\0';
@@ -103,9 +109,29 @@ namespace Domain_Layer.Dtos.Personas
         /// </value>
         public string FechaUltimoCambio { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Ubigeo, correspond to entity field Ubigeo.
+        /// </summary>
+        /// <value>
+        /// set a value to the Ubigeo.
+        /// </value>
         public string Ubigeo { get; set; }
 
+        /// <summary>
+        /// Gets or sets the CodigoVersion, correspond to entity field CodigoVersion.
+        /// </summary>
+        /// <value>
+        /// set a value to the CodigoVersion.
+        /// </value>
         public int CodigoVersion { get; set; }
+
+        /// <summary>
+        /// Gets or sets the PrimeraVez, correspond to entity field PrimeraVez.
+        /// </summary>
+        /// <value>
+        /// set a value to the PrimeraVez.
+        /// </value>
+        public char PrimeraVez { get; set; }
 
         /// <summary>
         /// Gets or sets the UnicoIngreso, correspond to entity field UnicoIngreso.
@@ -147,6 +173,12 @@ namespace Domain_Layer.Dtos.Personas
         /// </value>
         public char Activo { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Email, correspond to entity field Email.
+        /// </summary>
+        /// <value>
+        /// set a value to the Email.
+        /// </value>
         public string Email { get; set; }
     }
 }

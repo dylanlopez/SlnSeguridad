@@ -101,6 +101,14 @@ namespace Entity_Layer.Entities.Personas
         public virtual Int32 CodigoVersion { get; set; }
 
         /// <summary>
+        /// Gets or sets the PrimeraVez, correspond to table field IN_PRIMERA_VEZ.
+        /// </summary>
+        /// <value>
+        /// set a value to the PrimeraVez.
+        /// </value>
+        public virtual Char PrimeraVez { get; set; }
+
+        /// <summary>
         /// Gets or sets the UnicoIngreso, correspond to table field IN_UNICO_INGRESO.
         /// </summary>
         /// <value>

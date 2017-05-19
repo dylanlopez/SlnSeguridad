@@ -31,6 +31,7 @@ namespace Service_Layer.Converters.Personas
             model.Ubigeo = dto.Ubigeo;
             model.CodigoVersion = dto.CodigoVersion;
             model.UnicoIngreso = dto.UnicoIngreso;
+            model.PrimeraVez = dto.PrimeraVez;
             model.HaIngresado = dto.HaIngresado;
             model.OtrosLogeos = dto.OtrosLogeos;
             model.Tipo = dto.Tipo;
@@ -70,6 +71,7 @@ namespace Service_Layer.Converters.Personas
             dto.FechaUltimoCambio = model.FechaUltimoCambio;
             dto.Ubigeo = model.Ubigeo;
             dto.CodigoVersion = model.CodigoVersion;
+            dto.PrimeraVez = model.PrimeraVez;
             dto.UnicoIngreso = model.UnicoIngreso;
             dto.HaIngresado = model.HaIngresado;
             dto.OtrosLogeos = model.OtrosLogeos;

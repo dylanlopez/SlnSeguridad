@@ -37,6 +37,7 @@ namespace Domain_Layer.Converters.Personas
             //dto.FechaUltimoCambio = entity.FechaUltimoCambio;
             dto.Ubigeo = entity.Ubigeo;
             dto.CodigoVersion = entity.CodigoVersion;
+            dto.PrimeraVez = entity.PrimeraVez;
             dto.UnicoIngreso = entity.UnicoIngreso;
             dto.HaIngresado = entity.HaIngresado;
             dto.OtrosLogeos = entity.OtrosLogeos;
@@ -89,6 +90,7 @@ namespace Domain_Layer.Converters.Personas
             entity.Ubigeo = dto.Ubigeo;
             entity.CodigoVersion = dto.CodigoVersion;
             //entity.FechaUltimoCambio = dto.FechaUltimoCambio;
+            entity.PrimeraVez = dto.PrimeraVez;
             entity.UnicoIngreso = dto.UnicoIngreso;
             entity.HaIngresado = dto.HaIngresado;
             entity.OtrosLogeos = dto.OtrosLogeos;
