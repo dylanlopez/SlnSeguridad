@@ -1,0 +1,74 @@
+﻿    <!--CONTENIDO-->
+<div class="container">
+    <div class="col-md-4"></div>
+    <h3 class="col-md-4">Tipo de Institucion</h3>
+    <div class="col-md-4"></div>
+</div>
+<div class="container" ng-controller="TipoInstitucionCtrl">
+    <div class="alert alert-danger" data-ng-show="tieneError">
+        <strong>ERROR: </strong> {{ error }}
+    </div>
+    <!--MANTENIMIENTO-->
+    <div class="row">
+        <form name="FrmInstitucionTipo" style="width:800px;margin:0px auto;">
+            <input type="hidden" id="hdnId" data-ng-model="mytipoinstitucion.Id" />
+            <div class="container-fluid form-group">
+                <label for="txtNombre" class="col-md-2 control-label">Nombre: </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="txtNombre" placeholder="Ingrese el nombre del tipo de institución (obligatorio)" data-ng-model="mytipoinstitucion.Nombre" maxlength="50" required />
+                </div>
+            </div>
+            <div class="container-fluid form-group" data-ng-show="estaEditable">
+                <label for="txtDescripcion" class="col-md-2 control-label">Descripción: </label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtDescripcion" placeholder="Ingrese la descripción del tipo de institucion" data-ng-model="mytipoinstitucion.Descripcion" maxlength="200" />
+                </div>
+            </div>
+            <div class="container-fluid form-group" data-ng-show="estaEditable">
+                <label for="chkActivo" class="col-md-2 control-label">¿Está Activo?: </label>
+                <div class="col-md-6">
+                    <input type="checkbox" id="chkActivo" name="Activo" ng-model="mytipoinstitucion.EstaActivo"><br>
+                </div>
+            </div>
+            <br />
+            <div class="container-fluid form-group" data-ng-show="estaEditable">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" data-ng-click="guardar()" data-ng-disabled="!FrmInstitucionTipo.$valid" class="btn btn-primary" />
+                    <input type="button" value="Cancelar" data-ng-click="nuevo()" class="btn btn-danger" />
+                </div>
+            </div>
+            <div class="container-fluid form-group" data-ng-hide="estaEditable">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Buscar" data-ng-click="buscar()" class="btn btn-primary" />
+                    <input type="button" value="Nuevo" data-ng-click="nuevo()" class="btn btn-primary" />
+                </div>
+            </div>
+            <br />
+        </form>
+    </div>
+
+    <!--LISTA-->
+    <div class="row" data-ng-hide="estaEditable">
+        <table class="table table-bordered table-hover" id="tab_logic">
+            <thead>
+                <tr>
+                    <th class="col-md-10">Nombre</th>
+                    <th class="col-md-2"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tipoinstitucion in tiposinstitucion">
+                    <td>{{tipoinstitucion.Nombre}}</td>
+                    <td>
+                        <p>
+                            <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(tipoinstitucion)" />
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="divLoader" data-ng-show="loading">
+        <img id="imgLoader" src="../Images/ajax-loader.gif" class="ajax-loader" />
+    </div>
+</div>

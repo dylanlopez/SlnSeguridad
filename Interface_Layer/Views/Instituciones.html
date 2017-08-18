@@ -1,0 +1,90 @@
+﻿    <!--CONTENIDO-->
+<div class="container">
+    <div class="col-md-4"></div>
+    <h3 class="col-md-4">Instituciones</h3>
+    <div class="col-md-4"></div>
+</div>
+<div class="container" ng-controller="InstitucionCtrl">
+    <div class="alert alert-danger" data-ng-show="tieneError">
+        <strong>ERROR: </strong> {{ error }}
+    </div>
+    <!--MANTENIMIENTO-->
+    <div class="row">
+        <form name="frmInstituciones" style="width:800px;margin:0px auto;">
+            <input type="hidden" id="hdnId" data-ng-model="myinstitucion.Id" />
+            <div class="container-fluid form-group">
+                <label for="cmbInstitucionTipo" class="col-md-2 control-label">Tipo de Institución: </label>
+                <div class="col-md-8">
+                    <select id="cmbInstitucionTipo" class="form-control" ng-options="tipoinstitucion.Nombre for tipoinstitucion in tiposinstitucion track by tipoinstitucion.Id" data-ng-model="myinstitucion.TipoInstitucion" required></select>
+                </div>
+            </div>
+            <div class="container-fluid form-group">
+                <label for="txtNombre" class="col-md-2 control-label">Nombre: </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="txtNombre" placeholder="Ingrese el nombre de la institución (obligatorio)" data-ng-model="myinstitucion.Nombre" maxlength="50" required />
+                </div>
+            </div>
+            <div class="container-fluid form-group" data-ng-show="estaEditable">
+                <label for="txtNombreCorto" class="col-md-2 control-label">Nombre Corto: </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="txtNombreCorto" placeholder="Ingrese el nombre corto de la institución (obligatorio)" data-ng-model="myinstitucion.NombreCorto" maxlength="15" required />
+                </div>
+            </div>
+            <div class="container-fluid form-group" data-ng-show="estaEditable">
+                <label for="txtDescripcion" class="col-md-2 control-label">Descripción: </label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtDescripcion" placeholder="Ingrese la dirección de la institución" data-ng-model="myinstitucion.Direccion" maxlength="200" />
+                </div>
+            </div>
+            <div class="container-fluid form-group" data-ng-show="estaEditable">
+                <label for="chkActivo" class="col-md-2 control-label">¿Está Activo?: </label>
+                <div class="col-md-6">
+                    <input type="checkbox" id="chkActivo" name="Activo" ng-model="myinstitucion.EstaActivo"><br>
+                </div>
+            </div>
+            <br />
+            <div class="container-fluid form-group">
+                <div class="col-md-offset-2 col-md-10" data-ng-show="estaEditable">
+                    <input type="submit" value="Guardar" data-ng-click="guardar()" data-ng-disabled="!frmInstituciones.$valid" class="btn btn-primary" />
+                    <input type="button" value="Cancelar" data-ng-click="nuevo()" class="btn btn-danger" />
+                </div>
+                <div class="col-md-offset-2 col-md-10" data-ng-hide="estaEditable">
+                    <input type="button" value="Buscar" data-ng-click="buscar()" class="btn btn-primary" />
+                    <input type="button" value="Nuevo" data-ng-click="nuevo()" class="btn btn-primary" />
+                </div>
+            </div>
+            <br />
+        </form>
+    </div>
+
+    <!--LISTA-->
+    <div class="row" data-ng-hide="estaEditable">
+        <table class="table table-bordered table-hover" id="tab_logic">
+            <thead>
+                <tr>
+                    <th class="col-md-3">Tipo de Institución</th>
+                    <th class="col-md-4">Nombre</th>
+                    <th class="col-md-3">Nombre Corto</th>
+                    <th class="col-md-1">Activo</th>
+                    <th class="col-md-1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="institucion in instituciones">
+                    <td>{{institucion.TipoInstitucion.Nombre}}</td>
+                    <td>{{institucion.Nombre}}</td>
+                    <td>{{institucion.NombreCorto}}</td>
+                    <td>{{institucion.Activo}}</td>
+                    <td>
+                        <p>
+                            <input type="button" class="btn btn-primary" value="Modificar" data-ng-click="modificar(institucion)" />
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="divLoader" data-ng-show="loading">
+        <img id="imgLoader" src="Images/ajax-loader.gif" class="ajax-loader" />
+    </div>
+</div>

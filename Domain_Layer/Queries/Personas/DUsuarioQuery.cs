@@ -2,10 +2,13 @@
 using Domain_Layer.Dtos.Personas;
 using Domain_Layer.Queries.Personas;
 using Entity_Layer.Entities.Personas;
+using Logging_Layer;
 using NHibernate;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
+using System.Reflection;
 
 namespace Domain_Layer.Queries
 {
@@ -13,6 +16,10 @@ namespace Domain_Layer.Queries
     {
         public int Actualizar(DUsuarioDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -30,11 +37,37 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public int ActualizarContrasena(DUsuarioDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -43,7 +76,8 @@ namespace Domain_Layer.Queries
                     {
                         IQuery query = _sessionMidis.CreateQuery("UPDATE EUsuario " +
                                                                  "SET Contrasena = :p_Contrasena, " +
-                                                                 "FechaUltimoCambio = :p_FechaUltimoCambio " +
+                                                                 "FechaUltimoCambio = :p_FechaUltimoCambio, " +
+                                                                 "PrimeraVez = 'N' " +
                                                                  "WHERE Usuario = :p_Usuario ");
                         query.SetParameter("p_Usuario", dto.Usuario);
                         query.SetParameter("p_Contrasena", dto.Contrasena);
@@ -57,11 +91,37 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public int ActualizarEstado(DUsuarioDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -86,12 +146,38 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public DUsuarioDto Buscar(DUsuarioDto dto)
         {
             DUsuarioDto item = null;
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -119,12 +205,38 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public DUsuarioDto BuscarPorUsuario(DUsuarioDto dto)
         {
             DUsuarioDto item = null;
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -148,11 +260,37 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public int Eliminar(DUsuarioDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -167,11 +305,37 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public int Insertar(DUsuarioDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -190,12 +354,38 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public List<DUsuarioDto> Listar(DUsuarioDto dto)
         {
             List<DUsuarioDto> list = null;
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -205,7 +395,10 @@ namespace Domain_Layer.Queries
                         IQuery query = _sessionMidis.CreateQuery("FROM EUsuario x " +
                                                                  "WHERE x.ApellidoPaterno LIKE CONCAT('%', :p_ApellidoPaterno, '%') " +
                                                                  "AND x.ApellidoMaterno LIKE CONCAT('%', :p_ApellidoMaterno, '%') " +
-                                                                 "AND x.Nombres LIKE CONCAT('%', :p_Nombres, '%') ");
+                                                                 "AND x.Nombres LIKE CONCAT('%', :p_Nombres, '%') " +
+                                                                 "AND x.Institucion.Id = COALESCE(:p_IdInstitucion, x.Institucion.Id) " +
+                                                                 "AND x.Institucion.TipoInstitucion.Id = COALESCE(:p_IdTipoInstitucion, x.Institucion.TipoInstitucion.Id) " + 
+                                                                 "ORDER BY x.ApellidoPaterno, x.ApellidoMaterno, x.Nombres ");
                         if (!dto.ApellidoPaterno.Equals(String.Empty))
                         {
                             query.SetParameter("p_ApellidoPaterno", dto.ApellidoPaterno.ToUpper());
@@ -230,6 +423,22 @@ namespace Domain_Layer.Queries
                         {
                             query.SetParameter("p_Nombres", null, NHibernateUtil.String);
                         }
+                        if (dto.Institucion.Id != 0)
+                        {
+                            query.SetParameter("p_IdInstitucion", dto.Institucion.Id);
+                        }
+                        else
+                        {
+                            query.SetParameter("p_IdInstitucion", null, NHibernateUtil.Int32);
+                        }
+                        if (dto.Institucion.TipoInstitucion.Id != 0)
+                        {
+                            query.SetParameter("p_IdTipoInstitucion", dto.Institucion.TipoInstitucion.Id);
+                        }
+                        else
+                        {
+                            query.SetParameter("p_IdTipoInstitucion", null, NHibernateUtil.Int32);
+                        }
                         var result = query.List<EUsuario>();
                         if (result != null)
                         {
@@ -241,7 +450,29 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
     }

@@ -1,6 +1,8 @@
 ﻿//myApp.controller("UsuarioCtrl", function ($scope, $http, webAPIControllers) {
-myApp.controller("UsuarioCtrl", function ($scope, $q, user,
-                                          UbigeoFctr, UsuarioFctr, PersonaFctr) {
+myApp.controller("UsuarioCtrl", function ($scope, $q, user, intitutiontype, intitution, 
+                                          UbigeoFctr, UsuarioFctr, PersonaFctr, TipoInstitucionFctr, InstitucionFctr) {
+    $scope.tiposinstitucion = [];
+    $scope.instituciones = [];
     $scope.usuarios = [];
     $scope.persona = [];
     $scope.departamentos = [];
@@ -10,6 +12,37 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
     $scope.estaEditable = false;
     $scope.tieneError = false;
     $scope.myusuario = [];
+
+    $scope.buscarTipoInstitucion = function () {
+        intitutiontype.Activo = 'S';
+        TipoInstitucionFctr.ListarTipoInstitucion(intitutiontype)
+            .then(function successCallback(response) {
+                $scope.tiposinstitucion = response;
+                $scope.tieneError = false;
+                $scope.error = "";
+                $scope.estaCargando = false;
+            }, function errorCallback(response) {
+                $scope.tieneError = true;
+                $scope.error = "Ha ocurrido un error al listar: " + response;
+                $scope.estaCargando = false;
+            });
+    };
+
+    $scope.buscarTipoInstitucion();
+
+    $scope.buscarInstituciones = function () {
+        intitution.Activo = 'S';
+        intitution.TipoInstitucion = $scope.myusuario.TipoInstitucion;
+        InstitucionFctr.ListarInstitucion(intitution)
+            .then(function successCallback(response) {
+                $scope.instituciones = response;
+                $scope.estaCargando = false;
+            }, function errorCallback(response) {
+                $scope.tieneError = true;
+                $scope.error = "Ha ocurrido un error al listar: " + response;
+                $scope.estaCargando = false;
+            });
+    };
 
     //$http({
     //    method: 'POST',
@@ -24,7 +57,9 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
     //    $scope.error = "Ha ocuirrido un error al listar: " + result;
     //    $scope.estaCargando = false;
     //});
-    UbigeoFctr.ListarDepartamentos()
+
+    $scope.buscarDepartamentos = function () {
+        UbigeoFctr.ListarDepartamentos()
         .then(function successCallback(response) {
             //console.debug(response);
             //console.debug(response.promise);
@@ -36,6 +71,9 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
             $scope.error = "Ha ocurrido un error al listar departamentos: " + response;
             $scope.estaCargando = false;
         });
+    };
+
+    $scope.buscarDepartamentos();
 
     $scope.buscarProvincias = function () {
         //$scope.tieneError = false;
@@ -52,8 +90,16 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
             $scope.error = "Debe ingresar un departamento para poder ver sus provincias";
         } else {
             departamento = $scope.myusuario.Departamento;
+
+            var provinciaRequest =
+                {
+                    "coDepartamento ": ''
+                };
+
+            provinciaRequest.coDepartamento = departamento.codigoDepartamento;
             //console.debug(departamento);
-            UbigeoFctr.ListarProvincias(departamento)
+            //UbigeoFctr.ListarProvincias(departamento)
+            UbigeoFctr.ListarProvincias(provinciaRequest)
                 .then(function successCallback(response) {
                     //$q.all(response);
                     //console.debug(response);
@@ -99,7 +145,18 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
             $scope.error = "Debe ingresar una provincia para poder ver sus distritos";
         } else {
             provincia = $scope.myusuario.Provincia;
-            UbigeoFctr.ListarDistritos(provincia)
+
+
+            var distritoRequest =
+                {
+                    "coDepartamento ": '',
+                    "coProvincia": ''
+                };
+            distritoRequest.coDepartamento = provincia.codigoDepartamento;
+            distritoRequest.coProvincia = provincia.codigoProvincia;
+
+            //UbigeoFctr.ListarDistritos(provincia)
+            UbigeoFctr.ListarDistritos(distritoRequest)
                 .then(function successCallback(response) {
                     $scope.distritos = response;
                     $scope.estaCargando = false;
@@ -150,6 +207,12 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
         user.ApellidoPaterno = $scope.myusuario.ApellidoPaterno;
         user.ApellidoMaterno = $scope.myusuario.ApellidoMaterno;
         user.Nombres = $scope.myusuario.Nombres;
+        if (!angular.isUndefined($scope.myusuario.Institucion) && $scope.myusuario.Institucion != null) {
+            user.Institucion = $scope.myusuario.Institucion;
+        }
+        if (!angular.isUndefined($scope.myusuario.TipoInstitucion) && $scope.myusuario.TipoInstitucion != null) {
+            user.Institucion.TipoInstitucion = $scope.myusuario.TipoInstitucion;
+        }
         UsuarioFctr.ListarUsuarios(user)
             .then(function successCallback(response) {
                 $scope.usuarios = response;
@@ -242,6 +305,8 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
         if ($scope.estaEditable == false) {
             document.getElementById("txtUsuario").disabled = false;
             document.getElementById("btnBuscarUsuario").disabled = false;
+            $scope.myusuario.TipoInstitucion = null;
+            $scope.myusuario.Institucion = null;
             $scope.myusuario.Usuario = "";
             $scope.myusuario.Contrasena = "";
             //$scope.myusuario.ApellidoPaterno = "";
@@ -279,6 +344,7 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
             document.getElementById("txtUsuario").disabled = true;
             document.getElementById("btnBuscarUsuario").disabled = true;
             $scope.myusuario.Id = user.Id;
+            $scope.myusuario.Institucion = user.Institucion;
             $scope.myusuario.Usuario = user.Usuario;
             $scope.myusuario.Contrasena = user.Contrasena;
             $scope.myusuario.ApellidoPaterno = user.ApellidoPaterno;
@@ -338,7 +404,15 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
                             "codigoVersion": ''
                         };
                     departamento.codigoDepartamento = codDepartamento;
-                    UbigeoFctr.ListarProvincias(departamento)
+
+                    var provinciaRequest =
+                    {
+                        "coDepartamento ": ''
+                    };
+                    provinciaRequest.coDepartamento = departamento.codigoDepartamento;
+
+                    //UbigeoFctr.ListarProvincias(departamento)
+                    UbigeoFctr.ListarProvincias(provinciaRequest)
                         .then(function successCallback(response) {
                             $scope.provincias = response;
                             angular.forEach($scope.provincias, function (value) {
@@ -355,7 +429,17 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
                                     };
                                     provincia.codigoProvincia = codProvincia;
                                     provincia.codigoDepartamento = codDepartamento;
-                                    UbigeoFctr.ListarDistritos(provincia)
+
+                                    var distritoRequest =
+                                    {
+                                        "coDepartamento ": '',
+                                        "coProvincia": ''
+                                    };
+                                    distritoRequest.coDepartamento = provincia.codigoDepartamento;
+                                    distritoRequest.coProvincia = provincia.codigoProvincia;
+
+                                    //UbigeoFctr.ListarDistritos(provincia)
+                                    UbigeoFctr.ListarDistritos(distritoRequest)
                                         .then(function successCallback(response) {
                                             $scope.distritos = response;
                                             angular.forEach($scope.distritos, function (value) {
@@ -473,6 +557,7 @@ myApp.controller("UsuarioCtrl", function ($scope, $q, user,
         //    "Activo": $scope.myusuario.Activo
         //};
         user.Id = $scope.myusuario.Id;
+        user.Institucion = $scope.myusuario.Institucion;
         user.Usuario = $scope.myusuario.Usuario;
         user.Contrasena = $scope.myusuario.Contrasena;
         user.ApellidoPaterno = $scope.myusuario.ApellidoPaterno;

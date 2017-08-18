@@ -37,11 +37,28 @@ namespace Domain_Layer.Queries
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
             }
             finally
             {
                 _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public DModuloDto Buscar(DModuloDto dto)
@@ -77,11 +94,28 @@ namespace Domain_Layer.Queries
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
             }
             finally
             {
                 _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public int Insertar(DModuloDto dto)
@@ -109,11 +143,28 @@ namespace Domain_Layer.Queries
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
             }
             finally
             {
                 _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public List<DModuloDto> Listar(DModuloDto dto)
@@ -170,11 +221,28 @@ namespace Domain_Layer.Queries
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
             }
             finally
             {
                 _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
     }

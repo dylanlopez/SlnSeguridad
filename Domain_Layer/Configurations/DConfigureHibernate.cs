@@ -102,14 +102,14 @@ namespace Domain_Layer.Configurations
                 mapper.AddMapping<EMenuMapping>();
                 mapper.AddMapping<EOpcionMapping>();
                 mapper.AddMapping<EMenuOpcionMapping>();
-
                 mapper.AddMapping<EUsuarioMapping>();
                 mapper.AddMapping<EPerfilMapping>();
                 mapper.AddMapping<ESistemaPerfilMapping>();
                 mapper.AddMapping<ERolMapping>();
                 mapper.AddMapping<EPerfilUsuarioRolMapping>();
                 mapper.AddMapping<EPermisoMapping>();
-
+                mapper.AddMapping<ETipoInstitucionMapping>();
+                mapper.AddMapping<EInstitucionMapping>();
                 mapper.AddMapping<EVistaPermisoMapping>();
                 HbmMapping mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
                 return mapping;

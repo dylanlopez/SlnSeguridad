@@ -37,11 +37,28 @@ namespace Domain_Layer.Queries
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
             }
             finally
             {
                 _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public DMenuOpcionDto Buscar(DMenuOpcionDto dto)
@@ -75,11 +92,28 @@ namespace Domain_Layer.Queries
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
             }
             finally
             {
                 _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public int Eliminar(DMenuOpcionDto dto)
@@ -103,11 +137,28 @@ namespace Domain_Layer.Queries
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
             }
             finally
             {
                 _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public int Insertar(DMenuOpcionDto dto)
@@ -135,11 +186,28 @@ namespace Domain_Layer.Queries
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
             }
             finally
             {
                 _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public List<DMenuOpcionDto> Listar(DMenuOpcionDto dto)
@@ -177,11 +245,28 @@ namespace Domain_Layer.Queries
             catch (Exception ex)
             {
                 _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
             }
             finally
             {
                 _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
     }

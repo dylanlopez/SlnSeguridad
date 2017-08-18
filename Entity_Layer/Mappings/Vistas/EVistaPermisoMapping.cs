@@ -2,6 +2,7 @@
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 using System;
+using System.Configuration;
 
 namespace Entity_Layer.Mappings.Vistas
 {
@@ -9,9 +10,11 @@ namespace Entity_Layer.Mappings.Vistas
     {
         public EVistaPermisoMapping()
         {
-            //Schema("ES_SEGURIDAD");
+            string schemaSeguridad = ConfigurationManager.AppSettings["Schema"].ToString();
+            Schema(schemaSeguridad);
             Table("SEGVI_PERMISO");
             Mutable(false);
+            Lazy(false);
             //Id<String>(
             //    x => x.Usuario,
             //    map =>
@@ -121,9 +124,6 @@ namespace Entity_Layer.Mappings.Vistas
                     map.Column("NO_ROL");
                     map.Length(50);
                 });
-
-
-
             Property<Int32>(
                 x => x.IdSistema,
                 map => {
@@ -134,6 +134,13 @@ namespace Entity_Layer.Mappings.Vistas
                 map => {
                     map.Column("CO_SISTEMA");
                     map.Length(2);
+                });
+            Property<String>(
+                x => x.AbreviaturaSistema,
+                map =>
+                {
+                    map.Column("NO_ABREVIATURA");
+                    map.Length(20);
                 });
             Property<String>(
                 x => x.NombreSistema,

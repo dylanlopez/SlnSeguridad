@@ -3,6 +3,7 @@ using Entity_Layer.Entities.Sistemas;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 using System;
+using System.Configuration;
 
 namespace Entity_Layer.Mappings.Personas
 {
@@ -23,7 +24,8 @@ namespace Entity_Layer.Mappings.Personas
         /// </summary>
         public ESistemaPerfilMapping()
         {
-            //Schema("ES_SEGURIDAD");
+            string schemaSeguridad = ConfigurationManager.AppSettings["Schema"].ToString();
+            Schema(schemaSeguridad);
             Table("SEGTM_SISTEMA_PERFIL");
             Id<Int32>(
                 x => x.Id,
@@ -33,7 +35,7 @@ namespace Entity_Layer.Mappings.Personas
                         Generators.Sequence,
                         seq => seq.Params(new
                         {
-                            //schema = "ES_SEGURIDAD",
+                            schema = schemaSeguridad,
                             sequence = "SEQ_SISTEMA_PERFIL"
                         }));
                 });

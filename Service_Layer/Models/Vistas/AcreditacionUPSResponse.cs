@@ -56,10 +56,19 @@ namespace Service_Layer.Models.Vistas
         //[DataMember(Name = "NombreRol", Order = 10)]
         //public string NombreRol { get; set; }
 
-        [DataMember(Name = "PrimeraVez", Order = 11)]
+        [DataMember(Name = "PrimeraVez", Order = 10)]
         public char PrimeraVez { get; set; }
 
-        [DataMember(Name = "Result", Order = 12)]
+        [DataMember(Name = "TipoInstitucion", Order = 11)]
+        public string TipoInstitucion { get; set; }
+
+        [DataMember(Name = "Institucion", Order = 12)]
+        public string Institucion { get; set; }
+
+        [DataMember(Name = "InstitucionCorto", Order = 13)]
+        public string InstitucionCorto { get; set; }
+
+        [DataMember(Name = "Result", Order = 14)]
         public List<VistaPermisoModel> Result { get; set; }
     }
 }

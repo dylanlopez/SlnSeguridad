@@ -1,18 +1,18 @@
-﻿<h2>Login</h2>
-<form ng-submit="login()">
-    <div>
-        <label>Username : </label>
-        <input type="text" ng-model="account.username" />
-    </div>
-    <div>
-        <label>Password : </label>
-        <input type="password" ng-model="account.password" />
-    </div>
-    <input type="submit" />
-    <div style="color:red">
-        {{message}}
-    </div>
-</form>
-
-<!-- how to create login page in angularjs application -->
-<!-- http://www.dotnetawesome.com/2014/12/how-to-create-login-page-using-angularjs-in-mvc4.html -->
+﻿<!--<link rel="stylesheet" href="Content/login_style.css">-->
+<h2>Login</h2>
+<div class="container center_div">
+    <form ng-submit="login()">
+        <div>
+            <label>Username : </label>
+            <input type="text" ng-model="account.username" />
+        </div>
+        <div>
+            <label>Password : </label>
+            <input type="password" ng-model="account.password" />
+        </div>
+        <input type="submit" />
+        <div style="color:red">
+            {{message}}
+        </div>
+    </form>
+</div>

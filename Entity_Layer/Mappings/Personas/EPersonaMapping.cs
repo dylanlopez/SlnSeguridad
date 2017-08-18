@@ -2,6 +2,7 @@
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 using System;
+using System.Configuration;
 
 namespace Entity_Layer.Mappings.Personas
 {
@@ -22,7 +23,8 @@ namespace Entity_Layer.Mappings.Personas
         /// </summary>
         public EPersonaMapping()
         {
-            //Schema("ES_SEGURIDAD");
+            string schemaSeguridad = ConfigurationManager.AppSettings["Schema"].ToString();
+            Schema(schemaSeguridad);
             Table("SEGTV_PERSONA");
             Id<Int32>(
                 x => x.Numero,

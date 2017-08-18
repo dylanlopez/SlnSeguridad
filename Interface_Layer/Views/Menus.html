@@ -1,35 +1,4 @@
-﻿<!DOCTYPE html>
-<html ng-app="myApp">
-<head>
-    <title>Midis Seguridad | Menus</title>
-	<meta charset="utf-8" />
-    <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
-    <link rel="stylesheet" href="../Content/style.css">
-</head>
-<body>
-    <!--MENU-->
-    <div ng-controller="MenusCtrl">
-        <nav class="navbar navbar-inverse" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="Index.html">Midis Seguridad</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="dropdown" ng-repeat="modulo in modulos">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            {{modulo.Abreviatura}}<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li ng-repeat="menu in modulo.Menus">
-                                <a href="{{menu.Ruta}}">{{menu.Nombre}}</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-
+﻿    <!--CONTENIDO-->
     <div class="container">
         <div class="col-md-4"></div>
         <h3 class="col-md-4">Menus</h3>
@@ -145,25 +114,6 @@
             </table>
         </div>
         <div id="divLoader" data-ng-show="loading">
-            <img id="imgLoader" src="../Images/ajax-loader.gif" class="ajax-loader" />
+            <img id="imgLoader" src="Images/ajax-loader.gif" class="ajax-loader" />
         </div>
     </div>
-
-    <script type="text/javascript" src="../Scripts/jquery-3.1.1.min.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../Scripts/angular.min.js"></script>
-    <script type="text/javascript" src="../Angular/myApp.js"></script>
-    <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
-    <script type="text/javascript" src="../Angular/Controllers/menuCtrl.js"></script>
-    <script type="text/javascript" src="../Angular/Factories/sistemaFctr.js"></script>
-    <script type="text/javascript" src="../Angular/Factories/moduloFctr.js"></script>
-    <script type="text/javascript" src="../Angular/Factories/menuFctr.js"></script>
-    <script type="text/javascript">
-        //$('#modal').on('show', function () {
-        //    var id = $(this).data('id'),
-        //        removeBtn = $(this).find('.danger');
-        //    removeBtn.attr('href', removeBtn.attr('href').replace(/(&|\?)ref=\d*/, '$1ref=' + id));
-        //});
-    </script>
-</body>
-</html>

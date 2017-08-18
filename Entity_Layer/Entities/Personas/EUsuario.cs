@@ -155,5 +155,13 @@ namespace Entity_Layer.Entities.Personas
         /// set a value to the Email.
         /// </value>
         public virtual String Email { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Institucion, correspond to table field ID_INSTITUCION.
+        /// </summary>
+        /// <value>
+        /// Set a value to the Institucion.
+        /// </value>
+        public virtual EInstitucion Institucion { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace Interface_Layer_API.Controllers
         private BRestOperation _restOperation;
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public PersonaModel BuscarPersona(PersonaModel model)
         {
             _model = model;

@@ -20,7 +20,7 @@ namespace Interface_Layer_API.Controllers
 
         [HttpPost]
         //[HttpPut]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage ActualizarMenu(MenuModel model)
         {
             try
@@ -63,7 +63,7 @@ namespace Interface_Layer_API.Controllers
 
         [HttpPost]
         //[HttpDelete]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage EliminarMenu(MenuModel model)
         {
             _model = model;
@@ -93,7 +93,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage InsertarMenu(MenuModel model)
         {
             _model = model;
@@ -135,7 +135,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public List<MenuModel> ListarMenus(MenuModel model)
         {
             List<MenuModel> response;

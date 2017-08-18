@@ -22,7 +22,8 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
     //    };
 
     system.Activo = 'S';
-    SistemaFctr.ListarSistemas(system)
+    $scope.buscarSistema = function () {
+        SistemaFctr.ListarSistemas(system)
         .then(function successCallback(response) {
             $scope.sistemas = response;
             $scope.tieneError = false;
@@ -33,6 +34,9 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
             $scope.error = "Ha ocurrido un error al listar: " + response;
             $scope.estaCargando = false;
         });
+    };
+
+    $scope.buscarSistema();
 
     //$http({
     //    method: 'POST',

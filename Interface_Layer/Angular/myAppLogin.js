@@ -4,14 +4,14 @@ var myAppLogin = angular.module('myAppLogin', ['ngRoute']);
 myAppLogin.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/', {
-            redirectTo: '/authenticated'
+            redirectTo: '/login'
         })
         .when('/home', {
-            templateUrl: '/Views/Index.html',
+            templateUrl: 'Views/Index.html',
             controller: 'MenusCtrl'
         })
         .when('/authenticated', {
-            templateUrl: '/login/authenticate.html',
+            templateUrl: 'login/authenticate.html',
             controller: 'authenticateController'
         })
         //.when('/authenticated', {
@@ -19,13 +19,14 @@ myAppLogin.config(['$routeProvider', function ($routeProvider) {
         //    controller: 'authenticateController'
         //})
         .when('/login', {
-            templateUrl: '/login/login.html',
+            templateUrl: 'login/login.html',
             controller: 'loginController'
         })
 }])
 
 //constant
 myAppLogin.constant('serviceBasePath', 'http://localhost:58309')
+//myAppLogin.constant('serviceBasePath', 'http://localhost/MidisSeguridadDOF_API/');
 
 //controllers
 //myAppLogin.controller('homeController', ['$scope', 'dataService', function ($scope, dataService) {
@@ -151,8 +152,9 @@ myAppLogin.config(['$httpProvider', function ($httpProvider) {
                 console.debug(currentUser);
                 if (currentUser != null) {
                     config.headers['Authorization'] = 'Bearer ' + currentUser.access_token;
-                    console.debug(currentUser.access_token);
-                    window.location = "Views/Index.html";
+                    //$location.path('/home');
+                    //console.debug(currentUser.access_token);
+                    //window.location = "Views/Index.html";
                 }
                 return config;
             },

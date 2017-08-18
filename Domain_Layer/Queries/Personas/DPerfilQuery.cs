@@ -2,9 +2,12 @@
 using Domain_Layer.Dtos.Personas;
 using Domain_Layer.Queries.Personas;
 using Entity_Layer.Entities.Personas;
+using Logging_Layer;
 using NHibernate;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Domain_Layer.Queries
 {
@@ -12,6 +15,10 @@ namespace Domain_Layer.Queries
     {
         public int Actualizar(DPerfilDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -23,17 +30,45 @@ namespace Domain_Layer.Queries
                         //_sessionMidis.Update(DPerfilConverter.ToEntity(dto));
                         _transactionMidis.Commit();
                         //return dto.Id;
+                        //_sessionMidis.Close();
                         return entity.Id;
                     }
                 }
+                
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public int Insertar(DPerfilDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -52,12 +87,38 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public List<DPerfilDto> Listar(DPerfilDto dto)
         {
             List<DPerfilDto> list = null;
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -77,7 +138,29 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
     }

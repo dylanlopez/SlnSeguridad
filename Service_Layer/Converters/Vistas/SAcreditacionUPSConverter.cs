@@ -50,7 +50,7 @@ namespace Service_Layer.Converters.Vistas
         //    return result;
         //}
 
-        private static VistaPermisoModel ToModelPermiso(DVistaPermisoDto dto, IList<DVistaPermisoDto> dtos)
+        private static VistaPermisoModel ToModelPermiso(DVistaPermisoDto dto, IList<DVistaPermisoDto> dtos, int index)
         {
             var modelPermiso = new VistaPermisoModel();
             modelPermiso.IdPerfil = dto.IdPerfil;
@@ -58,44 +58,46 @@ namespace Service_Layer.Converters.Vistas
             modelPermiso.Usuario = dto.Usuario;
             modelPermiso.IdRol = dto.IdRol;
             modelPermiso.NombreRol = dto.NombreRol;
-            modelPermiso.Sistemas = ToModelsSistemas(modelPermiso.IdPerfil, modelPermiso.Usuario, modelPermiso.IdRol, dtos);
+            modelPermiso.Sistemas = ToModelsSistemas(modelPermiso.IdPerfil, modelPermiso.Usuario, modelPermiso.IdRol, dtos, index);
             return modelPermiso;
         }
         private static VistaSistemaModel ToModelSistema(int idPerfil, string usuario, int idRol, DVistaPermisoDto dto, 
-                                                        IList<DVistaPermisoDto> dtos)
+                                                        IList<DVistaPermisoDto> dtos, int index)
         {
             var modelSistema = new VistaSistemaModel();
             modelSistema.IdSistema = dto.IdSistema;
             modelSistema.CodigoSistema = dto.CodigoSistema;
+            modelSistema.AbreviaturaSistema = dto.AbreviaturaSistema;
             modelSistema.NombreSistema = dto.NombreSistema;
             modelSistema.RutaLogica = dto.RutaLogica;
-            modelSistema.Modulos = ToModelsModulos(idPerfil, usuario, idRol, modelSistema.IdSistema, dtos);
+            modelSistema.Modulos = ToModelsModulos(idPerfil, usuario, idRol, modelSistema.IdSistema, dtos, index);
             return modelSistema;
         }
         private static VistaModuloModel ToModelModulo(int idPerfil, string usuario, int idRol, int idSistema, 
-                                                       DVistaPermisoDto dto, IList<DVistaPermisoDto> dtos)
+                                                       DVistaPermisoDto dto, IList<DVistaPermisoDto> dtos, int index)
         {
             var modelModulo = new VistaModuloModel();
             modelModulo.IdModulo = dto.IdModulo;
             modelModulo.CodigoModulo = dto.CodigoModulo;
             modelModulo.NombreModulo = dto.NombreModulo;
-            modelModulo.Menus = ToModelsMenus(idPerfil, usuario, idRol, idSistema, modelModulo.IdModulo, dtos);
+            modelModulo.Menus = ToModelsMenus(idPerfil, usuario, idRol, idSistema, modelModulo.IdModulo, dtos, index);
             return modelModulo;
         }
         public static VistaMenuModel ToModelMenu(int idPerfil, string usuario, int idRol, int idSistema,
-                                                 int idModulo, DVistaPermisoDto dto, IList<DVistaPermisoDto> dtos)
+                                                 int idModulo, DVistaPermisoDto dto, IList<DVistaPermisoDto> dtos, int index)
         {
             var modelMenu = new VistaMenuModel();
             modelMenu.IdMenu = dto.IdMenu;
             modelMenu.Codigomenu = dto.CodigoMenu;
             modelMenu.NombreMenu = dto.NombreMenu;
             modelMenu.MenuRuta = dto.MenuRuta;
-            modelMenu.Opciones = ToModelsOpciones(idPerfil, usuario, idRol, idSistema, idModulo, modelMenu.IdMenu, dtos);
+            modelMenu.Opciones = ToModelsOpciones(idPerfil, usuario, idRol, idSistema, idModulo, modelMenu.IdMenu, dtos, index);
             return modelMenu;
         }
         public static VistaOpcionModel ToModelOpcion(DVistaPermisoDto dto)
         {
             var modelOpcion = new VistaOpcionModel();
+            modelOpcion.IdOpcion = dto.IdOpcion;
             modelOpcion.NombreOpcion = dto.NombreOpcion;
             modelOpcion.ControlAsociado = dto.ControlAsociado;
             modelOpcion.Visible = dto.Visible;
@@ -103,11 +105,15 @@ namespace Service_Layer.Converters.Vistas
         }
 
         private static List<VistaOpcionModel> ToModelsOpciones(int idPerfil, string usuario, int idRol, int idSistema,
-                                                               int idModulo, int idMenu, IList<DVistaPermisoDto> dtos)
+                                                               int idModulo, int idMenu, IList<DVistaPermisoDto> dtos, 
+                                                               int index)
         {
+            bool find = false;
             List<VistaOpcionModel> modelsOpciones = null;
-            foreach (var dto in dtos)
+            for (int o = index; o < dtos.Count; o++)
+            //foreach (var dto in dtos)
             {
+                DVistaPermisoDto dto = dtos[o];
                 if (modelsOpciones == null)
                 {
                     if (dto.IdPerfil == idPerfil &&
@@ -132,21 +138,44 @@ namespace Service_Layer.Converters.Vistas
                             dto.IdSistema == idSistema &&
                             dto.IdModulo == idModulo &&
                             dto.IdMenu == idMenu &&
-                            dto.IdOpcion != model.IdOpcion)
+                            dto.IdOpcion == model.IdOpcion)
+                        {
+                            //dtos.Remove(dto);
+                            //modelsOpciones.Add(ToModelOpcion(dto));
+                            find = true;
+                        }
+                    }
+                    if (dto.IdPerfil == idPerfil &&
+                        dto.Usuario.Equals(usuario) &&
+                        dto.IdRol == idRol &&
+                        dto.IdSistema == idSistema &&
+                        dto.IdModulo == idModulo &&
+                        dto.IdMenu == idMenu)
+                    {
+                        if (!find)
                         {
                             modelsOpciones.Add(ToModelOpcion(dto));
                         }
                     }
+                    //if (!find)
+                    //{
+                    //    modelsOpciones.Add(ToModelOpcion(dto));
+                    //}
                 }
+                find = false;
             }
             return modelsOpciones;
         }
         private static List<VistaMenuModel> ToModelsMenus(int idPerfil, string usuario, int idRol, int idSistema, 
-                                                          int idModulo, IList<DVistaPermisoDto> dtos)
+                                                          int idModulo, IList<DVistaPermisoDto> dtos, int index)
         {
+            bool find = false;
             List<VistaMenuModel> modelsMenus = null;
-            foreach (var dto in dtos)
+            for (int o = index; o < dtos.Count; o++)
+            //foreach (var dto in dtos)
             {
+                DVistaPermisoDto dto = dtos[o];
+                //find = true;
                 if (modelsMenus == null)
                 {
                     if (dto.IdPerfil == idPerfil &&
@@ -156,7 +185,7 @@ namespace Service_Layer.Converters.Vistas
                         dto.IdModulo == idModulo)
                     {
                         modelsMenus = new List<VistaMenuModel>();
-                        modelsMenus.Add(ToModelMenu(idPerfil, usuario, idRol, idSistema, idModulo, dto, dtos));
+                        modelsMenus.Add(ToModelMenu(idPerfil, usuario, idRol, idSistema, idModulo, dto, dtos, o));
                     }
                 }
                 else
@@ -169,21 +198,39 @@ namespace Service_Layer.Converters.Vistas
                             dto.IdRol == idRol &&
                             dto.IdSistema == idSistema &&
                             dto.IdModulo == idModulo &&
-                            dto.IdMenu != model.IdMenu)
+                            dto.IdMenu == model.IdMenu)
                         {
-                            modelsMenus.Add(ToModelMenu(idPerfil, usuario, idRol, idSistema, idModulo, dto, dtos));
+                            //modelsMenus.Add(ToModelMenu(idPerfil, usuario, idRol, idSistema, idModulo, dto, dtos, o));
+                            find = true;
+                        }
+                    }
+                    if (dto.IdPerfil == idPerfil &&
+                            dto.Usuario.Equals(usuario) &&
+                            dto.IdRol == idRol &&
+                            dto.IdSistema == idSistema &&
+                            dto.IdModulo == idModulo)
+                    {
+                        if (!find)
+                        {
+                            modelsMenus.Add(ToModelMenu(idPerfil, usuario, idRol, idSistema, idModulo, dto, dtos, o));
                         }
                     }
                 }
+                find = false;
             }
             return modelsMenus;
         }
         private static List<VistaModuloModel> ToModelsModulos(int idPerfil, string usuario, int idRol, int idSistema, 
-                                                            IList<DVistaPermisoDto> dtos)
+                                                            IList<DVistaPermisoDto> dtos, int index)
         {
+            //bool find;
+            bool find = false;
             List<VistaModuloModel> modelsModulos = null;
-            foreach (var dto in dtos)
+            for (int o = index; o < dtos.Count; o++)
+            //foreach (var dto in dtos)
             {
+                DVistaPermisoDto dto = dtos[o];
+                //find = false;
                 if (modelsModulos == null)
                 {
                     if (dto.IdPerfil == idPerfil &&
@@ -192,7 +239,7 @@ namespace Service_Layer.Converters.Vistas
                         dto.IdSistema == idSistema)
                     {
                         modelsModulos = new List<VistaModuloModel>();
-                        modelsModulos.Add(ToModelModulo(idPerfil, usuario, idRol, idSistema,  dto, dtos));
+                        modelsModulos.Add(ToModelModulo(idPerfil, usuario, idRol, idSistema,  dto, dtos, o));
                     }
                 }
                 else
@@ -204,20 +251,37 @@ namespace Service_Layer.Converters.Vistas
                             dto.Usuario.Equals(usuario) &&
                             dto.IdRol == idRol &&
                             dto.IdSistema == idSistema &&
-                            dto.IdModulo != model.IdModulo)
+                            dto.IdModulo == model.IdModulo)
                         {
-                            modelsModulos.Add(ToModelModulo(idPerfil, usuario, idRol, idSistema, dto, dtos));
+                            find = true;
+                            //modelsModulos.Add(ToModelModulo(idPerfil, usuario, idRol, idSistema, dto, dtos, o));
+                        }
+                    }
+                    if (dto.IdPerfil == idPerfil &&
+                             dto.Usuario.Equals(usuario) &&
+                             dto.IdRol == idRol &&
+                             dto.IdSistema == idSistema)
+                    {
+                        if (!find)
+                        {
+                            modelsModulos.Add(ToModelModulo(idPerfil, usuario, idRol, idSistema, dto, dtos, o));
                         }
                     }
                 }
+                find = false;
             }
             return modelsModulos;
         }
-        private static List<VistaSistemaModel> ToModelsSistemas(int idPerfil, string usuario, int idRol, IList<DVistaPermisoDto> dtos)
+        private static List<VistaSistemaModel> ToModelsSistemas(int idPerfil, string usuario, int idRol, IList<DVistaPermisoDto> dtos, int index)
         {
+            //bool find;
+            bool find = false;
             List<VistaSistemaModel> modelsSistemas = null;
-            foreach (var dto in dtos)
+            for (int o = index; o < dtos.Count; o++)
+            //foreach (var dto in dtos)
             {
+                DVistaPermisoDto dto = dtos[o];
+                //find = false;
                 if (modelsSistemas == null)
                 {
                     if (dto.IdPerfil == idPerfil &&
@@ -225,7 +289,7 @@ namespace Service_Layer.Converters.Vistas
                         dto.IdRol == idRol)
                     {
                         modelsSistemas = new List<VistaSistemaModel>();
-                        modelsSistemas.Add(ToModelSistema(idPerfil, usuario, idRol, dto, dtos));
+                        modelsSistemas.Add(ToModelSistema(idPerfil, usuario, idRol, dto, dtos, o));
                     }
                 }
                 else
@@ -236,12 +300,23 @@ namespace Service_Layer.Converters.Vistas
                         if (dto.IdPerfil == idPerfil &&
                             dto.Usuario.Equals(usuario) &&
                             dto.IdRol == idRol &&
-                            dto.IdSistema != model.IdSistema)
+                            dto.IdSistema == model.IdSistema)
                         {
-                            modelsSistemas.Add(ToModelSistema(idPerfil, usuario, idRol, dto, dtos));
+                            find = true;
+                            //modelsSistemas.Add(ToModelSistema(idPerfil, usuario, idRol, dto, dtos, o));
+                        }
+                    }
+                    if (dto.IdPerfil == idPerfil &&
+                            dto.Usuario.Equals(usuario) &&
+                            dto.IdRol == idRol)
+                    {
+                        if (!find)
+                        {
+                            modelsSistemas.Add(ToModelSistema(idPerfil, usuario, idRol, dto, dtos, o));
                         }
                     }
                 }
+                find = false;
             }
             return modelsSistemas;
         }
@@ -257,13 +332,20 @@ namespace Service_Layer.Converters.Vistas
             //var models = new List<VistaPermisoModel>();
             //var modelsOpciones = new List<VistaOpcionModel>();
             bool find;
-            foreach (var dto in dtos)
+            //bool find = false;
+            modelsPermisos = new List<VistaPermisoModel>();
+            List<DVistaPermisoDto> dtos2 = (List<DVistaPermisoDto>) dtos;
+            //foreach (var dto in dtos)
+            for (int o = 0; o < dtos2.Count; o++)
             {
+                DVistaPermisoDto dto = dtos2[o];
                 find = false;
                 if (modelsPermisos == null)
                 {
                     modelsPermisos = new List<VistaPermisoModel>();
-                    modelsPermisos.Add(ToModelPermiso(dto, dtos));
+                    //modelsPermisos.Add(ToModelPermiso(dto, dtos));
+                    //modelsPermisos.Add(ToModelPermiso(dto, dtos2));
+                    modelsPermisos.Add(ToModelPermiso(dto, dtos, o));
                 }
                 else
                 {
@@ -279,7 +361,9 @@ namespace Service_Layer.Converters.Vistas
                     }
                     if (!find)
                     {
-                        modelsPermisos.Add(ToModelPermiso(dto, dtos));
+                        //modelsPermisos.Add(ToModelPermiso(dto, dtos));
+                        //modelsPermisos.Add(ToModelPermiso(dto, dtos2));
+                        modelsPermisos.Add(ToModelPermiso(dto, dtos, o));
                     }
                 }
             }

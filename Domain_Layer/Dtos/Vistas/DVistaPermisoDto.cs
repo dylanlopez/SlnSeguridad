@@ -4,6 +4,16 @@ namespace Domain_Layer.Dtos.Vistas
 {
     public class DVistaPermisoDto
     {
+        public int IdTipoInstitucion { get; set; }
+
+        public string TipoInstitucion { get; set; }
+
+        public int IdInstitucion { get; set; }
+
+        public string Institucion { get; set; }
+
+        public string InstitucionCorto { get; set; }
+
         public int IdPerfil { get; set; }
 
         public string NombrePerfil { get; set; }
@@ -39,6 +49,8 @@ namespace Domain_Layer.Dtos.Vistas
         public int IdSistema { get; set; }
 
         public string CodigoSistema { get; set; }
+
+        public string AbreviaturaSistema { get; set; }
 
         public string NombreSistema { get; set; }
 

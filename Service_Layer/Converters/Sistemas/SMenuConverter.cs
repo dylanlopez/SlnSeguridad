@@ -1,6 +1,7 @@
 ﻿using Domain_Layer.Dtos.Sistemas;
 using Service_Layer.Models.Sistemas;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace Service_Layer.Converters.Sistemas
 {
@@ -12,7 +13,7 @@ namespace Service_Layer.Converters.Sistemas
             model.Id = dto.Id;
             model.Codigo = dto.Codigo;
             model.Nombre = dto.Nombre;
-            model.Ruta = dto.Ruta;
+            model.Ruta = ConfigurationManager.AppSettings["WebPath"].ToString() + dto.Ruta;
             model.Descripcion = dto.Descripcion;
             model.Activo = dto.Activo;
             model.Modulo = SModuloConverter.ToModel(dto.Modulo);

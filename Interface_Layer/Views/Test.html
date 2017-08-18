@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Midis Seguridad | Roles</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="../Content/style.css">
+</head>
+<body>
+    <div class="container" ng-controller="TestCtrl">
+        <div class="alert alert-danger" data-ng-show="tieneError">
+            <strong>ERROR: </strong> {{ error }}
+        </div>
+        <!--MANTENIMIENTO-->
+        <div class="row">
+            <form name="frmModulo" style="width:800px;margin:0px auto;">
+                <br />
+                <div class="container-fluid form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" value="Buscar" data-ng-click="buscar()" class="btn btn-primary" />
+                    </div>
+                </div>
+                <br />
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered table-hover" id="tab_logic">
+            <thead>
+                <tr>
+                    <th class="col-md-5">ControlAsociado</th>
+                    <th class="col-md-5">NombreOpcion</th>
+                    <th class="col-md-2">Visible</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="acreditacion in acreditaciones">
+                    <td>{{acreditacion.ControlAsociado}}</td>
+                    <td>{{acreditacion.NombreOpcion}}</td>
+                    <td>{{acreditacion.Visible}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript" src="../Scripts/jquery-3.1.1.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="../Angular/myApp.js"></script>
+    <script type="text/javascript" src="../Angular/Controllers/testCtrl.js"></script>
+</body>
+</html>

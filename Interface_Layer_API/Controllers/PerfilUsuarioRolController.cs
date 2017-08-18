@@ -20,7 +20,7 @@ namespace Interface_Layer_API.Controllers
 
         [HttpPost]
         //[HttpPut]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage ActualizarPerfilUsuarioRol(PerfilUsuarioRolModel model)
         {
             try
@@ -54,7 +54,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage InsertarPerfilUsuarioRol(PerfilUsuarioRolModel model)
         {
             try
@@ -88,7 +88,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public List<PerfilUsuarioRolModel> ListarPerfilesUsuariosRoles(PerfilUsuarioRolModel model)
         {
             List<PerfilUsuarioRolModel> response;

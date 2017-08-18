@@ -20,7 +20,7 @@ namespace Interface_Layer_API.Controllers
 
         [HttpPost]
         //[HttpPut]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage ActualizarOpcion(OpcionModel model)
         {
             try
@@ -55,7 +55,7 @@ namespace Interface_Layer_API.Controllers
 
         [HttpPost]
         //[HttpDelete]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage EliminarOpcion(OpcionModel model)
         {
             _model = model;
@@ -85,7 +85,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage InsertarOpcion(OpcionModel model)
         {
             try
@@ -119,7 +119,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public List<OpcionModel> ListarOpciones(OpcionModel model)
         {
             List<OpcionModel> response;

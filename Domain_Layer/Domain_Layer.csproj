@@ -65,12 +65,14 @@
   <ItemGroup>
     <Compile Include="Configurations\DConfigureHibernate.cs" />
     <Compile Include="Connections\DConexion.cs" />
+    <Compile Include="Converters\Personas\DInstitucionConverter.cs" />
     <Compile Include="Converters\Personas\DPerfilConverter.cs" />
     <Compile Include="Converters\Personas\DPerfilUsuarioRolConverter.cs" />
     <Compile Include="Converters\Personas\DPermisoConverter.cs" />
     <Compile Include="Converters\Personas\DPersonaConverter.cs" />
     <Compile Include="Converters\Personas\DRolConverter.cs" />
     <Compile Include="Converters\Personas\DSistemaPerfilConverter.cs" />
+    <Compile Include="Converters\Personas\DTipoInstitucionConverter.cs" />
     <Compile Include="Converters\Personas\DUsuarioConverter.cs" />
     <Compile Include="Converters\Sistemas\DMenuConverter.cs" />
     <Compile Include="Converters\Sistemas\DMenuOpcionConverter.cs" />
@@ -78,12 +80,14 @@
     <Compile Include="Converters\Sistemas\DOpcionConverter.cs" />
     <Compile Include="Converters\Sistemas\DSistemaConverter.cs" />
     <Compile Include="Converters\Vistas\DVistaPermisoConverter.cs" />
+    <Compile Include="Dtos\Personas\DInstitucionDto.cs" />
     <Compile Include="Dtos\Personas\DPerfilDto.cs" />
     <Compile Include="Dtos\Personas\DPerfilUsuarioRolDto.cs" />
     <Compile Include="Dtos\Personas\DPermisoDto.cs" />
     <Compile Include="Dtos\Personas\DPersonaDto.cs" />
     <Compile Include="Dtos\Personas\DRolDto.cs" />
     <Compile Include="Dtos\Personas\DSistemaPerfilDto.cs" />
+    <Compile Include="Dtos\Personas\DTipoInstitucionDto.cs" />
     <Compile Include="Dtos\Personas\DUsuarioDto.cs" />
     <Compile Include="Dtos\Sistemas\DMenuDto.cs" />
     <Compile Include="Dtos\Sistemas\DMenuOpcionDto.cs" />
@@ -91,6 +95,10 @@
     <Compile Include="Dtos\Sistemas\DOpcionDto.cs" />
     <Compile Include="Dtos\Sistemas\DSistemaDto.cs" />
     <Compile Include="Dtos\Vistas\DVistaPermisoDto.cs" />
+    <Compile Include="Queries\Personas\DInstitucionQuery.cs" />
+    <Compile Include="Queries\Personas\DTipoInstitucionQuery.cs" />
+    <Compile Include="Queries\Personas\IDInstitucionQuery.cs" />
+    <Compile Include="Queries\Personas\IDTipoInstitucionQuery.cs" />
     <Compile Include="Queries\Vistas\DVistaPermisoQuery.cs" />
     <Compile Include="Queries\DQuery.cs" />
     <Compile Include="Queries\Personas\DPerfilQuery.cs" />

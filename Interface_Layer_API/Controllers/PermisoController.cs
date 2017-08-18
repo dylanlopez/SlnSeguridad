@@ -20,7 +20,7 @@ namespace Interface_Layer_API.Controllers
 
         [HttpPost]
         //[HttpPut]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage ActualizarPermiso(PermisoModel model)
         {
             try
@@ -55,7 +55,7 @@ namespace Interface_Layer_API.Controllers
 
         [HttpPost]
         //[HttpDelete]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage EliminarPermiso(PermisoModel model)
         {
             _model = model;
@@ -85,7 +85,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage InsertarPermiso(PermisoModel model)
         {
             try
@@ -119,7 +119,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public List<PermisoModel> ListarPermisos(PermisoModel model)
         {
             List<PermisoModel> response;

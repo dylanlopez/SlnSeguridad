@@ -2,9 +2,12 @@
 using Domain_Layer.Dtos.Personas;
 using Domain_Layer.Queries.Personas;
 using Entity_Layer.Entities.Personas;
+using Logging_Layer;
 using NHibernate;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Domain_Layer.Queries
 {
@@ -12,6 +15,10 @@ namespace Domain_Layer.Queries
     {
         public int Actualizar(DPerfilUsuarioRolDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -29,11 +36,37 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public int Insertar(DPerfilUsuarioRolDto dto)
         {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -52,12 +85,38 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
         public List<DPerfilUsuarioRolDto> Listar(DPerfilUsuarioRolDto dto)
         {
             List<DPerfilUsuarioRolDto> list = null;
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
                 using (_sessionMidis = _sessionFactoryMidis.OpenSession())
@@ -104,7 +163,29 @@ namespace Domain_Layer.Queries
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
+                if (_transactionMidis != null)
+                {
+                    if (_transactionMidis.IsActive)
+                    {
+                        if (!_transactionMidis.WasCommitted)
+                        {
+                            _transactionMidis.Rollback();
+                        }
+                    }
+                }
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (_sessionMidis != null)
+                {
+                    if (_sessionMidis.IsOpen)
+                    {
+                        _sessionMidis.Close();
+                    }
+                }
             }
         }
     }

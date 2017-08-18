@@ -1,14 +1,17 @@
-﻿using Domain_Layer.Connections;
-using Domain_Layer.Converters.Personas;
+﻿//using Domain_Layer.Connections;
+//using Domain_Layer.Converters.Personas;
 using Domain_Layer.Dtos.Personas;
 using Domain_Layer.Queries.Personas;
 using Entity_Layer.Entities.Personas;
-using NHibernate;
+using Logging_Layer;
+//using NHibernate;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Domain_Layer.Queries
 {
@@ -50,21 +53,27 @@ namespace Domain_Layer.Queries
             //{
             //    throw ex;
             //}
+            OracleConnection oraConn = null;
             DPersonaDto item = null;
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
             try
             {
-                var cns = "Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.10.40.22)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = dbsisfoh))); User Id=DESA01;Password=oracle";
+                //var cns = "Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.10.40.22)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = dbsisfoh))); User Id=DESA01;Password=oracle";
                 //var cns = "Data Source=(DESCRIPTION = (ADDRESS_LIST= (ADDRESS= (PROTOCOL=TCP)(HOST=192.168.64.159)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XE)));User Id=ES_SEGURIDAD;Password=midis2017";
                 //var cns = "Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.10.40.22)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = dbsisfoh))); User Id=DESA01;Password=oracle";
-                OracleConnection cn = new OracleConnection();
+                oraConn = new OracleConnection();
                 //OracleConnection cn = new OracleConnection(_connection);
-                cn.ConnectionString = cns;
+                //cn.ConnectionString = cns;
+                oraConn.ConnectionString = _connection;
                 string error = "";
                 List<EPersona> resultado = new List<EPersona>();
                 OracleDataAdapter da = new OracleDataAdapter();
                 OracleCommand cmd = new OracleCommand();
-                cn.Open();
-                cmd.Connection = cn;
+                oraConn.Open();
+                cmd.Connection = oraConn;
                 //cmd.InitialLONGFetchSize = 1000;
                 cmd.CommandText = "CZAVALETA.CZSP_GET_PERSONA_DATOS";
                 //cmd.CommandText = "ES_SEGURIDAD.CZSP_GET_PERSONA_DATOS";
@@ -108,12 +117,24 @@ namespace Domain_Layer.Queries
                 //{
 
                 //}
-                cn.Close();
+                //oraConn.Close();
                 return item;
             }
             catch (Exception ex)
             {
+                _logger.WriteErrorLog(ex);
                 throw ex;
+            }
+            finally
+            {
+                _logger = null;
+                if (oraConn != null)
+                {
+                    if (oraConn.State == ConnectionState.Open)
+                    {
+                        oraConn.Close();
+                    }
+                }
             }
         }
     }

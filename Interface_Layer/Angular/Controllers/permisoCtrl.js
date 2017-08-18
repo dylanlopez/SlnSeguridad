@@ -570,7 +570,7 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
             if (dia.toString().length < 2) {
                 dia = "0" + dia;
             }
-            var mes = fecha.getMonth().toString();
+            var mes = (fecha.getMonth() + 1).toString();
             if (mes.toString().length < 2) {
                 mes = "0" + mes;
             }

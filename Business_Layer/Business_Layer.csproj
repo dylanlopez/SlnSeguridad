@@ -47,19 +47,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logics\BLogic.cs" />
+    <Compile Include="Logics\Personas\BInstitucionLogic.cs" />
     <Compile Include="Logics\Personas\BPerfilLogic.cs" />
     <Compile Include="Logics\Personas\BPerfilUsuarioRolLogic.cs" />
     <Compile Include="Logics\Personas\BPermisoLogic.cs" />
     <Compile Include="Logics\Personas\BPersonaLogic.cs" />
     <Compile Include="Logics\Personas\BRolLogic.cs" />
     <Compile Include="Logics\Personas\BSistemaPerfilLogic.cs" />
+    <Compile Include="Logics\Personas\BTipoInstitucionLogic.cs" />
     <Compile Include="Logics\Personas\BUsuarioLogic.cs" />
+    <Compile Include="Logics\Personas\IBInstitucionLogic.cs" />
     <Compile Include="Logics\Personas\IBPerfilLogic.cs" />
     <Compile Include="Logics\Personas\IBPerfilUsuarioRolLogic.cs" />
     <Compile Include="Logics\Personas\IBPermisoLogic.cs" />
     <Compile Include="Logics\Personas\IBPersonaLogic.cs" />
     <Compile Include="Logics\Personas\IBRolLogic.cs" />
     <Compile Include="Logics\Personas\IBSistemaPerfilLogic.cs" />
+    <Compile Include="Logics\Personas\IBTipoInstitucionLogic.cs" />
     <Compile Include="Logics\Personas\IBUsuarioLogic.cs" />
     <Compile Include="Logics\Sistemas\BMenuLogic.cs" />
     <Compile Include="Logics\Sistemas\BMenuOpcionLogic.cs" />

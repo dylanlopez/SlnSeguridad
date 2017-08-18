@@ -20,7 +20,7 @@ namespace Interface_Layer_API.Controllers
 
         [HttpPost]
         //[HttpPut]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage ActualizarRol(RolModel model)
         {
             try
@@ -54,7 +54,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public RolModel BuscarRol(RolModel model)
         {
             _model = model;
@@ -81,7 +81,7 @@ namespace Interface_Layer_API.Controllers
 
         [HttpPost]
         //[HttpDelete]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage EliminarRol(RolModel model)
         {
             _model = model;
@@ -111,7 +111,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage InsertarRol(RolModel model)
         {
             try
@@ -145,7 +145,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public List<RolModel> ListarRoles(RolModel model)
         {
             List<RolModel> response;

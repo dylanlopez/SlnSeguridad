@@ -15,8 +15,8 @@ namespace Interface_Layer_API.Controllers
 {
     public class UbigeoController : ApiController
     {
-        private DepartamentoModel _modelDepartamento;
-        private ProvinciaModel _modelProvincia;
+        //private DepartamentoModel _modelDepartamento;
+        //private ProvinciaModel _modelProvincia;
         private DataContractJsonSerializer _jsonSerializer;
         private BRestOperation _restOperation;
 
@@ -25,7 +25,7 @@ namespace Interface_Layer_API.Controllers
         public List<DepartamentoModel> ListarDepartamentos()
         {
             var ubigeoPath = ConfigurationManager.AppSettings["UbigeoServicePath"].ToString();
-            ubigeoPath = ubigeoPath + "listarDepartamento/";
+            ubigeoPath = ubigeoPath + "listarDepartamento";
             List<DepartamentoModel> response;
             try
             {
@@ -33,6 +33,7 @@ namespace Interface_Layer_API.Controllers
                 using (_restOperation = new BRestOperation())
                 {
                     //var stream = _restOperation.Post("http://192.168.64.19:7070/SistemaS100/listarDepartamento/");
+                    //var stream = _restOperation.Post("http://200.48.102.17:28080/SistemaS100/listarDepartamento/");
                     var stream = _restOperation.Post(ubigeoPath);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(List<DepartamentoModel>));
                     response = (List<DepartamentoModel>)_jsonSerializer.ReadObject(stream);
@@ -46,8 +47,11 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
+        //[Authorize]
         public List<ProvinciaModel> ListarProvincias(DepartamentoModel model)
         {
+            var ubigeoPath = ConfigurationManager.AppSettings["UbigeoServicePath"].ToString();
+            ubigeoPath = ubigeoPath + "listadoProvincias/";
             ProvinciaRequest request = new ProvinciaRequest();
             //_modelDepartamento = model;
             //string coDepartamento = model.codigoDepartamento;
@@ -60,7 +64,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(request));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://192.168.64.19:7070/SistemaS100/listadoProvincias/", dataToSend);
+                    //var stream = _restOperation.Post("http://192.168.64.19:7070/SistemaS100/listadoProvincias/", dataToSend);
+                    var stream = _restOperation.Post(ubigeoPath, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(List<ProvinciaModel>));
                     response = (List<ProvinciaModel>)_jsonSerializer.ReadObject(stream);
                     return response;
@@ -73,8 +78,11 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
+        //[Authorize]
         public List<DistritoModel> ListarDistritos(ProvinciaModel model)
         {
+            var ubigeoPath = ConfigurationManager.AppSettings["UbigeoServicePath"].ToString();
+            ubigeoPath = ubigeoPath + "listadoDistrito/";
             DistritoRequest request = new DistritoRequest();
             //_modelProvincia = model;
             request.coDepartamento = model.codigoDepartamento;
@@ -86,7 +94,8 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(request));
                 using (_restOperation = new BRestOperation())
                 {
-                    var stream = _restOperation.Post("http://192.168.64.19:7070/SistemaS100/listadoDistrito/", dataToSend);
+                    //var stream = _restOperation.Post("http://192.168.64.19:7070/SistemaS100/listadoDistrito/", dataToSend);
+                    var stream = _restOperation.Post(ubigeoPath, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(List<DistritoModel>));
                     response = (List<DistritoModel>)_jsonSerializer.ReadObject(stream);
                     return response;

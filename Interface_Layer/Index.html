@@ -1,20 +1,50 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Angular JS app</title>
     <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet" />-->
     <link rel="stylesheet" href="Content/bootstrap.min.css" media="screen">
+    <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
+    <!--<link rel="stylesheet" href="Content/login_style.css">-->
 </head>
-<body ng-app="myAppLogin">
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body>
+    <div ng-controller="MenusCtrl">
+        <nav class="navbar navbar-inverse" role="navigation" >
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="Index.html">Midis Seguridad</a>
+                </div>
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown" ng-repeat="modulo in modulos" >
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            {{modulo.Abreviatura}}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="menu in modulo.Menus">
+                                <a href="{{menu.Ruta}}">{{menu.Nombre}}</a>
+                                <!--<a href="#/sistemas">{{menu.Nombre}}</a>-->
+                                <!--<a href="http://localhost:57527/Index.html#!/sistemas">{{menu.Nombre}}</a>-->
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!--<li><a ng-click="logout()" data-ng-show="estaLogeado">Concectarse</a></li>-->
+                    <!--<li><a ng-click="logout()" ng-show="$rootScope.estaLogeado">Desconcectarse</a></li>
+                    <li><a ng-hide="$rootScope.estaLogeado">Concectarse</a></li>-->
+                    
+                    <li><a ng-click="logout()">Desconcectarse</a></li>
+                    <!--<li><a href="#/authenticated">Authenticated</a></li>-->
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!--<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Application name</a>
+                <a class="navbar-brand" href="Index.html">Midis Seguridad</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -23,23 +53,37 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div>-->
+
     <div class="container body-content" style="margin-top:40px;">
         <data-ng-view></data-ng-view>
         <hr />
         <footer>
-            <p>&copy; Midis 2017 - DLopez</p>
+            <p>&copy; Midis 2017 - Dirección de Operaciones de Focalización</p>
         </footer>
     </div>
 
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
-    <script type="text/javascript" src="Scripts/jquery-3.1.1.min.js" charset="UTF-8"></script>
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>-->
     <script src="Scripts/angular.min.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.js"></script>-->
     <script src="Scripts/angular-route.js"></script>
-    <script src="/Angular/myAppLogin.js"></script>
+    <!--<script src="Angular/myAppLogin.js"></script>-->
+    <script src="Angular/myApp.js"></script>
+    <!--<script type="text/javascript" src="Angular/Controllers/menusCtrl.js"></script>-->
+    <script type="text/javascript" src="Angular/Controllers/menusCtrl.js"></script>
+    <!--<script type="text/javascript" src="Angular/Factories/sistemaFctr.js"></script>-->
+    <script type="text/javascript" src="Angular/Controllers/sistemaCtrl.js"></script>
+    <script type="text/javascript" src="Angular/Controllers/moduloCtrl.js"></script>
+    <script type="text/javascript" src="Angular/Controllers/menuCtrl.js"></script>
+    <script type="text/javascript" src="Angular/Controllers/opcionCtrl.js"></script>
+    <script type="text/javascript" src="Angular/Controllers/menuopcionCtrl.js"></script>
+    <script type="text/javascript" src="Angular/Controllers/institucionCtrl.js"></script>
+    <script type="text/javascript" src="Angular/Controllers/tipoinstitucionCtrl.js"></script>
+    <script type="text/javascript" src="Angular/Controllers/perfilCtrl.js"></script>
+    <script type="text/javascript" src="Angular/Controllers/sistemaperfilCtrl.js"></script>
+    <script type="text/javascript" src="Angular/Controllers/usuarioCtrl.js"></script>
+    <script type="text/javascript" src="Angular/Controllers/rolCtrl.js"></script>
+    <script type="text/javascript" src="Angular/Controllers/perfilusuariorolCtrl.js"></script>
+    <script type="text/javascript" src="Angular/Controllers/permisoCtrl.js"></script>
 </body>
 </html>

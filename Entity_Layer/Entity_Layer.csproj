@@ -39,12 +39,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Compile Include="Entities\Personas\EInstitucion.cs" />
     <Compile Include="Entities\Personas\EPerfil.cs" />
     <Compile Include="Entities\Personas\EPerfilUsuarioRol.cs" />
     <Compile Include="Entities\Personas\EPermiso.cs" />
     <Compile Include="Entities\Personas\EPersona.cs" />
     <Compile Include="Entities\Personas\ERol.cs" />
     <Compile Include="Entities\Personas\ESistemaPerfil.cs" />
+    <Compile Include="Entities\Personas\ETipoInstitucion.cs" />
     <Compile Include="Entities\Personas\EUsuario.cs" />
     <Compile Include="Entities\Sistemas\EMenu.cs" />
     <Compile Include="Entities\Sistemas\EMenuOpcion.cs" />
@@ -52,6 +54,8 @@
     <Compile Include="Entities\Sistemas\EOpcion.cs" />
     <Compile Include="Entities\Sistemas\ESistema.cs" />
     <Compile Include="Entities\Vistas\EVistaPermiso.cs" />
+    <Compile Include="Mappings\Personas\EInstitucionMapping.cs" />
+    <Compile Include="Mappings\Personas\ETipoInstitucionMapping.cs" />
     <Compile Include="Mappings\Vistas\EVistaPermisoMapping.cs" />
     <Compile Include="Mappings\Personas\EPerfilMapping.cs" />
     <Compile Include="Mappings\Personas\EPerfilUsuarioRolMapping.cs" />
@@ -77,6 +81,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

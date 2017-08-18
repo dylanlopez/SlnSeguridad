@@ -35,6 +35,7 @@ namespace Domain_Layer.Dtos.Personas
             OtrosLogeos = '\0';
             Tipo = '\0';
             Activo = '\0';
+            Institucion = new DInstitucionDto();
         }
 
         /// <summary>
@@ -180,5 +181,13 @@ namespace Domain_Layer.Dtos.Personas
         /// set a value to the Email.
         /// </value>
         public string Email { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Institucion, correspond to entity Institucion.
+        /// </summary>
+        /// <value>
+        /// set a value to the Institucion.
+        /// </value>
+        public DInstitucionDto Institucion { get; set; }
     }
 }

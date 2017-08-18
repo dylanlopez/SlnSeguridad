@@ -8,7 +8,7 @@
     }
 
     modulo.ListarModulos = function (module) {
-        return $http.post(urlListarModulos, module, header).then(function (response) {
+        return $http.post(urlListarModulos, module, header, "unique: true").then(function (response) {
             return response.data;
         });
     }

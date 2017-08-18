@@ -82,12 +82,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\Personas\SInstitucionConverter.cs" />
     <Compile Include="Converters\Personas\SPerfilConverter.cs" />
     <Compile Include="Converters\Personas\SPerfilUsuarioRolConverter.cs" />
     <Compile Include="Converters\Personas\SPermisoConverter.cs" />
     <Compile Include="Converters\Personas\SPersonaConverter.cs" />
     <Compile Include="Converters\Personas\SRolConverter.cs" />
     <Compile Include="Converters\Personas\SSistemaPerfilConvert.cs" />
+    <Compile Include="Converters\Personas\STipoInstitucionConverter.cs" />
     <Compile Include="Converters\Personas\SUsuarioConverter.cs" />
     <Compile Include="Converters\Sistemas\SMenuConverter.cs" />
     <Compile Include="Converters\Sistemas\SMenuOpcionConverter.cs" />
@@ -99,12 +101,14 @@
     <Compile Include="Models\Externos\DepartamentoModel.cs" />
     <Compile Include="Models\Externos\DistritoModel.cs" />
     <Compile Include="Models\Externos\ProvinciaModel.cs" />
+    <Compile Include="Models\Personas\InstitucionModel.cs" />
     <Compile Include="Models\Personas\PerfilModel.cs" />
     <Compile Include="Models\Personas\PerfilUsuarioRolModel.cs" />
     <Compile Include="Models\Personas\PermisoModel.cs" />
     <Compile Include="Models\Personas\PersonaModel.cs" />
     <Compile Include="Models\Personas\RolModel.cs" />
     <Compile Include="Models\Personas\SistemaPerfilModel.cs" />
+    <Compile Include="Models\Personas\TipoInstitucionModel.cs" />
     <Compile Include="Models\Personas\UsuarioModel.cs" />
     <Compile Include="Models\Sistemas\MenuModel.cs" />
     <Compile Include="Models\Sistemas\MenuOpcionModel.cs" />
@@ -140,9 +144,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Properties\PublishProfiles\Compiled_Path.pubxml" />
-    <None Include="Properties\PublishProfiles\IIS_IIS.pubxml" />
-    <None Include="Properties\PublishProfiles\IIS_Local.pubxml" />
+    <None Include="Properties\PublishProfiles\QA.pubxml" />
+    <None Include="Properties\PublishProfiles\DEV.pubxml" />
+    <None Include="Properties\PublishProfiles\PROD.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -179,7 +183,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56194</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55291/</IISUrl>
+          <IISUrl>http://localhost:7070/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

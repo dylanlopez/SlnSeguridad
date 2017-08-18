@@ -1,0 +1,10 @@
+﻿body {
+    background: url("../Images/vault_door.jpg") no-repeat;
+    background-size: 100%;
+}
+
+.center_div{
+    margin: 0 auto;
+    width:80%;
+    vertical-align: middle;
+}

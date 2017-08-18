@@ -31,7 +31,7 @@ namespace Interface_Layer_API.Controllers
 
         [HttpPost]
         //[HttpPut]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage ActualizarSistema(SistemaModel model)
         {
             _model = model;
@@ -66,6 +66,7 @@ namespace Interface_Layer_API.Controllers
 
         [HttpPost]
         //[Authorize(Roles = "admin")]
+        //[Authorize]
         public SistemaModel BuscarSistema(SistemaModel model)
         {
             var identity = (ClaimsIdentity) User.Identity;
@@ -98,7 +99,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage InsertarSistema(SistemaModel model)
         {
             try
@@ -132,7 +133,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public List<SistemaModel> ListarSistemas(SistemaModel model)
         {
             List<SistemaModel> response;
@@ -144,8 +145,6 @@ namespace Interface_Layer_API.Controllers
                 var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_model));
                 using (_restOperation = new BRestOperation())
                 {
-                    //var stream = _restOperation.Post("http://localhost/SeguridadService/Services/SSistemasServices.svc/ListarSistemas/", dataToSend);
-                    //var stream = _restOperation.Post("http://localhost:55291/Services/SSistemasServices.svc/ListarSistemas/", dataToSend);
                     var stream = _restOperation.Post(path, dataToSend);
                     _jsonSerializer = new DataContractJsonSerializer(typeof(List<SistemaModel>));
                     response = (List<SistemaModel>)_jsonSerializer.ReadObject(stream);

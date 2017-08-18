@@ -2,6 +2,7 @@
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 using System;
+using System.Configuration;
 
 namespace Entity_Layer.Mappings.Sistemas
 {
@@ -26,7 +27,8 @@ namespace Entity_Layer.Mappings.Sistemas
         /// </summary>
         public ESistemaMapping()
         {
-            //Schema("ES_SEGURIDAD");
+            string schemaSeguridad = ConfigurationManager.AppSettings["Schema"].ToString();
+            Schema(schemaSeguridad);
             Table("SEGTM_SISTEMA");
             Id<Int32>(
                 x => x.Id, 
@@ -35,7 +37,7 @@ namespace Entity_Layer.Mappings.Sistemas
                     map.Generator(
                         Generators.Sequence, 
                         seq => seq.Params(new{
-                            //schema = "ES_SEGURIDAD",
+                            schema = schemaSeguridad,
                             sequence = "SEQ_SISTEMA"
                         }));
                 });

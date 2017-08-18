@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Logging_Layer;
+using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Text;
 
 namespace Business_Layer.Utils
@@ -11,6 +14,8 @@ namespace Business_Layer.Utils
         private WebResponse _response;
         private Stream _requestStream;
 
+        //private Loggin _logger;
+
         public object Get(string url)
         {
             return "";
@@ -18,6 +23,10 @@ namespace Business_Layer.Utils
 
         public Stream Post(string url, byte[] dataToSend)
         {
+            //if (_logger == null)
+            //{
+            //    _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            //}
             _request = (HttpWebRequest)WebRequest.Create(url);
             try
             {
@@ -36,6 +45,7 @@ namespace Business_Layer.Utils
             }
             catch (WebException ex)
             {
+                //_logger.WriteErrorLog(ex);
                 WebResponse errorResponse = ex.Response;
                 using (Stream responseStream = errorResponse.GetResponseStream())
                 {
@@ -44,9 +54,17 @@ namespace Business_Layer.Utils
                 }
                 throw ex;
             }
+            //finally
+            //{
+            //    _logger = null;
+            //}
         }
         public Stream Post(string url)
         {
+            //if (_logger == null)
+            //{
+            //    _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            //}
             _request = (HttpWebRequest)WebRequest.Create(url);
             try
             {
@@ -60,6 +78,7 @@ namespace Business_Layer.Utils
             }
             catch (WebException ex)
             {
+                //_logger.WriteErrorLog(ex);
                 WebResponse errorResponse = ex.Response;
                 using (Stream responseStream = errorResponse.GetResponseStream())
                 {
@@ -68,6 +87,10 @@ namespace Business_Layer.Utils
                 }
                 throw ex;
             }
+            //finally
+            //{
+            //    _logger = null;
+            //}
         }
 
         public void Dispose()

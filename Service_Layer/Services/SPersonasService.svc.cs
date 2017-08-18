@@ -19,6 +19,8 @@ namespace Service_Layer.Services
     public class SPersonasService : ISPersonasService
     {
         private IBPersonaLogic _personaLogic;
+        private IBTipoInstitucionLogic _tipoInstitucionLogic;
+        private IBInstitucionLogic _institucionLogic;
         private IBUsuarioLogic _usuarioLogic;
         private IBPerfilLogic _perfilLogic;
         private IBSistemaPerfilLogic _sistemaPerfilLogic;
@@ -69,6 +71,223 @@ namespace Service_Layer.Services
                     resp = new PersonaModel();
                 }
                 //return _personaLogic.Buscar(dto);
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteErrorLog(ex);
+                //throw ex;
+                return null;
+            }
+            finally
+            {
+                _logger = null;
+            }
+        }
+        #endregion
+
+        #region TipoInstitucion
+        public int ActualizarTipoInstitucion(TipoInstitucionModel model)
+        {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
+            try
+            {
+                _logger.WriteInfoLog("iniciando ActualizarTipoInstitucion");
+                _tipoInstitucionLogic = new BLogic();
+                var dto = STipoInstitucionConverter.ToDto(model);
+                return _tipoInstitucionLogic.Actualizar(dto);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteErrorLog(ex);
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
+            }
+            finally
+            {
+                _logger = null;
+            }
+        }
+        public TipoInstitucionModel BuscarTipoInstitucion(TipoInstitucionModel model)
+        {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
+            try
+            {
+                _logger.WriteInfoLog("iniciando BuscarTipoInstitucion");
+                _tipoInstitucionLogic = new BLogic();
+                var dto = STipoInstitucionConverter.ToDto(model);
+                var resp = STipoInstitucionConverter.ToModel(_tipoInstitucionLogic.Buscar(dto));
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteErrorLog(ex);
+                //throw ex;
+                return null;
+            }
+            finally
+            {
+                _logger = null;
+            }
+        }
+        public int InsertarTipoInstitucion(TipoInstitucionModel model)
+        {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
+            try
+            {
+                _logger.WriteInfoLog("iniciando InsertarTipoInstitucion");
+                _tipoInstitucionLogic = new BLogic();
+                var dto = STipoInstitucionConverter.ToDto(model);
+                return _tipoInstitucionLogic.Insertar(dto);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteErrorLog(ex);
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
+            }
+            finally
+            {
+                _logger = null;
+            }
+        }
+        public List<TipoInstitucionModel> ListarTipoInstituciones(TipoInstitucionModel model)
+        {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
+            try
+            {
+                _logger.WriteInfoLog("iniciando ListarTiposInstitucion");
+                _tipoInstitucionLogic = new BLogic();
+                var dto = STipoInstitucionConverter.ToDto(model);
+                var resp = STipoInstitucionConverter.ToModels(_tipoInstitucionLogic.Listar(dto));
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteErrorLog(ex);
+                return null;
+            }
+            finally
+            {
+                _logger = null;
+            }
+        }
+        #endregion
+
+        #region Institucion
+        public int ActualizarInstitucion(InstitucionModel model)
+        {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
+            try
+            {
+                _logger.WriteInfoLog("iniciando ActualizarInstitucion");
+                _institucionLogic = new BLogic();
+                var dto = SInstitucionConverter.ToDto(model);
+                return _institucionLogic.Actualizar(dto);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteErrorLog(ex);
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
+            }
+            finally
+            {
+                _logger = null;
+            }
+        }
+        public InstitucionModel BuscarInstitucion(InstitucionModel model)
+        {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
+            try
+            {
+                _logger.WriteInfoLog("iniciando BuscarInstitucion");
+                _institucionLogic = new BLogic();
+                var dto = SInstitucionConverter.ToDto(model);
+                var resp = SInstitucionConverter.ToModel(_institucionLogic.Buscar(dto));
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteErrorLog(ex);
+                //throw ex;
+                return null;
+            }
+            finally
+            {
+                _logger = null;
+            }
+        }
+        public int InsertarInstitucion(InstitucionModel model)
+        {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
+            try
+            {
+                _logger.WriteInfoLog("iniciando InsertarInstitucion");
+                _institucionLogic = new BLogic();
+                var dto = SInstitucionConverter.ToDto(model);
+                return _institucionLogic.Insertar(dto);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteErrorLog(ex);
+                if (ex.InnerException != null)
+                {
+                    return ex.InnerException.HResult;
+                }
+                //throw ex;
+                return 0;
+            }
+            finally
+            {
+                _logger = null;
+            }
+        }
+        public List<InstitucionModel> ListarInstituciones(InstitucionModel model)
+        {
+            if (_logger == null)
+            {
+                _logger = new Loggin(MethodBase.GetCurrentMethod(), new StackTrace());
+            }
+            try
+            {
+                _logger.WriteInfoLog("iniciando ListarInstituciones");
+                _institucionLogic = new BLogic();
+                var dto = SInstitucionConverter.ToDto(model);
+                var resp = SInstitucionConverter.ToModels(_institucionLogic.Listar(dto));
                 return resp;
             }
             catch (Exception ex)
@@ -954,7 +1173,7 @@ namespace Service_Layer.Services
                 if (string.IsNullOrEmpty(request.CodigoSistema))
                 {
                     response.Codigo = "0301";
-                    response.Descripcion = "No se puede ingresar una codigo de sistema en blanco";
+                    response.Descripcion = "No se puede ingresar un código de sistema en blanco";
                     response.PrimeraVez = 'X';
                     return response;
                 }
@@ -983,6 +1202,9 @@ namespace Service_Layer.Services
                                 response.CodigoVersion = resp[0].CodigoVersion;
                                 response.Email = resp[0].Email;
                                 response.PrimeraVez = resp[0].PrimeraVez;
+                                response.TipoInstitucion = resp[0].TipoInstitucion;
+                                response.Institucion = resp[0].Institucion;
+                                response.InstitucionCorto = resp[0].InstitucionCorto;
                                 response.Result = SAcreditacionUPSConverter.ToModels(resp);
                                 if (user.UnicoIngreso == 'S')
                                 {

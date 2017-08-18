@@ -9,6 +9,7 @@ namespace Service_Layer.Models.Vistas
         {
             IdSistema = 0;
             CodigoSistema = string.Empty;
+            AbreviaturaSistema = string.Empty;
             NombreSistema = string.Empty;
             RutaLogica = string.Empty;
             Modulos = null;
@@ -19,13 +20,16 @@ namespace Service_Layer.Models.Vistas
         [DataMember(Name = "CodigoSistema", Order = 0)]
         public string CodigoSistema { get; set; }
 
-        [DataMember(Name = "NombreSistema", Order = 1)]
+        [DataMember(Name = "AbreviaturaSistema", Order = 1)]
+        public string AbreviaturaSistema { get; set; }
+
+        [DataMember(Name = "NombreSistema", Order = 2)]
         public string NombreSistema { get; set; }
 
-        [DataMember(Name = "RutaLogica", Order = 2)]
+        [DataMember(Name = "RutaLogica", Order = 3)]
         public string RutaLogica { get; set; }
 
-        [DataMember(Name = "Modulos", Order = 3)]
+        [DataMember(Name = "Modulos", Order = 4)]
         public List<VistaModuloModel> Modulos { get; set; }
     }
 }

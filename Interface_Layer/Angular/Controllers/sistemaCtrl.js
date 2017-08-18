@@ -19,6 +19,10 @@ myApp.controller("SistemaCtrl", function ($scope, system, SistemaFctr) {
     //    "RutaLogica": ''
     //};
 
+    //return $http.get(serviceBasePath + '/api/data/authenticate').then(function (response) {
+    //    return response.data;
+    //});
+
     $scope.buscar = function () {
         $scope.estaCargando = true;
 

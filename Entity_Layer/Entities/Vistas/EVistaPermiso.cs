@@ -149,6 +149,14 @@ namespace Entity_Layer.Entities.Vistas
         public virtual String CodigoSistema { get; set; }
 
         /// <summary>
+        /// Gets or sets the AbreviaturaSistema, correspond to table field NO_ABREVIATURA.
+        /// </summary>
+        /// <value>
+        /// set a value to the AbreviaturaSistema.
+        /// </value>
+        public virtual String AbreviaturaSistema { get; set; }
+
+        /// <summary>
         /// Gets or sets the NombreSistema, correspond to table field NO_SISTEMA.
         /// </summary>
         /// <value>

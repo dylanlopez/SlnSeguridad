@@ -8,7 +8,7 @@
     }
 
     sistema.ListarSistemas = function (system) {
-        return $http.post(urlListarSistemas, system, header).then(function (response) {
+        return $http.post(urlListarSistemas, system, header, "unique: true").then(function (response) {
             return response.data;
         });
     }

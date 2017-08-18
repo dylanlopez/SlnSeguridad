@@ -13,6 +13,8 @@ namespace Business_Layer.Logics
         private IDOpcionQuery _opcionQuery;
         private IDMenuOpcionQuery _menuOpcionQuery;
 
+        private IDTipoInstitucionQuery _tipoInstitucionQuery;
+        private IDInstitucionQuery _intitucionQuery;
         private IDPersonaQuery _personaQuery;
         private IDUsuarioQuery _usuarioQuery;
         private IDPerfilQuery _perfilQuery;

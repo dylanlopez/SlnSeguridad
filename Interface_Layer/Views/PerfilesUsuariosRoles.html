@@ -1,35 +1,4 @@
-﻿<!DOCTYPE html>
-<html ng-app="myApp">
-<head>
-    <title>Midis Seguridad | Roles por Perfiles por Usuarios</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
-    <link rel="stylesheet" href="../Content/style.css">
-</head>
-<body>
-    <!--MENU-->
-    <div ng-controller="MenusCtrl">
-        <nav class="navbar navbar-inverse" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="Index.html">Midis Seguridad</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="dropdown" ng-repeat="modulo in modulos">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            {{modulo.Abreviatura}}<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li ng-repeat="menu in modulo.Menus">
-                                <a href="{{menu.Ruta}}">{{menu.Nombre}}</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-
+﻿    <!--CONTENIDO-->
     <div class="container">
         <div class="col-md-4"></div>
         <h3 class="col-md-4">Roles por Perfiles por Usuarios</h3>
@@ -139,19 +108,6 @@
             </table>
         </div>
         <div id="divLoader" data-ng-show="loading">
-            <img id="imgLoader" src="../Images/ajax-loader.gif" class="ajax-loader" />
+            <img id="imgLoader" src="Images/ajax-loader.gif" class="ajax-loader" />
         </div>
     </div>
-
-    <script type="text/javascript" src="../Scripts/jquery-3.1.1.min.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../Scripts/angular.min.js"></script>
-    <script type="text/javascript" src="../Angular/myApp.js"></script>
-    <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
-    <script type="text/javascript" src="../Angular/Controllers/perfilusuariorolCtrl.js"></script>
-    <script type="text/javascript" src="../Angular/Factories/perfilFctr.js"></script>
-    <script type="text/javascript" src="../Angular/Factories/usuarioFctr.js"></script>
-    <script type="text/javascript" src="../Angular/Factories/rolFctr.js"></script>
-    <script type="text/javascript" src="../Angular/Factories/perfilusuariorolFctr.js"></script>
-</body>
-</html>

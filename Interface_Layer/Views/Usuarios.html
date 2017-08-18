@@ -1,35 +1,4 @@
-﻿<!DOCTYPE html>
-<html ng-app="myApp">
-<head>
-    <title>Midis Seguridad | Usuarios</title>
-	<meta charset="utf-8" />
-    <link rel="stylesheet" href="../Content/bootstrap.min.css" media="screen">
-    <link rel="stylesheet" href="../Content/style.css">
-</head>
-<body>
-    <!--MENU-->
-    <div ng-controller="MenusCtrl">
-        <nav class="navbar navbar-inverse" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="Index.html">Midis Seguridad</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="dropdown" ng-repeat="modulo in modulos">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            {{modulo.Abreviatura}}<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li ng-repeat="menu in modulo.Menus">
-                                <a href="{{menu.Ruta}}">{{menu.Nombre}}</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-
+﻿    <!--CONTENIDO-->
     <div class="container">
         <div class="col-md-4"></div>
         <h3 class="col-md-4">Usuarios</h3>
@@ -45,6 +14,18 @@
                 <input type="hidden" id="hdnId" data-ng-model="myusuario.Id" />
                 <input type="hidden" id="hdnPrimeraVez" data-ng-model="myusuario.PrimeraVez" />
                 <input type="hidden" id="hdnHaIngresado" data-ng-model="myusuario.HaIngresado" />
+                <div class="container-fluid form-group">
+                    <label for="cmbInstitucionTipo" class="col-md-2 control-label">Tipo de Institución: </label>
+                    <div class="col-md-8">
+                        <select id="cmbInstitucionTipo" class="form-control" ng-options="tipoinstitucion.Nombre for tipoinstitucion in tiposinstitucion track by tipoinstitucion.Id" data-ng-model="myusuario.TipoInstitucion" ng-change="buscarInstituciones()" required></select>
+                    </div>
+                </div>
+                <div class="container-fluid form-group">
+                    <label for="cmbInstitucion" class="col-md-2 control-label">Institución: </label>
+                    <div class="col-md-8">
+                        <select id="cmbInstitucion" class="form-control" ng-options="institucion.NombreCorto for institucion in instituciones track by institucion.Id" data-ng-model="myusuario.Institucion" required></select>
+                    </div>
+                </div>
                 <div class="container-fluid form-group" data-ng-show="estaEditable">
                     <label for="txtUsuario" class="col-md-2 control-label">Usuario: </label>
                     <div class="col-md-6">
@@ -192,18 +173,6 @@
             </table>
         </div>
         <div id="divLoader" data-ng-show="loading">
-            <img id="imgLoader" src="../Images/ajax-loader.gif" class="ajax-loader" />
+            <img id="imgLoader" src="Images/ajax-loader.gif" class="ajax-loader" />
         </div>
     </div>
-
-    <script type="text/javascript" src="../Scripts/jquery-3.1.1.min.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../Scripts/angular.min.js"></script>
-    <script type="text/javascript" src="../Angular/myApp.js"></script>
-    <script type="text/javascript" src="../Angular/Controllers/menusCtrl.js"></script>
-    <script type="text/javascript" src="../Angular/Controllers/usuarioCtrl.js"></script>
-    <script type="text/javascript" src="../Angular/Factories/ubigeoFctr.js"></script>
-    <script type="text/javascript" src="../Angular/Factories/personaFctr.js"></script>
-    <script type="text/javascript" src="../Angular/Factories/usuarioFctr.js"></script>
-</body>
-</html>

@@ -1,6 +1,7 @@
 ﻿using Business_Layer.Utils;
 using Newtonsoft.Json;
 using Service_Layer.Models.Personas;
+using Service_Layer.Models.Vistas;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,13 +15,15 @@ namespace Interface_Layer_API.Controllers
 {
     public class UsuarioController : ApiController
     {
+        private UsuarioUPRequest _requestUP;
+        private UsuarioURequest _requestU;
         private UsuarioModel _model;
         private DataContractJsonSerializer _jsonSerializer;
         private BRestOperation _restOperation;
 
         [HttpPost]
         //[HttpPut]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage ActualizarUsuario(UsuarioModel model)
         {
             try
@@ -58,6 +61,55 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
+        public UsuarioUPResponse ActualizarContrasenaUsuarioUP(UsuarioUPRequest request)
+        {
+            UsuarioUPResponse response;
+            _requestUP = request;
+            try
+            {
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SPersonasService.svc/ActualizarContrasenaUsuarioUP/";
+                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_requestUP));
+                using (_restOperation = new BRestOperation())
+                {
+                    var stream = _restOperation.Post(path, dataToSend);
+                    _jsonSerializer = new DataContractJsonSerializer(typeof(UsuarioUPResponse));
+                    response = (UsuarioUPResponse)_jsonSerializer.ReadObject(stream);
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound, ex));
+            }
+        }
+
+        [HttpPost]
+        public UsuarioUPResponse ActualizarHaIngresadoUsuarioU(UsuarioURequest request)
+        {
+            UsuarioUPResponse response;
+            _requestU = request;
+            try
+            {
+                var path = ConfigurationManager.AppSettings["WCFPath"].ToString();
+                path = path + "Services/SPersonasService.svc/ActualizarHaIngresadoUsuarioU/";
+                var dataToSend = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_requestUP));
+                using (_restOperation = new BRestOperation())
+                {
+                    var stream = _restOperation.Post(path, dataToSend);
+                    _jsonSerializer = new DataContractJsonSerializer(typeof(UsuarioUPResponse));
+                    response = (UsuarioUPResponse)_jsonSerializer.ReadObject(stream);
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound, ex));
+            }
+        }
+
+        [HttpPost]
+        //[Authorize]
         public UsuarioModel BuscarUsuario(UsuarioModel model)
         {
             _model = model;
@@ -83,6 +135,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
+        //[Authorize]
         public UsuarioModel BuscarUsuarioPorUsuario(UsuarioModel model)
         {
             _model = model;
@@ -114,7 +167,7 @@ namespace Interface_Layer_API.Controllers
 
         [HttpPost]
         //[HttpDelete]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage EliminarUsuario(UsuarioModel model)
         {
             _model = model;
@@ -144,7 +197,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage InsertarUsuario(UsuarioModel model)
         {
             try
@@ -182,7 +235,7 @@ namespace Interface_Layer_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public List<UsuarioModel> ListarUsuarios(UsuarioModel model)
         {
             List<UsuarioModel> response;

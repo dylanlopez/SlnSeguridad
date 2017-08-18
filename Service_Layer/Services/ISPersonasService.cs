@@ -19,6 +19,74 @@ namespace Service_Layer.Services
         PersonaModel BuscarPersona(PersonaModel dto);
         #endregion
 
+        #region TipoInstitucion
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "ActualizarTipoInstitucion/")]
+        int ActualizarTipoInstitucion(TipoInstitucionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "BuscarTipoInstitucion/")]
+        TipoInstitucionModel BuscarTipoInstitucion(TipoInstitucionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "InsertarTipoInstitucion/")]
+        int InsertarTipoInstitucion(TipoInstitucionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "ListarTipoInstituciones/")]
+        List<TipoInstitucionModel> ListarTipoInstituciones(TipoInstitucionModel dto);
+        #endregion
+
+        #region Institucion
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "ActualizarInstitucion/")]
+        int ActualizarInstitucion(InstitucionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "BuscarInstitucion/")]
+        InstitucionModel BuscarInstitucion(InstitucionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "InsertarInstitucion/")]
+        int InsertarInstitucion(InstitucionModel dto);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "ListarInstituciones/")]
+        List<InstitucionModel> ListarInstituciones(InstitucionModel dto);
+        #endregion
+
         #region Usuario
         [OperationContract]
         [WebInvoke(Method = "POST",

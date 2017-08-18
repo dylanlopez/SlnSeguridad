@@ -23,7 +23,9 @@ myApp.controller("MenuCtrl", function ($scope, system, module, menu, SistemaFctr
     //});
 
     system.Activo = 'S';
-    SistemaFctr.ListarSistemas(system)
+
+    $scope.buscarSistema = function () {
+        SistemaFctr.ListarSistemas(system)
         .then(function successCallback(response) {
             $scope.sistemas = response;
             $scope.tieneError = false;
@@ -34,6 +36,9 @@ myApp.controller("MenuCtrl", function ($scope, system, module, menu, SistemaFctr
             $scope.error = "Ha ocurrido un error al listar: " + response;
             $scope.estaCargando = false;
         });
+    };
+
+    $scope.buscarSistema();
     
     $scope.buscarModulo = function () {
         if (angular.isUndefined($scope.mymenu.Sistema)) {

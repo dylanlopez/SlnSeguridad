@@ -44,6 +44,10 @@ namespace Domain_Layer.Converters.Personas
             dto.Tipo = entity.Tipo;
             dto.Activo = entity.Activo;
             dto.Email = entity.Email;
+            if (entity.Institucion != null)
+            {
+                dto.Institucion = DInstitucionConverter.ToDto(entity.Institucion);
+            }
             return dto;
         }
 
@@ -97,6 +101,10 @@ namespace Domain_Layer.Converters.Personas
             entity.Tipo = dto.Tipo;
             entity.Activo = dto.Activo;
             entity.Email = dto.Email;
+            if (dto.Institucion != null)
+            {
+                entity.Institucion = DInstitucionConverter.ToEntity(dto.Institucion);
+            }
             return entity;
         }
     }

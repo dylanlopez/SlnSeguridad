@@ -37,6 +37,7 @@ namespace Service_Layer.Converters.Personas
             model.Tipo = dto.Tipo;
             model.Activo = dto.Activo;
             model.Email = dto.Email;
+            model.Institucion = SInstitucionConverter.ToModel(dto.Institucion);
             return model;
         }
 
@@ -78,6 +79,10 @@ namespace Service_Layer.Converters.Personas
             dto.Tipo = model.Tipo;
             dto.Activo = model.Activo;
             dto.Email = model.Email;
+            if(model.Institucion != null)
+            {
+                dto.Institucion = SInstitucionConverter.ToDto(model.Institucion);
+            }
             return dto;
         }
     }

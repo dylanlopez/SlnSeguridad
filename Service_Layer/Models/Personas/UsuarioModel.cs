@@ -18,13 +18,13 @@ namespace Service_Layer.Models.Personas
             FechaUltimoCambio = string.Empty;
             Ubigeo = string.Empty;
             CodigoVersion = 0;
-            Email = string.Empty;
             PrimeraVez = '\0';
             UnicoIngreso = '\0';
             HaIngresado = '\0';
             OtrosLogeos = '\0';
             Tipo = '\0';
             Activo = '\0';
+            Email = string.Empty;
         }
 
         [DataMember(Name = "Id", Order = 0)]
@@ -80,5 +80,8 @@ namespace Service_Layer.Models.Personas
 
         [DataMember(Name = "Email", Order = 17)]
         public string Email { get; set; }
+
+        [DataMember(Name = "Institucion", Order = 18)]
+        public InstitucionModel Institucion { get; set; }
     }
 }

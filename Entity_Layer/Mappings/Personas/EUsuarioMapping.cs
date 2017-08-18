@@ -3,19 +3,20 @@ using NHibernate;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 using System;
+using System.Configuration;
 
 namespace Entity_Layer.Mappings.Personas
 {
     /// <summary>
-    /// Here is the mapping class EUsuarioMapping, on which entity-class mapping is performed using the NHibernate ClassMapping. Here
-    /// USUARIO table is mapped over EUsuario entity class.
+    /// Here is the mapping class <see cref="EUsuarioMapping"/>, on which entity-class mapping is performed using the NHibernate ClassMapping. Here
+    /// SEGTV_USUARIO table is mapped over <see cref="EUsuario"/> entity class.
     /// </summary>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <v1.0>
     /// <author>Dylan Lopez, dlopez@midis.gob.pe</author>
     /// <description>Initial version</description>
     /// </v1.0>
-    /// <seealso cref="NHibernate.Mapping.ByCode.Conformist.ClassMapping{Entity_Layer.Entities.Sistemas.EUsuario}" />
+    /// <seealso cref="NHibernate.Mapping.ByCode.Conformist.ClassMapping{Entity_Layer.Entities.Personas.EInstitucion}" />
     public class EUsuarioMapping : ClassMapping<EUsuario>
     {
         /// <summary>
@@ -23,7 +24,8 @@ namespace Entity_Layer.Mappings.Personas
         /// </summary>
         public EUsuarioMapping()
         {
-            //Schema("ES_SEGURIDAD");
+            string schemaSeguridad = ConfigurationManager.AppSettings["Schema"].ToString();
+            Schema(schemaSeguridad);
             Table("SEGTV_USUARIO");
             Id<Int32>(
                 x => x.Id,
@@ -33,7 +35,7 @@ namespace Entity_Layer.Mappings.Personas
                         Generators.Sequence,
                         seq => seq.Params(new
                         {
-                            //schema = "ES_SEGURIDAD",
+                            schema = schemaSeguridad,
                             sequence = "SEQ_USUARIO"
                         }));
                 });
@@ -153,6 +155,15 @@ namespace Entity_Layer.Mappings.Personas
                     map.Column("NO_EMAIL");
                     map.Length(200);
                     map.NotNullable(false);
+                });
+            ManyToOne<EInstitucion>(
+                x => x.Institucion,
+                map => {
+                    map.Column("ID_INSTITUCION");
+                    map.NotNullable(false);
+                    map.Update(true);
+                    map.Insert(true);
+                    map.ForeignKey("FK_USUARIO_01");
                 });
         }
     }

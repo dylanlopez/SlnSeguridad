@@ -2,6 +2,7 @@
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 using System;
+using System.Configuration;
 
 namespace Entity_Layer.Mappings.Sistemas
 {
@@ -22,7 +23,8 @@ namespace Entity_Layer.Mappings.Sistemas
         /// </summary>
         public EMenuOpcionMapping()
         {
-            //Schema("ES_SEGURIDAD");
+            string schemaSeguridad = ConfigurationManager.AppSettings["Schema"].ToString();
+            Schema(schemaSeguridad);
             Table("SEGTM_MENU_OPCION");
             Id<Int32>(
                 x => x.Id,
@@ -32,7 +34,7 @@ namespace Entity_Layer.Mappings.Sistemas
                         Generators.Sequence,
                         seq => seq.Params(new
                         {
-                            //schema = "ES_SEGURIDAD",
+                            schema = schemaSeguridad,
                             sequence = "SEQ_MENU_OPCION"
                         }));
                 });
