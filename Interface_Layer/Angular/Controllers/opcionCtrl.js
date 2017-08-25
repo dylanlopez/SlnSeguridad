@@ -1,14 +1,16 @@
 ﻿//myApp.controller("OpcionCtrl", function ($scope, $http, webAPIControllers) {
 myApp.controller("OpcionCtrl", function ($scope, option, OpcionFctr) {
     $scope.opciones = [];
-    $scope.estaCargando = true;
+    $scope.estaCargando = false;
     $scope.estaEditable = false;
     $scope.tieneError = false;
     $scope.myopcion = [];
 
     $scope.buscar = function () {
-        $scope.tieneError = false;
+        $scope.estaCargando = true;
+        $scope.tipoError = "";
         $scope.error = "";
+        $scope.tieneError = false;
 
         //var option =
         //{
@@ -37,16 +39,18 @@ myApp.controller("OpcionCtrl", function ($scope, option, OpcionFctr) {
         //});
 
         option.Nombre = $scope.myopcion.Nombre;
+
         OpcionFctr.ListarOpciones(option)
             .then(function successCallback(response) {
                 $scope.opciones = response;
-                $scope.tieneError = false;
-                $scope.error = "";
+                //$scope.tieneError = false;
+                //$scope.error = "";
                 $scope.estaCargando = false;
             }, function errorCallback(response) {
-                $scope.tieneError = true;
-                $scope.error = "Ha ocurrido un error al listar: " + response;
                 $scope.estaCargando = false;
+                $scope.tipoError = "alert alert-danger";
+                $scope.error = "Ha ocurrido un error al listar: " + response;
+                $scope.tieneError = true;
             });
     };
 
@@ -60,8 +64,9 @@ myApp.controller("OpcionCtrl", function ($scope, option, OpcionFctr) {
             OpcionFctr.CleanOpcion(option);
         }
         $scope.opciones = [];
-        $scope.tieneError = false;
         $scope.error = "";
+        $scope.tipoError = "";
+        $scope.tieneError = false;
     };
 
     $scope.modificar = function (option) {
@@ -83,6 +88,10 @@ myApp.controller("OpcionCtrl", function ($scope, option, OpcionFctr) {
         //        "NombreControlAsociado": $scope.myopcion.NombreControlAsociado,
         //        "Descripcion": $scope.myopcion.Descripcion
         //    };
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
+
         option.Id = $scope.myopcion.Id;
         option.Nombre = $scope.myopcion.Nombre;
         option.NombreControlAsociado = $scope.myopcion.NombreControlAsociado;
@@ -92,13 +101,14 @@ myApp.controller("OpcionCtrl", function ($scope, option, OpcionFctr) {
             OpcionFctr.InsertarOpcion(option)
                 .then(function successCallback(response) {
                     $scope.nuevo();
-                    $scope.tieneError = false;
-                    $scope.error = "";
+                    //$scope.tieneError = false;
+                    //$scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
-                    $scope.error = "Ha ocuirrido un error al insertar: " + response.data.Message;
                     $scope.estaCargando = false;
+                    $scope.tipoError = "alert alert-danger";
+                    $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
+                    $scope.tieneError = true;
                 });
             //$http({
             //    method: 'POST',
@@ -124,13 +134,14 @@ myApp.controller("OpcionCtrl", function ($scope, option, OpcionFctr) {
             OpcionFctr.ActualizarOpcion(option)
                 .then(function successCallback(response) {
                     $scope.nuevo();
-                    $scope.tieneError = false;
-                    $scope.error = "";
+                    //$scope.tieneError = false;
+                    //$scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
-                    $scope.error = "Ha ocuirrido un error al actualizar: " + response.data.Message;
                     $scope.estaCargando = false;
+                    $scope.tipoError = "alert alert-danger";
+                    $scope.error = "Ha ocurrido un error al actualizar: " + response.data.Message;
+                    $scope.tieneError = true;
                 });
             //$http({
             //    method: 'PUT',

@@ -2,7 +2,7 @@
 myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, ModuloFctr) {
     $scope.sistemas = [];
     $scope.modulos = [];
-    $scope.estaCargando = true;
+    $scope.estaCargando = false;
     $scope.estaEditable = false;
     $scope.tieneError = false;
     $scope.mymodulo = [];
@@ -22,21 +22,22 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
     //    };
 
     system.Activo = 'S';
-    $scope.buscarSistema = function () {
+    $scope.listarSistemas = function () {
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
         SistemaFctr.ListarSistemas(system)
-        .then(function successCallback(response) {
-            $scope.sistemas = response;
-            $scope.tieneError = false;
-            $scope.error = "";
-            $scope.estaCargando = false;
-        }, function errorCallback(response) {
-            $scope.tieneError = true;
-            $scope.error = "Ha ocurrido un error al listar: " + response;
-            $scope.estaCargando = false;
-        });
-    };
-
-    $scope.buscarSistema();
+            .then(function successCallback(response) {
+                $scope.sistemas = response;
+                //$scope.estaCargando = false;
+            }, function errorCallback(response) {
+                $scope.tipoError = "alert alert-danger";
+                $scope.error = "Ha ocurrido un error al listar: " + response;
+                $scope.tieneError = true;
+                //$scope.estaCargando = false;
+            });
+        };
+    $scope.listarSistemas();
 
     //$http({
     //    method: 'POST',
@@ -64,10 +65,12 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
 
     $scope.buscar = function () {
         if (angular.isUndefined($scope.mymodulo.Sistema) || $scope.mymodulo.Sistema == null) {
-            $scope.tieneError = true;
+            $scope.tipoError = "alert alert-warning";
             $scope.error = "Debe ingresar un sistema para poder ver sus módulos";
+            $scope.tieneError = true;
         }
         else {
+            $scope.tipoError = "";
             $scope.error = "";
             $scope.tieneError = false;
             $scope.estaCargando = true;
@@ -83,15 +86,15 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
             //};
             module.Nombre = $scope.mymodulo.Nombre;
             module.Sistema = $scope.mymodulo.Sistema;
-
             ModuloFctr.ListarModulos(module)
                 .then(function successCallback(response) {
                     $scope.modulos = response;
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
-                    $scope.error = "Ha ocurrido un error al listar: " + response;
                     $scope.estaCargando = false;
+                    $scope.tipoError = "alert alert-danger";
+                    $scope.error = "Ha ocurrido un error al listar: " + response;
+                    $scope.tieneError = true;
                 });
 
             //$http({
@@ -133,8 +136,9 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
         }
         ModuloFctr.CleanModulo(module);
         $scope.modulos = [];
-        $scope.tieneError = false;
+        $scope.tipoError = "";
         $scope.error = "";
+        $scope.tieneError = false;
     };
 
     $scope.modificar = function (modulo) {
@@ -157,13 +161,17 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
     };
 
     $scope.guardar = function () {
-        $scope.estaCargando = true;
         if ($scope.mymodulo.EstaActivo) {
             $scope.mymodulo.Activo = "S";
         }
         else {
             $scope.mymodulo.Activo = "N";
         }
+        $scope.estaCargando = true;
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
+
         //var module =
         //    {
         //        "Id": $scope.mymodulo.Id,
@@ -186,13 +194,14 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
             ModuloFctr.InsertarModulo(module)
                 .then(function successCallback(response) {
                     $scope.nuevo();
-                    $scope.modulos = [];
-                    $scope.tieneError = false;
-                    $scope.error = "";
+                    //$scope.modulos = [];
+                    //$scope.tieneError = false;
+                    //$scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
+                    $scope.tipoError = "alert alert-danger";
                     $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
+                    $scope.tieneError = true;
                     $scope.estaCargando = false;
                 });
             //$http({
@@ -219,14 +228,14 @@ myApp.controller("ModuloCtrl", function ($scope, system, module, SistemaFctr, Mo
             ModuloFctr.ActualizarModulo(module)
                 .then(function successCallback(response) {
                     $scope.nuevo();
-                    $scope.modulos = [];
-                    $scope.tieneError = false;
-                    $scope.error = "";
-                    $scope.estaCargando = false;
+                    //$scope.modulos = [];
+                    //$scope.tieneError = false;
+                    //$scope.error = "";
+                    //$scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
+                    $scope.tipoError = "alert alert-danger";
                     $scope.error = "Ha ocurrido un error al actualizar: " + response.data.Message;
-                    $scope.estaCargando = false;
+                    $scope.tieneError = true;
                     $scope.estaCargando = false;
                 });
             //$http({

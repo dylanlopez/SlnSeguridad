@@ -5,9 +5,17 @@
         <div class="col-md-4"></div>
     </div>
     <div class="container" ng-controller="MenuCtrl">
-        <div class="alert alert-danger" data-ng-show="tieneError">
-            <strong>ERROR: </strong> {{ error }}
+        <div ng-class="tipoError" data-ng-show="tieneError">
+            <strong ng-show="tipoError=='alert alert-warning'">ADVERTENCIA: </strong>
+            <strong ng-show="tipoError=='alert alert-danger'">ERROR: </strong>
+            {{ error }}
         </div>
+        <!--<div class="alert alert-warning" data-ng-show="tieneAdvertencia">
+            <strong>ADVERTENCIA: </strong> {{ advertencia }}
+        </div>-->
+        <!--<div class="alert alert-danger" data-ng-show="tieneError">
+            <strong>ERROR: </strong> {{ error }}
+        </div>-->
         <!--MANTENIMIENTO-->
         <div class="row">
             <form name="frmMenu" style="width:800px;margin:0px auto;">
@@ -15,7 +23,7 @@
                 <div class="container-fluid form-group">
                     <label for="cmbSistema" class="col-md-2 control-label">Sistema: </label>
                     <div class="col-md-8">
-                        <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mymenu.Sistema" ng-change="buscarModulo()" required></select>
+                        <select id="cmbSistema" class="form-control" ng-options="sistema.Nombre for sistema in sistemas track by sistema.Id" data-ng-model="mymenu.Sistema" ng-change="listarModulos()" required></select>
                     </div>
                 </div>
                 <div class="container-fluid form-group">
@@ -113,7 +121,7 @@
                 </tbody>
             </table>
         </div>
-        <div id="divLoader" data-ng-show="loading">
+        <div id="divLoader" ng-show="estaCargando">
             <img id="imgLoader" src="Images/ajax-loader.gif" class="ajax-loader" />
         </div>
     </div>

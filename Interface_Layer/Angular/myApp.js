@@ -2,10 +2,10 @@
 //var myApp = angular.module('myApp', [])
 var myApp = angular.module('myApp', ['ngRoute']);
 
-myApp.constant('webAPIControllers', 'http://localhost/MidisSeguridadDOF_API/');
+myApp.constant('webAPIControllers', 'http://localhost:58309/');
 //myApp.constant('webAPIControllers_Local', 'http://localhost:58309/');
 //myApp.constant('webAPIControllers_DEV', 'http://localhost/MidisSeguridadDOF_API/');
-//myApp.constant('webAPIControllers_QA', 'http://app_pruebas.midis.gob.pe/MidisSeguridadDOF_0API/');
+//myApp.constant('webAPIControllers_QA', 'http://app_pruebas.midis.gob.pe/MidisSeguridadDOF_API/');
 //myApp.constant('webAPIControllers_PROD', 'http://sdv.midis.gob.pe/MidisSeguridadDOF_API/');
 //myApp.constant('webAPIControllers_PROD', 'https://10.10.20.35/MidisSeguridadDOF_API/');
 

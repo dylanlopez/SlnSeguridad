@@ -4,7 +4,7 @@ using Domain_Layer.Queries;
 using System;
 using System.Collections.Generic;
 
-namespace Business_Layer.Logics
+namespace Business_Layer.Logics        
 {
     public partial class BLogic : IBPermisoLogic
     {

@@ -1,22 +1,30 @@
 ﻿//myApp.controller("PerfilCtrl", function ($scope, $http, webAPIControllers) {
 myApp.controller("PerfilCtrl", function ($scope, profile, PerfilFctr) {
     $scope.perfiles = [];
-    $scope.estaCargando = true;
+    $scope.estaCargando = false;
     $scope.estaEditable = false;
     $scope.tieneError = false;
     $scope.myperfil = [];
 
-    PerfilFctr.ListarPerfiles()
-        .then(function successCallback(response) {
-            $scope.perfiles = response;
-            $scope.tieneError = false;
-            $scope.error = "";
-            $scope.estaCargando = false;
-        }, function errorCallback(response) {
-            $scope.tieneError = true;
-            $scope.error = "Ha ocurrido un error al listar: " + response;
-            $scope.estaCargando = false;
-        });
+    $scope.listarPerfiles = function () {
+        $scope.estaCargando = true;
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
+        PerfilFctr.ListarPerfiles()
+            .then(function successCallback(response) {
+                $scope.perfiles = response;
+                $scope.estaCargando = false;
+                //$scope.tieneError = false;
+                //$scope.error = "";
+            }, function errorCallback(response) {
+                $scope.estaCargando = false;
+                $scope.tipoError = "alert alert-danger";
+                $scope.error = "Ha ocurrido un error al listar: " + response;
+                $scope.tieneError = true;
+            });
+    };
+    $scope.listarPerfiles();
 
     //$http({
     //    method: 'POST',
@@ -40,8 +48,9 @@ myApp.controller("PerfilCtrl", function ($scope, profile, PerfilFctr) {
             $scope.myperfil.Descripcion = "";
             PerfilFctr.CleanPerfil(profile);
         }
-        $scope.tieneError = false;
+        $scope.tipoError = "";
         $scope.error = "";
+        $scope.tieneError = false;
     };
 
     $scope.modificar = function (perfil) {
@@ -62,7 +71,9 @@ myApp.controller("PerfilCtrl", function ($scope, profile, PerfilFctr) {
         //        "Descripcion": $scope.myperfil.Descripcion
         //    };
         //console.debug(perfil);
-
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
         profile.Id = $scope.myperfil.Id;
         profile.Nombre = $scope.myperfil.Nombre;
         profile.Descripcion = $scope.myperfil.Descripcion;
@@ -71,21 +82,23 @@ myApp.controller("PerfilCtrl", function ($scope, profile, PerfilFctr) {
             PerfilFctr.InsertarPerfil(profile)
                 .then(function successCallback(response) {
                     $scope.nuevo();
-                    PerfilFctr.ListarPerfiles()
-                        .then(function successCallback(response) {
-                            $scope.perfiles = response;
-                            $scope.tieneError = false;
-                            $scope.error = "";
-                            $scope.estaCargando = false;
-                        }, function errorCallback(response) {
-                            $scope.tieneError = true;
-                            $scope.error = "Ha ocurrido un error al listar: " + response.data.Message;
-                            $scope.estaCargando = false;
-                        });
-                }, function errorCallback(response) {
-                    $scope.tieneError = true;
-                    $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
+                    //PerfilFctr.ListarPerfiles()
+                    //    .then(function successCallback(response) {
+                    //        $scope.perfiles = response;
+                    //        //$scope.tieneError = false;
+                    //        //$scope.error = "";
+                    //        $scope.estaCargando = false;
+                    //    }, function errorCallback(response) {
+                    //        $scope.tieneError = true;
+                    //        $scope.error = "Ha ocurrido un error al listar: " + response.data.Message;
+                    //        $scope.estaCargando = false;
+                    //    });
                     $scope.estaCargando = false;
+                }, function errorCallback(response) {
+                    $scope.estaCargando = false;
+                    $scope.tipoError = "alert alert-danger";
+                    $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
+                    $scope.tieneError = true;
                 });
 
             //$http({
@@ -118,21 +131,23 @@ myApp.controller("PerfilCtrl", function ($scope, profile, PerfilFctr) {
             PerfilFctr.ActualizarPerfil(profile)
                 .then(function successCallback(response) {
                     $scope.nuevo();
-                    PerfilFctr.ListarPerfiles()
-                        .then(function successCallback(response) {
-                            $scope.perfiles = response;
-                            $scope.tieneError = false;
-                            $scope.error = "";
-                            $scope.estaCargando = false;
-                        }, function errorCallback(response) {
-                            $scope.tieneError = true;
-                            $scope.error = "Ha ocurrido un error al listar: " + response.data.Message;
-                            $scope.estaCargando = false;
-                        });
-                }, function errorCallback(response) {
-                    $scope.tieneError = true;
-                    $scope.error = "Ha ocurrido un error al actualizar: " + response.data.Message;
+                    //PerfilFctr.ListarPerfiles()
+                    //    .then(function successCallback(response) {
+                    //        $scope.perfiles = response;
+                    //        $scope.tieneError = false;
+                    //        $scope.error = "";
+                    //        $scope.estaCargando = false;
+                    //    }, function errorCallback(response) {
+                    //        $scope.tieneError = true;
+                    //        $scope.error = "Ha ocurrido un error al listar: " + response.data.Message;
+                    //        $scope.estaCargando = false;
+                    //    });
                     $scope.estaCargando = false;
+                }, function errorCallback(response) {
+                    $scope.estaCargando = false;
+                    $scope.tipoError = "alert alert-danger";
+                    $scope.error = "Ha ocurrido un error al actualizar: " + response.data.Message;
+                    $scope.tieneError = true;
                 });
 
             //$http({

@@ -6,7 +6,7 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
     $scope.menus = [];
     $scope.opciones = [];
     $scope.menuesopciones = [];
-    $scope.estaCargando = true;
+    $scope.estaCargando = false;
     $scope.estaEditable = false;
     $scope.tieneError = false;
     $scope.mymenuopcion = [];
@@ -24,18 +24,24 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
     //    $scope.error = "Ha ocurrido un error al listar: " + result;
     //    $scope.estaCargando = false;
     //});
+
     system.Activo = 'S';
-    SistemaFctr.ListarSistemas(system)
-        .then(function successCallback(response) {
-            $scope.sistemas = response;
-            $scope.tieneError = false;
-            $scope.error = "";
-            $scope.estaCargando = false;
-        }, function errorCallback(response) {
-            $scope.tieneError = true;
-            $scope.error = "Ha ocurrido un error al listar: " + response;
-            $scope.estaCargando = false;
-        });
+    $scope.listarSistemas = function () {
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
+        SistemaFctr.ListarSistemas(system)
+            .then(function successCallback(response) {
+                $scope.sistemas = response;
+                //$scope.estaCargando = false;
+            }, function errorCallback(response) {
+                $scope.tipoError = "alert alert-danger";
+                $scope.error = "Ha ocurrido un error al listar: " + response;
+                $scope.tieneError = true;
+                //$scope.estaCargando = false;
+            });
+    };
+    $scope.listarSistemas();
 
     //var option =
     //    {
@@ -64,37 +70,47 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
     //});
 
     //option.Nombre = $scope.myopcion.Nombre;
-    OpcionFctr.ListarOpciones(option)
-        .then(function successCallback(response) {
-            $scope.opciones = response;
-            $scope.tieneError = false;
-            $scope.error = "";
-            $scope.estaCargando = false;
-        }, function errorCallback(response) {
-            $scope.tieneError = true;
-            $scope.error = "Ha ocurrido un error al listar: " + response;
-            $scope.estaCargando = false;
-        });
+
+    $scope.listarOpciones = function () {
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
+        OpcionFctr.ListarOpciones(option)
+            .then(function successCallback(response) {
+                $scope.opciones = response;
+                //$scope.estaCargando = false;
+            }, function errorCallback(response) {
+                $scope.tipoError = "alert alert-danger";
+                $scope.error = "Ha ocurrido un error al listar: " + response;
+                $scope.tieneError = true;
+                //$scope.estaCargando = false;
+            });
+    };
+    $scope.listarOpciones();
 
     $scope.buscarModulo = function () {
         if (angular.isUndefined($scope.mymenuopcion.Sistema)) {
-            $scope.tieneError = true;
+            $scope.tipoError = "alert alert-warning";
             $scope.error = "Debe ingresar un sistema para poder ver sus módulos";
+            $scope.tieneError = true;
         }
         else {
-            $scope.tieneError = false;
+            //$scope.estaCargando = true;
+            $scope.tipoError = "";
             $scope.error = "";
-            $scope.estaCargando = true;
+            $scope.tieneError = false;
+
             module.Activo = 'S';
             module.Sistema = $scope.mymenuopcion.Sistema;
             ModuloFctr.ListarModulos(module)
                 .then(function successCallback(response) {
                     $scope.modulos = response;
-                    $scope.estaCargando = false;
+                    //$scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
+                    //$scope.estaCargando = false;
+                    $scope.tipoError = "alert alert-danger";
                     $scope.error = "Ha ocurrido un error al listar: " + response;
-                    $scope.estaCargando = false;
+                    $scope.tieneError = true;
                 });
 
             //var module =
@@ -128,22 +144,26 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
 
     $scope.buscarMenu = function () {
         if (angular.isUndefined($scope.mymenuopcion.Sistema) && angular.isUndefined($scope.mymenuopcion.Modulo)) {
-            $scope.tieneError = true;
+            $scope.tipoError = "alert alert-warning";
             $scope.error = "Debe ingresar un sistema y módulo para poder ver sus menús";
+            $scope.tieneError = true;
         }
         else {
+            //$scope.estaCargando = true;
             $scope.tieneError = false;
             $scope.error = "";
             $scope.estaCargando = true;
+
             menu.Modulo = $scope.mymenuopcion.Modulo;
             MenuFctr.ListarMenus(menu)
                 .then(function successCallback(response) {
                     $scope.menus = response;
-                    $scope.estaCargando = false;
+                    //$scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
+                    //$scope.estaCargando = false;
+                    $scope.tipoError = "alert alert-danger";
                     $scope.error = "Ha ocurrido un error al listar: " + response;
-                    $scope.estaCargando = false;
+                    $scope.tieneError = true;
                 });
 
             //var menu =
@@ -179,22 +199,26 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
         if ((angular.isUndefined($scope.mymenuopcion.Sistema) || $scope.mymenuopcion.Sistema == null) &&
             (angular.isUndefined($scope.mymenuopcion.Modulo) || $scope.mymenuopcion.Modulo == null) &&
             (angular.isUndefined($scope.mymenuopcion.Menu) || $scope.mymenuopcion.Menu == null)) {
-            $scope.tieneError = true;
+            $scope.tipoError = "alert alert-warning";
             $scope.error = "Debe ingresar un sistema, módulo y menú para poder ver sus opciones";
+            $scope.tieneError = true;
         }
         else {
-            $scope.tieneError = false;
-            $scope.error = "";
             $scope.estaCargando = true;
+            $scope.tipoError = "";
+            $scope.error = "";
+            $scope.tieneError = false;
+
             menuoption.Menu = $scope.mymenuopcion.Menu;
             MenuOpcionFctr.ListarMenuOpciones(menuoption)
                 .then(function successCallback(response) {
                     $scope.menuesopciones = response;
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
-                    $scope.error = "Ha ocurrido un error al listar: " + response;
                     $scope.estaCargando = false;
+                    $scope.tipoError = "alert alert-danger";
+                    $scope.error = "Ha ocurrido un error al listar: " + response;
+                    $scope.tieneError = true;
                 });
 
             //var menuopcion =
@@ -240,8 +264,9 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
         MenuOpcionFctr.CleanMenuOpcion(menuoption);
         //console.debug(profileuserrole);
         $scope.menuesopciones = [];
-        $scope.tieneError = false;
+        $scope.tipoError = "";
         $scope.error = "";
+        $scope.tieneError = false;
     };
 
     $scope.modificar = function (menuopcion) {
@@ -272,8 +297,6 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
     };
 
     $scope.guardar = function () {
-        $scope.tieneError = false;
-        $scope.error = "";
         $scope.estaCargando = true;
         if ($scope.mymenuopcion.EstaActivo) {
             $scope.mymenuopcion.Activo = "S";
@@ -287,6 +310,9 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
         else {
             $scope.mymenuopcion.Visible = "N";
         }
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
         //var menuopcion =
         //    {
         //        "Id": $scope.mymenuopcion.Id,
@@ -306,12 +332,13 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
             MenuOpcionFctr.InsertarMenuOpcion(menuoption)
                 .then(function successCallback(response) {
                     $scope.nuevo();
-                    $scope.menuesopciones = [];
+                    //$scope.menuesopciones = [];
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
-                    $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
                     $scope.estaCargando = false;
+                    $scope.tipoError = "alert alert-danger";
+                    $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
+                    $scope.tieneError = true;
                 });
 
             //$http({
@@ -338,13 +365,13 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
             MenuOpcionFctr.ActualizarMenuOpcion(menuoption)
                 .then(function successCallback(response) {
                     $scope.nuevo();
-                    $scope.menuesopciones = [];
+                    //$scope.menuesopciones = [];
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
+                    $scope.estaCargando = false;
+                    $scope.tipoError = "alert alert-danger";
                     $scope.error = "Ha ocurrido un error al actualizar: " + response.data.Message;
-                    $scope.estaCargando = false;
-                    $scope.estaCargando = false;
+                    $scope.tieneError = true;
                 });
 
             //$http({

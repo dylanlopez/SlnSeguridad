@@ -1,7 +1,7 @@
 ﻿//myApp.controller("SistemaCtrl", function ($scope, $http, webAPIControllers) {
 myApp.controller("SistemaCtrl", function ($scope, system, SistemaFctr) {
     $scope.sistemas = [];
-    $scope.estaCargando = true;
+    $scope.estaCargando = false;
     $scope.estaEditable = false;
     $scope.tieneError = false;
     $scope.mysistema = [];
@@ -24,7 +24,11 @@ myApp.controller("SistemaCtrl", function ($scope, system, SistemaFctr) {
     //});
 
     $scope.buscar = function () {
+        //$scope.estaCargando = true;
         $scope.estaCargando = true;
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
 
         //var system =
         //{
@@ -62,13 +66,14 @@ myApp.controller("SistemaCtrl", function ($scope, system, SistemaFctr) {
         SistemaFctr.ListarSistemas(system)
             .then(function successCallback(response) {
                 $scope.sistemas = response;
-                $scope.tieneError = false;
-                $scope.error = "";
+                //$scope.tieneError = false;
+                //$scope.error = "";
                 $scope.estaCargando = false;
             }, function errorCallback(response) {
-                $scope.tieneError = true;
-                $scope.error = "Ha ocurrido un error al listar: " + response;
                 $scope.estaCargando = false;
+                $scope.tipoError = "alert alert-danger";
+                $scope.error = "Ha ocurrido un error al listar: " + response;
+                $scope.tieneError = true;
             });
     };
 
@@ -100,8 +105,9 @@ myApp.controller("SistemaCtrl", function ($scope, system, SistemaFctr) {
             //system.RutaLogica = null;
         }
         $scope.sistemas = [];
-        $scope.tieneError = false;
+        $scope.tipoError = "";
         $scope.error = "";
+        $scope.tieneError = false;
     };
 
     $scope.modificar = function (sistema) {
@@ -136,6 +142,10 @@ myApp.controller("SistemaCtrl", function ($scope, system, SistemaFctr) {
         {
             $scope.mysistema.Activo = "N";
         }
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
+
         //var system =
         //    {
         //        "Id": $scope.mysistema.Id, 
@@ -164,13 +174,14 @@ myApp.controller("SistemaCtrl", function ($scope, system, SistemaFctr) {
             SistemaFctr.InsertarSistema(system)
                 .then(function successCallback(response) {
                     $scope.nuevo();
-                    $scope.tieneError = false;
-                    $scope.error = "";
+                    //$scope.tieneError = false;
+                    //$scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
-                    $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
                     $scope.estaCargando = false;
+                    $scope.tipoError = "alert alert-danger";
+                    $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
+                    $scope.tieneError = true;
                 });
 
             //$http({
@@ -202,11 +213,12 @@ myApp.controller("SistemaCtrl", function ($scope, system, SistemaFctr) {
             SistemaFctr.ActualizarSistema(system)
                 .then(function successCallback(response) {
                     $scope.nuevo();
-                    $scope.tieneError = false;
-                    $scope.error = "";
+                    //$scope.tieneError = false;
+                    //$scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
                     $scope.tieneError = true;
+                    $scope.tipoError = "alert alert-danger";
                     $scope.error = "Ha ocurrido un error al actualizar: " + response.data.Message;
                     $scope.estaCargando = false;
                 });

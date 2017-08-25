@@ -4,7 +4,7 @@ myApp.controller("SistemaPerfilCtrl", function ($scope, system, systemprofile,
     $scope.sistemasperfiles = [];
     $scope.sistemas = [];
     $scope.perfiles = [];
-    $scope.estaCargando = true;
+    $scope.estaCargando = false;
     $scope.estaEditable = false;
     $scope.tieneError = false;
     $scope.mysistemaperfil = [];
@@ -23,18 +23,36 @@ myApp.controller("SistemaPerfilCtrl", function ($scope, system, systemprofile,
     //    $scope.estaCargando = false;
     //});
 
+    //system.Activo = 'S';
+    //SistemaFctr.ListarSistemas(system)
+    //    .then(function successCallback(response) {
+    //        $scope.sistemas = response;
+    //        $scope.tieneError = false;
+    //        $scope.error = "";
+    //        $scope.estaCargando = false;
+    //    }, function errorCallback(response) {
+    //        $scope.tieneError = true;
+    //        $scope.error = "Ha ocuirrido un error al listar: " + response;
+    //        $scope.estaCargando = false;
+    //    });
+
     system.Activo = 'S';
-    SistemaFctr.ListarSistemas(system)
-        .then(function successCallback(response) {
-            $scope.sistemas = response;
-            $scope.tieneError = false;
-            $scope.error = "";
-            $scope.estaCargando = false;
-        }, function errorCallback(response) {
-            $scope.tieneError = true;
-            $scope.error = "Ha ocuirrido un error al listar: " + response;
-            $scope.estaCargando = false;
-        });
+    $scope.listarSistemas = function () {
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
+        SistemaFctr.ListarSistemas(system)
+            .then(function successCallback(response) {
+                $scope.sistemas = response;
+                //$scope.estaCargando = false;
+            }, function errorCallback(response) {
+                $scope.tipoError = "alert alert-danger";
+                $scope.error = "Ha ocurrido un error al listar: " + response;
+                $scope.tieneError = true;
+                //$scope.estaCargando = false;
+            });
+    };
+    $scope.listarSistemas();
 
     //$http({
     //    method: 'POST',
@@ -50,27 +68,49 @@ myApp.controller("SistemaPerfilCtrl", function ($scope, system, systemprofile,
     //    $scope.estaCargando = false;
     //});
 
-    PerfilFctr.ListarPerfiles()
-        .then(function successCallback(response) {
-            $scope.perfiles = response;
-            $scope.tieneError = false;
-            $scope.error = "";
-            $scope.estaCargando = false;
-        }, function errorCallback(response) {
-            $scope.tieneError = true;
-            $scope.error = "Ha ocuirrido un error al listar: " + response;
-            $scope.estaCargando = false;
-        });
+    $scope.listarPerfiles = function () {
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
+        PerfilFctr.ListarPerfiles()
+            .then(function successCallback(response) {
+                $scope.perfiles = response;
+                //$scope.tieneError = false;
+                //$scope.error = "";
+                //$scope.estaCargando = false;
+            }, function errorCallback(response) {
+                $scope.tipoError = "alert alert-danger";
+                $scope.error = "Ha ocurrido un error al listar: " + response;
+                $scope.tieneError = true;
+                //$scope.estaCargando = false;
+            });
+    };
+    $scope.listarPerfiles();
+
+    //PerfilFctr.ListarPerfiles()
+    //    .then(function successCallback(response) {
+    //        $scope.perfiles = response;
+    //        $scope.tieneError = false;
+    //        $scope.error = "";
+    //        $scope.estaCargando = false;
+    //    }, function errorCallback(response) {
+    //        $scope.tieneError = true;
+    //        $scope.error = "Ha ocuirrido un error al listar: " + response;
+    //        $scope.estaCargando = false;
+    //    });
 
     $scope.buscar = function () {
         if (angular.isUndefined($scope.mysistemaperfil.Sistema) && 
             angular.isUndefined($scope.mysistemaperfil.Perfil)) {
-            $scope.tieneError = true;
+            $scope.tipoError = "alert alert-warning";
             $scope.error = "Debe ingresar un sistema o perfiles";
+            $scope.tieneError = true;
         }
         else {
-            $scope.tieneError = false;
+            $scope.estaCargando = true;
+            $scope.tipoError = "";
             $scope.error = "";
+            $scope.tieneError = false;
 
             //var sistemaperfil =
             //{
@@ -85,12 +125,12 @@ myApp.controller("SistemaPerfilCtrl", function ($scope, system, systemprofile,
             SistemaPerfilFctr.ListarSistemasPerfiles(systemprofile)
                 .then(function successCallback(response) {
                     $scope.sistemasperfiles = response;
-                    $scope.tieneError = false;
-                    $scope.error = "";
+                    //$scope.tieneError = false;
+                    //$scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
-                    $scope.error = "Ha ocurrido un error al listar: " + response.data.Message;
+                    //$scope.tieneError = true;
+                    //$scope.error = "Ha ocurrido un error al listar: " + response.data.Message;
                     $scope.estaCargando = false;
                 });
 
@@ -122,8 +162,9 @@ myApp.controller("SistemaPerfilCtrl", function ($scope, system, systemprofile,
         $scope.mysistemaperfil.Sistema = null;
         $scope.mysistemaperfil.Perfil = null;
         SistemaPerfilFctr.CleanSistemaPerfil(systemprofile);
-        $scope.tieneError = false;
+        $scope.tipoError = "";
         $scope.error = "";
+        $scope.tieneError = false;
     };
 
     $scope.modificar = function (sistemaperfil) {
@@ -143,8 +184,6 @@ myApp.controller("SistemaPerfilCtrl", function ($scope, system, systemprofile,
     };
 
     $scope.guardar = function () {
-        $scope.tieneError = false;
-        $scope.error = "";
         $scope.estaCargando = true;
         if ($scope.mysistemaperfil.EstaActivo) {
             $scope.mysistemaperfil.Activo = "S";
@@ -152,6 +191,9 @@ myApp.controller("SistemaPerfilCtrl", function ($scope, system, systemprofile,
         else {
             $scope.mysistemaperfil.Activo = "N";
         }
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
         //var sistemaperfil =
         //    {
         //        "Id": $scope.mysistemaperfil.Id,

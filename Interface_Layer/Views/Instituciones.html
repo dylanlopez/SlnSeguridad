@@ -5,8 +5,10 @@
     <div class="col-md-4"></div>
 </div>
 <div class="container" ng-controller="InstitucionCtrl">
-    <div class="alert alert-danger" data-ng-show="tieneError">
-        <strong>ERROR: </strong> {{ error }}
+    <div ng-class="tipoError" data-ng-show="tieneError">
+        <strong ng-show="tipoError=='alert alert-warning'">ADVERTENCIA: </strong> 
+        <strong ng-show="tipoError=='alert alert-danger'">ERROR: </strong>
+        {{ error }}
     </div>
     <!--MANTENIMIENTO-->
     <div class="row">
@@ -84,7 +86,7 @@
             </tbody>
         </table>
     </div>
-    <div id="divLoader" data-ng-show="loading">
+    <div id="divLoader" ng-show="estaCargando">
         <img id="imgLoader" src="Images/ajax-loader.gif" class="ajax-loader" />
     </div>
 </div>

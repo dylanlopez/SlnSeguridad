@@ -1,34 +1,38 @@
 ﻿myApp.controller("InstitucionCtrl", function ($scope, intitutiontype, intitution, TipoInstitucionFctr, InstitucionFctr) {
     $scope.tiposinstitucion = [];
     $scope.instituciones = [];
-    $scope.estaCargando = true;
+    $scope.estaCargando = false;
     $scope.estaEditable = false;
     $scope.tieneError = false;
     $scope.myinstitucion = [];
 
     intitutiontype.Activo = 'S';
-    $scope.buscarTipoInstitucion = function () {
+    $scope.listarTiposInstituciones = function () {
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
         TipoInstitucionFctr.ListarTipoInstitucion(intitutiontype)
-        .then(function successCallback(response) {
-            $scope.tiposinstitucion = response;
-            $scope.tieneError = false;
-            $scope.error = "";
-            $scope.estaCargando = false;
-        }, function errorCallback(response) {
-            $scope.tieneError = true;
-            $scope.error = "Ha ocurrido un error al listar: " + response;
-            $scope.estaCargando = false;
-        });
+            .then(function successCallback(response) {
+                $scope.tiposinstitucion = response;
+                //$scope.estaCargando = false;
+            }, function errorCallback(response) {
+                $scope.tipoError = "alert alert-danger";
+                $scope.error = "Ha ocurrido un error al listar: " + response;
+                $scope.tieneError = true;
+                //$scope.estaCargando = false;
+            });
     };
 
-    $scope.buscarTipoInstitucion();
+    $scope.listarTiposInstituciones();
 
     $scope.buscar = function () {
         if (angular.isUndefined($scope.myinstitucion.TipoInstitucion) || $scope.myinstitucion.TipoInstitucion == null) {
-            $scope.tieneError = true;
+            $scope.tipoError = "alert alert-warning";
             $scope.error = "Debe ingresar un tipo de institución para ver sus instituciones";
+            $scope.tieneError = true;
         }
         else {
+            $scope.tipoError = "";
             $scope.error = "";
             $scope.tieneError = false;
             $scope.estaCargando = true;
@@ -41,8 +45,9 @@
                     $scope.instituciones = response;
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
+                    $scope.tipoError = "alert alert-danger";
                     $scope.error = "Ha ocurrido un error al listar: " + response;
+                    $scope.tieneError = true;
                     $scope.estaCargando = false;
                 });
         }
@@ -61,8 +66,9 @@
         }
         InstitucionFctr.CleanInstitucion(intitution);
         $scope.instituciones = [];
-        $scope.tieneError = false;
+        $scope.tipoError = "";
         $scope.error = "";
+        $scope.tieneError = false;
     };
 
     $scope.modificar = function (institucion) {
@@ -92,6 +98,11 @@
         else {
             $scope.myinstitucion.Activo = "N";
         }
+
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
+
         intitution.Id = $scope.myinstitucion.Id;
         intitution.Nombre = $scope.myinstitucion.Nombre;
         intitution.NombreCorto = $scope.myinstitucion.NombreCorto;
@@ -103,13 +114,12 @@
             InstitucionFctr.InsertarInstitucion(intitution)
                 .then(function successCallback(response) {
                     $scope.nuevo();
-                    $scope.tieneError = false;
-                    $scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
-                    $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
                     $scope.estaCargando = false;
+                    $scope.tipoError = "alert alert-danger";
+                    $scope.error = "Ha ocurrido un error al insertar: " + response.data.Message;
+                    $scope.tieneError = true;
                 });
         }
         else //actualizar (update)
@@ -117,14 +127,12 @@
             InstitucionFctr.ActualizarInstitucion(intitution)
                 .then(function successCallback(response) {
                     $scope.nuevo();
-                    $scope.tieneError = false;
-                    $scope.error = "";
                     $scope.estaCargando = false;
                 }, function errorCallback(response) {
-                    $scope.tieneError = true;
+                    $scope.estaCargando = false;
+                    $scope.tipoError = "alert alert-danger";
                     $scope.error = "Ha ocurrido un error al actualizar: " + response.data.Message;
-                    $scope.estaCargando = false;
-                    $scope.estaCargando = false;
+                    $scope.tieneError = true;
                 });
         }
     };
