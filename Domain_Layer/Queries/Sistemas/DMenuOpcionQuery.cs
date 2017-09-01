@@ -224,7 +224,25 @@ namespace Domain_Layer.Queries
                     using (_transactionMidis = _sessionMidis.BeginTransaction())
                     {
                         IQuery query = _sessionMidis.CreateQuery("FROM EMenuOpcion x " +
-                                                                 "WHERE x.Menu.Id = COALESCE(:p_IdMenu, x.Menu.Id) ");
+                                                                 "WHERE x.Menu.Modulo.Sistema.Id = COALESCE(:p_IdSistema, x.Menu.Modulo.Sistema.Id) " +
+                                                                 "AND x.Menu.Modulo.Id = COALESCE(:p_IdModulo, x.Menu.Modulo.Id) " +
+                                                                 "AND x.Menu.Id = COALESCE(:p_IdMenu, x.Menu.Id) ");
+                        if (dto.Menu.Modulo.Sistema.Id != 0)
+                        {
+                            query.SetParameter("p_IdSistema", dto.Menu.Modulo.Sistema.Id);
+                        }
+                        else
+                        {
+                            query.SetParameter("p_IdSistema", null, NHibernateUtil.Int32);
+                        }
+                        if (dto.Menu.Modulo.Id != 0)
+                        {
+                            query.SetParameter("p_IdModulo", dto.Menu.Modulo.Id);
+                        }
+                        else
+                        {
+                            query.SetParameter("p_IdModulo", null, NHibernateUtil.Int32);
+                        }
                         if (dto.Menu.Id != 0)
                         {
                             query.SetParameter("p_IdMenu", dto.Menu.Id);

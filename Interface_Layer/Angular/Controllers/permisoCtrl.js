@@ -36,17 +36,33 @@ myApp.controller("PermisoCtrl", function ($scope, user, role, profileuserrole,
     //    $scope.error = "Ha ocuirrido un error al listar perfiles: " + result;
     //    $scope.estaCargando = false;
     //});
-    PerfilFctr.ListarPerfiles()
-        .then(function successCallback(response) {
-            $scope.perfiles = response;
-            $scope.tieneError = false;
-            $scope.error = "";
-            $scope.estaCargando = false;
-        }, function errorCallback(response) {
-            $scope.tieneError = true;
-            $scope.error = "Ha ocurrido un error al listar perfiles: " + response;
-            $scope.estaCargando = false;
-        });
+
+    //PerfilFctr.ListarPerfiles()
+    //    .then(function successCallback(response) {
+    //        $scope.perfiles = response;
+    //        $scope.tieneError = false;
+    //        $scope.error = "";
+    //        $scope.estaCargando = false;
+    //    }, function errorCallback(response) {
+    //        $scope.tieneError = true;
+    //        $scope.error = "Ha ocurrido un error al listar perfiles: " + response;
+    //        $scope.estaCargando = false;
+    //    });
+    $scope.listarPerfiles = function () {
+        $scope.tipoError = "";
+        $scope.error = "";
+        $scope.tieneError = false;
+        PerfilFctr.ListarPerfiles()
+            .then(function successCallback(response) {
+                $scope.perfiles = response;
+            }, function errorCallback(response) {
+                $scope.tipoError = "alert alert-danger";
+                $scope.error = "Ha ocurrido un error al listar: " + response;
+                $scope.tieneError = true;
+            });
+    };
+    $scope.listarPerfiles();
+
 
     $scope.buscarUsuario = function () {
         //if ($scope.mypermiso.Usuario == '44481138') {

@@ -183,7 +183,7 @@ namespace Domain_Layer.Queries
                         IQuery query = _sessionMidis.CreateQuery("FROM ESistema x " +
                                                                  "WHERE x.Nombre LIKE CONCAT('%', :p_Nombre, '%') " +
                                                                  "AND x.Activo = COALESCE(:p_Activo, x.Activo) " +
-                                                                 "ORDER BY x.Nombre");
+                                                                 "ORDER BY x.Codigo");
                         if (!dto.Nombre.Equals(String.Empty))
                         {
                             query.SetParameter("p_Nombre", dto.Nombre.ToUpper());

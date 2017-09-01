@@ -33,6 +33,7 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
         SistemaFctr.ListarSistemas(system)
             .then(function successCallback(response) {
                 $scope.sistemas = response;
+                $scope.mymenuopcion.Modulo = null;
                 //$scope.estaCargando = false;
             }, function errorCallback(response) {
                 $scope.tipoError = "alert alert-danger";
@@ -105,6 +106,7 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
             ModuloFctr.ListarModulos(module)
                 .then(function successCallback(response) {
                     $scope.modulos = response;
+                    $scope.mymenuopcion.Menu = null;
                     //$scope.estaCargando = false;
                 }, function errorCallback(response) {
                     //$scope.estaCargando = false;
@@ -152,7 +154,7 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
             //$scope.estaCargando = true;
             $scope.tieneError = false;
             $scope.error = "";
-            $scope.estaCargando = true;
+            //$scope.estaCargando = true;
 
             menu.Modulo = $scope.mymenuopcion.Modulo;
             MenuFctr.ListarMenus(menu)
@@ -196,9 +198,10 @@ myApp.controller("MenuOpcionCtrl", function ($scope, system, module, menu, optio
     };
 
     $scope.buscar = function () {
-        if ((angular.isUndefined($scope.mymenuopcion.Sistema) || $scope.mymenuopcion.Sistema == null) &&
-            (angular.isUndefined($scope.mymenuopcion.Modulo) || $scope.mymenuopcion.Modulo == null) &&
-            (angular.isUndefined($scope.mymenuopcion.Menu) || $scope.mymenuopcion.Menu == null)) {
+        //if ((angular.isUndefined($scope.mymenuopcion.Sistema) || $scope.mymenuopcion.Sistema == null) &&
+        //    (angular.isUndefined($scope.mymenuopcion.Modulo) || $scope.mymenuopcion.Modulo == null) &&
+        //    (angular.isUndefined($scope.mymenuopcion.Menu) || $scope.mymenuopcion.Menu == null)) {
+        if ((angular.isUndefined($scope.mymenuopcion.Menu) || $scope.mymenuopcion.Menu == null)) {
             $scope.tipoError = "alert alert-warning";
             $scope.error = "Debe ingresar un sistema, módulo y menú para poder ver sus opciones";
             $scope.tieneError = true;

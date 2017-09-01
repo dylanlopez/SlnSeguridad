@@ -2,7 +2,7 @@
 myApp.controller("MenusCtrl", function ($rootScope, $scope, $http, webAPIControllers, accountService, userService, $location, MenusFctr) {
     var passParam = { "Id": 1 };
     //$scope.modulos = [];
-    $rootScope.modulos = [];
+    //$rootScope.modulos = [];
 
     //$scope.estaLogeado = false;
 
@@ -23,10 +23,10 @@ myApp.controller("MenusCtrl", function ($rootScope, $scope, $http, webAPIControl
         //UsuarioLogeadoFctr.EstaLogeado = false;
         //$scope.estaLogeado = UsuarioLogeadoFctr.EstaLogeado;
         //$rootScope.estaLogeado = false;
-        console.log();
+        //console.log();
         accountService.logout();
         $location.path('/login');
-        $rootScope.modulos = [];
+        //$rootScope.modulos = [];
     }
 
     //var passParam = { "Id": 1 };

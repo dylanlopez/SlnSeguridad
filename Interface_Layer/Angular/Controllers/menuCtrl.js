@@ -29,7 +29,29 @@ myApp.controller("MenuCtrl", function ($scope, system, module, menu, SistemaFctr
         $scope.tieneError = false;
         SistemaFctr.ListarSistemas(system)
         .then(function successCallback(response) {
+            //$scope.mymenu.Sistema = null;
             $scope.sistemas = response;
+            $scope.mymenu.Modulo = null;
+            //menu.Modulo = {
+            //    Id: '',
+            //    Codigo: '',
+            //    Nombre: '',
+            //    Abreviatura: '',
+            //    Activo: '',
+            //    Descripcion: '',
+            //    Sistema: {
+            //        Id: '',
+            //        Codigo: '',
+            //        Nombre: '',
+            //        Abreviatura: '',
+            //        Activo: '',
+            //        Descripcion: '',
+            //        NombreServidor: '',
+            //        IPServidor: '',
+            //        RutaFisica: '',
+            //        RutaLogica: ''
+            //    }
+            //};
         }, function errorCallback(response) {
             $scope.tipoError = "alert alert-danger";
             $scope.error = "Ha ocurrido un error al listar: " + response;
@@ -43,6 +65,7 @@ myApp.controller("MenuCtrl", function ($scope, system, module, menu, SistemaFctr
             $scope.tipoError = "alert alert-warning";
             $scope.error = "Debe ingresar un sistema para poder ver sus módulos";
             $scope.tieneError = true;
+            //$scope.modulos = null;
         }
         else {
             $scope.tipoError = "";
@@ -63,6 +86,7 @@ myApp.controller("MenuCtrl", function ($scope, system, module, menu, SistemaFctr
             module.Sistema = $scope.mymenu.Sistema;
             ModuloFctr.ListarModulos(module)
                 .then(function successCallback(response) {
+                    //$scope.mymenu.Modulo = null;
                     $scope.modulos = response;
                     //$scope.estaCargando = false;
                 }, function errorCallback(response) {
@@ -100,6 +124,7 @@ myApp.controller("MenuCtrl", function ($scope, system, module, menu, SistemaFctr
             $scope.tipoError = "alert alert-warning";
             $scope.error = "Debe ingresar un sistema como mínimo para poder ver sus menús";
             $scope.tieneError = true;
+            //$scope.modulos = null;
         }
         else {
             $scope.estaCargando = true;
@@ -124,13 +149,44 @@ myApp.controller("MenuCtrl", function ($scope, system, module, menu, SistemaFctr
             menu.Nombre = $scope.mymenu.Nombre;
             //menu.Modulo = $scope.mymenu.Modulo;
             menu.Modulo.Sistema = $scope.mymenu.Sistema;
-            //console.debug($scope.mymenu.Modulo);
+            //console.debug($scope.mymenu.Sistema);
             //console.debug(menu);
 
+            //console.debug($scope.mymenu.Modulo);
             if (!angular.isUndefined($scope.mymenu.Modulo) && $scope.mymenu.Modulo != null) {
                 //console.info("Entro A");
                 menu.Modulo = $scope.mymenu.Modulo;
+                //console.debug($scope.mymenu.Modulo);
                 //menu.Modulo = module;
+            }
+            else {
+                menu.Modulo.Id = "";
+                menu.Modulo.Codigo = "";
+                menu.Modulo.Nombre = "";
+                menu.Modulo.Abreviatura = "";
+                menu.Modulo.Activo = "";
+                menu.Modulo.Descripcion = "";
+
+                //menu.Modulo = {
+                //    Id: '',
+                //    Codigo: '',
+                //    Nombre: '',
+                //    Abreviatura: '',
+                //    Activo: '',
+                //    Descripcion: '',
+                //    Sistema: {
+                //        Id: '',
+                //        Codigo: '',
+                //        Nombre: '',
+                //        Abreviatura: '',
+                //        Activo: '',
+                //        Descripcion: '',
+                //        NombreServidor: '',
+                //        IPServidor: '',
+                //        RutaFisica: '',
+                //        RutaLogica: ''
+                //    }
+                //};
             }
             ////console.debug($scope.mymenu.Sistema);
             //if (!angular.isUndefined($scope.mymenu.Sistema)) {
@@ -139,6 +195,7 @@ myApp.controller("MenuCtrl", function ($scope, system, module, menu, SistemaFctr
             //    //menu.Modulo.Sistema = system;
             //}
             
+            console.debug(menu);
             MenuFctr.ListarMenus(menu)
                 .then(function successCallback(response) {
                     $scope.menus = response;
@@ -180,8 +237,7 @@ myApp.controller("MenuCtrl", function ($scope, system, module, menu, SistemaFctr
             //ModuloFctr.CleanModulo(module);
             //SistemaFctr.CleanSistema(system);
         }
-        $scope.mymenu.Sistema = null;
-        $scope.mymenu.Modulo = null;
+        r
         $scope.mymenu.Nombre = "";
         MenuFctr.CleanMenu(menu);
         //console.debug(menu);

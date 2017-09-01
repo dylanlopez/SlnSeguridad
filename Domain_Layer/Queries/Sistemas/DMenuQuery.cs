@@ -230,7 +230,7 @@ namespace Domain_Layer.Queries
                                                                  "AND x.Activo = COALESCE(:p_Activo, x.Activo) " +
                                                                  "AND x.Modulo.Sistema.Id = COALESCE(:p_IdSistema, x.Modulo.Sistema.Id) " +
                                                                  "AND x.Modulo.Id = COALESCE(:p_IdModulo, x.Modulo.Id) " +
-                                                                 "ORDER BY x.Modulo.Sistema.Nombre, x.Modulo.Nombre, x.Nombre");
+                                                                 "ORDER BY x.Modulo.Sistema.Codigo, x.Modulo.Codigo, x.Codigo");
                         if (!dto.Nombre.Equals(String.Empty))
                         {
                             query.SetParameter("p_Nombre", dto.Nombre.ToUpper());

@@ -184,7 +184,7 @@ namespace Domain_Layer.Queries
                                                                  "WHERE x.Nombre LIKE CONCAT('%', :p_Nombre, '%') " +
                                                                  "AND x.Activo = COALESCE(:p_Activo, x.Activo) " +
                                                                  "AND x.Sistema.Id = COALESCE(:p_IdSistema, x.Sistema.Id) " +
-                                                                 "ORDER BY x.Sistema.Nombre, x.Nombre");
+                                                                 "ORDER BY x.Sistema.Codigo, x.Codigo");
                         if (!dto.Nombre.Equals(String.Empty))
                         {
                             query.SetParameter("p_Nombre", dto.Nombre.ToUpper());
